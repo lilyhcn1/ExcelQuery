@@ -1,0 +1,30 @@
+[ 2017-04-19T00:35:35+08:00 ] 66.249.66.67 /index.php?s=gb-show-p-790.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000384s ]
+ERR: 无法加载模块:Gb-show-p-790
+
+[ 2017-04-19T00:50:35+08:00 ] 66.249.66.127 /index.php?s=gb-show-p-5668.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000520s ]
+ERR: 无法加载模块:Gb-show-p-5668
+
+[ 2017-04-19T01:34:03+08:00 ] 66.249.66.64 /index.php?s=vod-play-id-951-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000370s ]
+ERR: 无法加载模块:Vod-play-id-951-sid-0-pid-1
+
+[ 2017-04-19T05:21:34+08:00 ] 66.249.66.127 /index.php?s=gb-show-p-2194.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000397s ]
+ERR: 无法加载模块:Gb-show-p-2194
+
+[ 2017-04-19T14:24:20+08:00 ] 46.4.91.109 /index.php?s=vod-search-area-%E5%8A%A0%E6%8B%BF%E5%A4%A7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000422s ]
+ERR: 无法加载模块:Vod-search-area-加拿大
+

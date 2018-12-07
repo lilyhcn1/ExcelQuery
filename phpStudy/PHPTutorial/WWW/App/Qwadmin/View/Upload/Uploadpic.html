@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>图片上传</title>
+    <style type="text/css">
+    html,body{margin:0;padding:0;width:{$Width}px;height:{$Height}px;}
+	.uploadpic{position:relative;}
+	#ImgPr{border:0;}
+	.puloadpic{position:absolute;width:{$Width}px;height:{$Height}px;}
+	.inputfile{position:absolute;top:0px;left:0px;z-index:100;-moz-opacity:0.3;opacity:0.3;filter: alpha(opacity=30);background:#4f99c6;cursor:pointer;}
+	#uploadicon{font-size:200px;overflow:hidden;display:block;width:{$Width}px;height:{$Height}px;-moz-opacity:0.0;opacity:0.0;filter: alpha(opacity=0);cursor:pointer;}
+	.uploadtext{position:absolute;top:0px;left:0px;z-index:50;color:red;font-weight:bold;text-align:center;width:{$Width}px;height:{$Height}px;line-height:{$Height}px;cursor:pointer;overflow:hidden;}
+	</style>
+    <!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='__PUBLIC__/qwadmin/js/jquery.js'>"+"<"+"/script>");
+		</script>
+		<!-- <![endif]-->
+		<!--[if IE]>
+		<script type="text/javascript">
+		 window.jQuery || document.write("<script src='__PUBLIC__/qwadmin/js/jquery1x.js'>"+"<"+"/script>");
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='__PUBLIC__/qwadmin/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+		</script>
+</head>
+
+<body>
+    <form enctype="multipart/form-data" id="PostMe" action="?" method="post" name="upform">
+        <input type="hidden" value="{$Width}" name="Width">
+        <input type="hidden" value="{$Height}" name="Height">
+        <input type="hidden" value="{$BackCall}" name="BackCall">
+        <div class="uploadpic">
+		<img id="ImgPr" src="<if condition="$Img eq ''">__PUBLIC__/qwadmin/images/nopic.gif<else />__ROOT__{$Img}</if>"  width="{$Width}" height="{$Height}">
+        <div class="uploadtext">上传</div>
+			<div class="inputfile" title="点击上传图片">
+				<input type="file" name="img" id="uploadicon" value="upload"/>
+			</div>
+		</div>
+		
+    </form>
+    <script type="text/javascript">
+        $('#uploadicon').on("change",function(){
+           $('#PostMe').submit();
+		   //alert('d');
+        })
+       $('#{$BackCall}',parent.document).val("{$Img}"); 
+    </script>
+</body>
+
+</html>

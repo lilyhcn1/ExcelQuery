@@ -1,0 +1,36 @@
+[ 2018-07-21T22:37:35+08:00 ] 47.97.77.130 /index.php/module/aciton/param1/$%7B@print(THINK_VERSION)%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Module
+
+[ 2018-07-21T22:37:36+08:00 ] 47.97.77.130 /index.php/module/aciton/param1/$%7B@phpinfo()%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Module
+
+[ 2018-07-21T22:37:36+08:00 ] 47.97.77.130 /index.php/module/aciton/param1/$%7B@function_all()%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Module
+
+[ 2018-07-21T22:37:36+08:00 ] 47.97.77.130 /index.php/module/action/param1/%7B$%7Beval($_POST[s])%7D%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Module
+
+[ 2018-07-21T23:03:10+08:00 ] 47.97.76.112 /index.php/Index/index/name/$%7B@phpinfo()%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Index
+
+[ 2018-07-21T23:27:40+08:00 ] 47.97.81.192 /index.php/module/aciton/param1/$%7B@phpinfo()%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Module
+

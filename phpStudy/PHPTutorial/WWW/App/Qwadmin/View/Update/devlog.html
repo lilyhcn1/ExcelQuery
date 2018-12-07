@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>开发日志-{$Think.CONFIG.sitename}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+		<link rel="stylesheet" href="__PUBLIC__/qwadmin/css/timeline.css" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{:U('index/index')}">首页</a>
+							</li>
+
+							<li>
+								<a href="#">系统设置</a>
+							</li>
+							<li class="active">开发日志</li>
+						</ul><!-- /.breadcrumb -->
+					</div>
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<ul class="timeline">
+								<volist name="log" id="val">
+									<li>
+										<div class="ver">
+											<div class="version">{$val.v}</div>
+											<div class="time">{$val.t|date="Y-m-d",###}</div>
+										</div>
+										<div class="number">{$val.id}</div>
+										<div class="log">
+											<pre>{$val.log}</pre>
+										</div>
+										<div class="c"></div>
+									</li>
+								</volist>
+								</ul>
+								{$page}
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+		$(function(){
+			$(".number").click(function(){
+				$(this).parent().find(".version,.time,.log").toggle(500);
+			})
+		})
+	</script>
+	</body>
+</html>

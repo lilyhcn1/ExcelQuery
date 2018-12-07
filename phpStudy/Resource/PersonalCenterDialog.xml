@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="364,500" sizebox="6,6,6,6" roundcorner="0,0" caption="0,0,0,30">
+<Font name="宋体" size="16" bold="false" italic="false" default="true" />
+    <VerticalLayout name="HorizontalLayoutUI" float="true" width="364" height="300" bkcolor="#FFFFFFFF" >
+        <HorizontalLayout height="30" bkcolor="#FF1495E7">
+            <HorizontalLayout name="TitleLeft"  height="30">
+				<Label name="LabelIcon"  float="true" pos="5,0,0,0" width="28" height="30" bkimage="file='IMAGE_PLATGORM_ICON' restype='PNG'" textcolor="#FFFFFFFF" />	
+                <Label name="LabelTitle" text="个人中心" float="true" pos="35,0,0,0"  width="200" height="31" textcolor="#FFFFFFFF" font="2"/>
+				<Button name="ButtonMin" float="true" pos="314,0,0,0" tooltip="最小化"  statusimage="file='BT_PLATFORM_MIN' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+				<Button name="ButtonClose" float="true" pos="340,0,0,0"  tooltip="关闭" statusimage="file='BT_PLATFORM_CLOSE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+            </HorizontalLayout>                
+        </HorizontalLayout>
+		<!-- 客户区 -->
+		<VerticalLayout name="TabelLayout" bkcolor="#FFE8F2FF" height="36" />
+			
+		<VerticalLayout name="ClientLayout" />
+    </VerticalLayout>
+</Window>

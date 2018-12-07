@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="430,330" sizebox="5,5,5,5" roundcorner="7,7"  caption="0,0,0,28">
+    <VerticalLayout name="background" width="430" height="50" bkcolor="#FFFFFFFF" > 
+		<!-- 标题 -->
+		<HorizontalLayout height="28" bkcolor="#FF1495E7">
+			<Label name="LabelIcon"  float="true" pos="5,0,0,0" width="28" height="30" bkimage="file='IMAGE_PLATGORM_ICON' restype='PNG'" textcolor="#FFFFFFFF" />	
+			<Label name="LabelTitle" text="切换风格" float="true" pos="35,0,0,0"  width="200" height="31" textcolor="#FFFFFFFF" font="1"/>
+			<Button name="ButtonMin" float="true" pos="380,0,0,0" tooltip="最小化" statusimage="file='BT_LOGON_MIN' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+			<Button name="ButtonClose" float="true" pos="406,0,0,0"  tooltip="关闭" statusimage="file='BT_LOGON_CLOSE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+		</HorizontalLayout>
+	
+		<!-- 客户区 -->
+		<VerticalLayout>
+			<Label name="LabelGlobalTitle" text="主题风格" float="true" pos="35,10,0,0"  width="200" height="31" textcolor="#FF229BE9" font="2"/>
+			<Label name="LabelLine"  float="true" pos="35,42,395,43" textcolor="#FF2E3033" bkimage="file='IMAGE_LINE' restype='PNG'" />
+			<Label name="LabelImageSkin" float="true" pos="80,70,0,0"  width="73" height="140" bkimage="file='IMAGE_SKINVERSION' restype='PNG''" textcolor="#FF8E8E91" />
+			<Label name="LabelImageClassic" float="true" pos="240,70,0,0"  width="130" height="140" bkimage="file='IMAGE_CLASSICVERSION' restype='PNG''" textcolor="#FF8E8E91" />
+			<Label name="LabelImageHeadSelect" text="" float="true" pos="142,198,0,0"  width="16" height="16" bkimage="file='CHECK_CHECKED' restype='PNG'" textcolor="#FF8E8E91" />
+			<Text name="LabelBeautify" text="php工具箱" float="true" pos="86,218,187,238" textcolor="#FF979797" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Text name="LabelClassic" text="phpStudy 2017" float="true" pos="258,218,380,238" textcolor="#FF979797" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Button name="ButtonCommit" float="true" pos="175,250,0,0" text="保存" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_BUTTON_ITEM' restype='PNG'" font="3"/>
+		</VerticalLayout>
+    </VerticalLayout>
+</Window>

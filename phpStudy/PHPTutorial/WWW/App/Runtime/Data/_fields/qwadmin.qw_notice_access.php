@@ -1,0 +1,1 @@
+a:5:{i:0;s:6:"reader";i:1;s:9:"notice_id";i:2;s:3:"own";i:3;s:3:"fav";s:5:"_type";a:4:{s:6:"reader";s:12:"varchar(255)";s:9:"notice_id";s:7:"int(11)";s:3:"own";s:10:"tinyint(1)";s:3:"fav";s:10:"tinyint(1)";}}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+									<table class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th width="100">备份名称</th>
+											<th width="100">卷数</th>
+											<th width="100">压缩</th>
+											<th width="100">数据大小</th>
+											<th width="100">备份时间</th>
+											<th width="100">状态</th>
+											<th width="100">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<volist name="list" id="data">
+											<tr>
+												<td>{$data.time|date='Ymd-His',###}</td>
+												<td>{$data.part}</td>
+												<td>{$data.compress}</td>
+												<td>{$data.size|format_bytes}</td>
+												<td>{$key}</td>
+												<td>-</td>
+												<td class="action">
+													<a class="db-import" href="{:U('import?time='.$data['time'])}">还原</a>&nbsp;
+													<a class="ajax-get confirm" href="{:U('del?time='.$data['time'])}">删除</a>
+												</td>
+											</tr>
+										</volist>
+									</tbody>
+								</table>
+								<div class="cf">
+									<a class="btn btn-info" href="{:U('Database/backup')}">数据备份</a>
+								</div>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<script src="__PUBLIC__/qwadmin/js/bootbox.js"></script>
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+        $(".db-import").click(function(){
+            var self = this, status = ".";
+            $.get(self.href, success, "json");
+            window.onbeforeunload = function(){ return "正在还原数据库，请不要关闭！" }
+            return false;
+        
+            function success(data){
+                if(data.status){
+                    if(data.gz){
+                        data.info += status;
+                        if(status.length === 5){
+                            status = ".";
+                        } else {
+                            status += ".";
+                        }
+                    }
+                    $(self).parent().prev().text(data.info);
+                    if(data.part){
+                        $.get(self.href, 
+                            {"part" : data.part, "start" : data.start}, 
+                            success, 
+                            "json"
+                        );
+                    }  else {
+                        window.onbeforeunload = function(){ return null; }
+                    }
+                } else {
+                    alert(data.info,'alert-error');
+                }
+            }
+        });
+    </script>
+	</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+
+</head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="cf">
+									<a class="btn btn-info" href="{:U('add')}" value="">新增</a>
+								</div>
+								<div class="space-4"></div>
+									<table class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th class="col-xs-2">变量说明</th>
+											<th class="col-xs-2">变量名称</th>
+											<th class="col-xs-2">调用说明</th>
+											<th class="col-xs-4">变量值</th>
+											<th class="col-xs-1">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+									<volist name="vars" id="val">
+										<tr>
+											<td>{$val['name']}</td>
+											<td>{$val['k']}</td>
+											<td><literal>{$Think.CONFIG.</literal>{$val.k}<literal>}</literal></td>
+											<td>{$val['v']}</td>
+											<td><a href="{:U('edit')}?k={$val['k']}"><i class="ace-icon fa fa-pencil bigger-100"></i>修改</a>&nbsp&nbsp;<a href="javascript:;" val="{:U('del')}?k={$val['k']}" class="dellink"><i class="ace-icon fa fa-trash-o bigger-100 red"></i>删除</a></td>
+										</tr>
+									</volist>
+									</tbody>
+								</table>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script>
+		$(".dellink").click(function(){
+			var url = $(this).attr('val');
+			bootbox.confirm({
+				title: "系统提示",
+				message: "是否要删除该记录？", 
+				callback:function(result){
+					if(result){
+						window.location.href = url;
+					}
+				},
+				buttons: {
+					"cancel" : {"label" : "取消"},
+					"confirm" : {
+							"label" : "确定",
+							"className" : "btn-danger"
+						}
+				}
+			});
+		});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th class="col-xs-7">分类名称</th>
+										<th class="col-xs-1">排序</th>
+										<th class="col-xs-2">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+								<if condition="!empty($category)">
+								<php>
+								function showTree($data,$pre=null) {
+									
+									foreach ($data as $key => $val) {
+										echo '<tr>';
+										echo '<td>';
+										if($pre){
+											echo $pre.'┗━'.$val['name'];
+										}else{
+											echo $val['name'];
+										}
+										echo '</td>';
+										echo '<td>';
+										echo '<input name="o" class="inputorder" type="number" value="'.$val['o'].'" val="'.$val['id'].'" />';
+										echo '</td>';
+										echo '<td>';
+										echo '<a class="green" href="'.U('add',array('pid'=>$val['id'])).'" title="新增分类"><i class="ace-icon fa fa-plus-circle bigger-100"></i>新增</a>&nbsp;&nbsp;';
+										echo '<a class="blue" href="'.U('edit',array('id'=>$val['id'])).'" title="编辑分类"><i class="ace-icon fa fa-plus-circle bigger-100"></i>编辑</a>&nbsp;&nbsp;';
+										echo '<a class="red del" href="javascript:void(0);" val="'.$val['id'].'" title="删除分类"><i class="ace-icon fa fa-plus-circle bigger-100"></i>删除</a>';
+										echo '</td>';
+										if (!empty($val['children'])) {
+											showTree($val['children'],$pre.'&nbsp;&nbsp;');
+										}
+
+										echo '</tr>';
+									}
+								}
+								showTree($category);
+								</php>
+								<else />
+								<tr>
+									<td colspan="3">无分类</td>
+								</tr>
+								</if>
+								</tbody>
+								</table>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			$(function(){
+				$(".inputorder").change(function(){
+					var id = $(this).attr('val');
+					var o = $(this).val();
+					if(id != o){
+						$.post('{:U('update',array('act'=>'order'))}',{id:id,o:o},function(data){
+							if(data==1){
+								window.location.reload(true);
+							}
+						});
+					}
+				})
+				$(".del").on('click',function(){
+					var obj = $(this);
+					var id = obj.attr('val');
+					bootbox.confirm({
+						title: "系统提示",
+						message: "是否要删除该分类？", 
+						callback:function(result){
+							if(result){
+								$.get("{:U('del')}?id="+id, function(result){
+									if(result==2){
+										bootbox.alert({  
+											buttons: {  
+											   ok: {  
+													label: '确定',  
+													className: 'btn-myStyle'  
+												}  
+											},  
+											message: '该类下拥有子类，无法删除。', 
+											title: "提示信息",  
+										});  
+										return;
+									}else if(result==1){
+										bootbox.alert({  
+											buttons: {  
+											   ok: {  
+													label: '确定',  
+													className: 'btn-danger'  
+												}  
+											},  
+											message: '恭喜，删除成功！',  
+											callback: function() {  
+												window.location.reload(true);
+											},  
+											title: "友情提示",  
+										});  
+										return;
+									}else{
+										bootbox.dialog({
+											message: "抱歉，系统错误，请稍后再试。", 
+											buttons: {
+												"success" : {
+													"label" : "确定",
+													"className" : "btn-danger"
+												}
+											}
+										});
+										return;
+									}
+								 });
+							}else{
+								return true;
+							}
+						},
+						buttons: {
+							"cancel" : {"label" : "取消"},
+							"confirm" : {
+									"label" : "确定",
+									"className" : "btn-danger"
+								}
+						}
+					});
+				})
+			})
+
+			
+		</script>
+
+	</body>
+</html>

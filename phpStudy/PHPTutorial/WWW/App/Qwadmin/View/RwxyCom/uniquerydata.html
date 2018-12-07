@@ -1,0 +1,144 @@
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>通用信息查询</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<include file="Public/head" /> 
+  <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+  <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <!--<link rel="stylesheet" href="jqueryui/style.css">-->
+
+
+   </head>
+
+	<body style="background-color:#ffffff">
+	<div style="height:45">
+		<include file="Public/header" />
+	    </div>
+
+
+
+<!--     正文开始	-->							  
+
+
+
+<div class="container">
+    <div id="legend" class="">
+        <legend class=""><a href="{:U('RwxyCom/uniquerydata')}">刷新查询</a> 输入回车查询</legend>
+    </div>
+<form class="form-horizontal" role="form" method="get"  id="form" action="{:U('RwxyCom/uniquerydata')}" >
+
+<div class="form-group">
+	<div class="controls col-xs-4">
+            <select class="input-xlarge" name="sheetname" id="sheetname">
+                <option value="">所有表 中查</option>
+                <volist name="sheetnamearr" id="vo">
+                    <if condition="$vo.sheetname eq $slectsheet">
+                        <option value="{$vo.sheetname}" selected = "selected">{$vo.sheetname} 中查</option>
+                    <else />    
+                         <option value="{$vo.sheetname}">{$vo.sheetname} 中查</option>
+                    </if> 
+                </volist>  
+            </select>
+    </div>
+
+	<div class="form-group col-xs-3">
+		   <div class="controls ">
+            <select class="input-xlarge" disabled="disabled">
+              <option value="xxx">姓名 或 ID 为</option>
+            </select>
+          </div>
+    </div>
+    <div class="controls col-xs-5">
+        <input type="text" id="classa" name="name" class="form-control "  >  
+          <!--<datalist id="cat">    -->
+          <!--    <option value=""></option>-->
+          <!--      <volist name="datalistarr" id="vo">-->
+          <!--       <option value="{$vo.name}"></option>-->
+          <!--      </volist>    -->
+          <!--</datalist>  -->
+    </div>
+	
+</div>	
+
+
+	
+
+
+
+
+	<div class="form-group">
+		<div class="col-xs-offset-2 col-xs-10">
+			<button type="submit" class="btn btn-default">开始查询</button>
+		</div>
+	</div>
+</form>
+
+<div class="container">
+    <div class="row">
+<p id='info'> {$inforesult}    </p>           
+    </div>
+</div>
+
+
+
+
+
+		
+			
+		</div><!-- /.main-container -->
+	<include file="Public/footer" />
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+<script type="text/javascript">
+function getJsonLength(jsonData){
+	var jsonLength = 0;
+	for(var item in jsonData){
+		jsonLength++;
+	}
+	return jsonLength;
+}
+    $(document).ready(function(){
+
+
+var availableTags = new Array();   
+  // 自动完成功能
+    // var availableTags ="[<?php echo $dataliststr?>]"
+    var temp='<?php  echo json_encode($datalistonearr); ?>'
+    // console.log(temp)
+        // var availableTags =eval(temp);
+        // console.log(availableTags)
+        var jsonObj  =JSON.parse(temp);
+
+
+for(var i=0;i<getJsonLength(jsonObj);i++){
+        availableTags[i]= jsonObj[i];
+}        
+
+        $("#classa").autocomplete({
+          source: availableTags
+    });
+    $( "#classa" ).autocomplete({
+    select: function( event, ui ) {
+        // console.log(event);
+        //  $( "#classa" ).value("鲁大前")
+        // $("#form").submit()
+        }
+    });
+ 
+    
+        $("#sheetname").on('input',function(){
+
+            var val1=$("#sheetname").val();
+
+            $("form").submit()
+            
+        });
+
+
+    });
+</script>
+	</body>
+</html>

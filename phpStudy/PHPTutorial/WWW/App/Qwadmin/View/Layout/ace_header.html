@@ -1,0 +1,49 @@
+<div class="navbar navbar-default" id="navbar">
+	<script type="text/javascript">
+		try {
+			ace.settings.check('navbar', 'fixed')
+		} catch(e) {
+		}
+	</script>
+	<div class="navbar-container" id="navbar-container">
+		<div class="navbar-header pull-left">
+			<a href="{:U('home/index')}" class="navbar-brand"><small><i class="icon-leaf"></i> {:get_system_config("SYSTEM_NAME")} </small> </a><!-- /.brand -->
+		</div><!-- /.navbar-header -->
+
+		<div class="navbar-header pull-right" role="navigation">
+			<ul class="nav ace-nav">
+				<li class="grey">
+					<a  href="{:U('todo/index')}" onclick="del_current_node()"><i class="icon-tasks"></i> <span class="badge badge-grey">{$new_todo_count}</span> </a>
+				</li>
+
+				<li class="purple">
+					<a  href="{:U('notice/index')}" onclick="del_current_node()"> <i class="icon-bell-alt"></i> <span class="badge badge-important">{$new_notice_count}</span> </a>
+				</li>
+				<li class="green">
+					<a  href="{:U('mail/index')}" onclick="del_current_node()"><i class="icon-envelope"></i> <span class="badge badge-success">{$new_mail_count}</span> </a>
+				</li>
+				<li class="">
+					<a  href="{:U('message/index')}" onclick="del_current_node()"><i class="icon-inbox"></i> <span class="badge ">{$new_message_count}</span> </a>
+				</li>
+				<li class="light-blue">
+					<a data-toggle="dropdown" href="#" class="dropdown-toggle"> <img class="nav-user-photo" src="{:get_save_url()}{$Think.session.user_pic}?{:rand_string()}"> <span class="user-info"> {$Think.session.user_name} </span> <i class="icon-caret-down"></i> </a>
+					<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+						<li>
+							<a href="{:U('Profile/index')}"> <i class="icon-user"></i> 用户资料 </a>
+						</li>
+						<li>
+							<a href="{:U('Profile/password')}"><i class="icon-lock"></i> 修改密码</a>
+						</li>
+						<li>
+							<a href="{:U('UserConfig/index')}"> <i class="icon-cog"></i> 用户设置 </a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="{:U('login/logout')}"> <i class="icon-off"></i> 退出 </a>
+						</li>
+					</ul>
+				</li>
+			</ul><!-- /.ace-nav -->
+		</div><!-- /.navbar-header -->
+	</div><!-- /.container -->
+</div>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+									<form class="form-horizontal" role="form" id="form" method="post" action="{:U('update')}">
+									<input name="id" id="id" value="{$currentcategory.id}" type="hidden">
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="type"> 栏目类型 </label>
+										<div class="col-sm-9">
+										<select id="type" name="type" class="col-xs-10 col-sm-5">
+											<option value="0" <if condition="$currentcategory['type'] eq 0">selected="selected"</if>>普通栏目</option>
+											<option value="1" <if condition="$currentcategory['type'] eq 1">selected="selected"</if>>单页栏目</option>
+											<option value="2" <if condition="$currentcategory['type'] eq 2">selected="selected"</if>>外链栏目</option>
+										</select>
+										
+										<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">栏目类型。</span>
+											</span>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="pid"> 父类 </label>
+										<div class="col-sm-9">
+										<select id="pid" name="pid" class="col-xs-10 col-sm-5">
+											<option value="0">顶级分类</option>
+											{$category}
+										</select>
+										
+										<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">选择所属分类。</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="name"> 分类名称 </label>
+										<div class="col-sm-9">
+											<input type="text" name="name" id="name" placeholder="分类名称" class="col-xs-10 col-sm-5" value="{$currentcategory.name}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">分类名称，不能为空。</span>
+											</span>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> SEO标题 </label>
+										<div class="col-sm-9">
+											<input type="text" name="seotitle" id="seotitle" placeholder="SEO标题" class="col-xs-10 col-sm-5" value="{$currentcategory.seotitle}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">请填写SEO标题利于SEO优化</span>
+											</span>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="keywords"> 关键词 </label>
+										<div class="col-sm-9">
+											<input type="text" name="keywords" id="keywords" placeholder="关键词" class="col-xs-10 col-sm-5" value="{$currentcategory.keywords}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">SEO关键词，建议用“,”隔开。</span>
+											</span>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="description"> 栏目描述 </label>
+										<div class="col-sm-9">
+											<textarea name="description" id="description" placeholder="栏目描述" class="col-xs-10 col-sm-5" rows="5">{$currentcategory.description}</textarea>
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">栏目描述。</span>
+											</span>
+										</div>
+									</div>
+									<div id="type2" class="<if condition="$currentcategory['type'] neq 2">hidden</if>">
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="url"> 外链地址 </label>
+										<div class="col-sm-9">
+											<input type="text" name="url" id="url" placeholder="外链地址" class="col-xs-10 col-sm-5" value="{$currentcategory.url}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">外链地址。</span>
+											</span>
+										</div>
+									</div>
+									</div>
+									<div id="type1" class="<if condition="$currentcategory['type'] neq 1">hidden</if>">
+										<div class="space-4"></div>
+										<div class="form-group">
+											<label class="col-sm-1 control-label no-padding-right" for="content"> 文章内容 </label>
+											<div class="col-sm-9">
+												<textarea name="content" id="content" style="width:100%;height:400px;visibility:hidden;">{$currentcategory.content}</textarea>
+											</div>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="cattemplate"> 分类模板 </label>
+										<div class="col-sm-9">
+											<input type="text" name="cattemplate" id="cattemplate" placeholder="分类模板" class="col-xs-10 col-sm-5" value="{$currentcategory.cattemplate}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="contemplate"> 内容模板 </label>
+										<div class="col-sm-9">
+											<input type="text" name="contemplate" id="contemplate" placeholder="内容模板" class="col-xs-10 col-sm-5" value="{$currentcategory.contemplate}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="o"> 排序 </label>
+										<div class="col-sm-9">
+											<input type="number" name="o" id="o" placeholder="排序" class="col-xs-10 col-sm-5" value="{$currentcategory.o}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">越小越靠前。</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="col-md-offset-2 col-md-9">
+										<button class="btn btn-info submit" type="button">
+											<i class="icon-ok bigger-110"></i>
+											提交
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="icon-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</form>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+		$(function(){
+			var editor = KindEditor.create('textarea[name="content"]',{
+				uploadJson : '__PUBLIC__/kindeditor/php/upload_json.php',
+				fileManagerJson : '__PUBLIC__/kindeditor/php/file_manager_json.php',
+				allowFileManager : true,
+				afterBlur:function(){this.sync();}  
+			});
+			$("#type").change(function(){
+				
+				if($(this).val()==1){
+					$("#type1").removeClass('hidden');
+					$("#type2").addClass('hidden');
+				}else if($(this).val()==2){
+					$("#type2").removeClass('hidden');
+					$("#type1").addClass('hidden');
+				}else{
+					$("#type1").addClass('hidden');
+					$("#type2").addClass('hidden');
+				}
+			});
+			$(".btn.btn-info.submit").click(function(){
+				var name = $("#name").val();
+				if(name==''){
+					bootbox.dialog({
+						message: "抱歉，分类名称不能为空。", 
+						buttons: {
+							"success" : {
+								"label" : "确定",
+								"className" : "btn-danger"
+							}
+						}
+					});
+					return false;
+				}
+				$("#form").submit();
+
+			})
+		})
+		</script>
+	</body>
+</html>

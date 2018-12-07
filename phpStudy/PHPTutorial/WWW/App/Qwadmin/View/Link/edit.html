@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+									<form class="form-horizontal" id="form" method="post" action="{:U('update')}?id={$link.id}">
+									<div class="space-4"></div>
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 标题 </label>
+										<div class="col-sm-9">
+											<input type="text" name="title" id="title" placeholder="标题" class="col-xs-10 col-sm-5" value="{$link['title']}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">标题不能为空。</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 链接地址 </label>
+										<div class="col-sm-9">
+											<input type="url" name="url" id="url" placeholder="链接地址" class="col-xs-10 col-sm-5" value="{$link['url']}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">链接地址。</span>
+											</span>
+										</div>
+									</div>
+									
+									<div class="space-4"></div>
+									
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 网站LOGO </label>
+										<div class="col-sm-9">
+											<div class="col-xs-10 col-sm-5">{:UpImage("logo",88,31,$link['logo'])}</div>
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">仅支持jpg、gif、png、bmp、jpeg，且小于1MB。</span>
+											</span>
+										</div>
+									</div>
+										
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 排序 </label>
+										<div class="col-sm-9">
+											<input type="number" name="o" id="o" placeholder="排序" class="col-xs-10 col-sm-5" value="{$link['o']}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">越小越靠前。</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="col-md-offset-2 col-md-9">
+										<button class="btn btn-info submit" type="button">
+											<i class="icon-ok bigger-110"></i>
+											提交
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="icon-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</form>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+		$(function() {
+			$(".btn-info.submit").click(function(){
+				var webname = $("#webname").val();
+				var url = $("#url").val();
+				if(webname==0){
+					bootbox.dialog({
+						title: '友情提示：',
+						message: "标题必须选择。", 
+						buttons: {
+							"success" : {
+								"label" : "确定",
+								"className" : "btn-danger"
+							}
+						}
+					});
+					return;
+				}
+				if(url==''){
+					bootbox.dialog({
+						title: '友情提示：',
+						message: "链接地址必须填写。", 
+						buttons: {
+							"success" : {
+								"label" : "确定",
+								"className" : "btn-danger"
+							}
+						}
+					});
+					return;
+				}
+				$("#form").submit();
+			});
+		});
+		
+		</script>
+	</body>
+</html>

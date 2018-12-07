@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="659,540" sizebox="4,4,6,6" caption="0,0,0,0" >
+    <HorizontalLayout name="OptionSearchGlobalLayer" float="flase" pos="141,0,800,450" width="659" height="540"  bkcolor="#FFFFFFFF">
+		<Label name="LabelDefaultImage" float="true"  pos="0,0,368,208" bkimage="file='IMAGE_SEARCHDEFAULTVIEW' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA"  relativepos="120,120"/>
+		<Label name="LabelGreet" text="欢迎使用全站搜索" float="true" pos="150,340,477,360" align="center" textcolor="#FF2E3033" disabledtextcolor="#FFA7A6AA" font="4"/>
+    </HorizontalLayout>	
+</Window>

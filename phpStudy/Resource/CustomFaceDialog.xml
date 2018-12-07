@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="430,330" sizebox="5,5,5,5" roundcorner="7,7"  caption="0,0,0,100">
+    <VerticalLayout name="background" width="430" height="50" bkimage="file='DLG_CUSTOMFACE_BACK' restype='PNG'"  bkcolor="#FFF0F0F8" > 
+        <Label name="LabelTitle" text="" float="true" pos="24,10,0,0"  width="200" height="31" font="1" textcolor="#FF8E8E91" font="5"/>
+		<Button name="ButtonMin" float="true" pos="380,0,0,0" tooltip="最小化" statusimage="file='BT_LOGON_MIN' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+		<Button name="ButtonClose" float="true" pos="406,0,0,0"  tooltip="关闭" statusimage="file='BT_LOGON_CLOSE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+		<Label name="LabelTttle" text="个人资料" float="true" pos="2,10,120,30" textcolor="#FFBED6F3" disabledtextcolor="#FFA7A6AA" relativepos="23,11" font="3"/>
+		<Label name="LabelHead" float="true"  pos="30,50,85,105"  textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" relativepos="23,55"/>
+		<Label name="LabelNickName" text="飞翔的小猪" float="true" pos="2,10,120,30" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" relativepos="85,55" font="5"/>
+		<Label name="LabelSign" text="这里显示个性签名" float="true" pos="2,10,120,30" textcolor="#FF9DD2F3" disabledtextcolor="#FFA7A6AA" relativepos="85,74" />
+		<Label name="LabelChangeAvatar" text="更换头像" float="true" pos="2,10,120,30" textcolor="#FF666666" disabledtextcolor="#FFA7A6AA" relativepos="20,150" font="2"/>
+		<Label name="LabelImageHeadOne" text="" float="true" pos="22,190,0,0"  width="60" height="60" bkimage="file='UserInfo\\IMAGE_ONE.png' " textcolor="#FF8E8E91" />
+		<Label name="LabelImageHeadTwo" text="" float="true" pos="105,190,0,0"  width="60" height="60" bkimage="file='UserInfo\\IMAGE_TWO.png' " textcolor="#FF8E8E91" />
+		<Label name="LabelImageHeadThree" text="" float="true" pos="184,190,0,0"  width="60" height="60" bkimage="file='UserInfo\\IMAGE_THREE.png' " textcolor="#FF8E8E91" />
+		<Label name="LabelImageHeadFour" text="" float="true" pos="265,190,0,0"  width="60" height="60" bkimage="file='UserInfo\\IMAGE_FOUR.png' " textcolor="#FF8E8E91" />
+		<Label name="LabelImageHeadFive" text="" float="true" pos="348,190,0,0"  width="60" height="60" bkimage="file='UserInfo\\IMAGE_FIVE.png' " textcolor="#FF8E8E91" />
+		<Label name="LabelImageHeadSelect" text="" float="true" pos="72,238,0,0"  width="16" height="16" bkimage="file='CHECK_CHECKED' restype='PNG'" textcolor="#FF8E8E91" />
+		<Button name="ButtonCoutomHead" float="true" pos="90,273,544,305" statusimage="file='BT_CUSTOMFACE_CHANGEFACE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+    </VerticalLayout>
+</Window>

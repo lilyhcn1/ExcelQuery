@@ -1,0 +1,186 @@
+[ 2017-03-31T15:20:13+08:00 ] 66.249.79.168 /index.php?s=gb-show-p-2561.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000355s ]
+ERR: 无法加载模块:Gb-show-p-2561
+
+[ 2017-03-31T15:25:14+08:00 ] 66.249.79.167 /index.php?s=gb-show-p-790.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+ERR: 无法加载模块:Gb-show-p-790
+
+[ 2017-03-31T15:35:24+08:00 ] 66.249.79.168 /index.php?s=gb-show-p-3307.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000402s ]
+ERR: 无法加载模块:Gb-show-p-3307
+
+[ 2017-03-31T15:45:25+08:00 ] 66.249.79.168 /index.php?s=gb-show-p-5668.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000381s ]
+ERR: 无法加载模块:Gb-show-p-5668
+
+[ 2017-03-31T15:50:34+08:00 ] 66.249.79.167 /index.php?s=vod-play-id-951-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000385s ]
+ERR: 无法加载模块:Vod-play-id-951-sid-0-pid-1
+
+[ 2017-03-31T16:15:44+08:00 ] 66.249.79.168 /index.php?s=gb-show-p-2194.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000555s ]
+ERR: 无法加载模块:Gb-show-p-2194
+
+[ 2017-03-31T17:31:44+08:00 ] 66.249.79.168 /index.php?s=gb-show-p-5927.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000437s ]
+ERR: 无法加载模块:Gb-show-p-5927
+
+[ 2017-03-31T23:50:21+08:00 ] 42.236.99.30 /index.php?m=vod-list-id-5-pg-1-order--by--class--year--letter-Q-area--lang-.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000411s ]
+ERR: 无法加载模块:Vod-list-id-5-pg-1-order--by--class--year--letter-Q-area--lang-.html
+
+[ 2017-03-31T23:50:21+08:00 ] 42.236.99.166 /index.php?s=gb-show-id-529.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000333s ]
+ERR: 无法加载模块:Gb-show-id-529
+
+[ 2017-03-31T23:50:21+08:00 ] 42.236.99.37 /index.php?s=vod-search-p-93.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000470s ]
+ERR: 无法加载模块:Vod-search-p-93
+
+[ 2017-03-31T23:50:21+08:00 ] 42.236.99.142 /index.php?m=vod-play-id-2060-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000533s ]
+ERR: 无法加载模块:Vod-play-id-2060-src-1-num-1.html
+
+[ 2017-03-31T23:50:21+08:00 ] 42.236.10.108 /index.php?m=vod-list-id-1-pg-1-order--by-score-class-1-year-2001-letter--area--lang-.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.006805s ]
+ERR: 无法加载模块:Vod-list-id-1-pg-1-order--by-score-class-1-year-2001-letter--area--lang-.html
+
+[ 2017-03-31T23:50:22+08:00 ] 42.236.10.83 /index.php?m=vod-list-id-7-pg-1-order--by--class-0-year-2004-letter--area-%E6%B3%95%E5%9B%BD-lang-.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000849s ]
+ERR: 无法加载模块:Vod-list-id-7-pg-1-order--by--class-0-year-2004-letter--area-法国-lang-.html
+
+[ 2017-03-31T23:50:22+08:00 ] 42.236.99.79 /index.php?s=vod-play-id-1516-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000309s ]
+ERR: 无法加载模块:Vod-play-id-1516-sid-0-pid-1
+
+[ 2017-03-31T23:50:22+08:00 ] 42.236.99.166 /index.php?s=vod-play-id-910-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000274s ]
+ERR: 无法加载模块:Vod-play-id-910-sid-0-pid-1
+
+[ 2017-03-31T23:50:22+08:00 ] 42.236.10.112 /index.php?m=vod-list-id-4-pg-1-order--by--class-0-year-2004-letter-O-area-%E8%8B%B1%E5%9B%BD-lang-.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000319s ]
+ERR: 无法加载模块:Vod-list-id-4-pg-1-order--by--class-0-year-2004-letter-O-area-英国-lang-.html
+
+[ 2017-03-31T23:50:22+08:00 ] 42.236.10.107 /index.php?s=gb-show-p-518.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000309s ]
+ERR: 无法加载模块:Gb-show-p-518
+
+[ 2017-03-31T23:50:22+08:00 ] 42.236.10.111 /index.php?m=vod-search-pg-10-starring-yuanyuan.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000327s ]
+ERR: 无法加载模块:Vod-search-pg-10-starring-yuanyuan.html
+
+[ 2017-03-31T23:50:22+08:00 ] 42.236.99.72 /index.php?m=vod-list-id-2-pg-1-order--by--class--year--letter-K-area--lang-.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000287s ]
+ERR: 无法加载模块:Vod-list-id-2-pg-1-order--by--class--year--letter-K-area--lang-.html
+
+[ 2017-03-31T23:50:23+08:00 ] 42.236.10.75 /index.php?m=vod-play-id-294-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000299s ]
+ERR: 无法加载模块:Vod-play-id-294-src-1-num-1.html
+
+[ 2017-03-31T23:50:23+08:00 ] 42.236.10.104 /index.php?s=vod-play-id-618-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000277s ]
+ERR: 无法加载模块:Vod-play-id-618-sid-0-pid-1
+
+[ 2017-03-31T23:50:23+08:00 ] 42.236.99.30 /index.php?m=vod-play-id-1252-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000303s ]
+ERR: 无法加载模块:Vod-play-id-1252-src-1-num-1.html
+
+[ 2017-03-31T23:50:23+08:00 ] 180.153.236.59 /index.php?m=vod-play-id-1597-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000319s ]
+ERR: 无法加载模块:Vod-play-id-1597-src-1-num-1.html
+
+[ 2017-03-31T23:50:23+08:00 ] 42.236.10.81 /index.php?m=vod-play-id-672-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000330s ]
+ERR: 无法加载模块:Vod-play-id-672-src-1-num-1.html
+
+[ 2017-03-31T23:50:23+08:00 ] 42.236.10.100 /index.php?m=vod-search-pg-2-starring-yuanyuan-classid-43.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000296s ]
+ERR: 无法加载模块:Vod-search-pg-2-starring-yuanyuan-classid-43.html
+
+[ 2017-03-31T23:50:24+08:00 ] 42.236.99.130 /index.php?m=vod-play-id-2388-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000282s ]
+ERR: 无法加载模块:Vod-play-id-2388-src-1-num-1.html
+
+[ 2017-03-31T23:50:24+08:00 ] 42.236.99.194 /index.php?m=vod-play-id-2043-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000263s ]
+ERR: 无法加载模块:Vod-play-id-2043-src-1-num-1.html
+
+[ 2017-03-31T23:50:24+08:00 ] 42.236.99.79 /index.php?m=vod-search-starring-yanyuan
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000298s ]
+ERR: 无法加载模块:Vod-search-starring-yanyuan
+
+[ 2017-03-31T23:50:24+08:00 ] 42.236.99.44 /index.php?s=vod-play-id-397-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.006305s ]
+ERR: 无法加载模块:Vod-play-id-397-sid-0-pid-1
+
+[ 2017-03-31T23:50:25+08:00 ] 180.153.236.181 /index.php?s=gb-show-id-1431.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000398s ]
+ERR: 无法加载模块:Gb-show-id-1431
+
+[ 2017-03-31T23:50:26+08:00 ] 42.236.99.178 /index.php?m=vod-list-id-5-pg-4-order--by--class-0-year-0-letter--area-%E5%A4%A7%E9%99%86-lang-.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000327s ]
+ERR: 无法加载模块:Vod-list-id-5-pg-4-order--by--class-0-year-0-letter--area-大陆-lang-.html
+

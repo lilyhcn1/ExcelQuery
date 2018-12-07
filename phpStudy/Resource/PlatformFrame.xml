@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window sizebox="5,5,5,5" roundcorner="4,4" caption="0,0,0,134">
+    <HorizontalLayout name="HorizontalLayoutUI1" pos="0,0,650,340" width="650" height="340" >
+        <!--<Button name="ButtonMax" float="true" pos="556,12,582,38" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" relativeside="right" relativepos="88,1" statusimage="file='BT_PLATFORM_MAX' restype='PNG'"  />		-->
+		<Button name="ButtonSetting" float="true" pos="527,12,553,38"  tooltip="设置" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" relativeside="right" relativepos="76,0" statusimage="file='BT_SUGGESTION' restype='PNG'"/>
+        <Button name="ButtonMin" float="true" pos="527,12,553,38"  tooltip="最小化" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" relativeside="right" relativepos="50,0" statusimage="file='BT_PLATFORM_MIN' restype='PNG'"/>
+
+        <!--<Button name="ButtonResore" float="true" visible="false" pos="556,12,582,38" maxheight="26" maxwidth="26" relativeside="right" relativepos="88,1" disabledtextcolor="#FFA7A6AA" statusimage="file='BT_PLATFORM_RESORE' restype='PNG'" />	-->
+        <Button name="ButtonClose" float="true" pos="586,12,612,38"  tooltip="关闭" padding="0,10,0,5" maxheight="26" maxwidth="26" relativeside="right" relativepos="24,0" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" statusimage="file='BT_PLATFORM_CLOSE' restype='PNG'" />
+		
+		<Label name="LabelHead" float="true"  pos="30,50,85,105" bkimage="file='IMAGE_HEAD' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" relativepos="15,55"/>
+		
+		<Label name="LabelNickName" text="飞翔的小猪" float="true" pos="2,10,120,30" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" relativepos="85,55" font="5"/>
+		<Label name="LabelSign" text="这里显示个性签名" float="true" pos="2,10,180,30" textcolor="#FF9DD2F3" disabledtextcolor="#FFA7A6AA" relativepos="85,74" />
+		<Label name="LabelSearch"  float="true" pos="0,134,340,165" textpadding="35,0,0,0" bkimage="file='IMAGE_PLATFORM_SEARCH' restype='PNG'" textcolor="#FFDDECF5" disabledtextcolor="#FFA7A6AA" relativepos="0,134" font="1"/>	
+		<Edit name="EditSearch" float="true" pos="30,135,275,165" text="搜索关键字" mouse="true" textcolor="#FFA4CDF3" bkcolor="#FF1077B9" nativebkcolor="#FF1077B9" textpadding="4,3,4,3" textcolor="#FF9ACEF1" nativetextcolor="#FFFFFFFF" disabledtextcolor="#FF1077B9" />	
+		<Button name="ButtonSearch" float="true"   relativepos="275,138"  statusimage="file='BT_SEARCH' restype='PNG'" />		
+		<Button name="ButtonCourse" float="true" pos="100,112,142,127"  padding="0,10,0,5"  relativeside="left" relativepos="82,95" textcolor="#FF007FB6" disabledtextcolor="#FFA7A6AA" statusimage="file='BT_PLATFORM_TIP' restype='PNG'" />
+		<Button name="ButtonArticle" float="true" pos="100,112,142,127" padding="0,10,0,5"  relativeside="left" relativepos="128,95" textcolor="#FF007FB6" disabledtextcolor="#FFA7A6AA" statusimage="file='BT_PLATFORM_TIP' restype='PNG'" />
+		<Button name="ButtonWenda" float="true" pos="100,112,142,127"  padding="0,10,0,5"  relativeside="left" relativepos="174,95" textcolor="#FF007FB6" disabledtextcolor="#FFA7A6AA" statusimage="file='BT_PLATFORM_TIP' restype='PNG'" />
+    </HorizontalLayout>
+</Window>

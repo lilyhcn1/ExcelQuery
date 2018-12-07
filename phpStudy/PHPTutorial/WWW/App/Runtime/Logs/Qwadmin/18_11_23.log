@@ -1,0 +1,1000 @@
+[ 2018-11-23T00:08:39+08:00 ] 46.235.181.102 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T00:33:59+08:00 ] 183.57.53.196 /index.php/Qwadmin/RwxyCom/echoiddata/id/198076.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T00:34:00+08:00 ] 183.57.53.196 /index.php/Qwadmin/login/index.html?Req_URL=/index.php/Qwadmin/RwxyCom/echoiddata/id/198076.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031250s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031250s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T00:41:20+08:00 ] 58.49.160.251 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T01:07:30+08:00 ] 189.236.166.179 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T01:27:05+08:00 ] 110.170.40.252 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T01:27:07+08:00 ] 110.170.40.252 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0156s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T02:24:52+08:00 ] 101.226.114.195 /index.php/qwadmin/login/index.html?req_url%3D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: Req_URL C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 17 行.
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T02:48:33+08:00 ] 54.207.100.115 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0156s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T02:48:34+08:00 ] 54.207.100.115 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T03:00:56+08:00 ] 43.225.169.230 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T03:08:32+08:00 ] 112.74.169.205 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T03:08:32+08:00 ] 112.74.169.205 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.015625s ]
+INFO: [ app_end ] --END-- [ RunTime:0.015625s ]
+
+[ 2018-11-23T03:47:43+08:00 ] 71.6.202.204 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T03:47:44+08:00 ] 71.6.202.204 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T04:13:11+08:00 ] 121.31.163.54 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T04:19:01+08:00 ] 103.61.195.253 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T04:43:02+08:00 ] 58.251.121.186 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T04:43:03+08:00 ] 58.251.121.186 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T06:12:29+08:00 ] 186.47.214.130 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T06:20:57+08:00 ] 182.76.55.26 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T06:20:59+08:00 ] 182.76.55.26 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T06:48:50+08:00 ] 108.58.234.203 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T07:13:51+08:00 ] 59.36.119.226 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T07:13:51+08:00 ] 59.36.119.226 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T08:08:27+08:00 ] 171.13.14.47 133.130.126.119:43
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T09:50:45+08:00 ] 183.57.53.177 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T09:50:45+08:00 ] 183.57.53.177 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T09:50:45+08:00 ] 61.129.6.151 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T09:50:45+08:00 ] 61.129.6.151 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T10:09:07+08:00 ] 202.133.249.66 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T10:09:07+08:00 ] 202.133.249.66 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T10:12:16+08:00 ] 170.238.180.46 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T10:15:04+08:00 ] 59.111.30.195 http://baidu.com/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T10:15:04+08:00 ] 59.111.30.195 http://baidu.com/index.php/Qwadmin/login/index.html?Req_URL=http://baidu.com/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T11:01:52+08:00 ] 120.24.183.44 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T11:01:52+08:00 ] 120.24.183.44 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T11:33:13+08:00 ] 196.52.43.61 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T12:53:27+08:00 ] 123.207.144.186 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T12:53:27+08:00 ] 123.207.144.186 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T13:11:08+08:00 ] 107.170.210.124 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T14:12:03+08:00 ] 91.186.217.46 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T14:41:41+08:00 ] 185.168.173.121 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T14:44:34+08:00 ] 183.57.53.222 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T14:44:34+08:00 ] 183.57.53.222 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T15:21:11+08:00 ] 119.23.32.12 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T15:21:11+08:00 ] 119.23.32.12 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0156s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T15:50:16+08:00 ] 101.199.121.77 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T15:50:16+08:00 ] 101.199.121.77 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T15:53:05+08:00 ] 105.212.60.194 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T15:53:06+08:00 ] 105.212.60.194 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T15:59:41+08:00 ] 178.150.202.121 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T17:01:21+08:00 ] 202.133.249.66 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T17:01:21+08:00 ] 202.133.249.66 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T18:04:43+08:00 ] 47.75.135.66 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T18:04:43+08:00 ] 47.75.135.66 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T18:31:36+08:00 ] 125.25.43.254 /index.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T18:46:20+08:00 ] 31.184.195.108 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T19:05:00+08:00 ] 58.251.121.185 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0156s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T19:05:00+08:00 ] 58.251.121.185 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-23T20:01:05+08:00 ] 118.99.180.52 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T21:20:45+08:00 ] 171.13.14.36 133.130.126.119:43
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0156s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T21:38:30+08:00 ] 201.95.96.182 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-23T22:26:30+08:00 ] 116.3.215.220 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+

@@ -1,0 +1,102 @@
+[ 2017-05-14T15:10:45+08:00 ] 140.205.201.41 /index.php?m=member&c=index&a=register&siteid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+ERR: 无法加载模块:Member
+
+[ 2017-05-14T15:10:48+08:00 ] 140.205.201.41 /index.php?m=wap&a=index&siteid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+ERR: 无法加载模块:Wap
+
+[ 2017-05-14T18:22:43+08:00 ] 91.121.86.136 /index.php?s=vod-search-area-%E5%8A%A0%E6%8B%BF%E5%A4%A7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000976s ]
+ERR: 无法加载模块:Vod-search-area-加拿大
+
+[ 2017-05-14T22:18:06+08:00 ] 42.236.99.154 /index.php?m=vod-play-id-1472-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+ERR: 无法加载模块:Vod-play-id-1472-src-1-num-1.html
+
+[ 2017-05-14T22:18:07+08:00 ] 42.236.99.154 /index.php?s=vod-play-id-1158-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+ERR: 无法加载模块:Vod-play-id-1158-sid-0-pid-1
+
+[ 2017-05-14T22:18:09+08:00 ] 42.236.99.154 /index.php?m=vod-play-id-458-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000976s ]
+ERR: 无法加载模块:Vod-play-id-458-src-1-num-1.html
+
+[ 2017-05-14T22:18:09+08:00 ] 42.236.10.100 /index.php?s=vod-play-id-431-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000976s ]
+ERR: 无法加载模块:Vod-play-id-431-sid-0-pid-1
+
+[ 2017-05-14T22:18:09+08:00 ] 42.236.10.81 /index.php?m=vod-play-id-11-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-play-id-11-src-1-num-1.html
+
+[ 2017-05-14T22:18:09+08:00 ] 42.236.10.111 /index.php?s=vod-play-id-1550-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-play-id-1550-sid-0-pid-1
+
+[ 2017-05-14T22:18:11+08:00 ] 42.236.10.74 /index.php?m=vod-search-pg-9-starring-yuanyuan.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+ERR: 无法加载模块:Vod-search-pg-9-starring-yuanyuan.html
+
+[ 2017-05-14T22:18:42+08:00 ] 180.153.236.109 /index.php?m=vod-list-id-7-pg-1-order--by--class--year-2010-letter--area--lang-.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-list-id-7-pg-1-order--by--class--year-2010-letter--area--lang-.html
+
+[ 2017-05-14T22:18:47+08:00 ] 180.153.236.109 /index.php?m=vod-search-pg-2-starring-yuanyuan-classid-8.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-search-pg-2-starring-yuanyuan-classid-8.html
+
+[ 2017-05-14T22:18:47+08:00 ] 180.153.236.109 /index.php?s=gb-show-p-715.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+ERR: 无法加载模块:Gb-show-p-715
+
+[ 2017-05-14T22:19:35+08:00 ] 180.153.236.11 /index.php?m=vod-play-id-946-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-play-id-946-src-1-num-1.html
+
+[ 2017-05-14T22:19:50+08:00 ] 180.153.236.11 /index.php?s=vod-search-actor-%E5%91%A8%E6%98%9F%E9%A9%B0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-search-actor-周星驰
+
+[ 2017-05-14T22:19:50+08:00 ] 180.153.236.11 /index.php?m=vod-play-id-1067-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-play-id-1067-src-1-num-1.html
+
+[ 2017-05-14T22:19:56+08:00 ] 180.153.236.11 /index.php?m=vod-play-id-1583-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-play-id-1583-src-1-num-1.html
+

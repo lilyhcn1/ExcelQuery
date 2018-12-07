@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Fonts>
+    <Font name="宋体" size="12" bold="false" italic="false" default="true" />
+    <Font name="宋体" size="13" bold="false" italic="false" default="false" />
+    <Font name="宋体" size="12" bold="true" italic="false" default="false" />  
+    <Font name="宋体" size="14" bold="true" italic="false" default="false" />	  
+    <Font name="宋体" size="16" bold="false" italic="false" default="false" />	
+	<Font name="黑体" size="19" bold="false" italic="false" default="false" />	
+	<Font name="微软雅黑" size="12" bold="false" italic="false" default="true" />
+</Fonts>

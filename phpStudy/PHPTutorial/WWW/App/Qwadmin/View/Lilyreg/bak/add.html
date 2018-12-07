@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+									<form class="form-horizontal" action="{:U('update')}" method="post">
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 用户名 </label>
+										<div class="col-sm-9">
+											<input type="text" name="user" id="user" class="rcol-xs-10 col-sm-5" value="">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-10"> 用户组 </label>
+										<div class="col-sm-9">
+										<select id="group_id" name="group_id" class="rcol-xs-10 col-sm-5">
+											<volist name="usergroup" id="val">
+												<option value="{$val['id']}" <if condition="$val['id'] eq $member['group_id']">selected="selected"</if>>{$val['title']}</option>
+											</volist>
+										</select>
+										<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+									
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 用户密码 </label>
+										<div class="col-sm-9">
+											<input type="password" name="password" id="password" placeholder="用户密码" class="col-xs-10 col-sm-5" value="">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">不能为空</span>
+											</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 头像 </label>
+										<div class="col-sm-9">
+											<div class="col-xs-10 col-sm-5">{:UpImage("head",100,100,$member['head'])}</div>
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">仅支持jpg、gif、png、bmp、jpeg，且小于1MB。</span>
+											</span>
+										</div>
+										
+									</div>
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 性别 </label>
+										<div class="col-sm-9">
+											<select id="sex" name="sex" class="multiselect">
+												<option value="0">保密</option>
+												<option value="1">男</option>
+												<option value="2">女</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="id-date-picker-1">生日</label>
+										<div class="col-xs-9 col-sm-9">
+											<div class="input-group col-xs-5">
+												<input class="form-control" id="birthday" name="birthday" value="" type="text" data-date-format="dd-mm-yyyy" />
+												<span class="input-group-addon">
+													<i class="ace-icon fa fa-calendar bigger-110"></i>
+												</span>
+											</div>
+										</div>
+									</div>
+
+									
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-6"> 电话号码 </label>
+										<div class="col-sm-9">
+											<input type="text" name="phone" id="phone" placeholder="电话号码" class="col-xs-10 col-sm-5" value="{$member['phone']}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-7"> Q&nbsp;&nbsp;Q </label>
+										<div class="col-sm-9">
+											<input type="text" name="qq" id="qq" placeholder="QQ" class="col-xs-10 col-sm-5" value="{$member['qq']}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> E-mail </label>
+										<div class="col-sm-9">
+											<input type="email" name="email" id="email" placeholder="E-mail" class="col-xs-10 col-sm-5" value="{$member['email']}">
+											<span class="help-inline col-xs-12 col-sm-7">
+												<span class="middle"></span>
+											</span>
+										</div>
+									</div>
+								
+									<div class="space-4"></div>
+									
+									<div class="col-md-offset-2 col-md-9">
+										<button class="btn btn-info" type="submit">
+											<i class="icon-ok bigger-110"></i>
+											提交
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="icon-undo bigger-110"></i>
+											重置
+										</button>
+									</div>
+								</form>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script src="__PUBLIC__/qwadmin/js/date-time/bootstrap-datepicker.js"></script>
+		<script type="text/javascript">
+		jQuery(function($){
+			$('#birthday').datepicker({
+				  format: 'yyyy-mm-dd',
+						weekStart: 1,
+						autoclose: true,
+						todayBtn: 'linked',
+						language: 'cn'
+				 });
+			});
+	</script>	
+	</body>
+</html>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="390,366" sizebox="4,4,6,6" caption="0,0,0,0">
+	<Container name="ContainerUI" float="flase" pos="0,0,335,450" width="335" height="450"  bkcolor="#FFFFFFFF">
+		<Container name="ContainerNotConfiguredUI"  float="true"  pos="0,0,335,450" width="335" height="450" bkcolor="#FFFFFFFF" >
+			<Label name="LabelNotConfiguredImage" float="true"  pos="0,0,101,82" bkimage="file='IMAGE_EM_NOTCONFIGURED' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA"  relativepos="120,120" />
+			<Label name="LabelBEStatusTitle" text="本机服务器环境未进行下载配置" float="true" pos="8,220,335,240" align="center" textcolor="#FF363636" disabledtextcolor="#FFA7A6AA" font="3"/>
+			<Text name="TextDownLoadSpeed" text="" float="true" visible="false" pos="8,243,335,258" align="center" textcolor="#FF0066CC" disabledtextcolor="#FFA7A6AA" font="2"/>
+			<Button name="ButtonGoConfigured" float="true" pos="120,260,0,0" text="去配置" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_BUTTON_ITEM' restype='PNG'" font="3"/>
+		</Container>	
+		
+		<Container name="ContainerConfiguredUI" pos="0,0,390,362" width="390" height="362" bkcolor="#FFFFFFFF">
+			<Text name="LabelStatus" text="运行状态" float="true" pos="12,18,87,30" textcolor="#FF979797" disabledtextcolor="#FFA7A6AA" font="2"/>
+			<Text name="TextPhpStatus" text="" float="true" pos="71,18,200,30" textcolor="#FFCCCCCC" disabledtextcolor="#FFA7A6AA" font="2"/>
+			<Label name="LabelLine" float="true"  pos="12,43,321,44" bkimage="file='IMAGE_LINE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+		
+			<Label name="LabelApache" float="true"  pos="25,55,36,66" bkimage="file='IMAGE_START' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+			<Label name="LabelMySql" float="true"  pos="125,55,136,66" bkimage="file='IMAGE_STOP' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+			<Button name="ButtonOpenWebDir" float="true"  pos="271,55,298,60" statusimage="file='BT_WEBSITEDIR' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+			<Text name="TextApacheNginx" text="Apache" float="true" pos="42,53,120,73" textcolor="#FF636669" disabledtextcolor="#FFA7A6AA" font="3"/>
+			<Text name="TextMySql" text="MySQL" float="true" pos="142,53,200,73" textcolor="#FF636669" disabledtextcolor="#FFA7A6AA" font="3"/>
+			<Button name="ButtonStar" float="true" pos="15,85,0,0" text="启动" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_BUTTON_ITEM' restype='PNG'" font="3"/>
+			<Button name="ButtonStop" float="true" pos="122,85,0,0" text="停止" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_BUTTON_ITEM' restype='PNG'" font="3"/>
+			<Button name="ButtonRestart" float="true" pos="228,85,0,0" text="重启" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_BUTTON_ITEM' restype='PNG'" font="3"/>	
+			<Text name="LabelNotice" text="提示信息" float="true" pos="12,130,87,142" textcolor="#FF979797" disabledtextcolor="#FFA7A6AA" font="2"/>
+		
+			<Label name="LabelLine1" float="true"  pos="12,155,321,156" bkimage="file='IMAGE_LINE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+			<Text name="TextApacheNginxTip" text="Apache已经停止..." float="true" pos="18,166,187,182" textcolor="#FF31486a" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Text name="TextApacheTime" text="11:43:07" float="true" pos="260,166,330,182" textcolor="#FF999999" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Text name="TextMySQL" text="MySQL已经停止..." float="true" pos="18,190,187,207" textcolor="#FF31486a" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Text name="TextMySQLTime" text="11:43:07" float="true" pos="260,190,330,207" textcolor="#FF999999" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Text name="TextStopProgress" text="正在停止进程..." float="true" pos="18,215,187,232" textcolor="#FF31486a" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Text name="TextStopProgressTime" text="11:43:07" float="true" pos="260,215,330,232" textcolor="#FF999999" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Text name="TextApacheNginxStopTip" text="Apache已经停止..." float="true" pos="18,240,187,257" textcolor="#FF31486a" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Text name="TextApacheStopTime" text="11:43:07" float="true" pos="260,240,330,257" textcolor="#FF999999" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Text name="TextStartProgress" text="正在启动进程..." float="true" pos="18,265,187,282" textcolor="#FF31486a" disabledtextcolor="#FFA7A6AA" font="1"/>
+			<Text name="TextStartProgressTime" text="11:43:07" float="true" pos="260,265,330,282" textcolor="#FF999999" disabledtextcolor="#FFA7A6AA" font="1"/>		
+			<Text name="TextRunMode" text="运行模式" float="true" pos="12,300,87,317" textcolor="#FF979797" disabledtextcolor="#FFA7A6AA" font="2"/>
+		
+			<Button name="ButtonSwitchVersion" float="true" pos="270,302,0,0"  textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_SWITCHVERSION' restype='PNG'" />
+			<Label name="LabelLine2" float="true"  pos="12,320,321,321" bkimage="file='IMAGE_LINE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+			<RadioButton name="RadioButtonSystemServer" float="true"  tooltip="系统服务：开机会自启动相关服务" textcolor="#FF636669" pos="12,342,100,360" textpadding="18,0,0,0" text=" 系统服务" normalimage="file='CHECK_NORMAL_BULEL' restype='PNG'"  checkedimage="file='CHECK_NORMAL_BULER' restype='PNG'" font="2"/>
+			<RadioButton name="RadioButtonNotSystemServer" float="true" tooltip="非服务：开机不会自启动相关进程" textcolor="#FF636669" pos="100,342,200,360" textpadding="18,0,0,0" text=" 非系统服务" normalimage="file='CHECK_NORMAL_BULEL' restype='PNG'"  checkedimage="file='CHECK_NORMAL_BULER' restype='PNG'" font="2"/>
+			<Button name="ButtonApply" float="true" pos="230,335,0,0" text="应用" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_BUTTON_ITEM' restype='PNG'" font="3"/>
+		
+			<Label name="LabelBottom" float="true"  pos="0,410,340,447" bkcolor="#FFe1ebff" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+			<Button name="ButtonMySqlManage" float="true" pos="20,422,0,0" text="" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_ENVIROMENT_SHETING_MENU' restype='PNG'"/>
+			<Button name="ButtonOther" float="true" pos="130,422,0,0" text="" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_ENVIROMENT_OTHER_MENU' restype='PNG'"/>
+			<Button name="ButtonTeacher" float="true" pos="235,422,0,0" text="" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_ENVIROMENT_TEACHER_MENU' restype='PNG'"/>
+		</Container>
+	</Container>
+</Window>

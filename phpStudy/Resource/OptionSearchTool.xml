@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="659,540" sizebox="4,4,6,6" caption="0,0,0,0" >
+    <HorizontalLayout name="OptionSearchToolLayer" float="flase" pos="141,0,800,450" width="659" height="540"  bkcolor="#FFFFFFFF">
+		<!--<HorizontalLayout  name="PageLayerFirstLayer"  float="true"  pos="141,0,800,450" width="659" height="540" bkcolor="#FF1A42E6" />	-->
+    </HorizontalLayout>	
+</Window>

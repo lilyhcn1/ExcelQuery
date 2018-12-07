@@ -1,0 +1,24 @@
+[ 2017-11-20T02:30:16+08:00 ] 140.205.201.40 /index.php?m=member&c=index&a=register&siteid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+ERR: 无法加载模块:Member
+
+[ 2017-11-20T02:30:17+08:00 ] 140.205.201.40 /index.php?m=wap&a=index&siteid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Wap
+
+[ 2017-11-20T11:55:06+08:00 ] 140.205.225.197 /index.php?m=member&c=index&a=register&siteid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000976s ]
+ERR: 无法加载模块:Member
+
+[ 2017-11-20T11:55:08+08:00 ] 140.205.225.197 /index.php?m=wap&a=index&siteid=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+ERR: 无法加载模块:Wap
+

@@ -1,0 +1,514 @@
+[ 2018-11-11T19:30:11+08:00 ] 125.127.83.173 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `qw_member` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `qw_member` WHERE `identifier` = 'f9eb6fdb847fd6b11ece40230ae1e71c' LIMIT 1   [ RunTime:0.0000s ]
+
+[ 2018-11-11T19:30:11+08:00 ] 125.127.83.173 /index.php/Qwadmin/login/index.html?Req_URL=/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `qw_member` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `qw_member` WHERE `identifier` = 'f9eb6fdb847fd6b11ece40230ae1e71c' LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T19:30:13+08:00 ] 125.127.83.173 /index.php/Qwadmin/Lilyreg/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T19:30:13+08:00 ] 125.127.83.173 /index.php/Qwadmin/Lilyreg/easy.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LilyregController.class.php 第 427 行.
+NOTIC: [8] A session had already been started - ignoring session_start() C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LilyregController.class.php 第 438 行.
+NOTIC: [8] Undefined variable: wx_openid C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LilyregController.class.php 第 440 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: name C:\phpStudy\PHPTutorial\WWW\App\Runtime\Cache\Qwadmin\6be993e233761a2871fc159faf95e2c9.php 第 126 行.
+NOTIC: [8] Undefined index: phone C:\phpStudy\PHPTutorial\WWW\App\Runtime\Cache\Qwadmin\6be993e233761a2871fc159faf95e2c9.php 第 139 行.
+NOTIC: [8] Undefined variable: member C:\phpStudy\PHPTutorial\WWW\App\Runtime\Cache\Qwadmin\6be993e233761a2871fc159faf95e2c9.php 第 161 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.000000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.000000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T20:29:03+08:00 ] 192.135.111.104 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-11T20:38:46+08:00 ] 180.163.220.5 /index.php/Qwadmin/Lilyreg/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T20:39:17+08:00 ] 42.236.10.117 /index.php/Qwadmin/Lilyreg/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T20:39:17+08:00 ] 42.236.10.114 /index.php/Qwadmin/Lilyreg/easy.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LilyregController.class.php 第 427 行.
+NOTIC: [8] Undefined index: wx_openid C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LilyregController.class.php 第 437 行.
+NOTIC: [8] A session had already been started - ignoring session_start() C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LilyregController.class.php 第 438 行.
+NOTIC: [8] Undefined variable: wx_openid C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LilyregController.class.php 第 440 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: name C:\phpStudy\PHPTutorial\WWW\App\Runtime\Cache\Qwadmin\6be993e233761a2871fc159faf95e2c9.php 第 126 行.
+NOTIC: [8] Undefined index: phone C:\phpStudy\PHPTutorial\WWW\App\Runtime\Cache\Qwadmin\6be993e233761a2871fc159faf95e2c9.php 第 139 行.
+NOTIC: [8] Undefined variable: member C:\phpStudy\PHPTutorial\WWW\App\Runtime\Cache\Qwadmin\6be993e233761a2871fc159faf95e2c9.php 第 161 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T20:50:29+08:00 ] 14.17.3.65 /index.php/Qwadmin/login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015625s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: Req_URL C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 43 行.
+NOTIC: [8] Undefined index: Req_URL C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 78 行.
+SQL: SHOW COLUMNS FROM `qw_member` [ RunTime:0.0000s ]
+SQL: SELECT `uid`,`user` FROM `qw_member` WHERE `user` = '' AND `password` = '1dc02f192a13048f59331616afb0e063' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `qw_log` [ RunTime:0.0000s ]
+SQL: INSERT INTO `qw_log` (`name`,`t`,`ip`,`log`) VALUES ('AdminUser','1541940629','14.17.3.65','登录失败。') [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T21:23:06+08:00 ] 59.36.119.226 /index.php/qwadmin/rwxycom/uniquerydata.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载控制器:Rwxycom
+
+[ 2018-11-11T21:23:06+08:00 ] 58.251.121.184 /index.php/Qwadmin/Rwxy
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T21:23:06+08:00 ] 58.251.121.184 /index.php/Qwadmin/RwxyCom/uniquerydata.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-11T21:23:07+08:00 ] 58.251.121.184 /index.php/Qwadmin/login/index.html?Req_URL=/index.php/Qwadmin/RwxyCom/uniquerydata.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\LoginController.class.php 第 23 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015625s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T21:54:18+08:00 ] 125.127.83.173 /index.php/Qwadmin/Lilyreg/sms139send.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: secret C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 641 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T21:55:24+08:00 ] 125.127.83.173 /index.php/Qwadmin/Lilyreg/sms139send.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: secret C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 641 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T21:56:49+08:00 ] 125.127.83.173 /index.php/Qwadmin/Lilyreg/sms139send.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:43:36+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:43:36+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:43:36+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/echoteacherdb?conall=%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E5%8C%85%E5%90%AB%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E6%B5%8B%E8%AF%95;;;;;;%E4%B8%8D%E6%98%BE%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Eid,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname;%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Eadmin;%E7%94%A8%E6%88%B7%E5%90%8D%E7%AD%89%E4%BA%8Eadmin;%E4%B8%8A%E4%BC%A0%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8E;%E5%A7%93%E5%90%8D%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed2;ID%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed3;
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 1376 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 1376 行.
+NOTIC: [8] Undefined index: wrpw C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 309 行.
+SQL: SHOW COLUMNS FROM `qw_member` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `qw_member` WHERE `user` = 'admin' AND `password` = '1dc02f192a13048f59331616afb0e063' LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:43:50+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:43:50+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:43:50+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/echoteacherdb?conall=%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E5%8C%85%E5%90%AB%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E6%B5%8B%E8%AF%95;;;;;;%E4%B8%8D%E6%98%BE%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Eid,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname;%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Eadmin;%E7%94%A8%E6%88%B7%E5%90%8D%E7%AD%89%E4%BA%8E;%E4%B8%8A%E4%BC%A0%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8E;%E5%A7%93%E5%90%8D%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed2;ID%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed3;
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 1376 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 1376 行.
+NOTIC: [8] Undefined index: user C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 308 行.
+NOTIC: [8] Undefined index: wrpw C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 309 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:44:06+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:44:06+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:44:07+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/echoteacherdb?conall=%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E5%8C%85%E5%90%AB%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E6%B5%8B%E8%AF%95;;;;;;%E4%B8%8D%E6%98%BE%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Eid,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname;%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Eadmin;%E7%94%A8%E6%88%B7%E5%90%8D%E7%AD%89%E4%BA%8E;%E4%B8%8A%E4%BC%A0%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Eadmin888;%E5%A7%93%E5%90%8D%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed2;ID%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed3;
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015625s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 1376 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 1376 行.
+NOTIC: [8] Undefined index: user C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 308 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:44:26+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:44:26+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:44:26+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/echoteacherdb?conall=%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E7%AD%89%E4%BA%8E%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E6%B5%8B%E8%AF%95;;;;;;%E4%B8%8D%E6%98%BE%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Eid,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname;%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Eadmin;%E7%94%A8%E6%88%B7%E5%90%8D%E7%AD%89%E4%BA%8E;%E4%B8%8A%E4%BC%A0%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8E;%E5%A7%93%E5%90%8D%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed2;ID%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed3;
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 1376 行.
+NOTIC: [8] Undefined variable: likecon C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 359 行.
+NOTIC: [2] Invalid argument supplied for foreach() C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 410 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 1376 行.
+NOTIC: [8] Undefined variable: likecon C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 359 行.
+NOTIC: [2] Invalid argument supplied for foreach() C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 410 行.
+NOTIC: [8] Undefined index: user C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 308 行.
+NOTIC: [8] Undefined index: wrpw C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 309 行.
+SQL: SHOW COLUMNS FROM `qw_unisecret` [ RunTime:0.0000s ]
+SQL: select COLUMN_NAME from information_schema.COLUMNS where table_name ='qw_unisecret' and table_schema = 'r34'; [ RunTime:0.0156s ]
+SQL: SELECT `d1`,`d2`,`d3`,`d4`,`d5`,`d6`,`d7`,`d8`,`d9`,`d10`,`d11`,`d12`,`d13`,`d14`,`d15`,`d16`,`d17`,`d18`,`d19`,`d20`,`d21`,`d22`,`d23`,`d24`,`d25`,`d26`,`d27`,`d28`,`d29`,`d30`,`d31`,`d32`,`d33`,`d34`,`d35`,`d36`,`d37`,`d38`,`d39`,`d40`,`d41`,`d42`,`d43`,`d44`,`d45`,`d46`,`d47`,`d48`,`d49`,`d50` FROM `qw_unisecret` WHERE `sheetname` = '学生信息测试' AND `rpw` = 'admin' AND `ord` <> 0 ORDER BY id  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `qw_unisecret` WHERE `sheetname` = '学生信息测试' AND `rpw` = 'admin' ORDER BY id LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `d1`,`d2`,`d3`,`d4`,`d5`,`d6`,`d7`,`d8`,`d9`,`d10`,`d11`,`d12`,`d13`,`d14`,`d15`,`d16`,`d17`,`d18`,`d19`,`d20`,`d21`,`d22`,`d23`,`d24`,`d25`,`d26`,`d27`,`d28`,`d29`,`d30`,`d31`,`d32`,`d33`,`d34`,`d35`,`d36`,`d37`,`d38`,`d39`,`d40`,`d41`,`d42`,`d43`,`d44`,`d45`,`d46`,`d47`,`d48`,`d49`,`d50` FROM `qw_unisecret` WHERE `sheetname` = '学生信息测试' ORDER BY id LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:45:27+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:45:27+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:45:27+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/echoteacherdb?conall=%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E7%AD%89%E4%BA%8E%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E6%B5%8B%E8%AF%951;;;;;;%E4%B8%8D%E6%98%BE%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Eid,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname;%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Eadmin;%E7%94%A8%E6%88%B7%E5%90%8D%E7%AD%89%E4%BA%8E;%E4%B8%8A%E4%BC%A0%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Eadmin888;%E5%A7%93%E5%90%8D%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed2;ID%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed3;
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 1376 行.
+NOTIC: [8] Undefined variable: likecon C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 359 行.
+NOTIC: [2] Invalid argument supplied for foreach() C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 410 行.
+NOTIC: [8192] preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead C:\phpStudy\PHPTutorial\WWW\App\Common\Common\function.php 第 1376 行.
+NOTIC: [8] Undefined variable: likecon C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 359 行.
+NOTIC: [2] Invalid argument supplied for foreach() C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 410 行.
+NOTIC: [8] Undefined index: user C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 308 行.
+SQL: SHOW COLUMNS FROM `qw_unisecret` [ RunTime:0.0000s ]
+SQL: select COLUMN_NAME from information_schema.COLUMNS where table_name ='qw_unisecret' and table_schema = 'r34'; [ RunTime:0.0000s ]
+SQL: SELECT `d1`,`d2`,`d3`,`d4`,`d5`,`d6`,`d7`,`d8`,`d9`,`d10`,`d11`,`d12`,`d13`,`d14`,`d15`,`d16`,`d17`,`d18`,`d19`,`d20`,`d21`,`d22`,`d23`,`d24`,`d25`,`d26`,`d27`,`d28`,`d29`,`d30`,`d31`,`d32`,`d33`,`d34`,`d35`,`d36`,`d37`,`d38`,`d39`,`d40`,`d41`,`d42`,`d43`,`d44`,`d45`,`d46`,`d47`,`d48`,`d49`,`d50` FROM `qw_unisecret` WHERE `sheetname` = '学生信息测试1' AND `rpw` = 'admin' AND `ord` <> 0 ORDER BY id  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `qw_unisecret` WHERE `sheetname` = '学生信息测试1' AND `rpw` = 'admin' ORDER BY id LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `d1`,`d2`,`d3`,`d4`,`d5`,`d6`,`d7`,`d8`,`d9`,`d10`,`d11`,`d12`,`d13`,`d14`,`d15`,`d16`,`d17`,`d18`,`d19`,`d20`,`d21`,`d22`,`d23`,`d24`,`d25`,`d26`,`d27`,`d28`,`d29`,`d30`,`d31`,`d32`,`d33`,`d34`,`d35`,`d36`,`d37`,`d38`,`d39`,`d40`,`d41`,`d42`,`d43`,`d44`,`d45`,`d46`,`d47`,`d48`,`d49`,`d50` FROM `qw_unisecret` WHERE `sheetname` = '学生信息测试1' ORDER BY id LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T22:55:32+08:00 ] 125.127.83.173 /index.php/Qwadmin/Rwxy/phpupload?conall=%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E7%AD%89%E4%BA%8E%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E6%B5%8B%E8%AF%952;;;;;;%E4%B8%8D%E6%98%BE%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Eid,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname;%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Eadmin;%E7%94%A8%E6%88%B7%E5%90%8D%E7%AD%89%E4%BA%8E;%E4%B8%8A%E4%BC%A0%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Edasf;%E5%A7%93%E5%90%8D%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed2;ID%E5%AD%97%E6%AE%B5%E7%AD%89%E4%BA%8Ed3;
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: file C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 672 行.
+NOTIC: [8] Undefined index: file C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 673 行.
+NOTIC: [8] Undefined index: file C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\RwxyController.class.php 第 674 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-11-11T23:18:38+08:00 ] 183.57.54.43 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-11T23:21:50+08:00 ] 42.236.10.92 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-11T23:22:10+08:00 ] 180.163.220.4 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+
+[ 2018-11-11T23:53:23+08:00 ] 80.180.173.91 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: code C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 23 行.
+SQL: SHOW COLUMNS FROM `qw_setting` [ RunTime:0.0000s ]
+SQL: SELECT `k`,`v` FROM `qw_setting`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined offset: 1 C:\phpStudy\PHPTutorial\WWW\App\Qwadmin\Controller\ComController.class.php 第 54 行.
+

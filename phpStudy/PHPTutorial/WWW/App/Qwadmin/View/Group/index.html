@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<form id="export-form" method="post" action="{:U('del')}">
+									<table class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="center"><input class="check-all" type="checkbox" value=""></th>
+											<th>用户组</th>
+											<th>状态</th>
+											<th class="center">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+									<volist name="list" id="val">
+										<tr>
+											<td class="center">
+												<if condition="$val['id'] neq 1"><input class="ids" type="checkbox" name="ids[]" value="{$val['id']}"><else /><span title="系统用户组，禁止删除">--</span></if>
+											
+											</td>
+											<td>{$val['title']}</td>
+											<td><if condition="$val['status'] eq 1"><a href="" title="点击禁用">启用</a><else /><a href="" title="点击启用">启用</a></if></td>
+											<td class="center"><a href="{:U('edit')}?id={$val['id']}" >修改</a></td>
+										</tr>
+									</volist>
+									</tbody>
+								</table>
+								<div class="cf">
+									<input class="btn btn-info" type="submit" value="删除">
+								</div>
+								</form>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+		(function($){
+			$(".check-all").click(function(){
+				$(".ids").prop("checked", this.checked);
+			});
+			$(".ids").click(function(){
+				var option = $(".ids");
+				option.each(function(i){
+					if(!this.checked){
+						$(".check-all").prop("checked", false);
+						return false;
+					}else{
+						$(".check-all").prop("checked", true);
+					}
+				});
+			});
+		})(jQuery);
+		</script>
+	</body>
+</html>

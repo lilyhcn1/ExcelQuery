@@ -1,0 +1,30 @@
+[ 2017-10-08T07:18:20+08:00 ] 180.153.236.181 /index.php?s=vod-play-id-1896-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001953s ]
+ERR: 无法加载模块:Vod-play-id-1896-sid-0-pid-1
+
+[ 2017-10-08T22:13:28+08:00 ] 180.153.236.19 /index.php?s=vod-play-id-638-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-play-id-638-sid-0-pid-1
+
+[ 2017-10-08T22:13:29+08:00 ] 42.236.55.21 /index.php?m=vod-play-id-2467-src-1-num-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:Vod-play-id-2467-src-1-num-1.html
+
+[ 2017-10-08T22:13:29+08:00 ] 42.236.54.2 /index.php?s=vod-play-id-1887-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000977s ]
+ERR: 无法加载模块:Vod-play-id-1887-sid-0-pid-1
+
+[ 2017-10-08T22:13:57+08:00 ] 180.153.236.157 /index.php?s=vod-play-id-1156-sid-0-pid-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000976s ]
+ERR: 无法加载模块:Vod-play-id-1156-sid-0-pid-1
+

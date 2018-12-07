@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="509,488" sizebox="6,6,6,6" roundcorner="0,0" caption="0,0,0,30">
+<Font name="宋体" size="16" bold="false" italic="false" default="true" />
+     <VerticalLayout name="HorizontalLayoutUI" float="true" width="509" height="488" bkimage="file='IMAGE_PLATFORM_DOMAIN' restype='PNG'" bkcolor="#FFF0F0F0" >
+        <HorizontalLayout height="30" >
+            <HorizontalLayout name="TitleLeft"  height="30" bkcolor="#FF1495E7">
+				<Button name="ButtonClose" float="true" pos="483,0,0,0"  tooltip="关闭" statusimage="file='BT_PLATFORM_CLOSE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+				<Label name="LabelIcon"  float="true" pos="5,0,0,0" width="28" height="30" bkimage="file='IMAGE_PLATGORM_ICON' restype='PNG'" textcolor="#FFFFFFFF" />	
+                <Label name="LabelTitle" text="站点域名管理" float="true" pos="35,0,0,0"  width="200" height="31" textcolor="#FFFFFFFF" font="2"/>
+				
+            </HorizontalLayout>                
+        </HorizontalLayout>
+		<!-- 客户区 -->
+		<VerticalLayout >
+			<Label name="LabelWebSite" text="站点" float="true" pos="16,0,0,0"  width="200" height="20" textcolor="#FF1495E7" font="2"/>
+			<Label name="LabelWebSiteManage" text="站点管理" float="true" pos="246,0,0,0"  width="200" height="20" textcolor="#FF1495E7" font="2"/>
+			<Label name="LabelWebDomain" text="网站域名：" float="true" pos="265,30,0,0"  width="200" height="20" textcolor="#FF31486a" font="1"/>
+			<Label name="LabelWebDir" text="网站目录：" float="true" pos="265,64,0,0"  width="200" height="20" textcolor="#FF31486a" font="1"/>
+			<Label name="LabelSecondDomain" text="第二域名：" float="true" pos="265,95,0,0"  width="200" height="20" textcolor="#FF31486a" font="1"/>
+			<Label name="LabelWebPort" text="网站端口：" float="true" pos="265,127,0,0"  width="200" height="20" textcolor="#FF31486a" font="1"/>
+			
+			<Label name="Labeltitle1" text="说明：" float="true" pos="260,285,0,0"  width="200" height="20" textcolor="#FF31486a" font="1"/>
+			<Label name="Labeltitle2" text="网站端口和域名可不填：" float="true" pos="260,305,0,0"  width="210" height="20" textcolor="#FF31486a" font="1"/>
+			<Label name="Labeltitle3" text="网站端口不填默认为80：" float="true" pos="260,325,0,0"  width="210" height="20" textcolor="#FF31486a" font="1"/>
+			<Label name="Labeltitle4" text="设置后请点保存按钮生成配置文件：" float="true" pos="260,345,0,0"  width="210" height="20" textcolor="#FF31486a" font="1"/>
+			<Label name="Labeltitle5" text="站点域名同样适用于IIS6/IIS7/IIS8：" float="true" pos="260,365,0,0"  width="240" height="20" textcolor="#FF31486a" font="1"/>
+			<Label name="Labeltitle6" text="站点右键列表可以导入导出：" float="true" pos="260,385,0,0"  width="210" height="20" textcolor="#FF31486a" font="1"/>
+		</VerticalLayout>
+    </VerticalLayout>
+</Window>

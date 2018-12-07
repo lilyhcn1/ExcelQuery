@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="659,540" sizebox="5,5,5,5" roundcorner="7,7"  caption="0,0,0,0">
+    <HorizontalLayout name="WebBrowserUI" float="flase" pos="141,0,800,540" width="659" height="540"  bkcolor="#FFF9FBFC"  >
+        <HorizontalLayout name="LayoutWebKit" >  <!-- 这里是wkeWebkit控件 -->
+            <wkeWebkit name="webkit" />
+        </HorizontalLayout>	
+    </HorizontalLayout>
+</Window>

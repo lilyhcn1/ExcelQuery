@@ -1,0 +1,37 @@
+iptables -t  filter  -I FORWARD -i br-lan3 -j WiFiDog_br-lan_Internet
+
+iptables -t  nat  -A PREROUTING  -i br-lan3 -j WiFiDog_br-lan_Outgoing
+
+iptables -t mangle -A WiFiDog_br-lan_AuthIsDown  -j MARK --set-mark 0x253
+
+
+iptables -t  filter  -D FORWARD -i br-lan3 -j WiFiDog_br-lan_Internet
+
+iptables  -t nat -D WiFiDog_br-lan_Unknown  -p tcp --dport 80 -j REDIRECT --to-ports 2060
+
+
+iptables  -t nat -D WiFiDog_br-lan_Unknown  -p tcp --dport 80 -j REDIRECT --to-ports 2060
+
+
+iptables -t  nat  -D PREROUTING  -i br-lan -j WiFiDog_br-lan_Outgoing
+
+
+iptables -t  nat  -A PREROUTING   -j WiFiDog_br-lan_Outgoing
+
+
+iptables -t  nat -D WiFiDog_br-lan_Outgoing   -d 192.168.252.1 -j WiFiDog_br-lan_Router 
+
+iptables -t  nat -A WiFiDog_br-lan_Outgoing   -i br-lan -d 192.168.252.1 -j WiFiDog_br-lan_Router 
+
+iptables -t  nat -D WiFiDog_br-lan_Outgoing   -j WiFiDog_br-lan_Internet
+
+iptables -t  nat -A WiFiDog_br-lan_Outgoing  -i br-lan -j WiFiDog_br-lan_Internet
+
+iptables -t  nat -D WiFiDog_br-lan_Outgoing  -i br-lan2    -j WiFiDog_br-lan_Internet
+
+WiFiDog_br-lan_Router
+
+iptables -t  nat -N WiFiDog_br-lan_Setinterface 
+
+
+iptables -t  nat -A WiFiDog_br-lan_Setinterface   -i br-lan2   -j WiFiDog_br-lan_Internet

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>在线升级-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{:U('index/index')}">首页</a>
+							</li>
+
+							<li>
+								<a href="#">系统设置</a>
+							</li>
+							<li class="active">在线升级</li>
+						</ul><!-- /.breadcrumb -->
+					</div>
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+									<div id="update">
+										<p>程序版本：<?php echo THINK_VERSION ?></p>
+										<p id="upmsg"><i class="ace-icon fa fa-refresh fa-spin blue"></i></p>
+									</div>
+									<div id="uploading"></div>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+		$(function(){
+			$.ajax({
+				type: 'GET',
+				url: '{$Think.CONFIG.UPDATE_URL}?v=<?php echo THINK_VERSION ?>&callback=?',
+				success :function(json){
+					if(json.result=='no'){
+						$("#upmsg").removeClass().html("目前还没有适合您当前版本的更新！");
+					}else if(json.result=='yes'){
+						$("#upmsg").removeClass().html("检查到新版本 "+json.ver+"，<a  href=\"javascript:;\" onclick=\"update('"+json.file+"');\">立即升级</a>");
+					}
+				},
+				error: function(){
+					$("#upmsg").removeClass().html("悲剧了，网络故障，请稍后再试！");
+				},
+				dataType: 'json'
+			});
+		})
+		function update(file){
+			bootbox.confirm({
+				title: "风险告知",
+				message: "由于网络环境差异，为避免在线升级失败造成不可挽回的损失，升级前请做好数据备份工作。同时我们不建议对源码修改过的用户进行在线升级！", 
+				callback:function(result){
+					if(result){
+						$('#uploading').html('<i class="ace-icon fa fa-spinner fa-spin orange bigger-120"></i>系统升级中...请勿关闭窗口');
+						$('#upmsg').html('');
+						$.getJSON("{:U('updating')}?file="+file,function(json){
+							$('#uploading').html('');
+								bootbox.alert({  
+									buttons: {  
+									   ok: {  
+											label: '确定',  
+											className: 'btn-myStyle'  
+										}  
+									},  
+									message: json.message,  
+									callback: function() {  
+										window.location.reload(true);
+									},  
+									title: "系统提示",  
+								});  
+						});
+					}else{
+							return; 
+					}
+				},
+				buttons: {
+					"cancel" : {"label" : "取消"},
+					"confirm" : {
+							"label" : "我已做好备份，立即升级",
+							"className" : "btn-danger"
+						}
+				}
+			});
+		}
+		</script>
+	</body>
+</html>

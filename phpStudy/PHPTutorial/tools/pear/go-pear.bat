@@ -1,0 +1,1 @@
+D:\CmsToolClient\Running\Release\Unicode\PHPTutorial\php\php-5.5.38\php.exe D:\CmsToolClient\Running\Release\Unicode\PHPTutorial\tools\pear\go-pear.phar

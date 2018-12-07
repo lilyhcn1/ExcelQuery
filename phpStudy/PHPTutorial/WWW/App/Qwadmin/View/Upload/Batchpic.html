@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>图片上传</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .iconbox{
+        margin: 0;
+        padding: 0;
+    }
+    .icon{
+        float: left;
+        margin: 0 10px 10px 0;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        overflow: hidden;
+        border: 1px solid #CCC;
+        line-height: 100px;
+        position: relative;
+    }
+    .icon img{
+        max-height:100px;
+    } 
+    .icon .remove{
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        top: 0;
+        right: 0;
+        line-height: 20px;
+        font-size: 12px;
+        color: #FFF;
+        background: #C00;
+        cursor: pointer;
+    }
+    .file_box {
+        display: inline-block;
+        float: left;
+        margin: 0 10px 10px 0;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        color: #FFF;
+        background: #3E4B5B;
+        position: relative;
+        overflow: hidden;
+        margin: 0 0 10px 0;
+    }
+    
+    .file_box:hover {
+        color: #FFF;
+    }
+    #uploadicon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 100px;
+        opacity: 0;
+    }
+    </style>
+    <script src="__PUBLIC__/qwadmin/js/jquery.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <form enctype="multipart/form-data" id="PostMe" action="?" method="post" name="upform">
+        <input type="hidden" value="{$BackCall}" name="BackCall">
+        <input type="hidden" value="{$ImgStr}" name="Img" id="Img">
+        <div class="iconbox">
+            <foreach name="Img" item="vo" >
+                <div class="icon"><img class="iconimg" src="{$vo}"><div class="remove">移除</div></div>
+            </foreach>
+            <a class="file_box">＋<input type="file" name="img" id="uploadicon"  value="上传"/></a>
+        </div>
+    </form>
+    <br>
+    <script type="text/javascript">
+        $('#uploadicon').on("change",function(){
+            arrange();
+            $('#PostMe').submit();
+        });
+        $('.remove').on("click",function(){
+            $(this).parent().remove();
+            arrange();
+        });
+        function arrange(){
+            var ImgStr="";
+            $("#ht").html('ABC');
+            $('.iconimg').each(function(index){
+                // $(this).hide();
+                // alert($(this).attr('src'));
+                // if(index!=0) $('#ht').append('|');
+                // $('#ht').append($(this).attr('src'));
+                if(index!=0) ImgStr+='|';
+                ImgStr+=$(this).attr('src');
+            });
+            $('#{$BackCall}',parent.document).val(ImgStr);
+            $('#Img').val(ImgStr);
+        }
+
+        $('#{$BackCall}',parent.document).val("{$ImgStr}"); 
+    </script>
+</body>
+
+</html>
