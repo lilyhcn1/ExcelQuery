@@ -358,9 +358,12 @@ function findfirstline($sheetname){
         $sheetcon['sheetname']=$sheetname;
         $firstlinearrtemp=$db->where($sheetcon)->order('id')->find();
         // pr($firstlinearrtemp);
-        $firstcon['id']=array(array("eq",$firstlinearrtemp['id']-1),array("eq",$firstlinearrtemp['id']),"OR");
-        $firstcon['ord']=0;
-        $firstline=$db->where($firstcon)->Field(C('FIELDSTR'))->find();  
+        // $firstcon['id']=array(array("eq",$firstlinearrtemp['id']-1),array("eq",$firstlinearrtemp['id']),"OR");
+        // $firstcon['ord']=0;
+        
+//   强制变更第一行条件
+        $firstcon['sheetname']=$sheetname;
+        $firstline=$db->where($firstcon)->Field(C('FIELDSTR'))->order('id')->find();  
     return $firstline;
 }
 
@@ -374,22 +377,22 @@ public function excel___________() {
 
 
 // 通用查询
-public function echounisheet($sheetname,$data){
-
+public function echounisheet($dbsheetname,$data){
+// C('EXCELSECRETSHEET');
 $con2=$this->constr2conarr($data,'eq');
 $likecon=$this->constr2conarr($data,'like');
 // pr(empty($con2['sheetname']));
 
 if($this->isadmin($con2)){
     unset($con2['rpw']);
-    $this->echounisheetuni($sheetname,$con2,$likecon);
+    $this->echounisheetuni($dbsheetname,$con2,$likecon);
 }elseif(!empty($likecon['sheetname']['0'] == 'in')){
-    $this->echounisheetuni($sheetname,$con2,$likecon);
+    $this->echounisheetuni($dbsheetname,$con2,$likecon);
 }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
     echo    $output="error, \nsheetname \n  or\n rpw\nis \nempty.\n";    
 }else{
     
-    $this->echounisheetuni($sheetname,$con2,$likecon);
+    $this->echounisheetuni($dbsheetname,$con2,$likecon);
 
 }    
 
@@ -398,8 +401,8 @@ if($this->isadmin($con2)){
 }
 
 // 通用查询
-public function echounisheetuni($sheetname,$con2,$likecon){
-$db=M($sheetname);
+public function echounisheetuni($dbsheetname,$con2,$likecon){
+$db=M($dbsheetname);
     // pr($con2);
     // pr($likecon);
 
@@ -422,7 +425,7 @@ unset($likecon['user']);
     }
     $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
 
-    $field=$Model->query("select COLUMN_NAME from information_schema.COLUMNS where table_name ='".C('DB_PREFIX').$sheetname."' and table_schema = '".C('DB_NAME')."';");
+    $field=$Model->query("select COLUMN_NAME from information_schema.COLUMNS where table_name ='".C('DB_PREFIX').$dbsheetname."' and table_schema = '".C('DB_NAME')."';");
     
     $t1[]='wrpw';
     $field=array_column($field,'column_name');
@@ -436,15 +439,19 @@ unset($likecon['user']);
     }
     // pr($con2);
 
-// 去除一些无关的条件
-// pr($con2);
-// pr($likecon);
+    // 查出第一行    
+    // $queryfirst=$db->where($con2)->where($likecon)->order('id desc')->find(); 
+    $sheetcon['sheetname']=$con2['sheetname'];
+    $queryfirst=$db->where($sheetcon)->order('id')->find();    
 
+//  pr($mysheetname);
 // $likecontemp['sheetname']=array('like','学生信息测试');
-    $notfirstline['ord']=array('NEQ',0);
+    $notfirstline['id']=array('NEQ',$queryfirst['id']);
+    // pr($notfirstline);
     $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order('id')->select(); 
 // $query=$db->where($likecontemp)->select(); 
     // $query=$db->where($con2)->select();
+    // pr($queryfirst);
     // pr($query);
     
     // 插入字段行
@@ -453,27 +460,14 @@ unset($likecon['user']);
     foreach ($field as $fieldkey) {
         $emptyline['0'][$fieldkey]="";
     }
-    // 查出第一行    
-    $queryfirst=$db->where($con2)->where($likecon)->order('id')->find(); 
+
 // pr($queryfirst);
     if(!empty($queryfirst)){
         $sheetcon['sheetname']=$queryfirst['sheetname'];
         $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
         $firstline['0']=$firstlinearrtemp;
         
-        // $queryid=$db->where($con2)->where($likecon)->field('id')->order('id')->select(); 
-        
-        // pr($firstlinearrtemp);
-        // pr($queryid);
-        // // $qid=
-        // if(isset($queryid['0']['id'])){
-        //     // pr($queryid['0']['id']);
-        //      if($firstlinearrtemp['id']==$queryid['0']['id']-1){
-        //         $firstline['0']=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
-        // }
-        // // pr($firstline);
-        // }
-       
+
   
     $temp=twoarraymerge($fieldline,$emptyline); 
     if(!empty($firstline)){
@@ -481,7 +475,7 @@ unset($likecon['user']);
     }
     $query=twoarraymerge($temp,$query);         
     }
-    
+    // pr($query);
 
 
     // // 输出结果
@@ -503,8 +497,9 @@ $data=I('get.');
         echo "error\n,IP地址\n不在可访问列表中，\n禁止访问。";
     }else{
 
-$sheetname=C('EXCELSECRETSHEET');
-$this->echounisheet($sheetname,$data);    
+// $sheetname=C('EXCELSECRETSHEET');
+$dbsheetname=C('EXCELSECRETSHEET');
+$this->echounisheet($dbsheetname,$data);    
         
     }
 
@@ -1002,10 +997,8 @@ if($existdata['2']['wrpw']==$wrpw || empty($existdata)){
         $delcon['sheetname']=$twoarrexcel['2']['sheetname'];
         $delcon['wrpw']=$wrpw;
 // 删除标题行
-        $firstlinearrtemp=$db->where($delcon)->find();
-        $firstcon['id']=$firstlinearrtemp['id']-1;
-        $firstcon['ord']=0;
-        $db->where($firstcon)->delete();        
+        $temp22['id']=$queryfirst['id'];
+        $db->where($temp22)->delete();        
 // 删作数据行
         $db->where($delcon)->delete();
         

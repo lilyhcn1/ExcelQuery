@@ -4371,3 +4371,24 @@ httpd.exe: Syntax error on line 486 of D:/CmsToolClient/Running/Release/Unicode/
 [Fri Dec 07 19:01:14.452090 2018] [mpm_winnt:notice] [pid 3876:tid 564] AH00418: Parent: Created child process 4904
 [Fri Dec 07 19:01:17.561923 2018] [mpm_winnt:notice] [pid 4904:tid 216] AH00354: Child: Starting 150 worker threads.
 [Fri Dec 07 19:42:36.116225 2018] [mpm_winnt:crit] [pid 4904:tid 216] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Sun Dec 09 09:04:02.312382 2018] [core:warn] [pid 4008:tid 660] AH00098: pid file C:/phpStudy/PHPTutorial/Apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sun Dec 09 09:04:02.718519 2018] [mpm_winnt:notice] [pid 4008:tid 660] AH00455: Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9 configured -- resuming normal operations
+[Sun Dec 09 09:04:02.718519 2018] [mpm_winnt:notice] [pid 4008:tid 660] AH00456: Server built: Jul  1 2016 16:42:20
+[Sun Dec 09 09:04:02.718519 2018] [core:notice] [pid 4008:tid 660] AH00094: Command line: 'C:\\phpStudy\\PHPTutorial\\Apache\\bin\\httpd.exe -d C:/phpStudy/PHPTutorial/Apache'
+[Sun Dec 09 09:04:02.781025 2018] [mpm_winnt:notice] [pid 4008:tid 660] AH00418: Parent: Created child process 4608
+[Sun Dec 09 09:04:04.952887 2018] [mpm_winnt:notice] [pid 4608:tid 696] AH00354: Child: Starting 150 worker threads.
+[Sun Dec 09 09:07:36.053932 2018] [mpm_winnt:crit] [pid 4608:tid 696] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Sun Dec 09 09:15:08.479253 2018] [core:warn] [pid 4944:tid 664] AH00098: pid file C:/phpStudy/PHPTutorial/Apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sun Dec 09 09:15:08.963642 2018] [mpm_winnt:notice] [pid 4944:tid 664] AH00455: Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9 configured -- resuming normal operations
+[Sun Dec 09 09:15:08.963642 2018] [mpm_winnt:notice] [pid 4944:tid 664] AH00456: Server built: Jul  1 2016 16:42:20
+[Sun Dec 09 09:15:08.963642 2018] [core:notice] [pid 4944:tid 664] AH00094: Command line: 'C:\\phpStudy\\PHPTutorial\\Apache\\bin\\httpd.exe -d C:/phpStudy/PHPTutorial/Apache'
+[Sun Dec 09 09:15:09.057398 2018] [mpm_winnt:notice] [pid 4944:tid 664] AH00418: Parent: Created child process 5560
+[Sun Dec 09 09:15:12.510576 2018] [mpm_winnt:notice] [pid 5560:tid 700] AH00354: Child: Starting 150 worker threads.
+[Sun Dec 09 09:15:48.738730 2018] [mpm_winnt:crit] [pid 5560:tid 700] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Sun Dec 09 13:02:52.353946 2018] [core:warn] [pid 5656:tid 688] AH00098: pid file C:/phpStudy/PHPTutorial/Apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sun Dec 09 13:02:52.791350 2018] [mpm_winnt:notice] [pid 5656:tid 688] AH00455: Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9 configured -- resuming normal operations
+[Sun Dec 09 13:02:52.791350 2018] [mpm_winnt:notice] [pid 5656:tid 688] AH00456: Server built: Jul  1 2016 16:42:20
+[Sun Dec 09 13:02:52.791350 2018] [core:notice] [pid 5656:tid 688] AH00094: Command line: 'C:\\phpStudy\\PHPTutorial\\Apache\\bin\\httpd.exe -d C:/phpStudy/PHPTutorial/Apache'
+[Sun Dec 09 13:02:52.869677 2018] [mpm_winnt:notice] [pid 5656:tid 688] AH00418: Parent: Created child process 4144
+[Sun Dec 09 13:02:55.338484 2018] [mpm_winnt:notice] [pid 4144:tid 692] AH00354: Child: Starting 150 worker threads.
+[Sun Dec 09 18:48:11.976932 2018] [mpm_winnt:crit] [pid 4144:tid 692] AH02538: Child: Parent process exited abruptly. Child process is ending

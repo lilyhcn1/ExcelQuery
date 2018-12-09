@@ -130,3 +130,6 @@ Version: '5.5.53'  socket: ''  port: 3306  MySQL Community Server (GPL)
 170410 10:43:23 [Note] Event Scheduler: Loaded 0 events
 170410 10:43:23 [Note] D:\CmsToolClient\Running\Release\Unicode\PHPTutorial\MySQL\bin\mysqld.exe: ready for connections.
 Version: '5.5.53'  socket: ''  port: 3306  MySQL Community Server (GPL)
+181209 13:02:52 [Note] Event Scheduler: Loaded 0 events
+181209 13:02:52 [Note] C:\phpStudy\PHPTutorial\MySQL\bin\mysqld.exe: ready for connections.
+Version: '5.5.53'  socket: ''  port: 3306  MySQL Community Server (GPL)
