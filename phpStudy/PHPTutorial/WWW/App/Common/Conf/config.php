@@ -34,7 +34,8 @@ return array(
 	
 
 //***********************************excel**********************************	
-	'QUERYPW'        => 'admin', // excel默认查看密码	
+	'QUERYPW'        => 'admin', // excel默认查看密码
+	'PERSONPW'        => 'admin888', // 可以显示个人信息的密码
     'TEXTSYMBOL'=> '&thinsp;',// 数字占位符&thinsp;
     'QUERYLIMIT'        => '50', // excel默认查看密码	
 	'EXCELPUBSHEET'=> 'unipub', // 公开数据表
