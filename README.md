@@ -24,7 +24,8 @@ http://vps0.upsir.com/lily/1.mp4
 http://vps0.upsir.com/lily/2.mp4
 
 百万行、千万行数据查询教程
-http://vps0.upsir.com/lily/3.mp4
+视频：http://vps0.upsir.com/lily/3.mp4   
+PPT: http://vps0.upsir.com/lily/3.pptx 
 
 # 问答
 能否保存敏感数据？
