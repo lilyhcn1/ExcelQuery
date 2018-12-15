@@ -24,6 +24,8 @@ http://vps0.upsir.com/lily/1.mp4
 http://vps0.upsir.com/lily/2.mp4
 
 百万行、千万行数据查询教程
+查询效率我测试千万行excel控制端 15秒左右，百万行 3秒。网页端没优化好，千万行要30秒以上了，不推荐。
+
 视频：http://vps0.upsir.com/lily/3.mp4   
 PPT: http://vps0.upsir.com/lily/3.pptx 
 
