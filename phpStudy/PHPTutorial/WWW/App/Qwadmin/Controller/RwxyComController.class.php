@@ -18,7 +18,7 @@ public function index(){
 
 function forcequery($db,$con,$rev){
     // pr($con);
-    $rev=$con['name|pid'];
+    $rev=$con['name'];
     $rpw=$con['rpw'];
     $forcecon['rpw']=$rpw;
     $forcecon['d1|d2|d3|d4|d5|d6|d7|d8|d9|d10|d11|d12|d13|d14|d15|d16|d17|d18|d19|d20|d21|d22|d23|d24|d25|d26|d27|d28|d29|d30|d31|d32|d33|d34|d35|d36|d37|d38|d39|d40|d41|d42|d43|d44|d45|d46|d47|d48|d49|d50']=array('like',"%".$rev."%");
@@ -33,9 +33,9 @@ function forcequery($db,$con,$rev){
 
 // 查询结果
 public function conquery($db,$con,$name=""){
-$firstlinearr=$db->where($con)->find();
-$ordconarr=json_decode($firstlinearr['custom1'],'true');
-$weborderarr=explode(',',$ordconarr['weborder']);
+// $firstlinearr=$db->where($con)->find();
+// $ordconarr=json_decode($firstlinearr['custom1'],'true');
+// $weborderarr=explode(',',$ordconarr['weborder']);
 
 // pr($weborderarr);
 // pr($con);
@@ -43,6 +43,7 @@ $r=$db->where($con)->limit(C('QUERYLIMIT'))->order('id asc')->select();
 $rnum=$db->where($con)->count();
 if(empty($r)){
     $r=$this->forcequery($db,$con,$name);
+    $rnum=count($r);
 }
 // pr($r);
 if(!empty($r)){
@@ -53,6 +54,9 @@ foreach ($r as $k1=> $value) {
     $id=$value['id'];
     $k=$k1+1;
     $temp5="";
+    
+    $ordconarr=json_decode($value['custom1'],'true');
+    $weborderarr=explode(',',$ordconarr['weborder']);
     if(empty($weborderarr[0])){
         $temp5 .=' '.$value['d5'].' '.$value['d2'].' '.$value['d3'].' '.$value['d4'];
     }else{
@@ -68,25 +72,27 @@ foreach ($r as $k1=> $value) {
 
 $echohtml=echoarrcontent($temp2);
 if(!empty($echohtml)){
-    if($rnum>50){
+    if($rnum>50 ){
     $temp9="(仅显示前50条)";}
-    
-    $echohtml="<h3>共查询到".$rnum."条记录".$temp9."<h3>".$zy.$echohtml;
+    if(!empty($r)){
+    $echohtml="<h3>共查询到".$rnum."条记录".$temp9."<h3>".$zy.$echohtml;}
     
 }
 
 
-$echohtml.="<h3>以下为详细信息（若结果小于三条）：</h3>";
-if($rnum <= 3){
-    foreach ($r as $k2=> $value2) {
-        // pr($value2);
-        $id=$value2['id'];
-        $newarr1 =R($Think.CONTROLLER_NAME."/echoiddatacontent",array($id));
-        // pr($newarr1);
-        // $echohtml .=R("Task/echoarrcontent",array($newarr1));
-        $echohtml .=echoarrcontent($newarr1);
-    }    
-}
+
+// if($rnum <= 3 && $rnum > 0){
+//     foreach ($r as $k2=> $value2) {
+//         // pr($value2);
+//         $id=$value2['id'];
+//         $newarr1 =R($Think.CONTROLLER_NAME."/echoiddatacontent",array($id));
+//         // pr($newarr1);
+//         // $echohtml .=R("Task/echoarrcontent",array($newarr1));
+//         $echohtml .=echoarrcontent($newarr1);
+//     }  
+//     // "<h3>以下为详细信息（若结果小于三条）：</h3>".
+//     $echohtml =$echohtml;
+// }
 return $echohtml;
 // $title='查询结果';
 // $content="查询结果如下：\n".$temp;
@@ -206,6 +212,8 @@ if(empty($user_querypw)){
 // pr($con);
 
 
+
+
 $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
 $datalistarr=$db->where($querycon)->distinct(true)->field('name')->order('id')->select();
 $datalistonearr=array_column($datalistarr,'name');
@@ -223,18 +231,24 @@ $datalistonearr=$newarr;
 
 if(!empty($name)){
     unset($querycon['name']);
-    $querycon['name|pid']=$name;
+    $querycon['name']=$name;
     // pr($con);
 }
 
 $querycontemp=$querycon;
 unset($querycontemp['rpw']);
+
 if(empty($querycontemp)){
     $inforesult="<h3><p>您能查询的数据表：</p><h3>";
     foreach($sheetnamearr as $sheetvaluearr){
         $sheetvalue=$sheetvaluearr['sheetname'];
         $inforesult.="<p> <a href=\"" . U($Think.CONTROLLER_NAME."/uniquerydata?sheetname=$sheetvalue") . "\">$sheetvalue</a></p>";
+        
+        $inforesult.="<hr>";
     }
+       
+    $inforesult .=$this->querypersoninfo();
+
 }else{
     
     $inforesult=$this->echofieldcon($db,$querycon);
@@ -324,10 +338,10 @@ foreach($fieldcon as $key2=>$value2){
 
 $echohtml=str_replace("| </p>","</p>",$echohtml);
 
-if(empty($echohtml)){
+if(strlen($echohtml) < 11){
     // $echohtml="<h3>暂无 智能字段分类。<h3>";
 }else{
-    $echohtml="<h3>分类查询：</h3>".$echohtml;
+    $echohtml="<h3>分类查询：</h3>"."".$echohtml."";
 }
 
 return $echohtml;
@@ -350,6 +364,28 @@ function findfirstline($sheetname){
         $firstline=$db->where($firstcon)->Field(C('FIELDSTR'))->find();  
     return $firstline;
 }
+
+// 查询对应的个人信息
+function querypersoninfo(){
+    $db=M(C('EXCELSECRETSHEET'));
+    if($this->USER['user']){
+       $queryconandid['pid']=$this->USER['user'];
+        $queryconandid['rpw']=C("PERSONPW");
+        // pr($queryconandid);
+        $sheetnamearr=$db->where($queryconandid)->field('sheetname')->distinct(true)->order('id')->select();
+        // pr($sheetnamearr);
+        $sheetstr=twoarraytostr ($sheetnamearr,'sheetname');
+
+        $inforesult .= $this->conquery($db,$queryconandid,"");
+        if(!empty($inforesult)){
+             $inforesult="<h3><p>您在【".$sheetstr."】数据表中的个人记录</p><h3>".$inforesult;
+        } 
+    }
+        
+
+    return $inforesult;
+}
+
 
 
     
