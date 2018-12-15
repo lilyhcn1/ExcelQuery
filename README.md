@@ -23,6 +23,9 @@ http://vps0.upsir.com/lily/1.mp4
 自建数据库及excel共享案例、手机数据查询案例、多表查询案例
 http://vps0.upsir.com/lily/2.mp4
 
+百万行、千万行数据查询教程
+http://vps0.upsir.com/lily/3.mp4
+
 # 问答
 能否保存敏感数据？
 
