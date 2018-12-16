@@ -195,19 +195,19 @@ $user_querypw=$this->USER['querypw'];
 if(empty($user_querypw)){
     if(!empty(session('rpw'))){
         $querycon['rpw']=$_SESSION['rpw'];
+        $user_querypw=$querycon['rpw'];
     }elseif(empty($querycon['rpw'])){
         $querycon['rpw']=C("QUERYPW");
+        $user_querypw=$querycon['rpw'];
     }
     else{
         
     }
 //   pr($querycon);  
-}else{
+}
     $user_querypw=str_replace(";",",",$user_querypw);
     $user_querypw=str_replace("，",",",$user_querypw);
-    // pr($user_querypw);
     $querycon['rpw']=array("in",$user_querypw);
-}
 
 // pr($con);
 
