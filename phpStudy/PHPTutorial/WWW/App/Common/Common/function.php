@@ -341,7 +341,7 @@ foreach ($arr as $k1=>$v1) {
 <table class="table  table-bordered">
 	<tbody>';     
     foreach ($arr as $key => $value) {
-     $content.='		<tr><td  align="center" width="30%">'.$key.'</td><td  align="left" valign="middle" width="70%">'.$value.
+     $content.='		<tr><td  align="center" width="30%">'.$key.'</td><td  align="left" valign="middle" width="70%" style="word-wrap:break-word;word-break:break-all;white-space: pre-wrap;">'.$value. 
 		'</td></tr>';
     } 
    $content.='
@@ -1521,4 +1521,34 @@ return "
 <body>
 </body>
 </html>";
+}
+
+// 文本的URL自动加链接
+function autolink($str, $attributes = array()) {
+    $attrs = '';
+    foreach ($attributes as $attribute=>$value) {
+        $attrs .= " {$attribute}=\"{$value}\"";
+    }
+    
+    $str = ' '.$str;
+    $str = preg_replace('`([^"=\'>])((http|https|ftp|ftps)://[^\s< ]+[^\s<\.)])`i', '$1<a href="$2" rel="external nofollow" '.$attrs.'>$2</a>', $str);
+    $str = substr($str, 1);
+    
+    return $str;
+}
+
+
+function returnmsg($ReplyMsg,$type){
+
+    if($type=='qq'){
+        $ReplyMsg = str_replace(PHP_EOL, '\n', $ReplyMsg);   
+        $ReplyMsg=str_replace("\n",'\n',$ReplyMsg);
+        $ReplyMsg = str_replace(PHP_EOL, '\n', $ReplyMsg);   
+    }elseif($type=='weixin'){
+        $ReplyMsg=str_replace('\n',"\n",$ReplyMsg);
+    }elseif($type=='web'){
+        $ReplyMsg=str_replace('\n',"\n",$ReplyMsg);
+        $ReplyMsg = str_replace("", '<br\>', $ReplyMsg);  
+    }
+    return $ReplyMsg;
 }

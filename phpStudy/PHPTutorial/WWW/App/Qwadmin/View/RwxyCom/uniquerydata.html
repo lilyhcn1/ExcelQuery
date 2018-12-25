@@ -101,7 +101,7 @@ function getJsonLength(jsonData){
 	return jsonLength;
 }
     $(document).ready(function(){
-
+$("#classa").val("<?php  echo I('get.name'); ?>");
 
 var availableTags = new Array();   
   // 自动完成功能
@@ -122,10 +122,10 @@ for(var i=0;i<getJsonLength(jsonObj);i++){
     });
     $( "#classa" ).autocomplete({
     select: function( event, ui ) {
-        // console.log(event);
-        //  $( "#classa" ).value("鲁大前")
-        // $("#form").submit()
+        $("#classa").val(ui.item.value)
+        $("#form").submit()
         }
+        
     });
  
     

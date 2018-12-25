@@ -31,8 +31,8 @@
 <form class="form-horizontal" role="form" method="get" action="{$postpage}" >
 
 <div class="form-group">
-	<div class="controls col-xs-4">
-            <select class="input-xlarge" name="sheetname" id="sheetname">
+	<div class="controls col-xs-5">
+            <select class="input-xlarge" name="sheetname" id="sheetname" >
                 <option value="">所有表 中查</option>
                 <volist name="sheetnamearr" id="vo">
                     <if condition="$vo.sheetname eq $slectsheet">
@@ -43,16 +43,18 @@
                 </volist>  
             </select>
     </div>
-
-	<div class="form-group col-xs-3">
-		   <div class="controls ">
-            <select class="input-xlarge" disabled="disabled">
-              <option value="xxx">姓名 或 ID 为</option>
-            </select>
+<!--style="padding:5px 0px 0 3px"-->
+	<div class="form-group col-xs-2" > 
+	
+		   <div class="controls " style="padding:5px 0px 0 0px">
+		       姓名
+          <!--  <select class="input-xlarge" disabled="disabled" >-->
+          <!--    <option value="xxx">姓名或ID为</option>-->
+          <!--  </select>-->
           </div>
     </div>
     <div class="controls col-xs-5">
-        <input type="text" id="classa" name="name" class="form-control "  >  
+        <input type="text" id="classa" name="name" class="form-control input-xlarge " style="height:30px"  >  
           <!--<datalist id="cat">    -->
           <!--    <option value=""></option>-->
           <!--      <volist name="datalistarr" id="vo">-->
@@ -122,7 +124,7 @@ function getJsonLength(jsonData){
 	return jsonLength;
 }
     $(document).ready(function(){
-console.log(1111111111)
+$("#classa").val("<?php  echo I('get.name'); ?>");
 
 //  var availableTags ="[<?php echo $dataliststr?>]"
 
@@ -166,14 +168,17 @@ for(var i=0;i<getJsonLength(jsonObj);i++){
         $("#classa").autocomplete({
           source: availableTags
     });
- 
+    $( "#classa" ).autocomplete({
+    select: function( event, ui ) {
+        $("#classa").val(ui.item.value)
+        $("#form").submit()
+        }
+        
+    });	
     
         $("#sheetname").on('input',function(){
-
             var val1=$("#sheetname").val();
-
             $("form").submit()
-            
         });
 
 
