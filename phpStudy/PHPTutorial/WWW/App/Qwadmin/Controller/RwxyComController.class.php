@@ -244,7 +244,7 @@ if(empty($querycontemp)){
         $sheetvalue=$sheetvaluearr['sheetname'];
         $inforesult.="<p> <a href=\"" . U($Think.CONTROLLER_NAME."/uniquerydata?sheetname=$sheetvalue") . "\">$sheetvalue</a></p>";
         
-        $inforesult.="<hr>";
+        // $inforesult.="<hr>";
     }
        
     $inforesult .=$this->querypersoninfo();
@@ -377,7 +377,7 @@ function querypersoninfo(){
         $sheetstr=twoarraytostr ($sheetnamearr,'sheetname');
 
         $inforesult .= $this->conquery($db,$queryconandid,"");
-        if(!empty($inforesult)){
+        if(!empty($sheetstr)){
              $inforesult="<h3><p>您在【".$sheetstr."】数据表中的个人记录</p><h3>".$inforesult;
         } 
     }
