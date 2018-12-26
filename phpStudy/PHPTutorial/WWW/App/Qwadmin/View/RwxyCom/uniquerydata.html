@@ -26,13 +26,13 @@
 
 <div class="container">
     <div id="legend" class="">
-        <legend class=""><a href="{:U('RwxyCom/uniquerydata')}">刷新查询</a> 输入回车查询</legend>
+        <legend class=""><a href="{$indexpage}">查询首页</a> 输入回车查询</legend>
     </div>
-<form class="form-horizontal" role="form" method="get"  id="form" action="{:U('RwxyCom/uniquerydata')}" >
+<form class="form-horizontal" role="form" method="get" action="{$postpage}" >
 
 <div class="form-group">
-	<div class="controls col-xs-4">
-            <select class="input-xlarge" name="sheetname" id="sheetname">
+	<div class="controls col-xs-5">
+            <select class="input-xlarge" name="sheetname" id="sheetname" >
                 <option value="">所有表 中查</option>
                 <volist name="sheetnamearr" id="vo">
                     <if condition="$vo.sheetname eq $slectsheet">
@@ -43,16 +43,18 @@
                 </volist>  
             </select>
     </div>
-
-	<div class="form-group col-xs-3">
-		   <div class="controls ">
-            <select class="input-xlarge" disabled="disabled">
-              <option value="xxx">姓名 或 ID 为</option>
-            </select>
+<!--style="padding:5px 0px 0 3px"-->
+	<div class="form-group col-xs-2" > 
+	
+		   <div class="controls " style="padding:5px 0px 0 0px">
+		       姓名
+          <!--  <select class="input-xlarge" disabled="disabled" >-->
+          <!--    <option value="xxx">姓名或ID为</option>-->
+          <!--  </select>-->
           </div>
     </div>
     <div class="controls col-xs-5">
-        <input type="text" id="classa" name="name" class="form-control "  >  
+        <input type="text" id="classa" name="name" class="form-control input-xlarge " style="height:30px"  >  
           <!--<datalist id="cat">    -->
           <!--    <option value=""></option>-->
           <!--      <volist name="datalistarr" id="vo">-->
@@ -65,7 +67,28 @@
 
 
 	
-
+	
+	<!--<div class="form-group">-->
+	<!--<div class="controls  col-xs-4">-->
+ <!--           <select class="input-xlarge">-->
+ <!--             <option value="sheetname2">3.条件1</option>-->
+ <!--           </select>-->
+ <!--   </div>-->
+	<!--<div class="form-group col-xs-3">-->
+	<!--	   <div class="controls ">-->
+ <!--           <select class="input-xlarge" disabled="disabled">-->
+ <!--             <option value="eq1">等于</option>-->
+ <!--           </select>-->
+ <!--         </div>-->
+ <!--   </div>-->
+ <!--   <div class="controls col-xs-5">-->
+ <!--       <input type="text" id="classa" name="name1" class="form-control "   list="cat">  -->
+ <!--         <datalist id="cat">    -->
+ <!--              <option value="王进利">  -->
+ <!--              <option value="张天星">  -->
+ <!--         </datalist>  -->
+ <!--   </div>-->
+	<!--</div>-->
 
 
 
@@ -103,6 +126,23 @@ function getJsonLength(jsonData){
     $(document).ready(function(){
 $("#classa").val("<?php  echo I('get.name'); ?>");
 
+//  var availableTags ="[<?php echo $dataliststr?>]"
+
+//         // var jsonStr = '[{"id":"01","open":false,"pId":"0","name":"A部门"},{"id":"01","open":false,"pId":"0","name":"A部门"},{"id":"011","open":false,"pId":"01","name":"A部门"},{"id":"03","open":false,"pId":"0","name":"A部门"},{"id":"04","open":false,"pId":"0","name":"A部门"}, {"id":"05","open":false,"pId":"0","name":"A部门"}, {"id":"06","open":false,"pId":"0","name":"A部门"}]';
+//       //  var jsonObj = $.parseJSON(jsonStr);
+//       var jsonObj =  JSON.parse(availableTags)
+//         console.log(jsonObj)
+//      var jsonStr1 = JSON.stringify(jsonObj)
+//      console.log(jsonStr1+"jsonStr1")
+//      var jsonArr = [];
+//      for(var i =0 ;i < jsonObj.length;i++){
+//             jsonArr[i] = jsonObj[i];
+//      }
+//      console.log(typeof(jsonArr))
+
+
+
+
 var availableTags = new Array();   
   // 自动完成功能
     // var availableTags ="[<?php echo $dataliststr?>]"
@@ -116,7 +156,15 @@ var availableTags = new Array();
 for(var i=0;i<getJsonLength(jsonObj);i++){
         availableTags[i]= jsonObj[i];
 }        
-
+// for(var item of jsonObj) { // item代表数组里面的元素
+//     availableTags.push(item)
+// };　
+        
+//   console.log(availableTags)   
+      
+        
+    // console.log(availableTags)
+        // $('#classa').autocompleter('open')
         $("#classa").autocomplete({
           source: availableTags
     });
@@ -126,15 +174,11 @@ for(var i=0;i<getJsonLength(jsonObj);i++){
         $("#form").submit()
         }
         
-    });
- 
+    });	
     
         $("#sheetname").on('input',function(){
-
             var val1=$("#sheetname").val();
-
             $("form").submit()
-            
         });
 
 
