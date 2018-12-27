@@ -91,7 +91,7 @@ if(!empty($echohtml)){
          // pr($value2);
          $id=$value2['id'];
          $newarr1 =R($Think.CONTROLLER_NAME."/echoiddatacontent",array($id));
-          pr($newarr1);
+        //   pr($newarr1);
           $echohtml .=R("Task/echoarrcontent",array($newarr1));
          $echohtml .=echoarrcontent($newarr1);
      }  
@@ -258,7 +258,7 @@ if(empty($querycontemp)){
         $sheetvalue=$sheetvaluearr['sheetname'];
         $inforesult.="<p> <a href=\"" . U($Think.CONTROLLER_NAME."/uniquerydata?sheetname=$sheetvalue") . "\">$sheetvalue</a></p>";
         
-        $inforesult.="<hr>";
+        // $inforesult.="<hr>";
     }
        
     $inforesult .=$this->querypersoninfo();
@@ -391,7 +391,7 @@ function querypersoninfo(){
         $sheetstr=twoarraytostr ($sheetnamearr,'sheetname');
 
         $inforesult .= $this->conquery($db,$queryconandid,"");
-        if(!empty($inforesult)){
+        if(!empty($sheetstr)){
              $inforesult="<h3><p>您在【".$sheetstr."】数据表中的个人记录</p><h3>".$inforesult;
         } 
     }
@@ -399,6 +399,39 @@ function querypersoninfo(){
 
     return $inforesult;
 }
+
+
+
+
+
+// 这是数值
+function isnum($val){
+    if($val>100000000000 ){
+        return true;
+    }else{
+        // pr("非文本3");
+        return false;         
+    }
+}
+// 这是数值
+function isphone($value){
+    if(($value>600 && $value < 900 ) || ($value>13000000000 && $value < 19000000000 ) || ($value>10000000 && $value < 100000000 )){
+        return true;
+    }else{
+        // pr("非文本3");
+        return false;         
+    }
+}
+// 里面包括网址
+function isurl($val){
+    if(strstr($val,'http')){
+        return true;
+    }else{
+        return false;         
+    }
+}
+
+
 
 
 
