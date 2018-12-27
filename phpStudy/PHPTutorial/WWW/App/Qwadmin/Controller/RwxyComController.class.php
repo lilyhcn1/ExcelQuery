@@ -76,23 +76,22 @@ if(!empty($echohtml)){
     $temp9="(仅显示前50条)";}
     if(!empty($r)){
     $echohtml="<h3>共查询到".$rnum."条记录".$temp9."<h3>".$zy.$echohtml;}
-    
 }
 
 
 
-if($rnum <= 3 && $rnum > 0){
-    foreach ($r as $k2=> $value2) {
-        // pr($value2);
-        $id=$value2['id'];
-        $newarr1 =R($Think.CONTROLLER_NAME."/echoiddatacontent",array($id));
-        // pr($newarr1);
-        // $echohtml .=R("Task/echoarrcontent",array($newarr1));
-        $echohtml .=echoarrcontent($newarr1);
-    }  
-    $first="<h3>以下为详细信息（若结果小于三条）：</h3>".
-    $echohtml =$first.$echohtml;
-}
+ if($rnum <= 3 && $rnum > 0){
+     foreach ($r as $k2=> $value2) {
+         // pr($value2);
+         $id=$value2['id'];
+         $newarr1 =R($Think.CONTROLLER_NAME."/echoiddatacontent",array($id));
+        //   pr($newarr1);
+          $echohtml .=R("Task/echoarrcontent",array($newarr1));
+         $echohtml .=echoarrcontent($newarr1);
+     }  
+     // "<h3>以下为详细信息（若结果小于三条）：</h3>".
+     $echohtml =$echohtml;
+ }
 return $echohtml;
 // $title='查询结果';
 // $content="查询结果如下：\n".$temp;
@@ -122,25 +121,34 @@ $arr=$db->where($con2)->find();
 
 
 $arr=delemptyfield($arr);
-
+// pr($arr);
+// pr($firstline);
 foreach ($arr as $key=> $value) {
-    // pr($key);
-    if($value>100 && is_numeric($value) && !is_null($firstline[$key])){
+// $value=returnmsg($value,'weixin');
+if(!is_null($firstline[$key])){
+    if($this->isphone($value) ){
+        // pr('111111'.$value);
         $newarr[$firstline[$key]]="<a href=\"tel:$value\">".$value."</a>";  
-    }else{
-        // $newarr[$firstline[$key]]=$value;  
-        if(!empty($value) && !is_null($firstline[$key])){
+    }elseif($this->isurl($value)){
+        // pr('22222'.$value);
+        $newarr[$firstline[$key]]=autolink($value);
+    }elseif(mb_strlen($value)<20){
+        // pr('333333'.$value);
+        if(!empty($value)){
             $newarr[$firstline[$key]]="<a href=\"/index.php/Qwadmin/".$Think.CONTROLLER_NAME."/uniquerydata.html?$key=$value\">".$value."</a>";
-        }
-           
+        }        
     }
-    // pr(!empty($value) && !is_null($firstline[$key]));
-    // pr($newarr);
+    else{
+        if(!empty($value) ){
+            $newarr[$firstline[$key]]=$value;
+        }
+    }    
+}    
+    
 
-// pr($firstline[$key]);
     
 }
-// pr($newarr);
+
 }
 return $newarr;
 }
@@ -384,6 +392,37 @@ function querypersoninfo(){
         
 
     return $inforesult;
+}
+
+
+
+
+
+// 这是数值
+function isnum($val){
+    if($val>100000000000 ){
+        return true;
+    }else{
+        // pr("非文本3");
+        return false;         
+    }
+}
+// 这是数值
+function isphone($value){
+    if(($value>600 && $value < 900 ) || ($value>13000000000 && $value < 19000000000 ) || ($value>10000000 && $value < 100000000 )){
+        return true;
+    }else{
+        // pr("非文本3");
+        return false;         
+    }
+}
+// 里面包括网址
+function isurl($val){
+    if(strstr($val,'http')){
+        return true;
+    }else{
+        return false;         
+    }
 }
 
 
