@@ -82,23 +82,22 @@ if(!empty($echohtml)){
     $temp9="(仅显示前50条)";}
     if(!empty($r)){
     $echohtml="<h3>共查询到".$rnum."条记录".$temp9."<h3>".$zy.$echohtml;}
-    
 }
 
 
 
-// if($rnum <= 3 && $rnum > 0){
-//     foreach ($r as $k2=> $value2) {
-//         // pr($value2);
-//         $id=$value2['id'];
-//         $newarr1 =R($Think.CONTROLLER_NAME."/echoiddatacontent",array($id));
-//         // pr($newarr1);
-//         // $echohtml .=R("Task/echoarrcontent",array($newarr1));
-//         $echohtml .=echoarrcontent($newarr1);
-//     }  
-//     // "<h3>以下为详细信息（若结果小于三条）：</h3>".
-//     $echohtml =$echohtml;
-// }
+ if($rnum <= 3 && $rnum > 0){
+     foreach ($r as $k2=> $value2) {
+         // pr($value2);
+         $id=$value2['id'];
+         $newarr1 =R($Think.CONTROLLER_NAME."/echoiddatacontent",array($id));
+          pr($newarr1);
+          $echohtml .=R("Task/echoarrcontent",array($newarr1));
+         $echohtml .=echoarrcontent($newarr1);
+     }  
+     // "<h3>以下为详细信息（若结果小于三条）：</h3>".
+     $echohtml =$echohtml;
+ }
 return $echohtml;
 // $title='查询结果';
 // $content="查询结果如下：\n".$temp;
@@ -128,25 +127,34 @@ $arr=$db->where($con2)->find();
 
 
 $arr=delemptyfield($arr);
-
+// pr($arr);
+// pr($firstline);
 foreach ($arr as $key=> $value) {
-    // pr($key);
-    if($value>100 && is_numeric($value) && !is_null($firstline[$key])){
+// $value=returnmsg($value,'weixin');
+if(!is_null($firstline[$key])){
+    if($this->isphone($value) ){
+        // pr('111111'.$value);
         $newarr[$firstline[$key]]="<a href=\"tel:$value\">".$value."</a>";  
-    }else{
-        // $newarr[$firstline[$key]]=$value;  
-        if(!empty($value) && !is_null($firstline[$key])){
+    }elseif($this->isurl($value)){
+        // pr('22222'.$value);
+        $newarr[$firstline[$key]]=autolink($value);
+    }elseif(mb_strlen($value)<20){
+        // pr('333333'.$value);
+        if(!empty($value)){
             $newarr[$firstline[$key]]="<a href=\"/index.php/Qwadmin/".$Think.CONTROLLER_NAME."/uniquerydata.html?$key=$value\">".$value."</a>";
-        }
-           
+        }        
     }
-    // pr(!empty($value) && !is_null($firstline[$key]));
-    // pr($newarr);
+    else{
+        if(!empty($value) ){
+            $newarr[$firstline[$key]]=$value;
+        }
+    }    
+}    
+    
 
-// pr($firstline[$key]);
     
 }
-// pr($newarr);
+
 }
 return $newarr;
 }
@@ -1013,27 +1021,25 @@ if(!empty($wrpw) && !empty($sheetname)){  //pw非空再说
     $db=M(C('EXCELSECRETSHEET'));
 
 // 密码与先有的一样才行
-$existdatacon['sheetname']=$twoarrexcel['2']['sheetname'];
-$existdata=$db->where($existdatacon)->order('id asc')->select();
-// pr($existdata);
+$existdatacon['sheetname']=$sheetname;
+$existdata=$db->where($existdatacon)->order('id asc')->find();
+// pr($twoarrexcel[2]);
 // pr("实际密码是".$existdata['2']['wrpw']."输入密码".$wrpw);
-if($existdata['2']['wrpw']==$wrpw || empty($existdata)){
+if($existdata['wrpw']==$wrpw || empty($existdata)){
 // 把数据表中的数据删了
-    if(isset($twoarrexcel['2']['sheetname'])){ //第0行数据库字段名，第1行中文字段名
-        $delcon['sheetname']=$twoarrexcel['2']['sheetname'];
-        $delcon['wrpw']=$wrpw;
-// 删除标题行
-        $temp22['id']=$queryfirst['id'];
-        $db->where($temp22)->delete();        
-// 删作数据行
-        $db->where($delcon)->delete();
-        
-        
+        if(isset($existdata['sheetname']) ){ //第0行数据库字段名，第1行中文字段名
+            // 第一次上传就删除所有数据
+            if($firstupload){
+                $delcon['sheetname']=$sheetname;
+                $delcon['wrpw']=$wrpw;
+                $db->where($delcon)->delete();                
+            }
 
+            
+        }else{ $result='sheetname is empty2. or uplosanum';}
         $twoarrexcel=$this->deltextsymboltwoarray($twoarrexcel);
         $result=$this->dbadddata($db,$twoarrexcel);
-    }else{ $result='sheetname is empty.';}
-}else{ $result='error,password is wrong, or exist other same sheetname.';} 
+    }else{ $result='error,password is wrong, or exist other same sheetname.';} 
 
     
     // $result=dbadddata($db,$twoarrexcel);
