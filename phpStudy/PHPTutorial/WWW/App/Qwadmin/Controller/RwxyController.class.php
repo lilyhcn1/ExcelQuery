@@ -722,14 +722,6 @@ $con2=$this->constr2conarr($data,'eq');
 
 
 
-public function isnum($val){
-    if($val>100000000000 ){
-        return true;
-    }else{
-        // pr("非文本3");
-        return false;         
-    }
-}
 
 //   把特殊符号给删除了
 public function deltextsymbol($text,$symbol="?"){
