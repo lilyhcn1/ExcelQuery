@@ -81,18 +81,18 @@ if(!empty($echohtml)){
 
 
 
-// if($rnum <= 3 && $rnum > 0){
-//     foreach ($r as $k2=> $value2) {
-//         // pr($value2);
-//         $id=$value2['id'];
-//         $newarr1 =R($Think.CONTROLLER_NAME."/echoiddatacontent",array($id));
-//         // pr($newarr1);
-//         // $echohtml .=R("Task/echoarrcontent",array($newarr1));
-//         $echohtml .=echoarrcontent($newarr1);
-//     }  
-//     // "<h3>以下为详细信息（若结果小于三条）：</h3>".
-//     $echohtml =$echohtml;
-// }
+if($rnum <= 3 && $rnum > 0){
+    foreach ($r as $k2=> $value2) {
+        // pr($value2);
+        $id=$value2['id'];
+        $newarr1 =R($Think.CONTROLLER_NAME."/echoiddatacontent",array($id));
+        // pr($newarr1);
+        // $echohtml .=R("Task/echoarrcontent",array($newarr1));
+        $echohtml .=echoarrcontent($newarr1);
+    }  
+    $first="<h3>以下为详细信息（若结果小于三条）：</h3>".
+    $echohtml =$first.$echohtml;
+}
 return $echohtml;
 // $title='查询结果';
 // $content="查询结果如下：\n".$temp;
