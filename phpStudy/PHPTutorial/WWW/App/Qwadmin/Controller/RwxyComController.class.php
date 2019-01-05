@@ -13,7 +13,8 @@ namespace Qwadmin\Controller;
 use Qwadmin\Controller\ComController;
 class RwxyComController extends ComController{
 public function index(){
-
+    $url=U($Think.CONTROLLER_NAME."/uniquerydata");
+        header("Location: $url");
 }
 
 function forcequery($db,$con,$rev){
@@ -51,6 +52,7 @@ if(!empty($r)){
 
 
 foreach ($r as $k1=> $value) {
+    // pr($value);
     $id=$value['id'];
     $k=$k1+1;
     $temp5="";
@@ -58,10 +60,10 @@ foreach ($r as $k1=> $value) {
     $ordconarr=json_decode($value['custom1'],'true');
     $weborderarr=explode(',',$ordconarr['weborder']);
     if(empty($weborderarr[0])){
-        $temp5 .=' '.$value['d5'].' '.$value['d2'].' '.$value['d3'].' '.$value['d4'];
+        $temp5 .=$value['d1'].' | '.' '.$value['d2'].' | '.$value['d3'].' | '.$value['d4'].' | '.$value['d5'];
     }else{
         foreach($weborderarr as $k4=>$v4){
-            $temp5 .= $value[$v4]." ";
+            $temp5 .= $value[$v4].' | ';
         }
     }
     $temp2[$k.". ".$value['sheetname']]="<a href=\"".U($Think.CONTROLLER_NAME."/echoiddata?id=$id")."\">".$temp5."</a>";
@@ -101,7 +103,7 @@ return $echohtml;
 }
 
 public function echoiddatacontent($id=''){
-
+// echo "fds";pr($id);
 if(empty($id)){
     return '请输入id';
 }else{
@@ -114,7 +116,7 @@ $db=M(C('EXCELSECRETSHEET'));
 $fieldstr=C('FIELDSTR');
 $arr=$db->where($con2)->find();    
 // $arr=$db->where($con2)->Field($fieldstr)->find();  
-// pr($arr);
+// pr($arr['sheetname']);
 
     // 查出第一行
     $firstline=$this->findfirstline($arr['sheetname']);
@@ -126,26 +128,25 @@ $arr=delemptyfield($arr);
 foreach ($arr as $key=> $value) {
 // $value=returnmsg($value,'weixin');
 if(!is_null($firstline[$key])){
+    // echo '432432423';pr($value);
     if($this->isphone($value) ){
-        // pr('111111'.$value);
-        $newarr[$firstline[$key]]="<a href=\"tel:$value\">".$value."</a>";  
+        $newarr[$firstline[$key]]="<a href=\"tel:$value\">".'<span class="glyphicon glyphicon-earphone"></span>'.$value."</a>";  
     }elseif($this->isurl($value)){
         // pr('22222'.$value);
         $newarr[$firstline[$key]]=autolink($value);
     }elseif(mb_strlen($value)<20){
         // pr('333333'.$value);
         if(!empty($value)){
-            $newarr[$firstline[$key]]="<a href=\"/index.php/Qwadmin/".$Think.CONTROLLER_NAME."/uniquerydata.html?$key=$value\">".$value."</a>";
-        }        
-    }
-    else{
+            $newarr[$firstline[$key]]="<a href=\"/index.php/Qwadmin/".$Think.CONTROLLER_NAME."/uniquerydata.html?$key=$value\">".'<span class="glyphicon glyphicon-search"></span>'.$value."</a>";
+        }        //	glyphicon glyphicon-search
+    }else{
         if(!empty($value) ){
             $newarr[$firstline[$key]]=$value;
         }
     }    
 }    
     
-
+// pr($newarr);
     
 }
 
@@ -165,10 +166,9 @@ if(empty($id)){
 
 $newarr=$this->echoiddatacontent($id);
 
-
+// pr($id);
 // pr($newarr);
-echo "<a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-echo "<a href=\"".session('indexpage')."\">查询首页</a>";
+echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"".session('indexpage')."\">查询首页</a></h3>";
 
 
 // $echohtml=R('Task/echoarrresult',array($newarr,"信息详情页"));
@@ -365,11 +365,11 @@ function findfirstline($sheetname){
     $db=M(C('EXCELSECRETSHEET'));
     // 查出第一行
         $sheetcon['sheetname']=$sheetname;
-        $firstlinearrtemp=$db->where($sheetcon)->order('id')->find();
-        // pr($firstlinearrtemp);
-        $firstcon['id']=array(array("eq",$firstlinearrtemp['id']-1),array("eq",$firstlinearrtemp['id']),"OR");
-        $firstcon['ord']=0;
-        $firstline=$db->where($firstcon)->Field(C('FIELDSTR'))->find();  
+        // $firstlinearrtemp=$db->where($sheetcon)->order('id')->find();
+        // // pr($firstlinearrtemp);
+        // $firstcon['id']=array(array("eq",$firstlinearrtemp['id']-1),array("eq",$firstlinearrtemp['id']),"OR");
+        // $firstcon['ord']=0;
+        $firstline=$db->where($sheetcon)->Field(C('FIELDSTR'))->order('id asc')->find();  
     return $firstline;
 }
 
@@ -399,17 +399,8 @@ function querypersoninfo(){
 
 
 // 这是数值
-function isnum($val){
-    if($val>100000000000 ){
-        return true;
-    }else{
-        // pr("非文本3");
-        return false;         
-    }
-}
-// 这是数值
 function isphone($value){
-    if(($value>600 && $value < 900 ) || ($value>13000000000 && $value < 19000000000 ) || ($value>10000000 && $value < 100000000 )){
+    if(($value>600 && $value < 900 ) ||($value>500000 && $value < 699999 ) || ($value>13000000000 && $value < 19000000000 ) || ($value>10000000 && $value < 100000000 )){
         return true;
     }else{
         // pr("非文本3");
@@ -424,6 +415,11 @@ function isurl($val){
         return false;         
     }
 }
+
+
+
+
+
 
 
 

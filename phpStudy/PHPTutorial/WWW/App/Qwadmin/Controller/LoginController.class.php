@@ -107,11 +107,13 @@ public function login($dataarr=''){
 			
 			M('member')->data(array('identifier'=>$identifier,'token'=>$token,'salt'=>$salt))->where(array('uid'=>$user['uid']))->save();
 
-			if($remember){
-				cookie('auth',$auth,3600*24*365);//记住我
-			}else{
-				cookie('auth',$auth);
-			}
+            // 直接一年之内记住我
+            cookie('auth',$auth,3600*24*365);//记住我
+// 			if($remember){
+// 				cookie('auth',$auth,3600*24*365);//记住我
+// 			}else{
+// 				cookie('auth',$auth);
+// 			}
 			
 			//$url=U('index/index');
 //这里很有问题啊，以后的URL先写长点			

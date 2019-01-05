@@ -1,26 +1,23 @@
 <?php
 /**
 *
-* 版权所有：恰维网络<qwadmin.qiawei.com>
-* 作    者：寒川<hanchuan@qiawei.com>
-* 日    期：2016-01-20
+* 版权所有：三思网络<upsir.com>
+* 作    者：老黄牛<53053056>
+* 日    期：2018
 * 版    本：1.0.0
 * 功能说明：用户控制器。
 *
 **/
-// namespace Qwadmin\Controller;
-// use Think\Controller;
-// class RwxyController extends Controller{
 namespace Qwadmin\Controller;
 use Common\Controller\BaseController;
 use Think\Controller;
-
 class RwxyController extends BaseController{
 public function index(){
-
-    $url=U('RwxyCom/uniquerydata');
-        	header("Location: $url");
+    $url=U($Think.CONTROLLER_NAME."/uniquerydata");
+        header("Location: $url");
 }
+
+
 
 function forcequery($db,$con,$rev){
     // pr($con);
@@ -57,6 +54,7 @@ if(!empty($r)){
 
 
 foreach ($r as $k1=> $value) {
+    // pr($value);
     $id=$value['id'];
     $k=$k1+1;
     $temp5="";
@@ -64,10 +62,10 @@ foreach ($r as $k1=> $value) {
     $ordconarr=json_decode($value['custom1'],'true');
     $weborderarr=explode(',',$ordconarr['weborder']);
     if(empty($weborderarr[0])){
-        $temp5 .=' '.$value['d5'].' '.$value['d2'].' '.$value['d3'].' '.$value['d4'];
+        $temp5 .=$value['d1'].' | '.' '.$value['d2'].' | '.$value['d3'].' | '.$value['d4'].' | '.$value['d5'];
     }else{
         foreach($weborderarr as $k4=>$v4){
-            $temp5 .= $value[$v4]." ";
+            $temp5 .= $value[$v4].' | ';
         }
     }
     $temp2[$k.". ".$value['sheetname']]="<a href=\"".U($Think.CONTROLLER_NAME."/echoiddata?id=$id")."\">".$temp5."</a>";
@@ -107,7 +105,7 @@ return $echohtml;
 }
 
 public function echoiddatacontent($id=''){
-
+// echo "fds";pr($id);
 if(empty($id)){
     return '请输入id';
 }else{
@@ -120,7 +118,7 @@ $db=M(C('EXCELSECRETSHEET'));
 $fieldstr=C('FIELDSTR');
 $arr=$db->where($con2)->find();    
 // $arr=$db->where($con2)->Field($fieldstr)->find();  
-// pr($arr);
+// pr($arr['sheetname']);
 
     // 查出第一行
     $firstline=$this->findfirstline($arr['sheetname']);
@@ -132,26 +130,25 @@ $arr=delemptyfield($arr);
 foreach ($arr as $key=> $value) {
 // $value=returnmsg($value,'weixin');
 if(!is_null($firstline[$key])){
+    // echo '432432423';pr($value);
     if($this->isphone($value) ){
-        // pr('111111'.$value);
-        $newarr[$firstline[$key]]="<a href=\"tel:$value\">".$value."</a>";  
+        $newarr[$firstline[$key]]="<a href=\"tel:$value\">".'<span class="glyphicon glyphicon-earphone"></span>'.$value."</a>";  
     }elseif($this->isurl($value)){
         // pr('22222'.$value);
         $newarr[$firstline[$key]]=autolink($value);
     }elseif(mb_strlen($value)<20){
         // pr('333333'.$value);
         if(!empty($value)){
-            $newarr[$firstline[$key]]="<a href=\"/index.php/Qwadmin/".$Think.CONTROLLER_NAME."/uniquerydata.html?$key=$value\">".$value."</a>";
-        }        
-    }
-    else{
+            $newarr[$firstline[$key]]="<a href=\"/index.php/Qwadmin/".$Think.CONTROLLER_NAME."/uniquerydata.html?$key=$value\">".'<span class="glyphicon glyphicon-search"></span>'.$value."</a>";
+        }        //	glyphicon glyphicon-search
+    }else{
         if(!empty($value) ){
             $newarr[$firstline[$key]]=$value;
         }
     }    
 }    
     
-
+// pr($newarr);
     
 }
 
@@ -171,10 +168,9 @@ if(empty($id)){
 
 $newarr=$this->echoiddatacontent($id);
 
-
+// pr($id);
 // pr($newarr);
-echo "<a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-echo "<a href=\"".session('indexpage')."\">查询首页</a>";
+echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"".session('indexpage')."\">查询首页</a></h3>";
 
 
 // $echohtml=R('Task/echoarrresult',array($newarr,"信息详情页"));
@@ -371,11 +367,11 @@ function findfirstline($sheetname){
     $db=M(C('EXCELSECRETSHEET'));
     // 查出第一行
         $sheetcon['sheetname']=$sheetname;
-        $firstlinearrtemp=$db->where($sheetcon)->order('id')->find();
-        // pr($firstlinearrtemp);
-        $firstcon['id']=array(array("eq",$firstlinearrtemp['id']-1),array("eq",$firstlinearrtemp['id']),"OR");
-        $firstcon['ord']=0;
-        $firstline=$db->where($firstcon)->Field(C('FIELDSTR'))->find();  
+        // $firstlinearrtemp=$db->where($sheetcon)->order('id')->find();
+        // // pr($firstlinearrtemp);
+        // $firstcon['id']=array(array("eq",$firstlinearrtemp['id']-1),array("eq",$firstlinearrtemp['id']),"OR");
+        // $firstcon['ord']=0;
+        $firstline=$db->where($sheetcon)->Field(C('FIELDSTR'))->order('id asc')->find();  
     return $firstline;
 }
 
@@ -405,17 +401,8 @@ function querypersoninfo(){
 
 
 // 这是数值
-function isnum($val){
-    if($val>100000000000 ){
-        return true;
-    }else{
-        // pr("非文本3");
-        return false;         
-    }
-}
-// 这是数值
 function isphone($value){
-    if(($value>600 && $value < 900 ) || ($value>13000000000 && $value < 19000000000 ) || ($value>10000000 && $value < 100000000 )){
+    if(($value>600 && $value < 900 ) ||($value>500000 && $value < 699999 ) || ($value>13000000000 && $value < 19000000000 ) || ($value>10000000 && $value < 100000000 )){
         return true;
     }else{
         // pr("非文本3");
@@ -435,9 +422,6 @@ function isurl($val){
 
 
 
-
-
-
 public function excel___________() {
 }
     
@@ -448,8 +432,8 @@ public function echounisheet($dbsheetname,$data){
 // C('EXCELSECRETSHEET');
 $con2=$this->constr2conarr($data,'eq');
 $likecon=$this->constr2conarr($data,'like');
-// pr(empty($con2['sheetname']));
-
+echo 343;pr($likecon);
+// pr($con2);
 if($this->isadmin($con2)){
     unset($con2['rpw']);
     $this->echounisheetuni($dbsheetname,$con2,$likecon);
@@ -482,9 +466,10 @@ unset($likecon['conall']);
 unset($likecon['wrpw']);  
 unset($likecon['user']); 
   
+$ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
 
-
-
+echo 11;pr($con2);
+echo 23;pr($likecon);
     // 这里计算字段
     if(!empty($con2['notfield'])){
         $todel=explode(',',$con2['notfield']);
@@ -514,8 +499,8 @@ unset($likecon['user']);
 //  pr($mysheetname);
 // $likecontemp['sheetname']=array('like','学生信息测试');
     $notfirstline['id']=array('NEQ',$queryfirst['id']);
-    // pr($notfirstline);
-    $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order('id')->select(); 
+    // pr($ordstr);
+    $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
 // $query=$db->where($likecontemp)->select(); 
     // $query=$db->where($con2)->select();
     // pr($queryfirst);
@@ -608,7 +593,9 @@ foreach($data as $key=>$value){
 $conall=explode(";",$con2['conall']);
 // pr($conall);
 foreach($conall as $value){
-    // pr($value);
+    $ex='';
+    // echo 'valuse';pr($value);
+    // echo '大于等1';pr(strstr($value,"大于等1"));
    if(!empty($value)){
        if(strstr($value,"等于")){
            $ex=explode('等于',$value);
@@ -628,6 +615,19 @@ foreach($conall as $value){
                $likecon[$ex['0']]=array('in',$ex['1']);;
            }else{$result="不是一个包含";}
        }
+    //   elseif(strstr($value,"大于等")){
+    //       $ex=explode('大于等',$value);
+          
+    //       if(count($ex)==2){
+    //           $likecon[$ex['0']]=array('EGT',$ex['1']);;
+    //       }else{$result="不是一个>=";}
+    //   }elseif(strstr($value,"小于等")){
+    //       $ex=explode('小于等',$value);
+    //     //   pr($ex);
+    //       if(count($ex)==2){
+    //           $likecon[$ex['0']]=array('ELT',$ex['1']);;
+    //       }else{$result="不是一个<=";}
+    //   }
    }
 }
 // pr($con2);
@@ -761,7 +761,15 @@ public function u___________() {
 
 
 
-
+// 这是数值
+function isnum($val){
+    if($val>100000000000 ){
+        return true;
+    }else{
+        // pr("非文本3");
+        return false;         
+    }
+}
 
 
 
@@ -1037,71 +1045,124 @@ if(!empty($wrpw) && !empty($sheetname)){  //pw非空再说
             }            
         }
     }
-    // echo "\n2";
-    // pr($datatwoarr);
-    // echo "\n3";
-    // pr($twoarrexcel);
-    // echo json_encode($twoarrexcel);
+    $twoarrexcel=delemptyfieldtwoarr($twoarrexcel);
+// pr(count($twoarrexcel),'$twoarrexcel');
+    $result=$this->deldata2add($sheetname,$wrpw,$twoarrexcel);
 
-    $db=M(C('EXCELSECRETSHEET'));
+
+    
+    
+}else{ $result="password  or sheetname is empty";}
+
+$db=M(C('EXCELSECRETSHEET'));
+$con23['sheetname']=$sheetname;
+$num23=$db->where($con23)->count();$num23=$num23-1;
+$result.="。 【".$sheetname."】现有".$num23."条数据。";
+
+pr($result);    
+}
+
+
+public function deldata2add($sheetname,$wrpw,$twoarrexcel) {
+
+$db=M(C('EXCELSECRETSHEET'));
 
 // 密码与先有的一样才行
 $existdatacon['sheetname']=$sheetname;
-$existdata=$db->where($existdatacon)->order('id asc')->find();
+$existdata=$db->where($existdatacon)->order('id')->find();
 // pr($twoarrexcel[2]);
 // pr("实际密码是".$existdata['2']['wrpw']."输入密码".$wrpw);
 if($existdata['wrpw']==$wrpw || empty($existdata)){
 // 把数据表中的数据删了
         if(isset($existdata['sheetname']) ){ //第0行数据库字段名，第1行中文字段名
+            $firstupload="暂时这样填";
             // 第一次上传就删除所有数据
             if($firstupload){
                 $delcon['sheetname']=$sheetname;
                 $delcon['wrpw']=$wrpw;
                 $db->where($delcon)->delete();                
             }
-
-            
         }else{ $result='sheetname is empty2. or uplosanum';}
-        $twoarrexcel=$this->deltextsymboltwoarray($twoarrexcel);
-        $result=$this->dbadddata($db,$twoarrexcel);
+        // $twoarrexcel=$this->deltextsymboltwoarray($twoarrexcel);
+        $result=$this->dbadddata($twoarrexcel);
     }else{ $result='error,password is wrong, or exist other same sheetname.';} 
-
-    
-    // $result=dbadddata($db,$twoarrexcel);
-    
-}else{ $result="password  or sheetname is empty";}
-
-
-pr($result);    
+return $result;
 }
+public function dbadddata($datatwoarr) {
+$db=M(C('EXCELSECRETSHEET'));
+// $sheetname='学生联系测试';
+// $wrpw='rwxy85137052';
+// $existdatacon['sheetname']=$sheetname;
+// $delcon['wrpw']=$wrpw;
+// $existdatacount=$db->where($existdatacon)->order('id')->count();
+// // $existdata=$db->where($existdatacon)->order('id')->select();
+// // pr($existdata,'$existdata');
+// pr($existdatacount,'$existdatacount');
+
+// $db->where($existdatacon)->delete();
+// $existdatacount=$db->where($existdatacon)->order('id')->count();
+// // pr($existdatacon,'$existdatacon1');
+// pr($existdatacount,'$existdatacount删除后');
+
+// pr(count($datatwoarr),"要写入的数据量是");
+// pr($datatwoarr,"写入数据为");
 
 
-public function dbadddata($db,$datatwoarr) {
-
-// pr($datatwoarr);
-// 先确认导入的字段
+// // 先确认导入的字段
 $newcout=0;
 $newfailcout=0;
 foreach($datatwoarr as $key=>$dataarr){
- reset($dataarr);
- $id=current($dataarr);
-$dataarr['id']='';
+    // $dataarrtemp=$dataarr;
+    // $dataarrtemp['name']=$key."| ".rand()/1;
+//  reset($dataarr);
+//  $id=current($dataarr);
+// $dataarr['id']='';
 // pr($dataarr);
-    $new=$db->data($dataarr)->add(); 
+
+
+// //  pr($dataarr,$key.' $dataarr');
+//             $filedstr='';
+//             $valusestr='';
+//              foreach($dataarr as $k=>$v){
+//                   $filedstr.=$k.",";
+//                   $valusestr.=$v.",";
+//              }
+//              $filedstr=substr($filedstr,0,-1);
+//              $valusestr=substr($valusestr,0,-1);;
+//              $sqlstr="insert into qw_".C('EXCELSECRETSHEET')." （".$filedstr."）
+//             values(".$valusestr.")";
+//             pr($sqlstr,'$sqlstr');
+//              $db->query($sqlstr);
+    $new1=$db->add($dataarr); 
+    // $existdatacount=$db->where($existdatacon)->order('id')->count();
+    // pr($existdatacount,$key.' $existdatacount'.$new);
 // pr($new);
-    if($new>0){
-       $newcout++; 
+    if($new1>0){
+      $newcout++; 
     }else{
-       $newfailcout++; 
+      $newfailcout++; 
     }
+
     // pr($newcout);
+    
 }
+$newcout=$newcout-1;
+
+// $existdatacount=$db->where($existdatacon)->order('id')->count();
+// pr($existdatacount,'写入后的数据量为');
+
 $result='用户成功清空原有数据，并导入' . '<span style="color:red">' . $newcout . "</span>条数据了！"."，其中失败".$newfailcout."条";
 return $result;
 } 
 
 
+public function ff(){ 
 
+$data=I('get.');
+pr($data);
+$filename='C:/phpStudy/PHPTutorial/rw/Uploads/upload (1).csv';
+$this->dealuploadexcel($filename,$data);    
+} 
 
 
 

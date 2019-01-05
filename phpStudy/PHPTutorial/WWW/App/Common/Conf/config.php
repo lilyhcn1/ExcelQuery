@@ -14,9 +14,9 @@ return array(
 	//数据库链接配置
 	'DB_TYPE'   => 'mysql', // 数据库类型
 	'DB_HOST'   => '127.0.0.1', // 服务器地址
-	'DB_NAME'   => 'r34', // 数据库名
+	'DB_NAME'   => 'rw_r34', // 数据库名
 	'DB_USER'   => 'root', // 用户名
-	'DB_PWD'    => 'admin', // 密码
+	'DB_PWD'    => 'lily53053067', // 密码
 	'DB_PORT'   => 3306, // 端口
 	'DB_PREFIX' => 'qw_', // 数据库表前缀
 	'DB_CHARSET'=>  'utf8',      // 数据库编码默认采用utf8
@@ -28,16 +28,21 @@ return array(
 	'DB_COMPRESS' => '1',         //压缩备份文件需要PHP环境支持gzopen,gzwrite函数        0:不压缩 1:启用压缩
 	'DB_LEVEL'    => '9',         //压缩级别   1:普通   4:一般   9:最高
 //***********************************调试设置**********************************
-// 	'SHOW_PAGE_TRACE'=>true,
+	'SHOW_PAGE_TRACE'=>true,
 
 	'RIGHTREPLY'=>'false',
-	
+//     'APP_DEBUG'=>'true',
+//  'DB_FIELD_CACHE'=>'false',
+//  'HTML_CACHE_ON'=>'false',
+
+ 
+
 
 //***********************************excel**********************************	
-	'QUERYPW'        => 'admin', // excel默认查看密码
-	'PERSONPW'        => 'admin888', // 可以显示个人信息的密码
-    	'TEXTSYMBOL'=> '&thinsp;',// 数字占位符&thinsp;
-    	'QUERYLIMIT'        => '50', // excel默认查看密码	
+	'QUERYPW'        => 'admin123', // excel默认查看密码	
+    'TEXTSYMBOL'=> '&thinsp;',// 数字占位符&thinsp;
+    'PERSONPW'=> 'admin212',// 个人查询密码
+    'QUERYLIMIT'        => '50', // excel默认查看密码	
 	'EXCELPUBSHEET'=> 'unipub', // 公开数据表
 	'EXCELSECRETSHEET'=> 'unisecret', // 私有数据表
 	'DATALISTLIMIT'=> '50', // 公开数据表
@@ -45,12 +50,10 @@ return array(
     // IP地址段，在这里的可以访问，要不访问不了。 	
 // 	'IPCONFIG'=>'[{"start":"192.168.0.0","end":"192.168.255.255"},{"start":"122.226.131.1","end":"122.226.131.255"},{"start":"127.0.0.1","end":"127.0.255.255"}]',
 	'IPCONFIG'=>'[{"start":"0.0.0.0","end":"255.255.255.255"}]',	
-    'STRLEN' =>50,
-
+    'CSVNUM' =>100,
 //***********************************阿里大鱼短信**********************************		
 'DAYUSMSAPPKEY'=>'',
 'DAYUSMSSECRET'	=>'',
-
 
 
     'MINI1'=>'',
