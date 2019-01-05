@@ -243,11 +243,6 @@ class MemberController extends ComController {
   
     
     public function excelExport() {
-        // $list = array(
-        //     array('id' => '1', 'username' => "87423050@qq.com", 'password' => 'sucaihuo.com'),
-        //     array('id' => '2', 'username' => '41614@qq.com', 'password' => 'hjl666666'),
-        //     array('id' => '3', 'username' => 'zhangliao@163.com', 'password' => 'zhangqirui'),
-        // );
         $list = M("member")->field("uid,user,nickname,password")->order("uid ASC")->select();
         $title = array('uid', '用户名', '昵称','密码'); //设置要导出excel的表头
         create_xls($list, $title);
