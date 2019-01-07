@@ -11,11 +11,7 @@
 PPT教程文件
 http://vps0.upsir.com/lily/excel.pptx
 
-excel控制文件(20181207更新)
-http://vps0.upsir.com/lily/excel.zip
-
-PHP服务器端(20181207更新)
-http://vps0.upsir.com/lily/phpstudy.zip
+excel控制文件及源码请直接下载代码。
 
 通用数据库系统介绍及使用方法
 http://vps0.upsir.com/lily/1.mp4
