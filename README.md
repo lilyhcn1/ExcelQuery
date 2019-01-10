@@ -1,7 +1,12 @@
-# Excel共享查询系统
-通用数据库系统，只要会Excel，一分钟即可把Excel表转成一个完善的查询系统，大家可以用它来制作公开数据库。我来抛砖引玉吧，大家一起来完善这类系统。
+# 给我一个Excel，还你一个小程序。
+只要会Excel，一分钟即可把Excel表转成一个完善的查询系统，大家可以用它来制作自己的查询系统。
+这里的代码只是做一个网站，如有自己有能力再申请htts,再申请小程序，再把网站套到小程序里就行了。
+我来抛砖引玉吧，大家一起来完善这类系统。
 
-测试样式如下：http://api.r34.cc/index.php/Qwadmin/Rwxy/uniquerydata/rpw/passwd.html
+网站测试样式如下：http://api.r34.cc/index.php/Qwadmin/Rwxy/uniquerydata/rpw/passwd.html
+
+小程序效果请用微信扫码:
+http://vps0.upsir.com/lilypub/admin.png
 
 建议、合作请加QQ:53053067，校内可联系电话联系。
 
