@@ -30,6 +30,8 @@ http://vps0.upsir.com/lily/2.mp4
 视频：http://vps0.upsir.com/lily/3.mp4   
 PPT: http://vps0.upsir.com/lily/3.pptx 
 
+有服务器的高手请参见虚拟主机布置来安装。
+
 # 问答
 能否保存敏感数据？
 
