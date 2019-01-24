@@ -357,6 +357,25 @@ function delemptyfieldtwoarr($twoarray){
 
 /**
 *
+* 函数：删除第一行
+*
+**/
+function deltwoarryfirstline($twoarray){
+    $i=0;
+    foreach($twoarray as $key=>$value){
+        if($i==0){
+            
+        }else{
+            $newtwoarr[$key]=$value;
+        }
+        $i++;
+    }
+    return $newtwoarr;
+}
+
+
+/**
+*
 * 函数：删除空字段
 *
 **/
@@ -448,6 +467,26 @@ foreach($twoarray as $key=>$value){
 }
 return $output;
 }
+
+
+// 判断这是几维数组
+function getmaxdim($vDim)
+{
+  if(!is_array($vDim)) return 0;
+  else
+  {
+    $max1 = 0;
+    foreach($vDim as $item1)
+    {
+     $t1 = getmaxdim($item1);
+     if( $t1 > $max1) $max1 = $t1;
+    }
+    return $max1 + 1;
+  }
+}
+
+
+
 /**
  * 数组格式输出
  * 

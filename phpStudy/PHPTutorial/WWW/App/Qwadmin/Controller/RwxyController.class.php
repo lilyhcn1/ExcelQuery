@@ -432,7 +432,7 @@ public function echounisheet($dbsheetname,$data){
 // C('EXCELSECRETSHEET');
 $con2=$this->constr2conarr($data,'eq');
 $likecon=$this->constr2conarr($data,'like');
-echo 343;pr($likecon);
+// echo 343;pr($likecon);
 // pr($con2);
 if($this->isadmin($con2)){
     unset($con2['rpw']);
@@ -468,8 +468,8 @@ unset($likecon['user']);
   
 $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
 
-echo 11;pr($con2);
-echo 23;pr($likecon);
+// echo 11;pr($con2);
+// echo 23;pr($likecon);
     // 这里计算字段
     if(!empty($con2['notfield'])){
         $todel=explode(',',$con2['notfield']);
@@ -542,9 +542,13 @@ echo 23;pr($likecon);
 // 查询数据私有的数据表
 public function echoteacherdb(){
 $data=I('get.');
-    $ip = $_SERVER['REMOTE_ADDR'];
-    $ip_config=json_decode(C('IPCONFIG'),true);
-    $result = IpAuth($ip, $ip_config);
+// pr($data,'$data11');
+if(empty($data)){
+    $data=I('post.');
+    // addlog("post 提交的数据");
+}
+
+    $result = $this->Auth2Use();
     if(!$result){
         echo "error\n,IP地址\n不在可访问列表中，\n禁止访问。";
     }else{
@@ -591,7 +595,7 @@ foreach($data as $key=>$value){
     }
 
 $conall=explode(";",$con2['conall']);
-// pr($conall);
+// pr($conall,"CONALL");
 foreach($conall as $value){
     $ex='';
     // echo 'valuse';pr($value);
@@ -615,22 +619,38 @@ foreach($conall as $value){
                $likecon[$ex['0']]=array('in',$ex['1']);;
            }else{$result="不是一个包含";}
        }
-    //   elseif(strstr($value,"大于等")){
-    //       $ex=explode('大于等',$value);
+      elseif(strstr($value,"大于等")){
+          $ex=explode('大于等',$value);
           
-    //       if(count($ex)==2){
-    //           $likecon[$ex['0']]=array('EGT',$ex['1']);;
-    //       }else{$result="不是一个>=";}
-    //   }elseif(strstr($value,"小于等")){
-    //       $ex=explode('小于等',$value);
-    //     //   pr($ex);
-    //       if(count($ex)==2){
-    //           $likecon[$ex['0']]=array('ELT',$ex['1']);;
-    //       }else{$result="不是一个<=";}
-    //   }
+          if(count($ex)==2){
+              if(empty($likecon[$ex['0']])){
+                  $likecon[$ex['0']]=array(array('EGT',$ex['1']));
+              }else{
+                  if(getmaxdim($likecon) == 3){
+                    $likecon[$ex['0']][]=array('EGT',$ex['1']);  
+                  }
+              }
+              
+          }else{$result="不是一个>=";}
+      }elseif(strstr($value,"小于等")){
+          $ex=explode('小于等',$value);
+        //   pr($ex);
+          if(count($ex)==2){
+            if(empty($likecon[$ex['0']])){
+                  $likecon[$ex['0']]=array(array('ELT',$ex['1']));
+              }else{
+                  if(getmaxdim($likecon) == 3){
+                    $likecon[$ex['0']][]=array('ELT',$ex['1']);  
+                  }
+              }
+              
+          }else{$result="不是一个<=";}
+      }
    }
+//   pr($likecon,'12121212');
 }
-// pr($con2);
+// pr(getmaxdim($likecon),'getmaxdim1');
+// pr($likecon,'FDSAFDSA');
 
 // pr($con2);
 $con2=$this->replacechinesekey($con2);
@@ -644,11 +664,17 @@ $likecon=$this->replacechinesekey($likecon);
  
 // pr($con2);    
 if(empty($likecon)){ $likecon['temp']='temp'; }//$likecon的空值处理    
+
+// pr($likecon,'FDSAFDSA');
+
 if($type=='eq'){
     return $con2;
 }elseif($type=='like'){
     return $likecon;
 }else{return "con is error";}
+
+
+
 
 }
 
@@ -688,6 +714,7 @@ $aa['ID字段']='pidkey';
 $aa['分类字段']='classkey';
 $aa['排序字段']='orderkey';
 $aa['缩略显示']='weborder';
+$aa['覆盖上传']='replaceadd';
 foreach ($arr as $keycn=>$v) {
     foreach ($aa as $kval=> $vkey) {
         if($keycn==$kval){
@@ -751,7 +778,32 @@ foreach($twoarr as $k1=>$v1){
     }
 }
 return $twoarrnew;
-}      
+}    
+
+
+//   删除指定的数据表
+public function delsheet($twoarr){
+$data=I('post.');
+// C('EXCELSECRETSHEET');
+$con2=$this->constr2conarr($data,'eq');
+$likecon=$this->constr2conarr($data,'like');
+
+if($this->isadmin($con2)){
+    unset($con2['rpw']);
+    $this->echounisheetuni($dbsheetname,$con2,$likecon);
+}elseif(!empty($likecon['sheetname']['0'] == 'in')){
+    $this->echounisheetuni($dbsheetname,$con2,$likecon);
+}elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
+    echo    $output="error, \nsheetname \n  or\n rpw\nis \nempty.\n";    
+}else{
+    
+    $this->echounisheetuni($dbsheetname,$con2,$likecon);
+
+}   
+}  
+
+
+
 public function u___________() {
 }
     
@@ -913,8 +965,14 @@ return $temp;
             $this->error('用户导入失败',30);
         }
     }  
-  
-  
+ 
+// 判断是否有授权  
+public function Auth2Use() {
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $ip_config=json_decode(C('IPCONFIG'),true);
+    $result = IpAuth($ip, $ip_config); 
+    return $result;
+}
     
     public function excelExport() {
         // $list = array(
@@ -942,15 +1000,8 @@ return $temp;
 // 准备弃用
 // php
 public function phpupload() {
-    // echo '111222';
-    // addlog('1121',222);
-    // addlog(json_encode($_FILES));
-    // addlog(json_encode($_SERVER));
-    // pr($_FILES,'$_FILES');
-    // pr($_POST,'$_POST');
-    $ip = $_SERVER['REMOTE_ADDR'];
-    $ip_config=json_decode(C('IPCONFIG'),true);
-    $result = IpAuth($ip, $ip_config);
+
+    $result = $this->Auth2Use();
     
     if(!$result){
         echo "error\n,IP地址\n不在可访问列表中，\n禁止访问。";
@@ -1017,6 +1068,7 @@ $pidkey=$con2['pidkey'];
 
 $classkey=$con2['classkey'];
 $orderkey=$con2['orderkey'];
+$replaceadd=$con2['replaceadd'];
 $con2temp=$con2;
 unset($con2temp['wrpw']);unset($con2temp['rpw']);unset($con2temp['namekey']);unset($con2temp['pidkey']);
 unset($con2temp['sheetname']);unset($con2temp['notfield']);
@@ -1052,7 +1104,12 @@ if(!empty($wrpw) && !empty($sheetname)){  //pw非空再说
     }
     $twoarrexcel=delemptyfieldtwoarr($twoarrexcel);
 // pr(count($twoarrexcel),'$twoarrexcel');
-    $result=$this->deldata2add($sheetname,$wrpw,$twoarrexcel);
+    if($replaceadd=='否'){
+        $result=$this->data2add($sheetname,$wrpw,$twoarrexcel);
+    }else{
+        $result=$this->deldata2add($sheetname,$wrpw,$twoarrexcel);
+    }
+    
 
 
     
@@ -1095,62 +1152,29 @@ if($existdata['wrpw']==$wrpw || empty($existdata)){
     }else{ $result='error,password is wrong, or exist other same sheetname.';} 
 return $result;
 }
+
+
+//   新增数据表，不覆盖原有数据
+public function data2add($sheetname,$wrpw,$twoarrexcel) {
+$twoarrexcel=deltwoarryfirstline($twoarrexcel);
+$result=$this->dbadddata($twoarrexcel);
+return $result;
+}
+
+
 public function dbadddata($datatwoarr) {
 $db=M(C('EXCELSECRETSHEET'));
-// $sheetname='学生联系测试';
-// $wrpw='rwxy85137052';
-// $existdatacon['sheetname']=$sheetname;
-// $delcon['wrpw']=$wrpw;
-// $existdatacount=$db->where($existdatacon)->order('id')->count();
-// // $existdata=$db->where($existdatacon)->order('id')->select();
-// // pr($existdata,'$existdata');
-// pr($existdatacount,'$existdatacount');
-
-// $db->where($existdatacon)->delete();
-// $existdatacount=$db->where($existdatacon)->order('id')->count();
-// // pr($existdatacon,'$existdatacon1');
-// pr($existdatacount,'$existdatacount删除后');
-
-// pr(count($datatwoarr),"要写入的数据量是");
-// pr($datatwoarr,"写入数据为");
-
 
 // // 先确认导入的字段
 $newcout=0;
 $newfailcout=0;
 foreach($datatwoarr as $key=>$dataarr){
-    // $dataarrtemp=$dataarr;
-    // $dataarrtemp['name']=$key."| ".rand()/1;
-//  reset($dataarr);
-//  $id=current($dataarr);
-// $dataarr['id']='';
-// pr($dataarr);
-
-
-// //  pr($dataarr,$key.' $dataarr');
-//             $filedstr='';
-//             $valusestr='';
-//              foreach($dataarr as $k=>$v){
-//                   $filedstr.=$k.",";
-//                   $valusestr.=$v.",";
-//              }
-//              $filedstr=substr($filedstr,0,-1);
-//              $valusestr=substr($valusestr,0,-1);;
-//              $sqlstr="insert into qw_".C('EXCELSECRETSHEET')." （".$filedstr."）
-//             values(".$valusestr.")";
-//             pr($sqlstr,'$sqlstr');
-//              $db->query($sqlstr);
     $new1=$db->add($dataarr); 
-    // $existdatacount=$db->where($existdatacon)->order('id')->count();
-    // pr($existdatacount,$key.' $existdatacount'.$new);
-// pr($new);
     if($new1>0){
       $newcout++; 
     }else{
       $newfailcout++; 
     }
-
-    // pr($newcout);
     
 }
 $newcout=$newcout-1;
