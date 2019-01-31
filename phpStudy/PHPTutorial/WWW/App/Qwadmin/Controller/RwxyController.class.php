@@ -468,46 +468,69 @@ unset($likecon['user']);
   
 $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
 
-// echo 11;pr($con2);
-// echo 23;pr($likecon);
-    // 这里计算字段
-    if(!empty($con2['notfield'])){
-        $todel=explode(',',$con2['notfield']);
-        unset($con2['notfield']);
-    }
-    $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+ 
+// 0. 读取第一行
+    $sheetcon['sheetname']=$con2['sheetname'];
+    $queryfirst=$db->where($sheetcon)->order('id')->find(); 
+    $queryfirst=delemptyfield($queryfirst);
 
+
+// 1. 先把所有的字段都计算出来，除了wrpw
+    $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
     $field=$Model->query("select COLUMN_NAME from information_schema.COLUMNS where table_name ='".C('DB_PREFIX').$dbsheetname."' and table_schema = '".C('DB_NAME')."';");
-    
     $t1[]='wrpw';
     $field=array_column($field,'column_name');
     $field=array_diff($field,$t1);
-    $field=array_diff($field,$todel);
-    $fieldstr=implode($field,',');
-    // pr($fieldstr);
+// pr($field,'$field');
+
+// pr($con2['field'],'11');
+// 2. 先处理显示字段
     if(!empty($con2['field'])){
-        $fieldstr=$con2['field'];
-        unset($con2['field']);
+        $fieldarr=explode(',',$con2['field']);
+         $field=array_intersect($fieldarr,$field);     
+        if(empty($field)){
+            $field[]='id';
+        }  
+         
+    }else{
+// 3. 不显字段处理
+        if(!empty($con2['notfield'])){
+            $todel=explode(',',$con2['notfield']);
+        }
+        $field=array_diff($field,$todel);        
+// 4. field中删除字段   
+    foreach($field as $fkey=>$fvalue){ 
+        if(!empty($queryfirst[$fvalue])){
+            $newfieldarr[]=$fvalue;
+        }
+    } 
+    $field=$newfieldarr;
+        
     }
-    // pr($con2);
 
-    // 查出第一行    
-    // $queryfirst=$db->where($con2)->where($likecon)->order('id desc')->find(); 
-    $sheetcon['sheetname']=$con2['sheetname'];
-    $queryfirst=$db->where($sheetcon)->order('id')->find();    
 
-//  pr($mysheetname);
-// $likecontemp['sheetname']=array('like','学生信息测试');
+
+
+// 5. 把字段写成str    
+// if(!empty($con2['vlookup'])){
+//     array_unshift($field,$con2['vlookup']);
+// }
+
+unset($con2['field']);
+unset($con2['notfield']);
+$fieldstr=implode($field,',');
+// pr($fieldstr,'$fieldstr');
+
+
     $notfirstline['id']=array('NEQ',$queryfirst['id']);
     // pr($ordstr);
     $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
-// $query=$db->where($likecontemp)->select(); 
-    // $query=$db->where($con2)->select();
-    // pr($queryfirst);
-    // pr($query);
+// pr($con2,'con2');
+// pr($likecon,'likecon');
     
     // 插入字段行
     $fieldline['0']=$field;
+// pr($field,'$field');
     // 插入空行
     foreach ($field as $fieldkey) {
         $emptyline['0'][$fieldkey]="";
@@ -554,8 +577,24 @@ if(empty($data)){
     }else{
 
 // $sheetname=C('EXCELSECRETSHEET');
-$dbsheetname=C('EXCELSECRETSHEET');
-$this->echounisheet($dbsheetname,$data);    
+    $dbsheetname=C('EXCELSECRETSHEET');
+    // C('EXCELSECRETSHEET');
+    $con2=$this->constr2conarr($data,'eq');
+    $likecon=$this->constr2conarr($data,'like');
+    // echo 343;pr($likecon);
+    // pr($con2);
+    if($this->isadmin($con2)){
+        unset($con2['rpw']);
+        $this->echounisheetuni($dbsheetname,$con2,$likecon);
+    }elseif(!empty($likecon['sheetname']['0'] == 'in')){
+        $this->echounisheetuni($dbsheetname,$con2,$likecon);
+    }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
+        echo    $output="error, \nsheetname \n  or\n rpw\nis \nempty.\n";    
+    }else{
+        
+        $this->echounisheetuni($dbsheetname,$con2,$likecon);
+    
+    }  
         
     }
 
