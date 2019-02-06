@@ -1121,7 +1121,7 @@ if(!empty($wrpw) && !empty($sheetname)){  //pw非空再说
     }
 
 // pr($datatwoarr);
-    foreach ($datatwoarr as $key => $dataarr) {
+     foreach ($datatwoarr as $key => $dataarr) {
         if($key==0){
             $title=$dataarr;
         }else{
@@ -1129,7 +1129,7 @@ if(!empty($wrpw) && !empty($sheetname)){  //pw非空再说
                 $twoarrexcel[$key][$title[$key2]]=$value2;
             }
             $twoarrexcel[$key]['wrpw']=$wrpw;
-            $twoarrexcel[$key]['rpw']=$rpw;
+           
             $twoarrexcel[$key]['sheetname']=$sheetname;
             $twoarrexcel[$key]['ord']=$key -1;
             $twoarrexcel[$key]['custom1']=json_encode($con2temp);
@@ -1138,7 +1138,10 @@ if(!empty($wrpw) && !empty($sheetname)){  //pw非空再说
             }
             if(!empty($con2['pidkey'])){
                 $twoarrexcel[$key]['pid']=$twoarrexcel[$key][$con2['pidkey']];
-            }            
+            }
+            if(empty($twoarrexcel[$key]['rpw'])){
+                 $twoarrexcel[$key]['rpw']=$rpw;
+            }               
         }
     }
     $twoarrexcel=delemptyfieldtwoarr($twoarrexcel);
