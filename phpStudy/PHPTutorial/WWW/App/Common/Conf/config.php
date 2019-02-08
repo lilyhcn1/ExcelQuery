@@ -20,7 +20,9 @@ return array(
 	'DB_PORT'   => 3306, // 端口
 	'DB_PREFIX' => 'qw_', // 数据库表前缀
 	'DB_CHARSET'=>  'utf8',      // 数据库编码默认采用utf8
-	'LILYCDN'=>  '',      // CDN配置
+    	'TMPL_PARSE_STRING'  =>array(
+        	'__LILYCDN__' => 'https://jscss-1252487553.cos.ap-shanghai.myqcloud.com' // 更改默认的/Public 替换规则
+    	),	
 //***********************************备份配置**********************************
 	//备份配置
 	'DB_PATH_NAME'=> 'db',        //备份目录名称,主要是为了创建备份目录
