@@ -21,7 +21,7 @@ return array(
 	'DB_PREFIX' => 'qw_', // 数据库表前缀
 	'DB_CHARSET'=>  'utf8',      // 数据库编码默认采用utf8
     	'TMPL_PARSE_STRING'  =>array(
-        	'__LILYCDN__' => 'https://jscss-1252487553.cos.ap-shanghai.myqcloud.com' // 更改默认的/Public 替换规则
+        	'__LILYCDN__' => '' // 更改默认的/Public 替换规则
     	),	
 //***********************************备份配置**********************************
 	//备份配置
