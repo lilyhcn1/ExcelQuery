@@ -470,8 +470,10 @@ $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
 
  
 // 0. 读取第一行
-    $sheetcon['sheetname']=$con2['sheetname'];
-    $queryfirst=$db->where($sheetcon)->order('id')->find(); 
+    // $sheetcon['sheetname']=$con2['sheetname'];
+    // $queryfirst=$db->where($sheetcon)->order('id')->find(); 
+     $queryfirst=$db->where($con2)->where($likecon)->order('id')->find(); 
+// pr($queryfirst);    
     $queryfirst=delemptyfield($queryfirst);
 
 
@@ -522,12 +524,14 @@ $fieldstr=implode($field,',');
 // pr($fieldstr,'$fieldstr');
 
 
-    $notfirstline['id']=array('NEQ',$queryfirst['id']);
-    // pr($ordstr);
+    if(!empty($queryfirst['id'])){
+        $notfirstline['id']=array('NEQ',$queryfirst['id']);
+    }
+    
     $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
 // pr($con2,'con2');
 // pr($likecon,'likecon');
-    
+//     pr($query);
     // 插入字段行
     $fieldline['0']=$field;
 // pr($field,'$field');
