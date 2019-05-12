@@ -10,6 +10,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<include file="Public/head" />
+  <!--<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">-->
+  <!--<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>-->
 		 <!--<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>    -->
 		    
 		    
@@ -133,7 +135,7 @@ var availableTags = new Array();
 
     var temp='<?php  echo json_encode($datalistonearr); ?>'
     var jsonObj  =JSON.parse(temp);
-    console.log("佛挡杀佛:",jsonObj);
+
      var jsonArr = [];
 
 for (let i in jsonObj) {
@@ -148,7 +150,7 @@ for (let i in jsonObj) {
 
 for(let i in jsonArr) {
     
-    console.log(i,":",jsonArr[i]);
+    // console.log(i,":",jsonArr[i]);
     var ff="#"+i
 
 
