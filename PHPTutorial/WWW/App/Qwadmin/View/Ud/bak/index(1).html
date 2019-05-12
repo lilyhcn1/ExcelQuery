@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$data['title']}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+		 <!--<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>    -->
+		    
+	<script>
+	function onTake(){	
+
+		var file = document.getElementById("btn_camera").files[0];  
+		var reader = new FileReader();
+		reader.onload=function(e) {  
+		document.getElementById("image").src = e.target.result;	
+		
+		}
+		reader.readAsDataURL(file);
+		
+	}
+	</script>
+		    
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+
+									<form class="form-horizontal" id="form" method="post" action="{:U('rec_read')}">
+                                        <!-- 第一个是传值用的 -->
+                                         <input id="id"  name="id" type="hidden"  value= <?php echo isset($id)?$data['id']:''; ?>  "" />
+              
+               <input type="hidden" name="reader" id="reader"  value= 	{$user.user}   placeholder="" class="col-xs-10 col-sm-5" readonly>                                       
+                                        <!-- id是传入的值， teacher是要修改的数据库  -->
+
+               <input type="hidden" name="sender" id="sender"  value= {$id}  class="col-xs-10 col-sm-5" >
+
+
+<volist name="titlearr" id="val" key="key">
+             <div class="form-group">
+              <label class="col-sm-2 col-xs-2 control-label no-padding-right" for="form-field-6">{$val}</label>
+              <div class="col-sm-10">
+               <input type="text" name="{$key}" id="{$key}"  value=""  placeholder="" class="col-xs-10 col-sm-10" >
+              </div>
+             </div>
+</volist>
+             <div class="form-group">
+              <label class="col-sm-2 col-xs-2 control-label no-padding-right" for="form-field-6">{$val}</label>
+              <div class="col-sm-10">
+                <input id="btn_camera" type="file" accept="image/*" capture="camera" onchange="onTake()" />
+              </div>
+              	
+             </div>
+             <div class="form-group">
+                <img   id="image" width="100%" />
+             </div>             
+             <!--<div class="form-group">-->
+             <!-- <label class="col-sm-1 control-label no-padding-right" for="form-field-6">内容</label>-->
+             <!-- <div class="col-sm-11">-->
+             <!--  <textarea style="height:20px;" name="content" id="content"  class="col-xs-10 col-sm-5  autosize-transition"  ><?php echo $data['content'];  ?></textarea>-->
+
+             <!-- </div>-->
+             <!--</div>-->
+
+
+									<div class="col-md-offset-2 col-md-9">
+										<button class="btn btn-info submit" type="button">
+											<i class="icon-ok bigger-110"></i>
+											确认
+										</button>
+
+										&nbsp; &nbsp; &nbsp;
+										<button class="btn" type="reset">
+											<i class="icon-undo bigger-110"></i>
+											取消
+										</button>
+									</div>
+								</form>
+
+
+
+
+
+
+	<!--<form id="take_picture">-->
+ <!--       <input id="btn_camera" type="file" accept="image/*" capture="camera" onchange="onTake()" />-->
+	<!--</form>-->
+	<!--<img id ="ddd" hidden="true"  width="300" height="300" />-->
+
+
+
+
+							<!-- PAGE CONTENT ENDS -->
+ 							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+<!--  文本框自动变长的脚本 -->
+    <script src="__PUBLIC__/qwadmin/js/chosen.jquery.js"></script>
+    <script src="__PUBLIC__/qwadmin/js/jquery.autosize.js"></script>
+    <script src="__PUBLIC__/qwadmin/js/jquery.inputlimiter.1.3.1.js"></script>
+    <script src="__PUBLIC__/qwadmin/js/jquery.maskedinput.js"></script>
+	<script>
+	$(document).ready(function(){
+    <script type="text/javascript">
+        $(function ($) {
+            $('textarea[class*=autosize]').autosize({ append: "\n" });
+            $('textarea[class*=autosize]').autosize({ append: "\n" });            
+            $('textarea.limited').inputlimiter({
+                remText: '%n character%s remaining...',
+                limitText: 'max allowed : %n.'
+            });
+        });
+
+ 
+    });
+
+	</script>
+
+	
+<!--  文本框自动变长的脚本 -->
+
+
+
+
+
+
+
+
+<script>
+var imgurl = [];//用于存放图片的url
+        var photo = document.getElementById('photo')
+        photo.addEventListener('tap', function() {
+            fun_photo()
+        }, false);
+        //以下是拍照的弹出框　
+        function fun_photo() {
+            if(mui.os.plus) {
+                var a = [{
+                    title: "拍照"
+                }, {
+                    title: "从手机相册选择"
+                }];
+                plus.nativeUI.actionSheet({
+                    title: "修改用户头像",
+                    cancel: "取消",
+                    buttons: a
+                }, function(b) { /*actionSheet 按钮点击事件*/
+                    switch(b.index) {
+                        case 0:
+                            break;
+                        case 1:
+                            getImage(); /*拍照*/
+                            break;
+                        case 2:
+                            galleryImg(); /*打开相册*/
+                            break;
+                        default:
+                            break;
+                    }
+                })
+            }
+        }
+        //拍照
+        function getImage() {
+            var cmr = plus.camera.getCamera();
+            var res = cmr.supportedImageResolutions[0];
+            var fmt = cmr.supportedImageFormats[0];
+            console.log(cmr)
+            console.log(res)
+            console.log(fmt)
+            cmr.captureImage(function(path) {
+                //plus.io.resolveLocalFileSystemURL(path, function(entry) {  
+                plus.io.resolveLocalFileSystemURL(path, function(entry) {
+                    console.log(entry)
+                    console.log(path)
+                    var imgname = path.substring(5);
+                    console.log(imgname)
+                    var localUrl = entry.toLocalURL();
+                    console.log(localUrl)
+                    var data_time = new Date().getTime()
+                    uploadHead(localUrl + "?version=" + data_time);
+                    imgurl.push(imgname)
+                }, function(err) {
+                    console.error("拍照失败：" + err.message);
+                }, {
+                    index: 1
+                });
+            });
+        }
+        //本地相册选择
+        function galleryImg() {
+            plus.gallery.pick(function(a) {
+                plus.io.resolveLocalFileSystemURL(a, function(entry) {
+                    plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
+                        var data_time = new Date().getTime();
+                        root.getFile("head" + data_time + ".png", {}, function(file) {
+                            //文件已存在
+                            file.remove(function() {
+                                console.log("file remove success");
+                                var imgname = 'head' + data_time + '.png';
+                                imgurl.push(imgname)
+                                entry.copyTo(root, imgname, function(e) {
+                                    var e = e.fullPath + "?version=" + new Date().getTime();
+                                    uploadHead(e); /*上传图片*/
+                                }, function(e) {
+                                    console.log('copy image fail:' + e.message);
+                                });
+                            }, function() {
+                                console.log("delete image fail:" + e.message);
+                            });
+                        }, function() {
+                            //文件不存在
+                            var imgname = 'head' + data_time + '.png';
+                            imgurl.push(imgname)
+                            //imgurl = imgurl.split('');
+                            console.log(imgurl)
+                            entry.copyTo(root, 'head' + data_time + '.png', function(e) {
+                                var path = e.fullPath + "?version=" + new Date().getTime();
+                                uploadHead(path); /*上传图片*/
+                            }, function(e) {
+                                console.log('copy image fail:' + e.message);
+                            });
+                        });
+                    }, function(e) {
+                        console.log("get _www folder fail");
+                    })
+                }, function(e) {
+                    console.log("读取拍照文件错误：" + e.message);
+                });
+            }, function(a) {}, {
+                filter: "image"
+            })
+        };
+        //追加图片
+        function uploadHead(imgPath) {
+            var image = new Image();
+            image.src = imgPath;
+            image.onload = function() {
+                Failure_upload(imgPath)
+                //imgurl.push(imgname)
+                var imgData = getBase64Image(image);
+                console.log(imgData);
+                var photobox = document.getElementById('photobox');
+                var html1 = '<p><img src='+imgData+' width="73px" height = "72px" /><span id="dele" style="color:#fff;background-color:#f00;border-radius: 50%; position: relative; top: -88px; left: 67px;width:15px;height:15px;text-align:center;display:block;line-height: 15px;font-size: 12px;">x</span></p>'
+//              var img = new Image(); //创建img容器
+//              img.src = imgData; //给img容器引入base64的图片
+//              img.style.width = 73 + 'px';
+//              img.style.height = 72 + 'px';
+//              img.style.marginRight = 15 + 'px';
+//              p_box.innerHTML = img;
+                photobox.innerHTML += html1;
+                //photobox.insertBefore(html1, photobox.children[0])
+                /*在这里调用上传接口*/
+                //mui.ajax("图片上传接口", {
+                //data: {
+                //img: imgData
+                //},
+                //dataType: 'json',
+                //type: 'post',
+                //timeout: 10000,
+                //success: function(data) {
+                //mui.toast('上传成功',{
+                //duration:'long',
+                //type:'div'
+                //});
+                //document.getElementById('head-img').src = imgPath;
+                //document.getElementById('head-img1').src = imgPath;
+                //document.getElementById('head-img2').src=imgPath;
+                //}, 
+                //error: function(xhr, type, errorThrown) {
+                //mui.toast('网络异常，请稍后再试！');
+                //}
+                //});
+                var dele = getId("dele");
+                console.log(dele)
+                dele.addEventListener('tap', function() {
+                    var btnArray = ['否', '是'];
+                        mui.confirm('确认删除照片？', 'app', btnArray, function(e) {
+                            if (e.index == 1) {
+                                var html1 = '<img id="photo" src="../images/breakdown_icon3.png" width="73px" height="72px">'
+                                photobox.innerHTML = html1;
+                                imgurl = [];
+                            } else {
+                                
+                            }
+                        })
+                })
+            }
+        }
+        //将图片压缩转成base64
+        function getBase64Image(img) {
+            var canvas = document.createElement("canvas");
+            var width = img.width;
+            var height = img.height;
+            // calculate the width and height, constraining the proportions
+            if(width > height) {
+                if(width > 100) {
+                    height = Math.round(height *= 100 / width);
+                    width = 100;
+                }
+            } else {
+                if(height > 100) {
+                    width = Math.round(width *= 100 / height);
+                    height = 100;
+                }
+            }
+            canvas.width = width; /*设置新的图片的宽度*/
+            canvas.height = height; /*设置新的图片的长度*/
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height); /*绘图*/
+            var dataURL = canvas.toDataURL("image/png", 0.8);
+            return dataURL;
+            //return dataURL.replace("data:image/png;base64,", "");
+        }
+
+ 
+</script>
+
+
+	</body>
+</html>

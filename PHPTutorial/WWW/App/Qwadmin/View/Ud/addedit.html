@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>通用数据存储</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+		 <!--<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>    -->
+		    
+		    
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+
+									<form class="form-horizontal" id="form" method="post" action="{:U('Ud/update')}">
+
+{$mynavline}
+<div class="col-xs-12">
+<if condition="empty($id) eq true">
+    <div class="form-group">
+        <h3 align="center"> 新增数据</h3>
+    </div>
+<else /> 
+    <div class="form-group">
+        <h3 align="center">更新数据</h3>
+    </div>
+</if>   
+<input type="hidden" name="id" value="{$id}">
+</div>
+
+
+
+
+<volist name="titlearr" id="val" >
+<?php $valtemp=mb_substr($val,0,2,"UTF-8");  ?>   
+<switch name="valtemp">
+    <case value="照片">
+             <div class="form-group">
+              <label class="col-sm-2 col-xs-2 control-label no-padding-right" for="form-field-6">{$val}</label>
+              <div class="col-sm-10">
+                <?php $tt=$fillingarr[$key];  ?>     
+                <div class="col-xs-10 col-sm-5">{:UpImage($key,100,100,$tt)}</div>
+              </div>
+             </div>    
+    </case>
+    <case value="文件">
+             <div class="form-group">
+              <label class="col-sm-2 col-xs-2 control-label no-padding-right" for="form-field-6">{$val}</label>
+               <input type="file" name="{$key}" id="{$key}"  value="{$fillingarr[$key]}"  placeholder="" class="col-xs-10 col-sm-10" >
+              </div>
+             </div>    
+    </case>
+<default />
+             <div class="form-group">
+              <label class="col-sm-2 col-xs-2 control-label no-padding-right" for="form-field-6">{$val}</label>
+              <div class="col-sm-10">
+               <input type="text" name="{$key}" id="{$key}"  value="{$fillingarr[$key]}"  placeholder="" class="col-xs-10 col-sm-10" >
+              </div>
+             </div>
+</switch>          
+</volist>
+
+      
+
+                <div class="form-group">
+					<div class="col-md-9">
+					<div class="col-sm-2 col-xs-2">
+					    <input type="reset" class="btn"  value="重置" />    
+					</div>
+					<div class="col-sm-3 col-xs-3">
+					    
+					</div>
+
+					<div class=" col-sm-2 col-xs-2">
+					    <input class="btn btn-info submit" type="submit" value="提交" />
+					</div>					
+					</div>
+					
+				</div>
+	</form>
+                <div class="form-group">
+                    </div>
+
+
+
+							<!-- PAGE CONTENT ENDS -->
+ 							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+<!--  文本框自动变长的脚本 -->
+    <script src="__PUBLIC__/qwadmin/js/chosen.jquery.js"></script>
+    <script src="__PUBLIC__/qwadmin/js/jquery.autosize.js"></script>
+    <script src="__PUBLIC__/qwadmin/js/jquery.inputlimiter.1.3.1.js"></script>
+    <script src="__PUBLIC__/qwadmin/js/jquery.maskedinput.js"></script>
+<script>
+$(document).ready(function(){
+var availableTags = new Array();   
+  // 自动完成功能
+
+    var temp='<?php  echo json_encode($datalistonearr); ?>'
+    var jsonObj  =JSON.parse(temp);
+    console.log("佛挡杀佛:",jsonObj);
+     var jsonArr = [];
+
+for (let i in jsonObj) {
+    var temp=[]
+    for (let j in jsonObj[i]) {
+        temp.push(jsonObj[i][j]);
+    }
+    jsonArr[i]=temp; //属性
+}     
+
+    // console.log(i,":",jsonArr);
+
+for(let i in jsonArr) {
+    
+    console.log(i,":",jsonArr[i]);
+    var ff="#"+i
+
+
+$(ff).autocomplete({
+    minLength: 0,
+    source: jsonArr[i],
+}).focus(function() {
+    $(this).autocomplete("search", $(this).val());
+});
+    
+
+}
+      
+});
+</script>
+
+	
+<!--  文本框自动变长的脚本 -->
+
+
+
+
+
+
+
+
+
+
+	</body>
+</html>

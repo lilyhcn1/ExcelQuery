@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+	
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+<!--     正文开始	-->							  
+
+
+
+<div class="container">
+    <div id="legend" class="">
+        <legend class=""><a href="{$indexpage}">查询首页</a> 输入回车查询</legend>
+    </div>
+<form class="form-horizontal" id="uniform" role="form" method="get" action="{$postpage}" >
+
+<div class="form-group">
+	<div class="controls col-xs-5">
+            <select class="input-xlarge" name="sheetname" id="sheetname" >
+                <option value="">所有表 中</option>
+                <volist name="sheetnamearr" id="vo">
+                    <if condition="$vo.sheetname eq $slectsheet">
+                        <option value="{$vo.sheetname}" selected = "selected">{$vo.sheetname} 中</option>
+                    <else />    
+                         <option value="{$vo.sheetname}">{$vo.sheetname} 中</option>
+                    </if> 
+                </volist>  
+            </select>
+    </div>
+<!--style="padding:5px 0px 0 3px"-->
+	<div class="form-group col-xs-2" > 
+	
+		   <div class="controls " style="padding:5px 0px 0 0px">
+		       查询
+          <!--  <select class="input-xlarge" disabled="disabled" >-->
+          <!--    <option value="xxx">姓名或ID为</option>-->
+          <!--  </select>-->
+          </div>
+    </div>
+    <div class="controls col-xs-5">
+        <input type="text" id="classa" name="name" class="form-control input-xlarge " style="height:30px"  >  
+          <!--<datalist id="cat">    -->
+          <!--    <option value=""></option>-->
+          <!--      <volist name="datalistarr" id="vo">-->
+          <!--       <option value="{$vo.name}"></option>-->
+          <!--      </volist>    -->
+          <!--</datalist>  -->
+    </div>
+	
+</div>	
+
+
+	
+
+
+
+
+	<div class="form-group">
+		<div class="col-xs-offset-2 col-xs-10">
+			<button type="submit" class="btn btn-default">开始查询</button>
+		</div>
+	</div>
+</form>
+
+<div class="container">
+    <div class="row">
+<p id='info'> {$inforesult}    </p>           
+    </div>
+</div>
+
+
+
+
+
+							</div><!-- /.col -->					
+							
+		
+		
+		
+							
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+		$(function(){
+
+			$(".check-all").click(function(){
+				$(".uids").prop("checked", this.checked);
+			});
+			$(".uids").click(function(){
+				var option = $(".uids");
+				option.each(function(i){
+					if(!this.checked){
+						$(".check-all").prop("checked", false);
+						return false;
+					}else{
+						$(".check-all").prop("checked", true);
+					}
+				});
+			});
+			
+			$("#alldel").click(function(){
+				bootbox.confirm({
+					title: "系统提示",
+					message: "是否要删除所选？", 
+					callback:function(result){
+						if(result){
+							$("#form").submit();
+						}
+					},
+					buttons: {
+					    "confirm" : {
+								"label" : "确定",
+								"className" : "btn-danger"
+							},
+						"cancel" : {"label" : "取消"}
+
+					}
+				});
+			});
+			$(".del").click(function(){
+				var url = $(this).attr('val');
+				bootbox.confirm({
+					title: "系统提示",
+					message: "是否要该用户?", 
+					callback:function(result){
+						if(result){
+							window.location.href = url;
+						}
+					},
+					buttons: {	
+					    "cancel" : {"label" : "取消"},
+						"confirm" : {
+								"label" : "确定",
+								"className" : "btn-danger"
+							}
+					
+					}
+				});
+			});
+			
+			
+		})
+		</script>
+	</body>
+</html>

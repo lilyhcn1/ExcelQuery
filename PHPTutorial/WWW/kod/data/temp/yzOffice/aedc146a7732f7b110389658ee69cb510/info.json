@@ -1,0 +1,31 @@
+{
+    "currentStep": 1,
+    "success": 1,
+    "taskUuid": "95e3dcd62fdea5e64e3bbd8ed4caf52a",
+    "hideData": [],
+    "steps": [
+        {
+            "name": "upload",
+            "process": "uploadProcess",
+            "status": 2,
+            "result": {
+                "result": 0,
+                "data": "6e56d97e-36e1-45b5-9491-2ccb536f4ecd\/Sample_11_ReadWord2007.docx",
+                "message": "转换成功"
+            }
+        },
+        {
+            "name": "convert",
+            "process": "convert",
+            "status": 2,
+            "result": {
+                "result": 0,
+                "data": [
+                    "http:\/\/www.yozodcs.com:8000\/2018\/01\/11\/MTgwMTExOTM1MjA1MjIx.html"
+                ],
+                "message": "转换成功",
+                "type": 0
+            }
+        }
+    ]
+}
