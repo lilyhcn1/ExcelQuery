@@ -238,14 +238,16 @@ public function update($id=0){
 		if($id){
 			$db->data($data)->where('id='.$id)->save();
 			$flag=$id;
+			$this->success('恭喜，操作成功！',U("Ud/magrecords?sheetname=$sheetname"));
 		}else{
 			$flag=$db->data($data)->add();
+			$this->success('恭喜，操作成功！',U("Ud/updatetoadd?id=$flag"));
 		}
 		
 // 		pr($flag);
 // 		$this->success('恭喜，操作成功！',U("Ud/addedit"),7);
 		
-		$this->success('恭喜，操作成功！',U("Ud/updatetoadd?id=$flag"));
+		
 // 		{:U('RwxyCom/echoiddata')}?id={$id}
 				
 }

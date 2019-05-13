@@ -950,7 +950,7 @@ public function simpletable($data){
      $firstline='';
 foreach ($data as $rows2) {
     foreach ($rows2 as $key2=>$value2) {
-        $firstline=$firstline.'<th>'.$key2.'</th>';
+        $firstline=$firstline.'<th>'.$key2.'</b></th>';
     }
         if(!empty($firstline)){
             $firstline='<tr>'.$firstline.'</tr>';
@@ -964,7 +964,11 @@ $textsymbol=C('TEXTSYMBOL');
 $temp2='';   
 foreach ($data as $rows) {
     $temp22='';
+    $n=0;
     foreach ($rows as $key=>$value) {
+        // $n++;
+        // pr($n);
+        $tablestyle=($n % 2 == 0)?'class="success"':'class="warning"';
     // $value=$this->deltextsymbol($value); 
         if($this->isnum($value) ){
             $temp22=$temp22
@@ -972,7 +976,8 @@ foreach ($data as $rows) {
 
         }else{
             $temp22=$temp22
-          .'<td>'.$value.'</td>';                 
+        //   .'<td '.$tablestyle.' >'.$value.'</td>';   
+          .'<td >'.$value.'</td>';   
         }
        
     }

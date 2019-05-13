@@ -10,10 +10,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<include file="Public/head" />
-  <!--<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">-->
-  <!--<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>-->
-		 <!--<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>    -->
-		    
+
+
 		    
    </head>
 
@@ -145,23 +143,14 @@ for (let i in jsonObj) {
     }
     jsonArr[i]=temp; //属性
 }     
-
-    // console.log(i,":",jsonArr);
-
 for(let i in jsonArr) {
-    
-    // console.log(i,":",jsonArr[i]);
     var ff="#"+i
-
-
-$(ff).autocomplete({
-    minLength: 0,
-    source: jsonArr[i],
-}).focus(function() {
-    $(this).autocomplete("search", $(this).val());
-});
-    
-
+    $(ff).autocomplete({
+        minLength: 0,
+        source: jsonArr[i],
+    }).focus(function() {
+        $(this).autocomplete("search", $(this).val());
+    });
 }
       
 });
