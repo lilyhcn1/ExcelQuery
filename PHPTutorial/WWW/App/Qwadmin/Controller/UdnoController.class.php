@@ -8,10 +8,11 @@
 * 功能说明：用户控制器。
 *
 **/
-namespace Qwadmin\Controller;
-use Qwadmin\Controller\ComController;
-class UdController extends ComController {
 
+namespace Qwadmin\Controller;
+use Common\Controller\BaseController;
+use Think\Controller;
+class UdnoController extends BaseController{
 
 public function index(){
         $url=U($Think.CONTROLLER_NAME.'/sheetindex');
