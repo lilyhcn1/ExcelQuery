@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="800,60" sizebox="5,5,5,5" roundcorner="7,7"  caption="0,0,0,60">
+    <VerticalLayout name="background" width="800" height="60" bkimage="file='IMAGE_EXPLORE_BACKGROUND' corner='2,120,2,35'" >
+        <!--<HorizontalLayout float="true" height="60" bkcolor="#FF1495E7">	-->
+            <HorizontalLayout name="TitleLeft"  height="60" >
+				<Label name="LabelSearchIcon" float="true"  pos="20,15,130,47" bkimage="file='IMAGE_SEARCHICON' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA"  relativepos="10,13" />
+				<Button name="ButtonGoBack" float="true" pos="702,15,0,0" tooltip="后退" statusimage="file='BT_GOBACK' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" relativeside="left" relativepos="139,23" />
+				<Button name="ButtonForward" float="true" pos="702,15,0,0" tooltip="前进" statusimage="file='BT_FORWARD' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" relativeside="left" relativepos="170,23" />
+				<Edit name="EditSearch" float="true" pos="221,15,581,45" bkcolor="#FFFFFFFF" nativebkcolor="#FFFFFFFF" padding="20,10,10,10" textpadding="10,0,10,0" textcolor="#FF2E3033" disabledtextcolor="#FFA7A6AA" />	
+                <Button name="ButtonSearch" float="true" pos="581,15,0,0"  text="" statusimage="file='BT_PLATFORM_SEARCH' restype='PNG'" textcolor="#FFF0F0F0" disabledtextcolor="#FFA7A6AA" align="center" />
+				<Button name="ButtonMin" float="true" pos="702,15,0,0" tooltip="最小化" statusimage="file='BT_PLATFORM_MIN' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" relativeside="right" relativepos="99,15" />
+				<Button name="ButtonMax" float="true" pos="720,10,0,0"  tooltip="最大化" statusimage="file='BT_MAX' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" relativeside="right" relativepos="67,15" />
+				<Button name="ButtonResore" float="true" pos="720,10,0,0"  tooltip="还原" statusimage="file='BT_RESORE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" visible="false" relativeside="right" relativepos="67,15"/>
+				<Button name="ButtonClose" float="true" pos="756,15,0,0"  tooltip="关闭" statusimage="file='BT_PLATFORM_CLOSE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" relativeside="right" relativepos="37,15"/>
+            </HorizontalLayout>                
+       <!-- </HorizontalLayout>	-->
+		
+		<!--<HorizontalLayout name="LayoutWebKit" >
+			<HorizontalLayout name="SearchOption" width="141"/>
+            <wkeWebkit name="webkit" />  
+        </HorizontalLayout>	-->
+		
+        <!--<HorizontalLayout height="17">
+            <Label name="statusbar" text="" float="true" pos="10,0,0,0" width="820" height="18" textcolor="#FF8E8E91" font="0" />
+        </HorizontalLayout>	-->
+    </VerticalLayout>
+</Window>

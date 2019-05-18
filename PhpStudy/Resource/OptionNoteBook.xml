@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="340,450" sizebox="4,4,6,6" caption="0,0,0,0" >
+    <Container name="ContainerNoteBookUI" float="flase" pos="0,0,335,450" width="335" height="450"  bkcolor="#FFFFFFFF">
+		<Container  name="PageLayerFirstLayer"  float="true"  pos="0,0,335,450" width="335" height="450" bkcolor="#FFFFFFFF" />
+		<Container name="PageLayerSecondLayer"  float="flase"  pos="0,0,335,450" width="335" height="450" bkcolor="#FFFFFFFF"	/>
+    </Container>	
+</Window>

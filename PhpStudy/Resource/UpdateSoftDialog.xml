@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="590,415" sizebox="5,5,5,5" roundcorner="7,7"  caption="0,0,0,415">
+    <VerticalLayout name="background" width="430" height="50" bkimage="file='IMAGE_UPDATEBG' restype='PNG'"  bkcolor="#FFF0F0F8" > 
+        <Label name="LabelTitle" text="" float="true" pos="24,10,0,0"  width="200" height="31" font="1" textcolor="#FF8E8E91" font="5"/>
+		<Button name="ButtonUpdateClose" float="true" pos="549,0,0,0"  tooltip="关闭" statusimage="file='BT_CLOSE_UPDATE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+		
+		<Button name="ButtonUpdate" float="true" pos="400,388,0,0"  textcolor="#FF000000" statusimage="file='BT_UPDATESOFT' restype='PNG'" disabledtextcolor="#FFA7A6AA" align="center" />
+		<Button name="ButtonCancle" float="true" pos="515,388,0,0"  textcolor="#FF000000" statusimage="file='BT_CANCLEUPDATE' restype='PNG'"  disabledtextcolor="#FFA7A6AA" align="center" />
+    </VerticalLayout>
+</Window>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window sizebox="0,0,0,0" roundcorner="0,0" caption="0,0,0,0" size="141,540" sizebutton="131,484" sizeborder="0,0" sizetypearea="1,6" sizeitemspace="6,12">
+    <HorizontalLayout name="SearchOptionLayout" pos="0,0,141,540" width="141" heght="540" bkcolor="#FFFFFFFF" bordercolor="#FFECEDED" bordersize="1">
+    </HorizontalLayout>	
+</Window>

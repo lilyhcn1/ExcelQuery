@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window sizebox="0,0,0,0" roundcorner="0,0" caption="0,0,0,0" size="784,484" >
+    <HorizontalLayout name="HorizontalLayoutUI1" pos="0,0,100,107" width="784" height="107" bkcolor="#FFFFFFFF">
+		
+    </HorizontalLayout>	
+</Window>

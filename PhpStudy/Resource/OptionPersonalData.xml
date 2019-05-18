@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="346,433" sizebox="4,4,6,6" caption="0,0,0,0">
+    <Container name="ContainerUI1" pos="0,0,346,433" width="346" height="433" bkcolor="#FFFFFFFF">
+		<Label name="LabelHead" float="true"  pos="20,52,85,109" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" relativepos="282,14"/>
+		<Button name="ButtonChangeHead" float="true" pos="280,75,0,0" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_CUSTOMFRAME_CHANGEHEAD' restype='PNG'" font="3"/>
+		<Label name="LabelUserID" text="I D：" float="true" pos="50,16,82,35" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		<Edit name="EditUserID" float="true" pos="83,15,263,38" align="left" mouse="false" bkcolor="#FFFFFFFF" focusbordercolor="#FF7881B5" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF999999" disabledtextcolor="#FFA7A6AA" />
+		
+		<Label name="LabelMail" text="邮箱：" float="true" pos="42,48,82,66" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		<Edit name="EditMail" float="true" pos="83,45,263,68" tooltip="请输入你的电子邮件" mouse="false" readonly="true" bkcolor="#FFFFFFFF" bordercolor="#00868686"    focusbordercolor="#FF7881B5" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+		
+		<Label name="LabelSex" text="性别：" float="true" pos="42,78,82,90" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		<RadioButton name="RadioKeep" float="true"  grouped="true" groupid="1" textcolor="#FF000000" pos="91,78,157,90" textpadding="12,0,0,0" text=" 保密" normalimage="file='RADIO_NORMAL' restype='PNG'"  checkedimage="file='RADIO_CHECKED' restype='PNG'"/>
+		<RadioButton name="RadioMankind" float="true" grouped="true" groupid="1" textcolor="#FF000000" pos="143,78,179,90" textpadding="12,0,0,0" text=" 男" normalimage="file='RADIO_NORMAL' restype='PNG'"  checkedimage="file='RADIO_CHECKED' restype='PNG'"/>
+		<RadioButton name="RadioFemale" float="true"  grouped="true" groupid="1" textcolor="#FF000000" pos="187,78,223,90" textpadding="12,0,0,0" text=" 女" normalimage="file='RADIO_NORMAL' restype='PNG'"  checkedimage="file='RADIO_CHECKED' restype='PNG'"/>
+		
+		<Label name="LabelNowMoney" text="余额：" float="true" pos="42,108,82,128" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		<Edit name="EditNowMoney" float="true" pos="83,105,263,128" mouse="false" readonly="true" bkcolor="#FFFFFFFF" bordercolor="#00868686"    focusbordercolor="#FF7881B5" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+		
+		<Label name="LabelScoreCount" text="积分：" float="true" pos="42,138,82,158" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		<Edit name="EditScoreCount" float="true" pos="83,135,263,158" mouse="false" readonly="true" bkcolor="#FFFFFFFF" bordercolor="#00868686"    focusbordercolor="#FF7881B5" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+		
+		<Label name="LabelNickName" text="昵称：" float="true" pos="42,168,82,188" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		<Edit name="EditNickName" float="true" pos="83,165,263,188" tooltip="请输入你的用户昵称" bkcolor="#FFFFFFFF" bordercolor="#00868686"    focusbordercolor="#FF7881B5" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+		
+		<Label name="LabelJob" text="职业：" float="true" pos="42,198,82,218" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />	
+		<Combo name="ComboJob" float="true" pos="83,195,263,218" dropboxsize="0,150" dropboxbkColor="#FFFFFFFFF" dropboxborderColor="#FF000000" textpadding="3,0,0,0"itemtextpadding="3,0,0,0"  itemtextcolor="#FF000000" itemselectedtextcolor="#FF000000" itemselectedbkcolor="#FFFFFFFF" itemhottextcolor="#FF000000" itemhotbkcolor="#FF4875A3" itemdisabledtextcolor="#FFCCCCCC" itemdisabledbkcolor="#FFFFFFFF" normalimage="file='COMBO_NORMAL' restype='PNG' corner='3,3,16,3'" hotimage="file='COMBO_HOT' restype='PNG' corner='3,3,16,3'" pushedimage="file='COMBO_PUSHED' restype='PNG' corner='3,3,16,3'">
+			<ListLabelElement text="请选择职位" select="true" />
+			<ListLabelElement text="学生" select="true"/>
+			<ListLabelElement text="页面重构设计" />
+			<ListLabelElement text="Web前端工程师" />
+			<ListLabelElement text="JS工程师" />
+			<ListLabelElement text="PHP开发工程师" />
+			<ListLabelElement text="JAVA开发工程师" />
+			<ListLabelElement text="移动开发工程师" />
+			<ListLabelElement text="软件测试工程师" />
+			<ListLabelElement text="linux系统工程师" />
+			<ListLabelElement text="交互设计师" />
+			<ListLabelElement text="产品经理" />
+			<ListLabelElement text="数据库工程师" />
+			<ListLabelElement text="UI设计师" />
+			<ListLabelElement text="CG影视动画" />
+			<ListLabelElement text="全栈工程师" />
+		</Combo>
+		
+		<Label name="LabelRealName" text="姓名：" float="true" pos="42,228,82,248" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		<Edit name="EditRealName" float="true" pos="83,225,263,248" tooltip="请输入你的真实姓名" bkcolor="#FFFFFFFF" bordercolor="#00868686"    focusbordercolor="#FF7881B5" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+		
+		<Label name="LabelMobileNumber" text="手机号：" float="true" pos="28,258,82,278"  textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		<Edit name="EditMobileNumber" float="true" pos="83,255,263,278" tooltip="请输入你的手机号码" bkcolor="#FFFFFFFF" bordercolor="#00868686"    focusbordercolor="#FF7881B5" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+		
+		<Label name="LabelQQNumber" text="QQ号：" float="true" pos="32,288,82,308" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		<Edit name="EditQQNumber" float="true" pos="83,285,263,308" tooltip="请输入你的QQ号码" bkcolor="#FFFFFFFF" bordercolor="#00868686"    focusbordercolor="#FF7881B5" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+		
+		<Label name="LabelSignature" text="个性签名：" float="true" pos="17,318,82,338" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		<Edit name="EditSignature" float="true" pos="83,315,333,338" tooltip="请输入你的个性签名" bkcolor="#FFFFFFFF" bordercolor="#00868686"    focusbordercolor="#FF7881B5" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" />
+
+		<Button name="ButtonSave" float="true" pos="130,362,0,0" text="保存" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_BUTTON_ITEM' restype='PNG'" font="3"/>	
+    </Container>
+</Window>

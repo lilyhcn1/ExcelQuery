@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="346,433" sizebox="6,6,6,6" roundcorner="0,0" caption="0,0,0,0">
+<Font name="宋体" size="16" bold="false" italic="false" default="true" />
+    <VerticalLayout name="HorizontalLayoutUI" float="true" width="346" height="433" bkcolor="#FFFFFFFF" >
+		<!-- 客户区 -->
+		<VerticalLayout>
+			<Label name="LabelGlobalTitle" text="全局热键" float="true" pos="35,10,0,0"  width="200" height="31" textcolor="#FF229BE9" font="2"/>
+			<Label name="LabelLine"  float="true" pos="35,42,315,43" textcolor="#FF2E3033" bkimage="file='IMAGE_LINE' restype='PNG'" />
+			<Label name="LabelSearchKey" text="搜索键	：" float="true" pos="74,180,0,0"  width="200" height="31" textcolor="#FF7F7F7F"  />	
+			<!-- <Label name="LabelShowKey" text="显示键	：" float="true" pos="70,75,0,0"  width="200" height="31" textcolor="#FF31486a"  font="2"/> -->
+			<!-- <Label name="LabelHideKey" text="隐藏键	：" float="true" pos="70,110,0,0"  width="200" height="31" textcolor="#FF31486a"  font="2"/> -->
+			<!-- <Label name="LabelLogoutKey" text="注销键	：" float="true" pos="70,142,0,0"  width="200" height="31" textcolor="#FF31486a"  font="2"/> -->
+			<Button name="ButtonCommit" float="true" pos="130,362,0,0" text="保存" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" align="center" statusimage="file='BT_BUTTON_ITEM' restype='PNG'" font="3"/>
+		</VerticalLayout>
+    </VerticalLayout>
+</Window>

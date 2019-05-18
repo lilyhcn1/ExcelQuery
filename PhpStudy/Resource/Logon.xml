@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="430,330" sizebox="6,6,6,6" roundcorner="0,0" caption="0,0,0,165">
+<Font name="宋体" size="16" bold="false" italic="false" default="true" />
+    <HorizontalLayout name="HorizontalLayoutUI" float="true" width="430" height="330" bkimage="file='DLG_LOGON_BACK' restype='PNG'">
+        <Button name="ButtonMin" float="true" pos="380,0,328,33" tooltip="最小化" statusimage="file='BT_LOGON_MIN' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+        <Button name="ButtonClose" float="true" pos="406,0,363,33"  tooltip="关闭" statusimage="file='BT_LOGON_CLOSE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+		
+		<Combo name="ComboAccounts" float="true" pos="130,181,342,208"  dropboxsize="0,150"  dropboxbkColor="#FFF5F5F5" dropboxborderColor="#FF0090E2" itemtextpadding="6,0,0,0"  itemtextcolor="#FF0090E2" itemselectedtextcolor="#FF000000" itemselectedbkcolor="#FFF5F5F5" itemhottextcolor="#FFFFFFFF" itemhotbkcolor="#FF4094E6" itemdisabledtextcolor="#FFCCCCCC" itemdisabledbkcolor="#FFFFFFFF"  normalimage="file='LOGON_COMBO_NORMAL' restype='PNG'" hotimage="file='LOGON_COMBO_HOT' restype='PNG'" pushedimage="file='LOGON_COMBO_PUSHED' restype='PNG'" />
+		
+		<Edit name="EditAccounts" float="true" pos="130,184,310,208"  bkcolor="#FFFFFFFF" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF7F7F7F" disabledtextcolor="#FFA7A6AA" />
+		
+		<Edit name="EditPassword" float="true" pos="130,214,330,241" bkcolor="#FFFFFFFF" nativebkcolor="#FFFFFFFF" textpadding="4,3,4,3" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" /> 
+        <Button name="ButtonLogon" float="true" pos="90,280,544,235" statusimage="file='BT_ENTER' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" />
+		<Button name="ButtonRegister" float="true" pos="360,187,398,225"  statusimage="file='BT_LOGON_ITEM1' restype='PNG'" textcolor="#FFffba00" disabledtextcolor="#FFA7A6AA" align="center" />
+		<Button name="ButtonCleanAccounts" float="true" pos="360,217,428,255"  statusimage="file='BT_LOGON_ITEM2' restype='PNG'" textcolor="#FFffba00" disabledtextcolor="#FFA7A6AA" align="center" />
+		<Button name="ButtonVisitorLogon" float="true" pos="285,256,0,0" tooltip="游客可离线登录" statusimage="file='BT_LOGON_VISITOR' restype='PNG'" textcolor="#FFffba00" disabledtextcolor="#FFA7A6AA" align="center" />
+		<CheckButton name="CheckButtonPasswd" float="true" textcolor="#FF656565" pos="95,254,188,270" textpadding="16,0,0,0" text=" 记住密码" normalimage="file='CHECK_NORMAL' restype='PNG'"  checkedimage="file='CHECK_CHECKED' restype='PNG' " font="6"/>
+		<Text name="TextForgetPassword" text="忘记密码" float="true" pos="272,255,330,271" textcolor="#FF656565" disabledtextcolor="#FFA7A6AA" />	
+    </HorizontalLayout>
+</Window>

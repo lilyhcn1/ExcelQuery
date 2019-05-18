@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="886,600" sizebox="5,5,5,5" roundcorner="7,7"  caption="0,0,0,50">
+    <VerticalLayout name="background" width="886" height="23" bkimage="file='IMAGE_EXPLORE_BACKGROUND' corner='2,120,2,35'"  bkcolor="#FFFFFFFF" >
+        <HorizontalLayout height="23" bkcolor="#FF1495E7">
+            <HorizontalLayout name="TitleLeft"  height="23">
+                <Label name="LabelTitle" text="" float="true" pos="24,10,0,0"  width="200" height="31" font="1" textcolor="#FF8E8E91" font="5"/>
+				<Button name="ButtonBack" float="true" pos="750,15,0,0" statusimage="file='BT_NOTEBOOK_BACK' restype='PNG'"  textcolor="#FF000000" align="center" relativeside="right" relativepos="146,5"/>			
+				<Button name="ButtonMin" float="true" pos="702,15,0,0" tooltip="最小化" statusimage="file='BT_PLATFORM_MIN' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" relativeside="right" relativepos="85,0" />
+				<Button name="ButtonMax" float="true" pos="720,10,0,0"  tooltip="最大化" statusimage="file='BT_MAX' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" relativeside="right" relativepos="54,0" />
+				<Button name="ButtonResore" float="true" pos="720,10,0,0"  tooltip="还原" statusimage="file='BT_RESORE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" visible="false" relativeside="right" relativepos="54,0"/>
+				<Button name="ButtonClose" float="true" pos="756,15,0,0"  tooltip="关闭" statusimage="file='BT_PLATFORM_CLOSE' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" relativeside="right" relativepos="24,0"/>
+            </HorizontalLayout>                
+        </HorizontalLayout>
+		<!--<HorizontalLayout height="45">  
+            <Button name="btnBack" text="向前" width="115" height="36" normalimage="button\btn_new_normal.png" hotimage="button\btn_new_hover.png" pushedimage="button\btn_new_down.png" textcolor="#001C1C1C" font="0" textpadding="10,0,0,0"/>
+            <Button name="btnforward" text="向后" width="115" height="36" normalimage="button\btn_delete_normal.png" hotimage="button\btn_delete_hover.png" pushedimage="button\btn_delete_down.png" textcolor="#001C1C1C" font="0" textpadding="10,0,0,0"/>
+            <Edit name="urlEdit" padding="10,5,0,0" textpadding="5,5,5,5" textcolor="#646464"  bkcolor="#FFFFFFFF" nativebkcolor="#FFFFFFFF" width="350" height="28"  textcolor="#001C1C1C" font="0" />
+            <Button name="btnGo" text="前往" padding="10,0,0,0" width="115" height="36" statusimage="file='BT_ENTER' restype='PNG'" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center"/>
+            <Button name="btnRefresh" text="运行js命令" width="115" height="36" normalimage="button\btn_edit_normal.png" hotimage="button\btn_edit_hover.png" pushedimage="button\btn_edit_down.png" textcolor="#001C1C1C" font="0" textpadding="10,0,0,0"/>                   
+        </HorizontalLayout>	-->
+        <HorizontalLayout name="LayoutWebKit" bkcolor="#FFFFFFFF">  <!-- 这里是wkeWebkit控件 -->
+            <wkeWebkit name="webkit"  bkcolor="#FFFFFFFF"/>  
+        </HorizontalLayout>
+        <HorizontalLayout name="LayoutStatusBar" height="17">
+            <Label name="statusbar" text="" float="true" pos="10,0,0,0" width="820" height="18" textcolor="#FF8E8E91" font="0" />
+        </HorizontalLayout>
+    </VerticalLayout>
+</Window>
