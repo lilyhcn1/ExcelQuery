@@ -72,7 +72,7 @@ foreach ($r as $k1=> $value) {
 }
 
 
-$echohtml="<div id='echohtml'> </div>".echoarrcontent($temp2);
+$echohtml=echoarrcontent($temp2);
 if(!empty($echohtml)){
     if($rnum>50 ){
     $temp9="(仅显示前50条)";}
@@ -88,7 +88,7 @@ if(!empty($echohtml)){
          $id=$value2['id'];
          $newarr1 =R($Think.CONTROLLER_NAME."/echoiddatacontent",array($id));
         //   pr($newarr1);
-        //   $echohtml .=R("Task/echoarrcontent",array($newarr1));
+          $echohtml .=R("Task/echoarrcontent",array($newarr1));
          $echohtml .=echoarrcontent($newarr1);
      }  
      // "<h3>以下为详细信息（若结果小于三条）：</h3>".
@@ -128,11 +128,25 @@ $arr=delemptyfield($arr);
 foreach ($arr as $key=> $value) {
 // $value=returnmsg($value,'weixin');
 if(!is_null($firstline[$key])){
-    // echo '432432423';pr($value);
-    if($this->isphone($value) ){
+    if($this->isimg($firstline,$key)){
+
+        $newarr[$firstline[$key]]="<a href=\"".$value."\" class=\"thumbnail\">
+                                        <img src=\"/temp".$value."\">
+                                    </a>";
+        // http://gcl.upsir.com/Public/timthumb.php?src=/Public/attached/201903/20190329_221732.jpg&w=200&h=200
+        
+        //  $newarr[$firstline[$key]] ="<img src=\"".$value."\" style=\"width:100%;height:?\" />";
+        // ;  
+        // $newarr[$firstline[$key]]="<img  alt="350*350" src="{/Public/attached/201903/1553393424.jpg|getLogo=###,350,350}" />"";  
+                
+        
+        // "<img src=\"".$value."\" style=\"width:100%;height:?\" />"
+    }elseif($this->isdateortime($firstline[$key])){
+        $newarr[$firstline[$key]]="<a href=\"/index.php/Qwadmin/".$Think.CONTROLLER_NAME."/uniquerydata.html?$key=$value\">".'<span class="glyphicon glyphicon-search"></span>'.exceldatechange($value)."</a>";
+ 
+    }elseif($this->isphone($value) ){
         $newarr[$firstline[$key]]="<a href=\"tel:$value\">".'<span class="glyphicon glyphicon-earphone"></span>'.$value."</a>";  
     }elseif($this->isurl($value)){
-        // pr('22222'.$value);
         $newarr[$firstline[$key]]=autolink($value);
     }elseif(mb_strlen($value)<20){
         // pr('333333'.$value);
@@ -223,7 +237,7 @@ if(empty($user_querypw)){
 
 
 $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
-$datalistarr=$db->where($querycon)->distinct(true)->field('name')->limit(1000)->order('id')->select();
+$datalistarr=$db->where($querycon)->distinct(true)->field('name')->order('id')->select();
 $datalistonearr=array_column($datalistarr,'name');
 $datalistonearr=delemptyfieldgetnew($datalistonearr);
 // pr($datalistonearr);
@@ -261,7 +275,6 @@ if(empty($querycontemp)){
     
     $inforesult=$this->echofieldcon($db,$querycon);
     // 查数据表
-    // echo "222222222222222222222";
     $inforesult .= $this->conquery($db,$querycon,$name);
 }
 
@@ -386,7 +399,7 @@ function querypersoninfo(){
 
         $inforesult .= $this->conquery($db,$queryconandid,"");
         if(!empty($sheetstr)){
-             $inforesult="<h3><p>您在【".$sheetstr."】数据表中的个人记录</p><h3>".$inforesult;
+             $inforesult="<h3><p>您在【".$sheetstr."】表中记录</p><h3>".$inforesult;
         } 
     }
         
@@ -415,8 +428,30 @@ function isurl($val){
         return false;         
     }
 }
+// 是否是图片
+function isimg($firstline,$key){
+$keystr=mb_substr($firstline[$key],0,2,"UTF-8");
+// pr($keystr);
+if($keystr=="照片"){
+    return true;
+}else{
+    return false;     
+}
+}
 
-
+// 是否是时间或日期
+function isdateortime($v){
+$keystr=mb_substr($v,-2,2,"UTF-8");    
+// pr($keystr,'keystr');
+    $f1=strstr($keystr,'时间 ');
+    $f2=strstr($keystr,'日期 ');
+    // pr($keystr);
+    if($f1 || $f2){
+        return true;
+    }else{
+        return false;     
+    }
+}
 
 
 
@@ -465,13 +500,16 @@ unset($con2['user']);
 unset($likecon['conall']);
 unset($likecon['wrpw']);  
 unset($likecon['user']); 
+
+
   
 $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
 
  
 // 0. 读取第一行
-    $sheetcon['sheetname']=$con2['sheetname'];
-    $queryfirst=$db->where($sheetcon)->order('id')->find(); 
+    // $sheetcon['sheetname']=$con2['sheetname'];
+    // $queryfirst=$db->where($sheetcon)->order('id')->find(); 
+    $queryfirst=$db->where($con2)->where($likecon)->order('id')->find(); 
     $queryfirst=delemptyfield($queryfirst);
 
 
@@ -522,12 +560,16 @@ $fieldstr=implode($field,',');
 // pr($fieldstr,'$fieldstr');
 
 
-    $notfirstline['id']=array('NEQ',$queryfirst['id']);
+    if(!empty($queryfirst['id'])){
+        $notfirstline['id']=array('NEQ',$queryfirst['id']);
+    }else{
+        $notfirstline['id']=array('NEQ',0);
+    }
     // pr($ordstr);
     $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
-// pr($con2,'con2');
-// pr($likecon,'likecon');
-    
+// pr($con2,'con211');
+// pr($likecon,'likecon22');
+// pr($query,'$query');    
     // 插入字段行
     $fieldline['0']=$field;
 // pr($field,'$field');
@@ -543,20 +585,20 @@ $fieldstr=implode($field,',');
         $firstline['0']=$firstlinearrtemp;
         
 
-  
     $temp=twoarraymerge($fieldline,$emptyline); 
+
     if(!empty($firstline)){
         $temp=twoarraymerge($temp,$firstline);  
     }
     $query=twoarraymerge($temp,$query);         
     }
-    // pr($query);
+// pr($query,'query');
 
 
     // // 输出结果
     $output=$this->simpletable($query); 
         if(count($query) < 4){
-            echo    $output="error, \nnothing \nis \nfound. \n";
+            echo    $output="error, \nnothing \nis \nfound3. \n";
         }else{
             echo $output;           
         }        
@@ -581,8 +623,8 @@ if(empty($data)){
     // C('EXCELSECRETSHEET');
     $con2=$this->constr2conarr($data,'eq');
     $likecon=$this->constr2conarr($data,'like');
-    // echo 343;pr($likecon);
-    // pr($con2);
+// echo 343;pr($likecon);
+// pr($con2);
     if($this->isadmin($con2)){
         unset($con2['rpw']);
         $this->echounisheetuni($dbsheetname,$con2,$likecon);
@@ -629,7 +671,8 @@ function isadmin($con) {
 public function constr2conarr($data,$type='eq') {
 foreach($data as $key=>$value){
         if(!empty($value)){
-            $con2[$key]=characettouft8(unicode_to_utf8($value));
+            // $con2[$key]=characettouft8(unicode_to_utf8($value));
+            $con2[$key]=$value;              //修正
         }
     }
 
@@ -778,7 +821,7 @@ $con2=$this->constr2conarr($data,'eq');
 
     $output=$this->simpletable($query); 
         if(count($query)<1){
-            echo    $output="error, \nnothing \nis \nfound. \n";
+            echo    $output="error, \nnothing \nis \nfound2. \n";
         }else{
             echo $output;           
         }    
@@ -883,7 +926,7 @@ if(empty($haveright)){
         $output="error, \npassword \nis \nwrong. \n";
     }
     if(count($query)<1){
-        $output="error, \nnothing \nis \nfound. \n";
+        $output="error, \nnothing \nis \nfound1. \n";
     }    
 return $output;     
 }
@@ -1100,7 +1143,7 @@ $DBNAME='rwxy';
 $DBSHEET='tzcdata';
 // $conall=$data['conall'];
 $con2=$this->constr2conarr($data,'eq');
-// pr($con2);
+// pr($con2,'$con2');
 // pr($data);
 unset($con2['conall']);
 $wrpw=$con2['wrpw'];
@@ -1115,7 +1158,8 @@ $replaceadd=$con2['replaceadd'];
 $con2temp=$con2;
 unset($con2temp['wrpw']);unset($con2temp['rpw']);unset($con2temp['namekey']);unset($con2temp['pidkey']);
 unset($con2temp['sheetname']);unset($con2temp['notfield']);
-
+// pr($wrpw,'$wrpw');
+// pr($sheetname,'$sheetname');
 if(!empty($wrpw) && !empty($sheetname)){  //pw非空再说
     $filenameright3=substr($filename,-3);
     if($filenameright3=="lsx"){
@@ -1240,6 +1284,7 @@ pr($data);
 $filename='C:/phpStudy/PHPTutorial/rw/Uploads/upload (1).csv';
 $this->dealuploadexcel($filename,$data);    
 } 
+
 
 
 

@@ -10,8 +10,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<include file="Public/head" />
-
-
+		 <!--<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>    -->
+		    
 		    
    </head>
 
@@ -38,19 +38,17 @@
 								<!-- PAGE CONTENT BEGINS -->
 								
 
-									<form class="form-horizontal" id="form" method="post" action="{:U('update')}">
+									<form class="form-horizontal" id="form" method="post" action="{:U('Ud/update')}">
 
 {$mynavline}
 <div class="col-xs-12">
 <if condition="empty($id) eq true">
     <div class="form-group">
-        <h3 align="center">  {$sheetname}</h3>
-        <h4 align="center">  新增数据</h4>
+        <h3 align="center"> 新增数据</h3>
     </div>
 <else /> 
     <div class="form-group">
-        <h3 align="center">  {$sheetname}</h3>
-        <h4 align="center">  更新数据</h4>
+        <h3 align="center">更新数据</h3>
     </div>
 </if>   
 <input type="hidden" name="id" value="{$id}">
@@ -135,7 +133,7 @@ var availableTags = new Array();
 
     var temp='<?php  echo json_encode($datalistonearr); ?>'
     var jsonObj  =JSON.parse(temp);
-
+    console.log("佛挡杀佛:",jsonObj);
      var jsonArr = [];
 
 for (let i in jsonObj) {
@@ -145,14 +143,23 @@ for (let i in jsonObj) {
     }
     jsonArr[i]=temp; //属性
 }     
+
+    // console.log(i,":",jsonArr);
+
 for(let i in jsonArr) {
+    
+    console.log(i,":",jsonArr[i]);
     var ff="#"+i
-    $(ff).autocomplete({
-        minLength: 0,
-        source: jsonArr[i],
-    }).focus(function() {
-        $(this).autocomplete("search", $(this).val());
-    });
+
+
+$(ff).autocomplete({
+    minLength: 0,
+    source: jsonArr[i],
+}).focus(function() {
+    $(this).autocomplete("search", $(this).val());
+});
+    
+
 }
       
 });

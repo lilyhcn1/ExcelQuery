@@ -5,9 +5,7 @@
 		<title>通用信息查询</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<include file="Public/head" /> 
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-  <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
   <!--<link rel="stylesheet" href="jqueryui/style.css">-->
 
 
@@ -106,20 +104,21 @@ $("#classa").val("<?php  echo I('get.name'); ?>");
 var availableTags = new Array();   
   // 自动完成功能
     // var availableTags ="[<?php echo $dataliststr?>]"
-    var temp='<?php  echo json_encode($datalistonearr); ?>'
+    var temp='<?php  echo json_encode($datalistonearr);?>'
     // console.log(temp)
         // var availableTags =eval(temp);
         // console.log(availableTags)
         var jsonObj  =JSON.parse(temp);
-
+ console.log("jsonObj",":",jsonObj);
 
 for(var i=0;i<getJsonLength(jsonObj);i++){
         availableTags[i]= jsonObj[i];
 }        
         // $('#classa').autocompleter('open')
-        $("#classa").autocomplete({
+    $("#classa").autocomplete({
           source: availableTags
     });
+    console.log("clsaasfd",":",availableTags);
     $( "#classa" ).autocomplete({
     select: function( event, ui ) {
         console.log(event);

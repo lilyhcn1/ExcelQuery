@@ -8,13 +8,16 @@
 * 功能说明：用户控制器。
 *
 **/
+
+
+
+
 namespace Qwadmin\Controller;
 use Qwadmin\Controller\ComController;
 class UdController extends ComController {
 
-
 public function index(){
-        $url=U($Think.CONTROLLER_NAME.'/sheetindex');
+        $url=U('Ud/sheetindex');
         	header("Location: $url");    
 }
 
@@ -28,7 +31,7 @@ $list=$this->echorecords($sheetname,'true');
 
 if(count($list)==1){
     $id=$list['0']['id'];
-    $this->success('......',U($Think.CONTROLLER_NAME."/addedit?id=$id"),0);
+    $this->success('......',U("Ud/addedit?id=$id"),0);
 }else{
     // $this->display();    
 }
@@ -46,7 +49,7 @@ $list=$this->echorecords($sheetname,'false');
 // pr($list,'$listfdsf');
 if(count($list)==1){
     $id=$list['0']['id'];
-    // $this->success('......',U($Think.CONTROLLER_NAME."/addedit?id=$id"),0);
+    // $this->success('......',U("Ud/addedit?id=$id"),0);
 }else{
     // $this->display();    
 }
@@ -104,11 +107,10 @@ public function add(){
 // pr($lastinputarr,'$lastinputarr');    
     // $echoarr=echoarrform($titlearr);
     $this->assign('id',$id);
-
     $this->assign('titlearr',$titlearr);
     $this->assign('idarr',$idarr);
     $this->assign('lastinputarr',$lastinputarr);
-    $this->assign('mynavline',R($Think.CONTROLLER_NAME.'/mynavline',array($sheetname,$id)));
+    $this->assign('mynavline',R('Ud/mynavline',array($sheetname,$id)));
     $this->display();            
 
 }
@@ -132,7 +134,6 @@ $db=M(C('EXCELSECRETSHEET'));
         $con['id']=$id;
         $con=$this->querycon($con,'true');
         $fillingarr=$db->where($con)->order('id asc')->find();
-        $sheetname=$fillingarr['sheetname'];
         // 再用自己的身份查查
         if(empty($fillingarr)){
                 $confalse['id']=$id;
@@ -148,9 +149,9 @@ $db=M(C('EXCELSECRETSHEET'));
 
         $querycon['sheetname']=$sheetname;
 
-        // if(empty($id)){
-        //     $lastfield='d1,d2,d3';
-        // }
+        if(empty($id)){
+            $lastfield='d1,d2,d3';
+        }
         
         $querycon=$this->querycon($querycon,'true');
 // pr($querycon,'$querycon3443');
@@ -158,16 +159,14 @@ $db=M(C('EXCELSECRETSHEET'));
 
         
 }
-
     $datalistonearr=$this->LastInputs($sheetname);
     // $datalistonearr[0]=["天台","临海"];
-
-    $this->assign('fillingarr',$fillingarr);
+    // $datalistonearr[1]=[111,222,333];
+    
     $this->assign('id',$id);
-    $this->assign('sheetname',$sheetname);    
     $this->assign('titlearr',$titlearr);
     $this->assign('datalistonearr',$datalistonearr);
-    $this->assign('mynavline',R($Think.CONTROLLER_NAME.'/mynavline',array($sheetname,$id)));
+    $this->assign('mynavline',R('Ud/mynavline',array($sheetname,$id)));
     $this->display();    
 }
 
@@ -238,18 +237,14 @@ public function update($id=0){
 		if($id){
 			$db->data($data)->where('id='.$id)->save();
 			$flag=$id;
-			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/updatetoadd?id=$flag"));
-// 			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/magrecords?sheetname=$sheetname"));
 		}else{
 			$flag=$db->data($data)->add();
-// 			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/magrecords?sheetname=$sheetname"));
-			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/updatetoadd?id=$flag"));
 		}
 		
 // 		pr($flag);
-// 		$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/addedit"),7);
+// 		$this->success('恭喜，操作成功！',U("Ud/addedit"),7);
 		
-		
+		$this->success('恭喜，操作成功！',U("Ud/updatetoadd?id=$flag"));
 // 		{:U('RwxyCom/echoiddata')}?id={$id}
 				
 }
@@ -261,14 +256,14 @@ if(empty($id)){
     $id=I('get.id');}
 $sheetname=session('sheetname');
 
-$newarr=R('Rwxy/echoiddatacontent',array($id));
+$newarr=R('RwxyCom/echoiddatacontent',array($id));
 
 // pr($id);
 // pr($newarr);
 // echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"".session('indexpage')."\">查询首页</a></h3>";
 
 
-$thisline=R($Think.CONTROLLER_NAME.'/mynavline',array($sheetname,$id));
+$thisline=R('Ud/mynavline',array($sheetname,$id));
 
 $echohtml=$thisline;
 $echohtml=$thisline."<br>";
@@ -406,11 +401,11 @@ public function echosheet($sheetnamearr,$sheetname,$magage='true'){
         // 管理数据表数据
         if($magage=='true'){
             $title='管理数据表';
-            $url= U($Think.CONTROLLER_NAME."/magrecords?sheetname=$sheetvalue");
+            $url= U("Ud/magrecords?sheetname=$sheetvalue");
             $inforesult1="<h3><p>".$title."</p><h3>";
         }else{
             $title='个人数据';
-            $url= U($Think.CONTROLLER_NAME."/magmyrecords?sheetname=$sheetvalue");
+            $url= U("Ud/magmyrecords?sheetname=$sheetvalue");
             $inforesult1="<h3><p>".$title."</p><h3>";
         }
         
@@ -459,7 +454,7 @@ if(!empty($id)){
     }
 }   
     if(empty($titlearr)){
-        $this->error('错误1231，请联系表单所有者！~',U($Think.CONTROLLER_NAME.'/sheetindex'));
+        $this->error('错误1231，请联系表单所有者！~',U('Ud/sheetindex'));
     }else{
         if($delempty='true'){
             $titlearr=delemptyfield($titlearr);
@@ -471,20 +466,16 @@ if(!empty($id)){
 
 public function mynavline($sheetname,$id){
         // <div class=\"col-xs-offset-2 \">
-// 	<div class=\"col-xs-3\">
-// 		<h3><a href=\"".U($Think.CONTROLLER_NAME."/mysheet?sheetname=$sheetname")."\">个人</a></h3>   
-// 	</div> 	
     $thisline="<div class=\"col-xs-12\">
 	<div class=\"col-xs-3\">
-		<h3><a href=\"".U($Think.CONTROLLER_NAME."/index?sheetname=$sheetname")."\">首页</a></h3>   
+		<h3><a href=\"".U("Ud/index?sheetname=$sheetname")."\">首页</a></h3>   
 	</div> 	
-
 	<div class=\"col-xs-3\">
-		<h3><a href=\"".U($Think.CONTROLLER_NAME."/addedit?sheetname=$sheetname")."\">新增</a></h3>   
+		<h3><a href=\"".U("Ud/mysheet?sheetname=$sheetname")."\">个人</a></h3>   
+	</div> 	
+	<div class=\"col-xs-3\">
+		<h3><a href=\"".U("Ud/addedit?sheetname=$sheetname")."\">新增</a></h3>   
 	</div>
-	<div class=\"col-xs-3\">
-		<h3><a href=\"".U($Think.CONTROLLER_NAME."/addedit?id=$id")."\">更改</a></h3>   
-	</div> 		
 	<div class=\"col-xs-3\">
 		<h3><a href=\"".U('RwxyCom/echoiddata?id='.$id)."\">查看</a></h3>   
 	</div>
@@ -548,14 +539,6 @@ public function LastInputs($sheetname="古村落"){
         //     $querycon[$key]=$value;
         // }
         $fieldstr=compute_fieldstr(C('MLNOTFIELD'));
-        
-        // 把首行排除掉
-        $firsrtlinearr=$db->where($querycon)->order('id asc')->limit(100)->distinct()->find();  
-        // pr($firsrtlinearr);
-        if(!empty($firsrtlinearr)){
-            $querycon['id']=array('neq',$firsrtlinearr['id']);
-        }
-        // pr($querycon);
         $datalistonearr=$db->where($querycon)->Field($fieldstr)->order('id desc')->limit(100)->distinct()->select();
         // pr($datalistonearr);
         // $datalistonearr=delemptyfield($datalistonearr);

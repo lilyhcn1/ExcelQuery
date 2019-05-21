@@ -4924,3 +4924,17 @@ httpd.exe: Could not open configuration file C:/PhpStudy/PHPTutorial/Apache/conf
 [Sun May 12 07:33:36.665985 2019] [mpm_winnt:notice] [pid 3320:tid 336] AH00418: Parent: Created child process 2964
 [Sun May 12 07:33:38.896789 2019] [mpm_winnt:notice] [pid 2964:tid 352] AH00354: Child: Starting 150 worker threads.
 [Sun May 12 08:08:55.034510 2019] [mpm_winnt:crit] [pid 2964:tid 352] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Sun May 12 08:20:19.944514 2019] [core:warn] [pid 4464:tid 336] AH00098: pid file C:/PhpStudy/PHPTutorial/Apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sun May 12 08:20:20.552915 2019] [mpm_winnt:notice] [pid 4464:tid 336] AH00455: Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9 configured -- resuming normal operations
+[Sun May 12 08:20:20.552915 2019] [mpm_winnt:notice] [pid 4464:tid 336] AH00456: Server built: Jul  1 2016 16:42:20
+[Sun May 12 08:20:20.552915 2019] [core:notice] [pid 4464:tid 336] AH00094: Command line: 'C:\\PhpStudy\\PHPTutorial\\Apache\\bin\\httpd.exe -d C:/PhpStudy/PHPTutorial/Apache'
+[Sun May 12 08:20:20.568515 2019] [mpm_winnt:notice] [pid 4464:tid 336] AH00418: Parent: Created child process 4256
+[Sun May 12 08:20:22.627718 2019] [mpm_winnt:notice] [pid 4256:tid 352] AH00354: Child: Starting 150 worker threads.
+[Sun May 12 08:21:02.706189 2019] [mpm_winnt:crit] [pid 4256:tid 352] AH02538: Child: Parent process exited abruptly. Child process is ending
+[Mon May 20 22:46:28.985630 2019] [core:warn] [pid 2164:tid 336] AH00098: pid file C:/PhpStudy/PHPTutorial/Apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Mon May 20 22:46:29.500431 2019] [mpm_winnt:notice] [pid 2164:tid 336] AH00455: Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9 configured -- resuming normal operations
+[Mon May 20 22:46:29.500431 2019] [mpm_winnt:notice] [pid 2164:tid 336] AH00456: Server built: Jul  1 2016 16:42:20
+[Mon May 20 22:46:29.500431 2019] [core:notice] [pid 2164:tid 336] AH00094: Command line: 'C:\\PhpStudy\\PHPTutorial\\Apache\\bin\\httpd.exe -d C:/PhpStudy/PHPTutorial/Apache'
+[Mon May 20 22:46:29.516031 2019] [mpm_winnt:notice] [pid 2164:tid 336] AH00418: Parent: Created child process 1468
+[Mon May 20 22:46:31.388034 2019] [mpm_winnt:notice] [pid 1468:tid 352] AH00354: Child: Starting 150 worker threads.
+[Tue May 21 23:28:34.148393 2019] [mpm_winnt:crit] [pid 1468:tid 352] AH02538: Child: Parent process exited abruptly. Child process is ending
