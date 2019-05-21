@@ -8,13 +8,10 @@
 * 功能说明：用户控制器。
 *
 **/
-
-
-
-
 namespace Qwadmin\Controller;
 use Qwadmin\Controller\ComController;
 class UdController extends ComController {
+
 
 public function index(){
         $url=U('Ud/sheetindex');
@@ -134,6 +131,7 @@ $db=M(C('EXCELSECRETSHEET'));
         $con['id']=$id;
         $con=$this->querycon($con,'true');
         $fillingarr=$db->where($con)->order('id asc')->find();
+        $sheetname=$fillingarr['sheetname'];
         // 再用自己的身份查查
         if(empty($fillingarr)){
                 $confalse['id']=$id;
@@ -161,8 +159,8 @@ $db=M(C('EXCELSECRETSHEET'));
 }
     $datalistonearr=$this->LastInputs($sheetname);
     // $datalistonearr[0]=["天台","临海"];
-    // $datalistonearr[1]=[111,222,333];
-    
+
+    $this->assign('fillingarr',$fillingarr);
     $this->assign('id',$id);
     $this->assign('titlearr',$titlearr);
     $this->assign('datalistonearr',$datalistonearr);
@@ -237,14 +235,17 @@ public function update($id=0){
 		if($id){
 			$db->data($data)->where('id='.$id)->save();
 			$flag=$id;
+			$this->success('恭喜，操作成功！',U("Ud/magrecords?sheetname=$sheetname"));
 		}else{
 			$flag=$db->data($data)->add();
+// 			$this->success('恭喜，操作成功！',U("Ud/magrecords?sheetname=$sheetname"));
+			$this->success('恭喜，操作成功！',U("Ud/updatetoadd?id=$flag"));
 		}
 		
 // 		pr($flag);
 // 		$this->success('恭喜，操作成功！',U("Ud/addedit"),7);
 		
-		$this->success('恭喜，操作成功！',U("Ud/updatetoadd?id=$flag"));
+		
 // 		{:U('RwxyCom/echoiddata')}?id={$id}
 				
 }
