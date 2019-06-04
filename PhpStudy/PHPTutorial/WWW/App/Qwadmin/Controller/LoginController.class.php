@@ -37,6 +37,7 @@ class LoginController extends BaseController {
 				if($token == $user['token'] && $user['identifier'] == password($user['uid'].md5($user['user'].$salt))){
 					$flag = true;
 					$this->USER = $user;
+					
 				}
 			}
 		}

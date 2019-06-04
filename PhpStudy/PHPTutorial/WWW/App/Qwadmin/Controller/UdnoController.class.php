@@ -5,7 +5,6 @@
 * 作    者：老黄牛<53053056>
 * 日    期：2018
 * 版    本：1.0.0
-* 功能说明：用户控制器。
 *
 **/
 
@@ -24,7 +23,21 @@ public function index(){
 public function magrecords(){
 $sheetname=I('get.sheetname');
 $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
-$wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
+// $wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
+
+    if(empty($this->USER)){
+        if(!empty(I('get.wrpw'))){
+            session('wrpw',I('get.wrpw'));
+        }
+        $wrpw=empty(session('wrpw'))?C('MLRPW'):session('wrpw');
+    }else{
+        $wrpw=$this->USER['wrpw']?$this->USER['wrpw']:C('MLRPW');
+    }
+ 
+    session('wrpw',$wrpw);  
+    
+// pr($wrpw);
+
 $list=$this->echorecords($sheetname,'true');
 
 if(count($list)==1){
@@ -224,6 +237,18 @@ public function update($id=0){
 
 
         $user=empty($data[$paraarr['pidkey']])?$this->USER['user']:$data[$paraarr['pidkey']];
+
+	    // 保存文件并保存链接
+	   // pr($_FILES,'$_FILES');
+	    if($this->fileisnotempty($_FILES)){
+    	    $uploadfilearr=savefile();
+    	    foreach ($uploadfilearr as $k4=>$v4) {
+    	        $data[$k4]=$v4;
+    	    }
+	        
+	    }
+
+
         $data['name']=$data[$paraarr['namekey']];
         // $data['pid']=$data[$paraarr['pidkey']];
         $data['pid']=$user;
@@ -234,6 +259,9 @@ public function update($id=0){
 	    
 	    $data['custom1'] = json_encode($paraarr);	
 // pr($data,'data34322');	    
+	    
+
+	    
 	    
         $db=M(C('EXCELSECRETSHEET'));        
 		if($id){
@@ -294,7 +322,16 @@ $querycon=I('get.');
 $querycon=delemptyfield($querycon);
 
 // pr($this->USER,'$this->USER');
-    $user_querywrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
+    if(empty($this->USER)){
+        session('wrpw',I('get.wrpw'));
+        $user_querywrpw=empty(session('wrpw'))?C('MLRPW'):session('wrpw');
+        
+    }else{
+        $user_querywrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
+    }
+    session('wrpw',$user_querywrpw);
+    
+    
     $querycon['wrpw']=array("in",returncomma($user_querywrpw));
 
 // pr($querycon,'$querycon');
@@ -344,6 +381,8 @@ public function echorecords($sheetname,$magage='true'){
     $querycon['sheetname']=$sheetname;    
 $titlearrall=$this->gettitlearr($sheetname);
 
+
+// pr($querycon,'$querycon');
 
 // 核心语句，查询所有数据集，$magage是标记是否管理
 $querycon=$this->querycon($querycon,$magage);
@@ -498,10 +537,14 @@ return $thisline;
 public function querycon($querycon,$magage){
 
 $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
-$wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLWRPW');
 $user=$this->USER['user']?$this->USER['user']:C('MLRPW');
 
-
+// $wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLWRPW');
+    if(empty($this->USER)){
+        $wrpw=empty(session('wrpw'))?C('MLRPW'):session('wrpw');
+    }else{
+        $wrpw=$this->USER['wrpw']?$this->USER['wrpw']:C('MLRPW');
+    }
 
     if($magage=='true'){
         $querycon['wrpw']=array("in",returncomma($wrpw));
@@ -532,7 +575,7 @@ public function SmartInput($sheetname="古村落",$key='d1',$value=''){
         if(!empty($key) && !empty($value)){
             $querycon[$key]=$value;
         }
-        $smartinputtwoarr=$db->where($querycon)->Field($key)->order('id desc')->limit(10)->distinct()->select(); 
+        $smartinputtwoarr=$db->where($querycon)->Field($key)->order('id desc')->limit(C('TIPNUM'))->distinct()->select(); 
         $keyarr=twoarray2onearr($smartinputtwoarr,$key);
         // pr($smartinputarr);
         return $keyarr;
@@ -548,16 +591,36 @@ public function LastInputs($sheetname="古村落"){
         // if(!empty($key) && !empty($value)){
         //     $querycon[$key]=$value;
         // }
-        $fieldstr=compute_fieldstr(C('MLNOTFIELD'));
-        
         // 把首行排除掉
         $firsrtlinearr=$db->where($querycon)->order('id asc')->limit(100)->distinct()->find();  
+
+        $custom1arr=json_decode($firsrtlinearr['custom1'],true);
+        // pr($custom1arr);
+        $autotip=$custom1arr['autotip'];
+        $notautotip=$custom1arr['notautotip'];
+        if(!empty($autotip)){
+            $fieldstr=$autotip;
+        }elseif(!empty($notautotip)){
+            $fieldstr=StrMinusStr2(compute_fieldstr(C('MLNOTFIELD')),$notautotip);
+        }else{
+            $fieldstr=compute_fieldstr(C('MLNOTFIELD'));
+        }
+        
+        // 不管怎么说，再删去特殊字段，如文件，照片
+        $fieldstr=StrMinusStr2($fieldstr,$this->AutoTipdelField($firsrtlinearr));
+        // pr($fieldstr);
+        
+        // $newfieldstr=$this->AutoTipField($firsrtlinearr);
+        // pr($newfieldstr);
+        
+
+        
         // pr($firsrtlinearr);
         if(!empty($firsrtlinearr)){
             $querycon['id']=array('neq',$firsrtlinearr['id']);
         }
         // pr($querycon);
-        $datalistonearr=$db->where($querycon)->Field($fieldstr)->order('id desc')->limit(100)->distinct()->select();
+        $datalistonearr=$db->where($querycon)->Field($fieldstr)->order('id desc')->limit(C('TIPNUM'))->distinct()->select();
         // pr($datalistonearr);
         // $datalistonearr=delemptyfield($datalistonearr);
         // pr($datalistonearr);
@@ -570,6 +633,29 @@ public function LastInputs($sheetname="古村落"){
         return $datalistonearr;
 
 }
+
+
+// 智能提示删除部分区域
+public function AutoTipdelField($firsrtlinearr){
+    foreach($firsrtlinearr as $key=>$value){
+        if(strstr($value,"文件") || strstr($value,"照片") ){
+            $fieldstrkey[]=$key;
+        }
+    }
+    return implode(",",$fieldstrkey);
+}
+
+// 看看$_FILES
+public function fileisnotempty($file){
+    foreach($file as $key=>$value){
+        if(!empty($value['name']) ){
+            return true;
+        }
+    }
+    return false;
+}
+
+
 
 // 结尾处
 }

@@ -1,5 +1,5 @@
-<?php $user=$this->USER; ?>
-<if condition="empty($user) eq true">
+<?php $loginsessin=$_SESSION['login'];		?>
+<if condition="empty($loginsessin) eq false">
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span12">

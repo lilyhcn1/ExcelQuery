@@ -15,7 +15,7 @@ use Qwadmin\Controller\ComController;
 class PersonalController extends ComController {
 
 	public function profile(){
-		
+// 		pr(session('login'));
 		$member = M('member')->where('uid='.$this->USER['uid'])->find();
 		$this->assign('nav',array('Personal','profile',''));//导航
 		$this->assign('member',$member);

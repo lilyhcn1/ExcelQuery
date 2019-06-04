@@ -16,6 +16,7 @@
 * @param  string $name （可选）用户名。
 *
 **/
+
 function addlog($log,$name='AdminUser'){
 	
 // 	$auth = cookie('auth');
@@ -384,6 +385,22 @@ function twoarray2onearr($twoarray,$col='id',$flag='true'){
     }
     
 }
+
+/**
+*
+* 函数：字符串相减
+* @param  $str 被减的字符串，$str2 减的字符串
+* 返回字符串
+**/
+function StrMinusStr2($str,$str2,$flag=","){
+    $strarr=explode($flag,$str);
+    $strarr2=explode($flag,$str2);
+
+    $newarr=array_diff($strarr,$strarr2);
+    $newarrstr=implode(",",$newarr);
+    return $newarrstr;
+}
+
 
 /**
 *
@@ -1898,6 +1915,13 @@ function IpAuth($ip, $config){
 	    $str = ' '.$str;
 	    $str = preg_replace('`([^"=\'>])((http|https|ftp|ftps)://[^\s< ]+[^\s<\.)])`i', '$1<a href="$2" rel="external nofollow" '.$attrs.'>$2</a>', $str);
 	    $str = substr($str, 1);
+
+    $keystr=mb_substr($str,0,1,"UTF-8");
+
+    if($keystr=='/'){
+        $str="<a href='".$str."'>".$str."</a>";
+    }
+
 	    
 	    return $str;
 	}
@@ -2007,3 +2031,78 @@ function compute_fieldstr($notfieldstr='',$fieldstr=''){
 // pr($fieldstr,'222');        
     return $fieldstr;
 }
+
+
+// 区域划分
+function network_____________(){
+    
+}
+
+
+function curPageURL() 
+{
+  $pageURL = 'http';
+  if ($_SERVER["HTTPS"] == "on") 
+  {
+    $pageURL .= "s";
+  }
+  $pageURL .= "://";
+ 
+  $this_page = $_SERVER["REQUEST_URI"];
+  
+  // 只取 ? 前面的内容
+  if (strpos($this_page, "?") !== false)
+  {
+    $this_pages = explode("?", $this_page);
+    $this_page = reset($this_pages);
+  }
+ 
+  if ($_SERVER["SERVER_PORT"] != "80") 
+  {
+    $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $this_page;
+  } 
+  else 
+  {
+    $pageURL .= $_SERVER["SERVER_NAME"] . $this_page;
+  }
+  return $pageURL;
+}
+
+
+//   thinkphp 的多文件上传，最得要的，是replace属性
+function savefile(){
+
+// pr($_FILES,'$_FILES');
+    $uptypes=arrtrim(explode(',',C('EXTS')));
+    // pr($uptypes);
+    $max_file_size=C('MAXFILESIZE');     //上传文件大小限制, 单位BYTE
+    $destination_folder='./Uploads/'; //上传文件路径     
+    $destination_folder_small='/Uploads/'; //上传文件路径     
+    $upload = new \Think\Upload();// 实例化上传类
+    $upload->maxSize   =     $max_file_size ;// 设置附件上传大小
+    $upload->exts      =     $uptypes;// 设置附件上传类型
+    $upload->replace  = true;
+    // $upload->saveName = array('uniqid', mt_rand(1,999999).'_'.md5(uniqid()));array('uniqid','');
+    $upload->saveName = array('uniqid', array('', true));
+    $upload->rootPath  =     $destination_folder; // 设置附件上传根目录
+    if(!file_exists($destination_folder)){
+        mkdir($destination_folder);
+    }
+    $info   =   $upload->upload();
+
+        // pr($info,'$info');
+    if(!$info) {// 上传错误提示错误信息
+         die(($upload->getError()));
+    }else{// 上传成功 获取上传文件信息
+        foreach($info as $filekey=>$file){
+            // pr($file,$filekey);
+            $destination=$destination_folder_small.$file['savepath'].$file['savename'];
+            $newfiletwoarr[$filekey]=$destination;
+    
+        }
+    }
+    return $newfiletwoarr;
+}
+
+
+

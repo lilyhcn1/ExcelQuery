@@ -11,7 +11,6 @@
 
 		<include file="Public/head" />
 
-
 		    
    </head>
 
@@ -38,23 +37,27 @@
 								<!-- PAGE CONTENT BEGINS -->
 								
 
-									<form class="form-horizontal" id="form" method="post" action="{:U('update')}">
+									<form class="form-horizontal" enctype="multipart/form-data" id="form" method="post" action="{:U('update')}">
 
-{$mynavline}
+<!--{$mynavline}-->
 <div class="col-xs-12">
 <if condition="empty($id) eq true">
     <div class="form-group">
-        <h3 align="center">  {$sheetname}</h3>
+        <h3 align="center">  {$sheetname}  <?php echo "<a href='https://cli.im/api/qrcode/code?text=".curPageURL()."?sheetname=".$sheetname."&mhid=sELPDFnok80gPHovKdI' >二维码</a>"; ?>   
+        </h3>
         <h4 align="center">  新增数据</h4>
     </div>
 <else /> 
     <div class="form-group">
-        <h3 align="center">  {$sheetname}</h3>
+        <h3 align="center">  {$sheetname} <?php echo "<a href='https://cli.im/api/qrcode/code?text=".curPageURL()."?sheetname=".$sheetname."&mhid=sELPDFnok80gPHovKdI' >二维码</a>"; ?>
+        </h3> 
         <h4 align="center">  更新数据</h4>
     </div>
 </if>   
+
 <input type="hidden" name="id" value="{$id}">
 </div>
+
 
 
 
@@ -64,35 +67,41 @@
 <switch name="valtemp">
     <case value="照片">
              <div class="form-group">
-              <label class="col-sm-2 col-xs-2 control-label no-padding-right" for="form-field-6">{$val}</label>
-              <div class="col-sm-10">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">{$val}</label>
+              <div class="col-xs-9 col-sm-9">
                 <?php $tt=$fillingarr[$key];  ?>     
-                <div class="col-xs-10 col-sm-5">{:UpImage($key,100,100,$tt)}</div>
+                <div class="col-xs-9 col-sm-5">{:UpImage($key,100,100,$tt)}</div>
               </div>
              </div>    
     </case>
     <case value="文件">
-             <div class="form-group">
-              <label class="col-sm-2 col-xs-2 control-label no-padding-right" for="form-field-6">{$val}</label>
-               <input type="file" name="{$key}" id="{$key}"  value="{$fillingarr[$key]}"  placeholder="" class="col-xs-10 col-sm-10" >
-              </div>
-             </div>    
+            <div class="form-group">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">{$val}</label>
+               <div class="col-xs-9 col-sm-9">
+                   <input type="file" name="{$key}" id="{$key}"    placeholder=""  class=" col-md-push-1 col-xs-push-1 col-xs-9 col-sm-9"  >
+                    </div>    
+            </div>
     </case>
 <default />
              <div class="form-group">
-              <label class="col-sm-2 col-xs-2 control-label no-padding-right" for="form-field-6">{$val}</label>
-              <div class="col-sm-10">
-               <input type="text" name="{$key}" id="{$key}"  value="{$fillingarr[$key]}"  placeholder="" class="col-xs-10 col-sm-10" >
-              </div>
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">{$val}</label>
+              <div class="col-xs-9 col-sm-9">
+
+                <textarea  name="{$key}" id="{$key}"
+                               placeholder="" oninput="autosize(this)" class="col-xs-12 col-sm-12 " rows="1">{$fillingarr[$key]}</textarea>
+               
+              </div> 
              </div>
+ 
+             
 </switch>          
 </volist>
 
-      
+    	<div class="space-4"></div>  
 
                 <div class="form-group">
 					<div class="col-md-9">
-					<div class="col-sm-2 col-xs-2">
+					<div class="col-sm-3 col-xs-3">
 					    <input type="reset" class="btn"  value="重置" />    
 					</div>
 					<div class="col-sm-3 col-xs-3">
@@ -123,11 +132,8 @@
 
 		<include file="Public/footerjs" />
 		<!-- inline scripts related to this page -->
-<!--  文本框自动变长的脚本 -->
-    <script src="__PUBLIC__/qwadmin/js/chosen.jquery.js"></script>
-    <script src="__PUBLIC__/qwadmin/js/jquery.autosize.js"></script>
-    <script src="__PUBLIC__/qwadmin/js/jquery.inputlimiter.1.3.1.js"></script>
-    <script src="__PUBLIC__/qwadmin/js/jquery.maskedinput.js"></script>
+
+    
 <script>
 $(document).ready(function(){
 var availableTags = new Array();   
@@ -159,6 +165,23 @@ for(let i in jsonArr) {
 </script>
 
 	
+<!--  文本框自动变长的脚本 -->
+    <script src="__LILYCDN__/Public/qwadmin/js/chosen.jquery.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.autosize.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.inputlimiter.1.3.1.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.maskedinput.js"></script>
+    <script type="text/javascript">
+    function autosize(obj) {
+        var el = obj;
+        setTimeout(function() {
+            el.style.cssText = 'height:auto; padding:0';
+            // for box-sizing other than "content-box" use:
+            // el.style.cssText = '-moz-box-sizing:content-box';
+            el.style.cssText = 'height:' + el.scrollHeight + 'px';
+        }, 0);
+    }
+
+    </script>	
 <!--  文本框自动变长的脚本 -->
 
 

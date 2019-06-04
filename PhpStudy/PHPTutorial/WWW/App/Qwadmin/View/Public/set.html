@@ -1,5 +1,5 @@
-<?php $user=$this->USER; ?>
-<if condition="empty($user) eq true">
+<?php $loginsessin=$_SESSION['login'];		?>
+<if condition="empty($loginsessin) eq false">
 <!-- #section:settings.box -->
 						<if condition="$current.tips neq ''">
 						<div class="alert alert-block alert-success">

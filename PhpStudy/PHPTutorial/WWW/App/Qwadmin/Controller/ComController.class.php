@@ -24,6 +24,7 @@ class ComController extends BaseController
     // addlog('com.getMenu.first.oepnid.else');
 
 if($this->USER){
+    session('login','yes');
     $flag = true;
     $this->USER = $iduser;   
     cookie('auth',$iduser['identifier'].','.$iduser['token']);    
@@ -59,6 +60,7 @@ if($this->USER){
 				if($token == $user['token'] && $user['identifier'] == password($user['uid'].md5($user['user'].$user['salt']))){
 					$flag = true;
 					$this->USER = $user;
+					session('login','yes');
 				}
 			}
 		}

@@ -5,16 +5,14 @@
 * 作    者：老黄牛<53053056>
 * 日    期：2018
 * 版    本：1.0.0
-* 功能说明：用户控制器。
 *
 **/
 namespace Qwadmin\Controller;
 use Qwadmin\Controller\ComController;
 class UdController extends ComController {
 
-
 public function index(){
-        $url=U('Ud/sheetindex');
+        $url=U($Think.CONTROLLER_NAME.'/sheetindex');
         	header("Location: $url");    
 }
 
@@ -23,12 +21,26 @@ public function index(){
 public function magrecords(){
 $sheetname=I('get.sheetname');
 $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
-$wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
+// $wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
+
+    if(empty($this->USER)){
+        if(!empty(I('get.wrpw'))){
+            session('wrpw',I('get.wrpw'));
+        }
+        $wrpw=empty(session('wrpw'))?C('MLRPW'):session('wrpw');
+    }else{
+        $wrpw=$this->USER['wrpw']?$this->USER['wrpw']:C('MLRPW');
+    }
+ 
+    session('wrpw',$wrpw);  
+    
+// pr($wrpw);
+
 $list=$this->echorecords($sheetname,'true');
 
 if(count($list)==1){
     $id=$list['0']['id'];
-    $this->success('......',U("Ud/addedit?id=$id"),0);
+    $this->success('......',U($Think.CONTROLLER_NAME."/addedit?id=$id"),0);
 }else{
     // $this->display();    
 }
@@ -46,7 +58,7 @@ $list=$this->echorecords($sheetname,'false');
 // pr($list,'$listfdsf');
 if(count($list)==1){
     $id=$list['0']['id'];
-    // $this->success('......',U("Ud/addedit?id=$id"),0);
+    // $this->success('......',U($Think.CONTROLLER_NAME."/addedit?id=$id"),0);
 }else{
     // $this->display();    
 }
@@ -104,10 +116,11 @@ public function add(){
 // pr($lastinputarr,'$lastinputarr');    
     // $echoarr=echoarrform($titlearr);
     $this->assign('id',$id);
+
     $this->assign('titlearr',$titlearr);
     $this->assign('idarr',$idarr);
     $this->assign('lastinputarr',$lastinputarr);
-    $this->assign('mynavline',R('Ud/mynavline',array($sheetname,$id)));
+    $this->assign('mynavline',R($Think.CONTROLLER_NAME.'/mynavline',array($sheetname,$id)));
     $this->display();            
 
 }
@@ -147,9 +160,9 @@ $db=M(C('EXCELSECRETSHEET'));
 
         $querycon['sheetname']=$sheetname;
 
-        if(empty($id)){
-            $lastfield='d1,d2,d3';
-        }
+        // if(empty($id)){
+        //     $lastfield='d1,d2,d3';
+        // }
         
         $querycon=$this->querycon($querycon,'true');
 // pr($querycon,'$querycon3443');
@@ -157,14 +170,16 @@ $db=M(C('EXCELSECRETSHEET'));
 
         
 }
+
     $datalistonearr=$this->LastInputs($sheetname);
     // $datalistonearr[0]=["天台","临海"];
 
     $this->assign('fillingarr',$fillingarr);
     $this->assign('id',$id);
+    $this->assign('sheetname',$sheetname);    
     $this->assign('titlearr',$titlearr);
     $this->assign('datalistonearr',$datalistonearr);
-    $this->assign('mynavline',R('Ud/mynavline',array($sheetname,$id)));
+    $this->assign('mynavline',R($Think.CONTROLLER_NAME.'/mynavline',array($sheetname,$id)));
     $this->display();    
 }
 
@@ -220,6 +235,18 @@ public function update($id=0){
 
 
         $user=empty($data[$paraarr['pidkey']])?$this->USER['user']:$data[$paraarr['pidkey']];
+
+	    // 保存文件并保存链接
+	   // pr($_FILES,'$_FILES');
+	    if($this->fileisnotempty($_FILES)){
+    	    $uploadfilearr=savefile();
+    	    foreach ($uploadfilearr as $k4=>$v4) {
+    	        $data[$k4]=$v4;
+    	    }
+	        
+	    }
+
+
         $data['name']=$data[$paraarr['namekey']];
         // $data['pid']=$data[$paraarr['pidkey']];
         $data['pid']=$user;
@@ -231,19 +258,23 @@ public function update($id=0){
 	    $data['custom1'] = json_encode($paraarr);	
 // pr($data,'data34322');	    
 	    
+
+	    
+	    
         $db=M(C('EXCELSECRETSHEET'));        
 		if($id){
 			$db->data($data)->where('id='.$id)->save();
 			$flag=$id;
-			$this->success('恭喜，操作成功！',U("Ud/magrecords?sheetname=$sheetname"));
+			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/updatetoadd?id=$flag"));
+// 			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/magrecords?sheetname=$sheetname"));
 		}else{
 			$flag=$db->data($data)->add();
-// 			$this->success('恭喜，操作成功！',U("Ud/magrecords?sheetname=$sheetname"));
-			$this->success('恭喜，操作成功！',U("Ud/updatetoadd?id=$flag"));
+// 			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/magrecords?sheetname=$sheetname"));
+			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/updatetoadd?id=$flag"));
 		}
 		
 // 		pr($flag);
-// 		$this->success('恭喜，操作成功！',U("Ud/addedit"),7);
+// 		$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/addedit"),7);
 		
 		
 // 		{:U('RwxyCom/echoiddata')}?id={$id}
@@ -257,14 +288,14 @@ if(empty($id)){
     $id=I('get.id');}
 $sheetname=session('sheetname');
 
-$newarr=R('RwxyCom/echoiddatacontent',array($id));
+$newarr=R('Rwxy/echoiddatacontent',array($id));
 
 // pr($id);
 // pr($newarr);
 // echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"".session('indexpage')."\">查询首页</a></h3>";
 
 
-$thisline=R('Ud/mynavline',array($sheetname,$id));
+$thisline=R($Think.CONTROLLER_NAME.'/mynavline',array($sheetname,$id));
 
 $echohtml=$thisline;
 $echohtml=$thisline."<br>";
@@ -289,7 +320,16 @@ $querycon=I('get.');
 $querycon=delemptyfield($querycon);
 
 // pr($this->USER,'$this->USER');
-    $user_querywrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
+    if(empty($this->USER)){
+        session('wrpw',I('get.wrpw'));
+        $user_querywrpw=empty(session('wrpw'))?C('MLRPW'):session('wrpw');
+        
+    }else{
+        $user_querywrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
+    }
+    session('wrpw',$user_querywrpw);
+    
+    
     $querycon['wrpw']=array("in",returncomma($user_querywrpw));
 
 // pr($querycon,'$querycon');
@@ -339,6 +379,8 @@ public function echorecords($sheetname,$magage='true'){
     $querycon['sheetname']=$sheetname;    
 $titlearrall=$this->gettitlearr($sheetname);
 
+
+// pr($querycon,'$querycon');
 
 // 核心语句，查询所有数据集，$magage是标记是否管理
 $querycon=$this->querycon($querycon,$magage);
@@ -402,11 +444,11 @@ public function echosheet($sheetnamearr,$sheetname,$magage='true'){
         // 管理数据表数据
         if($magage=='true'){
             $title='管理数据表';
-            $url= U("Ud/magrecords?sheetname=$sheetvalue");
+            $url= U($Think.CONTROLLER_NAME."/magrecords?sheetname=$sheetvalue");
             $inforesult1="<h3><p>".$title."</p><h3>";
         }else{
             $title='个人数据';
-            $url= U("Ud/magmyrecords?sheetname=$sheetvalue");
+            $url= U($Think.CONTROLLER_NAME."/magmyrecords?sheetname=$sheetvalue");
             $inforesult1="<h3><p>".$title."</p><h3>";
         }
         
@@ -455,7 +497,7 @@ if(!empty($id)){
     }
 }   
     if(empty($titlearr)){
-        $this->error('错误1231，请联系表单所有者！~',U('Ud/sheetindex'));
+        $this->error('错误1231，请联系表单所有者！~',U($Think.CONTROLLER_NAME.'/sheetindex'));
     }else{
         if($delempty='true'){
             $titlearr=delemptyfield($titlearr);
@@ -467,16 +509,20 @@ if(!empty($id)){
 
 public function mynavline($sheetname,$id){
         // <div class=\"col-xs-offset-2 \">
+// 	<div class=\"col-xs-3\">
+// 		<h3><a href=\"".U($Think.CONTROLLER_NAME."/mysheet?sheetname=$sheetname")."\">个人</a></h3>   
+// 	</div> 	
     $thisline="<div class=\"col-xs-12\">
 	<div class=\"col-xs-3\">
-		<h3><a href=\"".U("Ud/index?sheetname=$sheetname")."\">首页</a></h3>   
+		<h3><a href=\"".U($Think.CONTROLLER_NAME."/index?sheetname=$sheetname")."\">首页</a></h3>   
 	</div> 	
+
 	<div class=\"col-xs-3\">
-		<h3><a href=\"".U("Ud/mysheet?sheetname=$sheetname")."\">个人</a></h3>   
-	</div> 	
-	<div class=\"col-xs-3\">
-		<h3><a href=\"".U("Ud/addedit?sheetname=$sheetname")."\">新增</a></h3>   
+		<h3><a href=\"".U($Think.CONTROLLER_NAME."/addedit?sheetname=$sheetname")."\">新增</a></h3>   
 	</div>
+	<div class=\"col-xs-3\">
+		<h3><a href=\"".U($Think.CONTROLLER_NAME."/addedit?id=$id")."\">更改</a></h3>   
+	</div> 		
 	<div class=\"col-xs-3\">
 		<h3><a href=\"".U('RwxyCom/echoiddata?id='.$id)."\">查看</a></h3>   
 	</div>
@@ -489,10 +535,14 @@ return $thisline;
 public function querycon($querycon,$magage){
 
 $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
-$wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLWRPW');
 $user=$this->USER['user']?$this->USER['user']:C('MLRPW');
 
-
+// $wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLWRPW');
+    if(empty($this->USER)){
+        $wrpw=empty(session('wrpw'))?C('MLRPW'):session('wrpw');
+    }else{
+        $wrpw=$this->USER['wrpw']?$this->USER['wrpw']:C('MLRPW');
+    }
 
     if($magage=='true'){
         $querycon['wrpw']=array("in",returncomma($wrpw));
@@ -523,7 +573,7 @@ public function SmartInput($sheetname="古村落",$key='d1',$value=''){
         if(!empty($key) && !empty($value)){
             $querycon[$key]=$value;
         }
-        $smartinputtwoarr=$db->where($querycon)->Field($key)->order('id desc')->limit(10)->distinct()->select(); 
+        $smartinputtwoarr=$db->where($querycon)->Field($key)->order('id desc')->limit(C('TIPNUM'))->distinct()->select(); 
         $keyarr=twoarray2onearr($smartinputtwoarr,$key);
         // pr($smartinputarr);
         return $keyarr;
@@ -539,8 +589,36 @@ public function LastInputs($sheetname="古村落"){
         // if(!empty($key) && !empty($value)){
         //     $querycon[$key]=$value;
         // }
-        $fieldstr=compute_fieldstr(C('MLNOTFIELD'));
-        $datalistonearr=$db->where($querycon)->Field($fieldstr)->order('id desc')->limit(100)->distinct()->select();
+        // 把首行排除掉
+        $firsrtlinearr=$db->where($querycon)->order('id asc')->limit(100)->distinct()->find();  
+
+        $custom1arr=json_decode($firsrtlinearr['custom1'],true);
+        // pr($custom1arr);
+        $autotip=$custom1arr['autotip'];
+        $notautotip=$custom1arr['notautotip'];
+        if(!empty($autotip)){
+            $fieldstr=$autotip;
+        }elseif(!empty($notautotip)){
+            $fieldstr=StrMinusStr2(compute_fieldstr(C('MLNOTFIELD')),$notautotip);
+        }else{
+            $fieldstr=compute_fieldstr(C('MLNOTFIELD'));
+        }
+        
+        // 不管怎么说，再删去特殊字段，如文件，照片
+        $fieldstr=StrMinusStr2($fieldstr,$this->AutoTipdelField($firsrtlinearr));
+        // pr($fieldstr);
+        
+        // $newfieldstr=$this->AutoTipField($firsrtlinearr);
+        // pr($newfieldstr);
+        
+
+        
+        // pr($firsrtlinearr);
+        if(!empty($firsrtlinearr)){
+            $querycon['id']=array('neq',$firsrtlinearr['id']);
+        }
+        // pr($querycon);
+        $datalistonearr=$db->where($querycon)->Field($fieldstr)->order('id desc')->limit(C('TIPNUM'))->distinct()->select();
         // pr($datalistonearr);
         // $datalistonearr=delemptyfield($datalistonearr);
         // pr($datalistonearr);
@@ -553,6 +631,29 @@ public function LastInputs($sheetname="古村落"){
         return $datalistonearr;
 
 }
+
+
+// 智能提示删除部分区域
+public function AutoTipdelField($firsrtlinearr){
+    foreach($firsrtlinearr as $key=>$value){
+        if(strstr($value,"文件") || strstr($value,"照片") ){
+            $fieldstrkey[]=$key;
+        }
+    }
+    return implode(",",$fieldstrkey);
+}
+
+// 看看$_FILES
+public function fileisnotempty($file){
+    foreach($file as $key=>$value){
+        if(!empty($value['name']) ){
+            return true;
+        }
+    }
+    return false;
+}
+
+
 
 // 结尾处
 }
