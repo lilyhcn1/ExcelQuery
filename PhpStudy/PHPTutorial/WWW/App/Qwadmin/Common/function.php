@@ -207,12 +207,23 @@ function logg($text){
 }
 
 function shorturl($url,$d_url='d/dwz_api.php'){
-    // if(substr($d_url,1,4) !='http'){
-        
-    // }    
-    $d_urlall='http://'.$_SERVER['SERVER_NAME'].'/'.$d_url;
+    // addlog(json_encode($_SERVER));
+$d_urlall=$_SERVER["REQUEST_SCHEME"]."://".$_SERVER["HTTP_HOST"].'/'.$d_url;
+    
     $uu=$d_urlall.'?url='.$url;
-    $short_url=file_get_contents($uu);
+    
+    if(file_exists($d_url)){
+        
+        $short_url=file_get_contents($uu);   //这个不能抓有端口的       
+        if(empty($short_url)){
+            $short_url=$url;
+        }
+    }else{
+        $short_url=$url;
+    }
+    
+addlog($uu);    
+addlog($short_url);
     return $short_url;
  
 }

@@ -9,10 +9,14 @@
 *
 **/
 
+// namespace Qwadmin\Controller;
+// use Qwadmin\Controller\ComController;
+// class UploadController extends ComController{
+    
 namespace Qwadmin\Controller;
-use Qwadmin\Controller\ComController;
-
-class UploadController extends ComController{
+use Common\Controller\BaseController;
+use Think\Controller;
+class UploadController extends BaseController{    
     public function index($type = null){
 
     }

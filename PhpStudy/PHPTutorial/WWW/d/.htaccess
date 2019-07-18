@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^([0-9a-z]+\-?)$ ?q=$1 [L]

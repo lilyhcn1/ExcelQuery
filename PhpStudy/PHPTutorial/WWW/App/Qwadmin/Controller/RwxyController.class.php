@@ -118,7 +118,7 @@ $arr=$db->where($con2)->find();
 // pr($arr['sheetname']);
 
     // 查出第一行
-    $firstline=$this->findfirstline($arr['sheetname']);
+    $firstline=$this->findfirstline($arr['sheetname'],'');
 
 
 $arr=delemptyfield($arr);
@@ -370,7 +370,7 @@ return $echohtml;
 
 
 // 查出数据表名为sheetname,的第一行，返回一维数组
-function findfirstline($sheetname){
+function findfirstline($sheetname,$forall=false){
     $db=M(C('EXCELSECRETSHEET'));
     // 查出第一行
         $sheetcon['sheetname']=$sheetname;
@@ -378,7 +378,12 @@ function findfirstline($sheetname){
         // // pr($firstlinearrtemp);
         // $firstcon['id']=array(array("eq",$firstlinearrtemp['id']-1),array("eq",$firstlinearrtemp['id']),"OR");
         // $firstcon['ord']=0;
-        $firstline=$db->where($sheetcon)->Field(C('FIELDSTR'))->order('id asc')->find();  
+        if($forall){
+            $firstline=$db->where($sheetcon)->order('id asc')->find();  
+        }else{
+            $firstline=$db->where($sheetcon)->Field(C('FIELDSTR'))->order('id asc')->find();  
+        }
+        
     return $firstline;
 }
 
@@ -519,7 +524,10 @@ $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
 // 0. 读取第一行
     // $sheetcon['sheetname']=$con2['sheetname'];
     // $queryfirst=$db->where($sheetcon)->order('id')->find(); 
-    $queryfirst=$db->where($con2)->where($likecon)->order('id')->find(); 
+    // $queryfirst=$db->where($con2)->where($likecon)->order('id')->find(); 
+    $sheetname=empty($con2['sheetname'])?C('MLSHEETNAME'):$con2['sheetname'];
+    $queryfirst=$this->findfirstline($sheetname,true);
+    // pr($queryfirst);
     $queryfirst=delemptyfield($queryfirst);
 
 
@@ -569,12 +577,13 @@ unset($con2['notfield']);
 $fieldstr=implode($field,',');
 // pr($fieldstr,'$fieldstr');
 
-
+// 这里可能有问题，，，，，，，，，，，，，，，，，，，，，，，，，，
     if(!empty($queryfirst['id'])){
         $notfirstline['id']=array('NEQ',$queryfirst['id']);
     }else{
         $notfirstline['id']=array('NEQ',0);
     }
+    // $notfirstline['id']=array('NEQ',0);
     // pr($ordstr);
     $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
 // pr($con2,'con211');
@@ -846,8 +855,8 @@ $con2=$this->constr2conarr($data,'eq');
 
 //   把特殊符号给删除了
 public function deltextsymbol($text,$symbol="?"){
-// echo mb_substr($text,0,1,"UTF-8");
-    if(mb_substr($text,0,1,"UTF-8")==$symbol){
+echo mb_substr($text,0,1,"UTF-8");
+    if(mb_substr($text,0,1,"UTF-8")==" " ){
         // echo 'first text is <hr>'.$text;
         $newtext=mb_substr($text,1,NULL,"UTF-8");
         $newtext= $this->deltextsymbol($newtext);
@@ -868,7 +877,7 @@ foreach($twoarr as $k1=>$v1){
     foreach($v1 as $k2=>$v2){
         $v2new=$this->deltextsymbol($v2,"?");
         $v2new=$this->deltextsymbol($v2new,C('TEXTSYMBOL'));
-        $twoarrnew[$k1][$k2]=$v2new;
+        $twoarrnew[$k1][$k2]=trim($v2new);
     }
 }
 return $twoarrnew;
@@ -1230,16 +1239,16 @@ $db=M(C('EXCELSECRETSHEET'));
 $con23['sheetname']=$sheetname;
 $num23=$db->where($con23)->count();$num23=$num23-1;
 $result.="。 【".$sheetname."】现有".$num23."条数据。";
-$phoneurl=$_SERVER["REQUEST_SCHEME"]."://".$_SERVER["SERVER_NAME"].U('Udno/addedit',"sheetname=".$sheetname);
-$recurl=$_SERVER["REQUEST_SCHEME"]."://".$_SERVER["SERVER_NAME"].U('echoteacherdb',"conall=;数据表名等于".$sheetname.";不显字段等于id,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname;查看密码等于".$rpw."");
-$queryurl=$_SERVER["REQUEST_SCHEME"]."://".$_SERVER["SERVER_NAME"].U('uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname);
+$phoneurl=U('Udno/addedit',"sheetname=".$sheetname,"",true);
+$recurl=U('echoteacherdb',"conall=;数据表名等于".$sheetname.";不显字段等于id,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname;查看密码等于".$rpw."","",true);
+$queryurl=U('uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 
-$phonemodify=$_SERVER["REQUEST_SCHEME"]."://".$_SERVER["SERVER_NAME"].U('Udno/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname);
+$phonemodify=U('Udno/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
 
 http://aa.r34.cc/index.php/Qwadmin/Udno/magrecords/wrpw/28PE6K16FI2239/sheetname/科研项目进展汇111.html
 
 $urls="<hr><hr>"
-    ."<hr>您的手机填表网址为：<hr>"."<a href=\"".$phoneurl."\">".$phoneurl."</a>"
+    ."<hr>您的手机填表网址为：<hr>"."<a href=\"".shorturl($phoneurl)."\">".shorturl($phoneurl)."</a>"
     ."<hr><br>-------------以下为保密区，请注意保密。-----------------------------------<br>"
     ."<hr>您的所有数据网址为（请保密）：<hr>"."<a href=\"".$recurl."\">".$recurl."</a>"
     ."<hr>您的免密码查询网址为（请保密）：<hr>"."<a href=\"".$queryurl."\">".$queryurl."</a>"

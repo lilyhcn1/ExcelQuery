@@ -21,7 +21,7 @@ public function index(){
 public function magrecords(){
 $sheetname=I('get.sheetname');
 $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
-// $wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
+$wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
 
     if(empty($this->USER)){
         if(!empty(I('get.wrpw'))){
@@ -42,9 +42,8 @@ if(count($list)==1){
     $id=$list['0']['id'];
     $this->success('......',U($Think.CONTROLLER_NAME."/addedit?id=$id"),0);
 }else{
-    // $this->display();    
+    $this->display();    
 }
-$this->display();    
 
 }
 
@@ -166,7 +165,7 @@ $db=M(C('EXCELSECRETSHEET'));
         
         $querycon=$this->querycon($querycon,'true');
 // pr($querycon,'$querycon3443');
-        $fillingarr=$db->where($querycon)->Field($lastfield)->order('id desc')->find(); 
+        // $fillingarr=$db->where($querycon)->Field($lastfield)->order('id desc')->find(); 
 
         
 }
@@ -349,9 +348,9 @@ public function mysheet(){
     $querycon=I('get.');
     $querycon=delemptyfield($querycon);
 
-    $user_queryrpw=$this->USER['querypw']?$this->USER['querypw']:C('MLPW');
+    $user_querypw=$this->USER['querypw']?$this->USER['querypw']:C('MLPW');
     $pid=$this->USER['user']?$this->USER['user']:C('MLPW');
-    $querycon['rpw']=array("in",returncomma($user_queryrpw));
+    $querycon['rpw']=array("in",returncomma($user_querypw));
     $querycon['pid']=$pid;
 
 // pr($querycon);
@@ -534,16 +533,20 @@ return $thisline;
 // 查询所有数据集，$magage是标记是否管理
 public function querycon($querycon,$magage){
 
-$rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
-$user=$this->USER['user']?$this->USER['user']:C('MLRPW');
+$user=$this->USER?$this->USER:C('MLRPW');
+$rpw=$user['querypw']?$user['querypw']:C('MLRPW');
+
+// pr($user);
+// pr(empty($user['querywrpw']),'mpty($user[querywrpw]');
+// pr(empty($this->USER),'empty($this->USER)');
 
 // $wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLWRPW');
     if(empty($this->USER)){
-        $wrpw=empty(session('wrpw'))?C('MLRPW'):session('wrpw');
+        $wrpw=empty(session('querywrpw'))?C('MLRPW'):session('querywrpw');
     }else{
-        $wrpw=$this->USER['wrpw']?$this->USER['wrpw']:C('MLRPW');
+        $wrpw=empty($user['querywrpw'])?C('MLRPW'):$user['querywrpw'];
     }
-
+// pr($wrpw);
     if($magage=='true'){
         $querycon['wrpw']=array("in",returncomma($wrpw));
     }elseif($magage=='false'){
