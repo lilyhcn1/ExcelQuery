@@ -1,14 +1,19 @@
+# 应用案例
+我不太会语言描述，让案例来说话吧。 http://aa.r34.cc/index.php/Qwadmin/Rwxy/uniquerydata/rpw/excel/sheetname/通用系统应用案例
+如果你用的还可以，欢迎你来新增案例： http://aa.r34.cc/d/x5
+
+最新测试服务器是 http://aa.r34.cc
+
 # 给我一个Excel，还你一个查询系统
 只要会Excel，一分钟即可把Excel表转成一个完善的查询系统，大家可以用它来制作自己的查询系统。
-这里的代码只是做一个网站，如有自己有能力再申请htts,再申请小程序，再把网站套到小程序里就行了。
+这里的代码只是做一个网站，如有自己有能力再申请https,再申请小程序，再把网站套到小程序里就行了。
 我来抛砖引玉吧，大家一起来完善这类系统。
 
-网站测试样式如下：http://api.r34.cc/index.php/Qwadmin/Rwxy/uniquerydata/rpw/passwd.html
+我自己制作的小程序通讯录：http://aa.r34.cc/index.php/Qwadmin/Rwxy/echoiddata/id/18861.html
 
-小程序效果请用微信扫码:
-http://vps0.upsir.com/lilypub/admin.png
 
-建议、合作请加QQ:53053067，校内可联系电话联系。
+# 万能表单系统
+古村落调研的网站  http://aa.r34.cc/index.php/Qwadmin/Rwxy/echoiddata/id/18860.html
 
 # 教程
 我设计通用数据库系统的使用教程。教程PPT及相关的文件：
