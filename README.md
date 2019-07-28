@@ -1,5 +1,6 @@
 # 应用案例
 我不太会语言描述，让案例来说话吧。 http://aa.r34.cc/index.php/Qwadmin/Rwxy/uniquerydata/rpw/excel/sheetname/通用系统应用案例
+
 如果你用的还可以，欢迎你来新增案例： http://aa.r34.cc/d/x5
 
 最新测试服务器是 http://aa.r34.cc
@@ -9,11 +10,13 @@
 这里的代码只是做一个网站，如有自己有能力再申请https,再申请小程序，再把网站套到小程序里就行了。
 我来抛砖引玉吧，大家一起来完善这类系统。
 
-我自己制作的小程序通讯录：http://aa.r34.cc/index.php/Qwadmin/Rwxy/echoiddata/id/18861.html
+我自己制作的小程序通讯录：
+http://aa.r34.cc/index.php/Qwadmin/Rwxy/echoiddata/id/18861.html
 
 
 # 万能表单系统
-古村落调研的网站  http://aa.r34.cc/index.php/Qwadmin/Rwxy/echoiddata/id/18860.html
+古村落调研的网站  
+http://aa.r34.cc/index.php/Qwadmin/Rwxy/echoiddata/id/18860.html
 
 # 教程
 我设计通用数据库系统的使用教程。教程PPT及相关的文件：
