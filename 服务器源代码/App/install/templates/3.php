@@ -34,7 +34,7 @@
 						<td><button type="button" class="btn" onclick="TestDbPwd()">测试连接</button></td>
 						<td>&nbsp;</td>
 					</tr>
-					<?php }?>
+
 					<? if(INSTALLTYPE == 'HOST' || INSTALLTYPE == 'BAE'){ ?>
 					<tr>
 						<td class="tar">数据库名：</td>
