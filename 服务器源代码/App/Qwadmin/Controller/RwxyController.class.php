@@ -127,7 +127,7 @@ $arr=delemptyfield($arr);
 foreach ($arr as $key=> $value) {
 // $value=returnmsg($value,'weixin');
 if(!is_null($firstline[$key])){
-    if($this->isimg($firstline,$key,$value)){               //专门图片的处理
+    if($this->isimg($firstline,$key,$value)){//专门图片的处理
 
         $newarr[$firstline[$key]]="<a href=\"".$value."\" class=\"thumbnail\">
                                         <img src=\"/temp".$value."\">
@@ -233,7 +233,7 @@ if(empty($user_querypw)){
 
 
 $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
-$datalistarr=$db->where($querycon)->distinct(true)->field('name')->order('id')->limit(1)->select();
+$datalistarr=$db->where($querycon)->distinct(true)->field('name')->order('id')->limit(C('TIPNUM'))->select();
 $datalistonearr=array_column($datalistarr,'name');
 $datalistonearr=delemptyfieldgetnew($datalistonearr);
 // pr($datalistonearr);
@@ -467,6 +467,20 @@ $keystr=mb_substr($v,-2,2,"UTF-8");
         return false;     
     }
 }
+// 是否是GPS
+function isGPS($v){
+$keystr1=mb_substr($v,-3,3,"UTF-8");  
+$keystr2=mb_substr($v,-3,3,"UTF-8");   
+// pr($keystr,'keystr');
+    $f1=strstr($keystr,'位置 ');
+    $f2=strstr($keystr,'GPS');
+    // pr($keystr);
+    if($f1 || $f2){
+        return true;
+    }else{
+        return false;     
+    }
+}
 
 
 
@@ -482,8 +496,8 @@ public function echounisheet($dbsheetname,$data){
 // C('EXCELSECRETSHEET');
 $con2=$this->constr2conarr($data,'eq');
 $likecon=$this->constr2conarr($data,'like');
-// echo 343;pr($likecon);
-// pr($con2);
+echo 343;pr($likecon);
+pr($con2);
 if($this->isadmin($con2)){
     unset($con2['rpw']);
     $this->echounisheetuni($dbsheetname,$con2,$likecon);
@@ -492,7 +506,7 @@ if($this->isadmin($con2)){
 }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
     echo    $output="error, \nsheetname \n  or\n rpw\nis \nempty.\n";    
 }else{
-    
+
     $this->echounisheetuni($dbsheetname,$con2,$likecon);
 
 }    
@@ -534,10 +548,11 @@ $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
 // 1. 先把所有的字段都计算出来，除了wrpw
     $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
     $field=$Model->query("select COLUMN_NAME from information_schema.COLUMNS where table_name ='".C('DB_PREFIX').$dbsheetname."' and table_schema = '".C('DB_NAME')."';");
+// pr($field,'$field221');    
     $t1[]='wrpw';
     $field=array_column($field,'column_name');
     $field=array_diff($field,$t1);
-// pr($field,'$field');
+
 
 // pr($con2['field'],'11');
 // 2. 先处理显示字段
@@ -552,6 +567,8 @@ $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
 // 3. 不显字段处理
         if(!empty($con2['notfield'])){
             $todel=explode(',',$con2['notfield']);
+        }else{
+            $todel=explode(',',C('NOTFIELDSTR'));
         }
         $field=array_diff($field,$todel);        
 // 4. field中删除字段   
@@ -642,8 +659,7 @@ if(empty($data)){
     // C('EXCELSECRETSHEET');
     $con2=$this->constr2conarr($data,'eq');
     $likecon=$this->constr2conarr($data,'like');
-// echo 343;pr($likecon);
-// pr($con2);
+
     if($this->isadmin($con2)){
         unset($con2['rpw']);
         $this->echounisheetuni($dbsheetname,$con2,$likecon);
@@ -652,7 +668,9 @@ if(empty($data)){
     }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
         echo    $output="error, \nsheetname \n  or\n rpw\nis \nempty.\n";    
     }else{
-        
+
+// echo 323;pr($likecon);
+// pr($con2);        
         $this->echounisheetuni($dbsheetname,$con2,$likecon);
     
     }  
@@ -699,7 +717,8 @@ $conall=explode(";",$con2['conall']);
 // pr($conall,"CONALL");
 foreach($conall as $value){
     $ex='';
-    // echo 'valuse';pr($value);
+// pr($value,'value11');
+// pr(strstr($value,"不等"));
     // echo '大于等1';pr(strstr($value,"大于等1"));
    if(!empty($value)){
        if(strstr($value,"等于")){
@@ -715,12 +734,17 @@ foreach($conall as $value){
            }else{$result="不是一个包含";}
        }elseif(strstr($value,"IN")){
            $ex=explode('IN',$value);
-        //   pr($ex);
+
            if(count($ex)==2){
-               $likecon[$ex['0']]=array('in',$ex['1']);;
+               $likecon[$ex['0']]=array('in',$ex['1']);
            }else{$result="不是一个包含";}
-       }
-      elseif(strstr($value,"大于等")){
+       }elseif(strstr($value,"非空")){
+            $ex=explode('非空',$value);
+           $likecon[$ex['0']]=array('exp','is not null');
+       }elseif(strstr($value,"是空")){
+            $ex=explode('是空',$value);
+           $likecon[$ex['0']]=array('exp','is  null');
+       }elseif(strstr($value,"大于等")){
           $ex=explode('大于等',$value);
           
           if(count($ex)==2){
@@ -855,9 +879,10 @@ $con2=$this->constr2conarr($data,'eq');
 
 //   把特殊符号给删除了
 public function deltextsymbol($text,$symbol="?"){
-echo mb_substr($text,0,1,"UTF-8");
-    if(mb_substr($text,0,1,"UTF-8")==" " ){
-        // echo 'first text is <hr>'.$text;
+// echo mb_substr($text,0,1,"UTF-8");
+// addlog($symbol,"sss-111");
+    if(mb_substr($text,0,1,"UTF-8")==$symbol){
+// addlog($symbol,"sss-2222");
         $newtext=mb_substr($text,1,NULL,"UTF-8");
         $newtext= $this->deltextsymbol($newtext);
         // echo 'second text is <hr>'.$newtext;
@@ -899,8 +924,9 @@ if($this->isadmin($con2)){
 }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
     echo    $output="error, \nsheetname \n  or\n rpw\nis \nempty.\n";    
 }else{
-    
+
     $this->echounisheetuni($dbsheetname,$con2,$likecon);
+
 
 }   
 }  
@@ -990,7 +1016,6 @@ foreach ($data as $rows) {
         // $n++;
         // pr($n);
         $tablestyle=($n % 2 == 0)?'class="success"':'class="warning"';
-    // $value=$this->deltextsymbol($value); 
         if($this->isnum($value) ){
             $temp22=$temp22
           .'<td>'.$textsymbol.$value.'</td>';       
@@ -1222,6 +1247,8 @@ if(!empty($wrpw) && !empty($sheetname)){  //pw非空再说
         }
     }
     $twoarrexcel=delemptyfieldtwoarr($twoarrexcel);
+    $twoarrexcel=$this->deltextsymboltwoarray($twoarrexcel);
+    
 // pr(count($twoarrexcel),'$twoarrexcel');
     if($replaceadd=='否'){
         $result=$this->data2add($sheetname,$wrpw,$twoarrexcel);
@@ -1248,7 +1275,8 @@ $phonemodify=U('Udno/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true)
 http://aa.r34.cc/index.php/Qwadmin/Udno/magrecords/wrpw/28PE6K16FI2239/sheetname/科研项目进展汇111.html
 
 $urls="<hr><hr>"
-    ."<hr>您的手机填表网址为：<hr>"."<a href=\"".shorturl($phoneurl)."\">".shorturl($phoneurl)."</a>"
+    ."<hr>您的在线填表网址为：<hr>"."<a href=\"".$phoneurl."\">".$phoneurl."</a>"
+    ."<hr>填表短网址为：<hr>"."<a href=\"".shorturl($phoneurl)."\">".shorturl($phoneurl)."</a>"
     ."<hr><br>-------------以下为保密区，请注意保密。-----------------------------------<br>"
     ."<hr>您的所有数据网址为（请保密）：<hr>"."<a href=\"".$recurl."\">".$recurl."</a>"
     ."<hr>您的免密码查询网址为（请保密）：<hr>"."<a href=\"".$queryurl."\">".$queryurl."</a>"
@@ -1281,7 +1309,6 @@ if($existdata['wrpw']==$wrpw || empty($existdata)){
                 $db->where($delcon)->delete();                
             }
         }else{ $result='sheetname is empty2. or uplosanum';}
-        // $twoarrexcel=$this->deltextsymboltwoarray($twoarrexcel);
         $result=$this->dbadddata($twoarrexcel);
     }else{ $result='error,password is wrong, or exist other same sheetname.';} 
 return $result;

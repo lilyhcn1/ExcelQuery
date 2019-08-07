@@ -191,7 +191,7 @@ class MemberController extends ComController {
 
         foreach ($data as $k => $v) {
             if ($k > 1) {
-                 pr($v);
+                //  pr($v);
                 $datatemp['user'] = $v['1'];
                 $datatemp['nickname'] = $v['2'];
                 $datatemp['password'] = password($v['3']);
@@ -201,8 +201,10 @@ class MemberController extends ComController {
                 $datatemp['wx_id'] = $v['8'];
                 $datatemp['email'] = $v['9'];
                 $datatemp['department'] = $v['10'];
+                $datatemp['querypw'] = $v['11'];
+                $datatemp['querywrpw'] = $v['12'];
                 
-                 
+// addlog(json_encode($v));
                 $data_access['group_id'] =$v['4'];
                 // $condition['uid']= $v['0'];
                 // $haveuid= $db->where($condition)->find();
@@ -235,9 +237,9 @@ class MemberController extends ComController {
         }
         if ($result) {
             $num = $db->count();
-            $this->success('用户导入成功' . '，现在<span style="color:red">' . $num . '</span>条数据了！,30');
+            $this->success('用户导入成功' . '，现在<span style="color:red">' . $num . '</span>条数据了！');
         } else {
-            $this->error('用户导入失败',30);
+            $this->error('用户导入失败');
         }
     }  
   
@@ -258,12 +260,14 @@ class MemberController extends ComController {
         // 上传文件
         $info = $upload->uploadOne($_FILES['file']);
         $filename = 'Uploads' . $info['savepath'] . $info['savename'];
-addlog('Uploads.$info'.json_encode($info));        
+// addlog('Uploads.$info'.json_encode($info));        
         $exts = $info['ext'];
         if (!$info) {// 上传错误提示错误信息
             $this->error($upload->getError());
         } else {// 上传成功
+
            $data=import_excel($filename);
+addlog(json_encode($data));           
             $this->save_import($data);
         }
     }

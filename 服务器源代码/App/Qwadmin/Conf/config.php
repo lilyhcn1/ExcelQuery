@@ -21,7 +21,7 @@ return array(
 	'EXCELSECRETSHEET'=> 'unisecret', // 私有数据表
 	'DATALISTLIMIT'=> '50', // 公开数据表
 	'FIELDSTR' => 'sheetname,name,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50',
-	'NOTFIELDSTR' => 'id,ord,custom1,custom2',
+	'NOTFIELDSTR' => 'id,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname',
     // IP地址段，在这里的可以访问，要不访问不了。 	
 // 	'IPCONFIG'=>'[{"start":"192.168.0.0","end":"192.168.255.255"},{"start":"122.226.131.1","end":"122.226.131.255"},{"start":"127.0.0.1","end":"127.0.255.255"}]',
 	'IPCONFIG'=>'[{"start":"0.0.0.0","end":"255.255.255.255"}]',	

@@ -44,8 +44,10 @@ echo h5html($title,$content);
 
 }
 
+public function xsx(){
+           $data=import_excel("Uploads/2019-08-07/5d4a77d279cee.xls");
+pr($data);
 
-
-
+}
 //结尾处
 }
