@@ -82,6 +82,23 @@
                     </div>    
             </div>
     </case>
+    <case value="日期">
+
+             <div class="form-group">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">{$val}</label>
+              <div class="col-xs-9 col-sm-9">
+                <if condition="empty($id) eq true">
+                    <textarea  name="{$key}" id="{$key}"
+                            placeholder="" oninput="autosize(this)" class="col-xs-12 col-sm-12 " rows="1"><?php echo date("Ymd",time()); ?></textarea>
+                <else /> 
+                    <textarea  name="{$key}" id="{$key}"
+                            placeholder="" oninput="autosize(this)" class="col-xs-12 col-sm-12 " rows="1">{$fillingarr[$key]}</textarea>
+                </if>                          
+              </div> 
+             </div>
+        
+ 
+    </case>    
 <default />
              <div class="form-group">
               <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">{$val}</label>

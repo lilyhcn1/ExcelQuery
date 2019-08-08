@@ -51,4 +51,5 @@ return array(
     'PAGESIZE'=>    '15',
     'PICWIDTH'=>     '150',
     'TIPNUM' => '9999', //自动提示的数目，越大越卡
+    'FORCEQUERYNUM' => '99999', //强制查询的极限，
 );

@@ -41,7 +41,8 @@ public function conquery($db,$con,$name=""){
 // pr($con);
 $r=$db->where($con)->limit(C('QUERYLIMIT'))->order('id asc')->select();
 $rnum=$db->where($con)->count();
-if(empty($r)){
+// pr($rnum);
+if(empty($r) && $rnum > C('FORCEQUERYNUM')){
     $r=$this->forcequery($db,$con,$name);
     $rnum=count($r);
 }
