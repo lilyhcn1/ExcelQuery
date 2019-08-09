@@ -23,50 +23,17 @@ $seo_keywords = trim($_POST['sitekeywords']);
 
 
 
-// $username = 'root';
-// $password = 'lily53053067';
-// //网站名称
-// $site_name = 3;
-// //网站域名
-// $site_url = 44;
-
-// //描述
-// $seo_description =55;
-// //关键词
-// $seo_keywords = 66;
-// $dbPrefix='qw_';
-// $dbName='r34';
-//  	$conn =  mysqli_connect('127.0.0.1', $username, $password);
-//  	print_r($conn);
-     
-// print_r(mysqli_select_db($conn,$dbName));
-// print_r("UPDATE `{$dbPrefix}setting` SET  `k` = '$site_name' WHERE title='site_name'");
 //更新配置信息
 mysqli_query($conn,"UPDATE `{$dbPrefix}setting` SET  `v` = '$site_name' WHERE k='title'");
 mysqli_query($conn,"UPDATE `{$dbPrefix}setting` SET  `v` = '$site_url' WHERE k='site' ");
 mysqli_query($conn,"UPDATE `{$dbPrefix}setting` SET  `v` = '$seo_description' WHERE k='description'");
 mysqli_query($conn,"UPDATE `{$dbPrefix}setting` SET  `v` = '$seo_keywords' WHERE k='keywords'");
 
-// if(!empty($upload_path)){
-// 	mysql_query("UPDATE `{$dbPrefix}config` SET  `value` = '$upload_path' WHERE varname='attach_storage_domain' ");
-// }
-
-// $myfile = fopen("textpost.txt", "a+") or die("Unable to open file!");
-// $txt ="/n 555555555555555---".$config['dbSetFile'];
-// fwrite($myfile, $txt);
-// $txt ="/n 6666666666666---".INSTALLTYPE;
-
-
-// fwrite($myfile, $txt);
-// fclose($myfile);
 
 if(INSTALLTYPE == 'HOST'){
 	//读取配置文件，并替换真实配置数据
 	$strConfig = file_get_contents($config['dbSetFile']);
-// $myfile = fopen("textpost.txt", "a+") or die("Unable to open file!");
-// $txt ="/n 77777777777---".$strConfig;
-// fwrite($myfile, $txt);
-// fclose($myfile);	
+
 	$strConfig = str_replace('#DB_HOST#', $dbHost, $strConfig);
 	$strConfig = str_replace('#DB_NAME#', $dbName, $strConfig);
 	$strConfig = str_replace('#DB_USER#', $dbUser, $strConfig);

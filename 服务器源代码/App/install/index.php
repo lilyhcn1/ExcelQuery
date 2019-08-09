@@ -210,12 +210,7 @@ switch ($step) {
 // 			if ($version < 4.1) {
 // 				alert(0,'连接数版本太低!');
 // 			}
-// $myfile = fopen("textpost.txt", "a+") or die("Unable to open file!");
-// $txt ="/n 4444444444444444".$version;
-// fwrite($myfile, $txt);
-// fclose($myfile);			
-// $con = mysqli_connect("localhost","root","lily53053067");
-// mysqli_query($con,"create database jiangxia ");
+
 			//选择数据库
 			if (!mysqli_select_db($conn,$dbName)) {
 				//创建数据时同时设置编码
@@ -225,11 +220,7 @@ switch ($step) {
 					alert(1,"<li><span class='correct_span'>&radic;</span>成功创建数据库:{$dbName}<span style='float: right;''>".date('Y-m-d H:i:s')."</span></li>",0);
 				}
 			}
-// mysqli_query($conn,"CREATE DATABASE IF NOT EXISTS `" . $dbName . "` DEFAULT CHARACTER SET utf8;");	
-// $myfile = fopen("textpost.txt", "a+") or die("Unable to open file!");
-// $txt ="/n 555555555555555---".$dbName;
-// fwrite($myfile, $txt);
-// fclose($myfile);
+
 			//读取数据文件
 			$sqldata = file_get_contents('./'.$config['sqlFileName']);
 
@@ -244,16 +235,10 @@ switch ($step) {
 			 * 执行SQL语句
 			 */
 			$counts = count($sqlFormat);
-// $myfile = fopen("textpost.txt", "a+") or die("Unable to open file!");
-// $txt ="/n 66666666666666666".json_encode($counts);
-// fwrite($myfile, $txt);
-// fclose($myfile);
+
 			for ($i = $n; $i < $counts; $i++) {
 				$sql = trim($sqlFormat[$i]);
-// $myfile = fopen("textpost.txt", "a+") or die("Unable to open file!");
-// $txt ="/n 7777777777777777777".$sql;
-// fwrite($myfile, $txt);
-// fclose($myfile);			
+		
 				if (strstr($sql, 'CREATE TABLE')) {
 					//创建表
 					preg_match('/CREATE TABLE `([^ ]*)`/', $sql, $matches);
@@ -282,10 +267,7 @@ switch ($step) {
 			$data = include './'.$config['handleFile'];
 			$_SESSION['INSTALLOK'] = $data['status']?1:0;
 			
-$myfile = fopen("textpost.txt", "a+") or die("Unable to open file!");
-$txt ="/n 888888888888【".$_SESSION['INSTALLOK']." 】";
-fwrite($myfile, $txt);
-fclose($myfile);			
+			
 			alert($data['status'],$data['info']);
 // 			alert("2",$data['info']);
 		}

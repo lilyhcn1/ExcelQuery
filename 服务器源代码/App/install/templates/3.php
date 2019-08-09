@@ -8,7 +8,7 @@
 						<td class="td1" width="200">&nbsp;</td>
 						<td class="td1">&nbsp;</td>
 					</tr>
-					<?php if(INSTALLTYPE == 'HOST'){?>
+
 					<tr>
 						<td class="tar">数据库服务器：</td>
 						<td><input type="text" name="dbhost" id="dbhost" value="127.0.0.1" class="input"></td>
@@ -35,13 +35,13 @@
 						<td>&nbsp;</td>
 					</tr>
 
-					<? if(INSTALLTYPE == 'HOST' || INSTALLTYPE == 'BAE'){ ?>
+
 					<tr>
 						<td class="tar">数据库名：</td>
 						<td><input type="text" name="dbname" id="dbname" value="<?php echo $config['dbName'] ?>" class="input"></td>
 						<td><div id="J_install_tip_dbname"></div></td>
 					</tr>
-					<?php } ?>
+
 					<tr>
 						<td class="tar">数据库表前缀：</td>
 						<td><input type="text" name="dbprefix" id="dbprefix" value="<?php echo $config['dbPrefix'] ?>" class="input"></td>
@@ -144,8 +144,8 @@
 			dbuser : '请输入数据库用户名',
 			dbpw : '请输入数据库密码',
 			dbname : '请输入数据库名',
-			dbprefix : '建议使用默认，同一数据库安装多个时需修改',
-			manager : '创始人帐号，拥有站点后台所有管理权限',
+			dbprefix : '不要修改！！！！！',
+			manager : '不要修改！！！！！',
 			manager_pwd : '请输入管理员密码',
 			manager_ckpwd : '请再次输入管理员密码',
 			sitename : '',
