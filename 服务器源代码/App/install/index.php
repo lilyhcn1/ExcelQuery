@@ -136,7 +136,45 @@ switch ($step) {
 		break;
 	//安装详细过程
 	case '4':
+// print_r($_POST);
 
+switch ($_POST['sitetype']){
+    case 'pub1':
+    // 全公开，不操作任何事
+    // 半公开，就删rwxy,ud,及view
+    delFile("../Qwadmin/Controller/RwxyController.class.php");    
+    delDirAndFile("../Qwadmin/View/Rwxy");       
+    // renameFile($oldname,$newname); 
+ 
+    delFile("../Qwadmin/Controller/UdController.class.php");    
+    delDirAndFile("../Qwadmin/View/Ud");    
+
+    break;
+    case 'pub2':
+    // 半公开，就删rwxy,ud,及vi
+    delFile("../Qwadmin/Controller/RwxyController.class.php");    
+    delDirAndFile("../Qwadmin/View/Rwxy");       
+    // renameFile($oldname,$newname); 
+ 
+    delFile("../Qwadmin/Controller/UdController.class.php");    
+    delDirAndFile("../Qwadmin/View/Ud");   
+    delFile("../Qwadmin/Controller/ViController.class.php");    
+    delDirAndFile("../Qwadmin/View/Vi");       
+    break;
+    case 'pub3':
+    // 全保密，就删rwxy,vi,ud,ad
+    delFile("../Qwadmin/Controller/RwxyController.class.php");    
+    delDirAndFile("../Qwadmin/View/Rwxy");       
+    // renameFile($oldname,$newname); 
+ 
+    delFile("../Qwadmin/Controller/UdController.class.php");    
+    delDirAndFile("../Qwadmin/View/Ud");   
+    delFile("../Qwadmin/Controller/ViController.class.php");    
+    delDirAndFile("../Qwadmin/View/Vi");       
+    delFile("../Qwadmin/Controller/AdController.class.php");    
+    delDirAndFile("../Qwadmin/View/Ad");           
+    break;    
+}
 
 		if (!isset($_GET['install'])){
 			switch (INSTALLTYPE){
@@ -282,6 +320,8 @@ switch ($step) {
 		if(isset($_SESSION['INSTALLOK']) && $_SESSION['INSTALLOK'] == 1){
 			filewrite($config['installFile']);
 		}
+	//生成一下rename rwxy,以免出错
+    $rn=renamerwxyFile();		
 		unset($_SESSION);
 		break;
 }	
@@ -440,3 +480,46 @@ function genRandomString($len = 6) {
 	$ip   = $long ? array($ip, $long) : array('0.0.0.0', 0);
 	return $ip[$type];
  }
+
+// 删除文件
+function delDirAndFile( $dirName )
+{
+    if(is_dir($dirName)){
+if ( $handle = opendir( "$dirName" ) ) {
+   while ( false !== ( $item = readdir( $handle ) ) ) {
+   if ( $item != "." && $item != ".." ) {
+   if ( is_dir( "$dirName/$item" ) ) {
+   delDirAndFile( "$dirName/$item" );
+   } else {
+   if( unlink( "$dirName/$item" ) )echo "";
+   }
+   }
+   }
+   closedir( $handle );
+   if( rmdir( $dirName ) )echo "";
+}        
+    }
+
+}
+// 删除文件
+function delFile($path){
+if(file_exists($path)){
+    unlink($path);
+}
+// else{
+//     echo "路径不正确";
+// }	
+
+}
+// 重命令文件
+function renamerwxyFile(){
+$oldname= $_SERVER['DOCUMENT_ROOT']."/App/Qwadmin/Controller/RwxyController.class.php.empty";
+$newname=$_SERVER['DOCUMENT_ROOT']."/App/Qwadmin/Controller/RwxyController.class.php";
+if(file_exists($oldname) && !file_exists($newname)){
+    rename($oldname,$newname);
+}
+// else{
+//     echo "重命名路径不正确";
+// }	
+
+}

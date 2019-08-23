@@ -76,85 +76,6 @@ header("Location: $url");
 
 }
 
-
-
-
-    public function index3(){
-        $data=I('get.');
-// 读取openid
-        $code=$data['code'];
-        $wx_openid=$_SESSION["wx_openid"];
-// addlog('lilyreg.code'.$code);        
-        if(empty($wx_openid)){
-            if($code){
-                $wx_openid=R('Lilyweixin/weixincodegetopenid',array($code));
-            }
-        }
-
-        Session_Start();
-        if(empty($_SESSION["wx_openid"])){
-            $_SESSION["wx_openid"]=$wx_openid;
-        }
-
-
-
-        
-        if(empty($_SESSION["smscode"])){
-            $_SESSION["smscode"]=rand(1000,9999);
-        }
-
-// addlog('lilyreg.$_SESSION["smscode"]4'.$_SESSION["smscode"]);
-// addlog('lilyreg.wx_openid4'.$wx_openid);
-    $this->assign('wx_openid',$wx_openid); 
-   	// $this -> display();
-
-        
-        $db2 = M('classleader');   
-       //一级分类就不用联动了，直接实例化表 输出模板就可以。
-        $query=$db2->distinct(true)->field('school')->select();
-        $this->assign('data',$query);
-        
-        // pr($query);
-        $this->display();           
-        
-    }    
-    public function smssendbak(){
-        $data=I('post.');
-        $data['code']=$_SESSION["smscode"];
-        
-        $con['mphone']=$data['phone'];
-        $db = M('teacher','think_','mysql://'.C('DB_USER').':'.C('DB_PWD').'@localhost/thinkphp2#utf8');
-        $userarr=$db->where($con)->find();
-    
-// addlog('msgsend:'.json_encode($data));
-// addlog('msgsend:'.json_encode($userarr));
-        if($userarr){
-// addlog('msgsend:'.json_encode($data));
-            send_dayusms($data['phone'],$data['code']);
-        }else{   
-            $this -> error('暂时禁止学生注册',U('Lilyreg'));
-        }
-        // addlog('21212'.json_encode($data));
-    // send_dayusms();
-        
-        
-    }
-    public function sms139send(){
-        $data=I('post.');
-        
-        $data['code']=$_SESSION["smscode"];
-// addlog('$data[\'code\']'.$data['code']);
-
-// 用139邮箱进行短信验证
-        // $address[1]=GetPhoneEmail($data['phone']);
-        // $subject='您注册通知管理系统的';
-        // $content='验证码:['.$data['code'].']';
-        // send_email($address,$subject,$content);
-
-// 用阿里大于进行短信验证 
-    send_dayusms($data['phone'],$data['code']);    
-
-    }    
 // 页面注册
 public function reg(){
         $data=I('post.');
@@ -599,36 +520,6 @@ echo $uid=M('member')->where($condition)->find();
 
 
 
-
-public function classify(){
-    // 这里要手动修改
-        $db = M('classleader');  
-
-        $classabc=I('post.');  //接收模板文件jquery $(load)传来参数。data
-        $postfield=$classabc['fc'];
-        $getfield=$classabc['sc'];
-        $postdata=$classabc['data'];
-
-        $where[$postfield]=$postdata;
-        $order=$postfield." asc";
-        $query=$db->distinct(true)->field($getfield)->order($order)->where($where)->select();   //在三级分类表classc里找出字段classB_id=$classb_id
-
-        if($query){  //判断如果有数据就显示  二级分类   如果无数据就显示 无分类
-            $temp="<option selected='selected'>请选择</option>";
-        }else{
-            $temp="<option selected='selected'>无分类</option>";
-        }
-        //循环数组
-        foreach ($query as $key=>$value)
-            { 
-                $temp.="<option value=".$query[$key][$getfield].">".$query[$key][$getfield]."</option>";
-            }            
-
-        echo $temp;
-}
-
-
-
     public function regsuccess($title='注册成功',$content='请关闭本页面，并返回微信聊天界面。'){
 echo "
 <html>
@@ -658,47 +549,5 @@ echo "
       $content='请关闭本页面。';
       echo h5page($title,$content);
     }    
-    public function indexbak(){
-        $data=I('get.');
-        
-        $con['mphone']=$data['phone'];
 
-// // pr($data);
-// // pr($_SERVER);
-//     $code=$data['code'];
-// // pr('$code： '.$code);
-// // pr($data);    
-//     if($code){
-//         $data='';
-//         $temp=R('Lilyweixin/weixincodegetopenid',array($code));
-// // pr($temp);        
-//         $data['wx_openid']=$temp;
-//     }
-//  pr($data);   
-// addlog('lilyreg.index.get12'.json_encode($wx_openid));
-
-
-// 数据据不同
-        $db = M('teacher','think_','mysql://'.C('DB_USER').':'.C('DB_PWD').'@localhost/thinkphp2#utf8');
-        $r=$db->where($con)->find();
-        
-        // $r=M('teacher')->where($con)->find();    
-        $r['wx_openid']=$data['wx_openid'];
-        
-        Session_Start();
-        if(empty($_SESSION["smscode"])){
-            $_SESSION["smscode"]=rand(1000,9999);
-        }
-// addlog('$_SESSION["smscode"]'.$_SESSION["smscode"]);
-    $this->assign('data',$r); 
-// addlog('lilyreg.code'.$_SESSION["smscode"]);
-// addlog('lilyreg.index'.json_encode($r));
-    // pr($r);
-   	$this -> display();
-
-
-
-
-//   echo  shorturl('www.bai2du.com');     
-    }    
 }

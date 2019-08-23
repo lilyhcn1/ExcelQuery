@@ -41,15 +41,6 @@
 </div>  
 
 									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 数字ID </label>
-										<div class="col-sm-9">
-											<input type="text" disabled="disabled" class="rcol-xs-10 col-sm-5" value="{$member.uid}">
-											<span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">无法修改</span>
-											</span>
-										</div>
-									</div>
-									<div class="form-group">
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 用户名 </label>
 										<div class="col-sm-9">
 											<input type="text" disabled="disabled" class="rcol-xs-10 col-sm-5" value="{$member.user}">
@@ -85,123 +76,123 @@
 										</div>
 									</div>
 
-									<div class="space-4"></div>
-									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 缩略图 </label>
-										<div class="col-sm-9">
-											<div class="col-xs-10 col-sm-5">{:UpImage("head",100,100,$member['head'])}</div>
-											<span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">仅支持jpg、gif、png、bmp、jpeg，且小于1MB。</span>
-											</span>
-										</div>
+									<!--<div class="space-4"></div>-->
+									<!--<div class="form-group">-->
+									<!--	<label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 缩略图 </label>-->
+									<!--	<div class="col-sm-9">-->
+									<!--		<div class="col-xs-10 col-sm-5">{:UpImage("head",100,100,$member['head'])}</div>-->
+									<!--		<span class="help-inline col-xs-12 col-sm-7">-->
+									<!--			<span class="middle">仅支持jpg、gif、png、bmp、jpeg，且小于1MB。</span>-->
+									<!--		</span>-->
+									<!--	</div>-->
 										
-									</div>
-									<div class="space-4"></div>
+									<!--</div>-->
+									<!--<div class="space-4"></div>-->
 
-									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 性别 </label>
-										<div class="col-sm-9">
-											<select id="sex" name="sex" class="multiselect">
-												<option value="0" <if condition="$member['sex'] eq 0">selected="selected"</if>>保密</option>
-												<option value="1" <if condition="$member['sex'] eq 1">selected="selected"</if>>男</option>
-												<option value="2" <if condition="$member['sex'] eq 2">selected="selected"</if>>女</option>
-											</select>
-										</div>
-									</div>
+									<!--<div class="form-group">-->
+									<!--	<label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 性别 </label>-->
+									<!--	<div class="col-sm-9">-->
+									<!--		<select id="sex" name="sex" class="multiselect">-->
+									<!--			<option value="0" <if condition="$member['sex'] eq 0">selected="selected"</if>>保密</option>-->
+									<!--			<option value="1" <if condition="$member['sex'] eq 1">selected="selected"</if>>男</option>-->
+									<!--			<option value="2" <if condition="$member['sex'] eq 2">selected="selected"</if>>女</option>-->
+									<!--		</select>-->
+									<!--	</div>-->
+									<!--</div>-->
 
-									<div class="space-4"></div>
+									<!--<div class="space-4"></div>-->
 
-									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="id-date-picker-1">生日</label>
-										<div class="col-xs-9 col-sm-9">
-											<div class="input-group col-xs-5">
-												<input class="form-control" id="birthday" name="birthday" value="{$member['birthday']|date="Y-m-d",###}" type="text" data-date-format="dd-mm-yyyy" />
-												<span class="input-group-addon">
-													<i class="ace-icon fa fa-calendar bigger-110"></i>
-												</span>
-											</div>
-										</div>
-									</div>
+									<!--<div class="form-group">-->
+									<!--	<label class="col-sm-1 control-label no-padding-right" for="id-date-picker-1">生日</label>-->
+									<!--	<div class="col-xs-9 col-sm-9">-->
+									<!--		<div class="input-group col-xs-5">-->
+									<!--			<input class="form-control" id="birthday" name="birthday" value="{$member['birthday']|date="Y-m-d",###}" type="text" data-date-format="dd-mm-yyyy" />-->
+									<!--			<span class="input-group-addon">-->
+									<!--				<i class="ace-icon fa fa-calendar bigger-110"></i>-->
+									<!--			</span>-->
+									<!--		</div>-->
+									<!--	</div>-->
+									<!--</div>-->
 
 									
-									<div class="space-4"></div>
+									<!--<div class="space-4"></div>-->
 
-									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-6"> 电话号码 </label>
-										<div class="col-sm-9">
-											<input type="text" name="phone" id="phone" placeholder="电话号码" class="col-xs-10 col-sm-5" value="{$member['phone']}">
-											<span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle"></span>
-											</span>
-										</div>
-									</div>
+									<!--<div class="form-group">-->
+									<!--	<label class="col-sm-1 control-label no-padding-right" for="form-field-6"> 电话号码 </label>-->
+									<!--	<div class="col-sm-9">-->
+									<!--		<input type="text" name="phone" id="phone" placeholder="电话号码" class="col-xs-10 col-sm-5" value="{$member['phone']}">-->
+									<!--		<span class="help-inline col-xs-12 col-sm-7">-->
+									<!--			<span class="middle"></span>-->
+									<!--		</span>-->
+									<!--	</div>-->
+									<!--</div>-->
 
-									<div class="space-4"></div>
+									<!--<div class="space-4"></div>-->
 
-									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-7"> Q&nbsp;&nbsp;Q </label>
-										<div class="col-sm-9">
-											<input type="text" name="qq" id="qq" placeholder="QQ" class="col-xs-10 col-sm-5" value="{$member['qq']}">
-											<span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle"></span>
-											</span>
-										</div>
-									</div>
+									<!--<div class="form-group">-->
+									<!--	<label class="col-sm-1 control-label no-padding-right" for="form-field-7"> Q&nbsp;&nbsp;Q </label>-->
+									<!--	<div class="col-sm-9">-->
+									<!--		<input type="text" name="qq" id="qq" placeholder="QQ" class="col-xs-10 col-sm-5" value="{$member['qq']}">-->
+									<!--		<span class="help-inline col-xs-12 col-sm-7">-->
+									<!--			<span class="middle"></span>-->
+									<!--		</span>-->
+									<!--	</div>-->
+									<!--</div>-->
 
-									<div class="space-4"></div>
+									<!--<div class="space-4"></div>-->
 
-									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> E-mail </label>
-										<div class="col-sm-9">
-											<input type="email" name="email" id="email" placeholder="E-mail" class="col-xs-10 col-sm-5" value="{$member['email']}">
-											<span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle"></span>
-											</span>
-										</div>
-									</div>
+									<!--<div class="form-group">-->
+									<!--	<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> E-mail </label>-->
+									<!--	<div class="col-sm-9">-->
+									<!--		<input type="email" name="email" id="email" placeholder="E-mail" class="col-xs-10 col-sm-5" value="{$member['email']}">-->
+									<!--		<span class="help-inline col-xs-12 col-sm-7">-->
+									<!--			<span class="middle"></span>-->
+									<!--		</span>-->
+									<!--	</div>-->
+									<!--</div>-->
 
-									<div class="space-4"></div>
-									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> 学院/部门 </label>
-										<div class="col-sm-9">
-											<input type="text" name="department" id="department" placeholder="学院/部门" class="col-xs-10 col-sm-5" value="{$member['department']}">
-											<span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">请勿输错</span>
-											</span>
-										</div>
-									</div>	
+									<!--<div class="space-4"></div>-->
+									<!--<div class="form-group">-->
+									<!--	<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> 学院/部门 </label>-->
+									<!--	<div class="col-sm-9">-->
+									<!--		<input type="text" name="department" id="department" placeholder="学院/部门" class="col-xs-10 col-sm-5" value="{$member['department']}">-->
+									<!--		<span class="help-inline col-xs-12 col-sm-7">-->
+									<!--			<span class="middle">请勿输错</span>-->
+									<!--		</span>-->
+									<!--	</div>-->
+									<!--</div>	-->
 
-									<div class="space-4"></div>
-									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> 学校 </label>
-										<div class="col-sm-9">
-											<input type="text" name="school" id="school" placeholder="学校" class="col-xs-10 col-sm-5" value="{$member['school']}">
-											<span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">请勿输错</span>
-											</span>
-										</div>
-									</div>	
-									<div class="space-4"></div>
-									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> 查询密码 </label>
-										<div class="col-sm-9">
-											<input type="text" name="querypw" id="querypw" placeholder="查询密码" class="col-xs-10 col-sm-5" value="{$member['querypw']}">
-											<span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">请用","进行分隔</span>
-											</span>
-										</div>
-									</div>										
+									<!--<div class="space-4"></div>-->
+									<!--<div class="form-group">-->
+									<!--	<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> 学校 </label>-->
+									<!--	<div class="col-sm-9">-->
+									<!--		<input type="text" name="school" id="school" placeholder="学校" class="col-xs-10 col-sm-5" value="{$member['school']}">-->
+									<!--		<span class="help-inline col-xs-12 col-sm-7">-->
+									<!--			<span class="middle">请勿输错</span>-->
+									<!--		</span>-->
+									<!--	</div>-->
+									<!--</div>	-->
+									<!--<div class="space-4"></div>-->
+									<!--<div class="form-group">-->
+									<!--	<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> 查询密码 </label>-->
+									<!--	<div class="col-sm-9">-->
+									<!--		<input type="text" name="querypw" id="querypw" placeholder="查询密码" class="col-xs-10 col-sm-5" value="{$member['querypw']}">-->
+									<!--		<span class="help-inline col-xs-12 col-sm-7">-->
+									<!--			<span class="middle">请用","进行分隔</span>-->
+									<!--		</span>-->
+									<!--	</div>-->
+									<!--</div>										-->
 
-									<div class="space-4"></div>
-									<div class="form-group">
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> 上传密码 </label>
-										<div class="col-sm-9">
-											<input type="text" name="querywrpw" id="querywrpw" placeholder="上传密码" class="col-xs-10 col-sm-5" value="{$member['querywrpw']}">
-											<span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">请用","进行分隔</span>
-											</span>
-										</div>
-									</div>	
+									<!--<div class="space-4"></div>-->
+									<!--<div class="form-group">-->
+									<!--	<label class="col-sm-1 control-label no-padding-right" for="form-field-8"> 上传密码 </label>-->
+									<!--	<div class="col-sm-9">-->
+									<!--		<input type="text" name="querywrpw" id="querywrpw" placeholder="上传密码" class="col-xs-10 col-sm-5" value="{$member['querywrpw']}">-->
+									<!--		<span class="help-inline col-xs-12 col-sm-7">-->
+									<!--			<span class="middle">请用","进行分隔</span>-->
+									<!--		</span>-->
+									<!--	</div>-->
+									<!--</div>	-->
 									
 									<div class="col-md-offset-2 col-md-9">
 										<button class="btn btn-info" type="submit">

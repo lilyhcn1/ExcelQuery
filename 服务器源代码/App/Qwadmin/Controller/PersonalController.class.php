@@ -30,20 +30,20 @@ class PersonalController extends ComController {
 			$data['password'] = password($password);
 		}
 
-		$head = I('post.head','','strip_tags');
-		if($head<>'') {
-			$data['head'] = $head;
-		}
-        $data['nickname'] = isset($_POST['nickname'])?trim($_POST['nickname']):'';
-		$data['sex'] = isset($_POST['sex'])?intval($_POST['sex']):0;
-		$data['birthday'] = isset($_POST['birthday'])?strtotime($_POST['birthday']):0;
-		$data['phone'] = isset($_POST['phone'])?trim($_POST['phone']):'';
-		$data['qq'] = isset($_POST['qq'])?trim($_POST['qq']):'';
-		$data['email'] = isset($_POST['email'])?trim($_POST['email']):'';
-		$data['department'] = isset($_POST['department'])?trim($_POST['department']):'';
-		$data['school'] = isset($_POST['school'])?trim($_POST['school']):'';	
-		$data['querypw'] = isset($_POST['querypw'])?trim($_POST['querypw']):'';
-		$data['querywrpw'] = isset($_POST['querywrpw'])?trim($_POST['querywrpw']):'';
+// 		$head = I('post.head','','strip_tags');
+// 		if($head<>'') {
+// 			$data['head'] = $head;
+// 		}
+//         $data['nickname'] = isset($_POST['nickname'])?trim($_POST['nickname']):'';
+// 		$data['sex'] = isset($_POST['sex'])?intval($_POST['sex']):0;
+// 		$data['birthday'] = isset($_POST['birthday'])?strtotime($_POST['birthday']):0;
+// 		$data['phone'] = isset($_POST['phone'])?trim($_POST['phone']):'';
+// 		$data['qq'] = isset($_POST['qq'])?trim($_POST['qq']):'';
+// 		$data['email'] = isset($_POST['email'])?trim($_POST['email']):'';
+// 		$data['department'] = isset($_POST['department'])?trim($_POST['department']):'';
+// 		$data['school'] = isset($_POST['school'])?trim($_POST['school']):'';	
+// 		$data['querypw'] = isset($_POST['querypw'])?trim($_POST['querypw']):'';
+// 		$data['querywrpw'] = isset($_POST['querywrpw'])?trim($_POST['querywrpw']):'';
 
 		$isadmin = isset($_POST['isadmin'])?$_POST['isadmin']:'';
 		if($uid <> 1) {#禁止最高管理员设为普通会员。

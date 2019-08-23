@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$sheetname}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+
+		    
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<include file="Public/sidebar" />
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<include file="Public/breadcrumbs" />
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+
+									<form class="form-horizontal" enctype="multipart/form-data" id="form" method="post" action="{:U('Queryfun/update')}">
+
+<!--{$mynavline}-->
+<div class="col-xs-12">
+<if condition="empty($id) eq true">
+    <div class="form-group">
+        <h3 align="center">  {$sheetname}  <?php echo "<a href='https://cli.im/api/qrcode/code?text=".curPageURL()."?sheetname=".$sheetname."&mhid=sELPDFnok80gPHovKdI' >二维码</a>"; ?>   
+        </h3>
+        <h4 align="center">  新增数据</h4>
+    </div>
+<else /> 
+    <div class="form-group">
+        <h3 align="center">  {$sheetname} <?php echo "<a href='https://cli.im/api/qrcode/code?text=".curPageURL()."?sheetname=".$sheetname."&mhid=sELPDFnok80gPHovKdI' >二维码</a>"; ?>
+        </h3> 
+        <h4 align="center">  更新数据</h4>
+    </div>
+</if>   
+
+<input type="hidden" name="id" value="{$id}">
+</div>
+
+
+
+
+
+<volist name="titlearr" id="val" >
+<?php $valtemp=mb_substr($val,0,2,"UTF-8");  ?>   
+<switch name="valtemp">
+    <case value="照片">
+             <div class="form-group">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">{$val}</label>
+              <div class="col-xs-9 col-sm-9">
+                <?php $tt=$fillingarr[$key];  ?>     
+                <div class="col-xs-9 col-sm-5">{:UpImage($key,100,100,$tt)}</div>
+              </div>
+             </div>    
+    </case>
+    <case value="文件">
+            <div class="form-group">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">{$val}</label>
+               <div class="col-xs-9 col-sm-9">
+                   <input type="file" name="{$key}" id="{$key}"    placeholder=""  class=" col-md-push-1 col-xs-push-1 col-xs-9 col-sm-9"  >
+                    </div>    
+            </div>
+    </case>
+    <case value="日期">
+
+             <div class="form-group">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">{$val}</label>
+              <div class="col-xs-9 col-sm-9">
+                <if condition="empty($id) eq true">
+                    <textarea  name="{$key}" id="{$key}"
+                            placeholder="" oninput="autosize(this)" class="col-xs-12 col-sm-12 " rows="1"><?php echo date("Ymd",time()); ?></textarea>
+                <else /> 
+                    <textarea  name="{$key}" id="{$key}"
+                            placeholder="" oninput="autosize(this)" class="col-xs-12 col-sm-12 " rows="1">{$fillingarr[$key]}</textarea>
+                </if>                          
+              </div> 
+             </div>
+        
+ 
+    </case>    
+<default />
+             <div class="form-group">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">{$val}</label>
+              <div class="col-xs-9 col-sm-9">
+
+                <textarea  name="{$key}" id="{$key}"
+                               placeholder="" oninput="autosize(this)" class="col-xs-12 col-sm-12 " rows="1">{$fillingarr[$key]}</textarea>
+               
+              </div> 
+             </div>
+ 
+             
+</switch>          
+</volist>
+
+    	<div class="space-4"></div>  
+
+                <div class="form-group">
+					<div class="col-md-9">
+					<div class="col-sm-3 col-xs-3">
+					    <input type="reset" class="btn"  value="重置" />    
+					</div>
+					<div class="col-sm-3 col-xs-3">
+					    
+					</div>
+
+					<div class=" col-sm-2 col-xs-2">
+					    <input class="btn btn-info submit" type="submit" value="提交" />
+					</div>					
+					</div>
+					
+				</div>
+	</form>
+                <div class="form-group">
+                    </div>
+
+
+
+							<!-- PAGE CONTENT ENDS -->
+ 							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+
+    
+<script>
+$(document).ready(function(){
+var availableTags = new Array();   
+  // 自动完成功能
+
+    var temp='<?php  echo json_encode($datalistonearr); ?>'
+    var jsonObj  =JSON.parse(temp);
+
+     var jsonArr = [];
+
+for (let i in jsonObj) {
+    var temp=[]
+    for (let j in jsonObj[i]) {
+        temp.push(jsonObj[i][j]);
+    }
+    jsonArr[i]=temp; //属性
+}     
+for(let i in jsonArr) {
+    var ff="#"+i
+    $(ff).autocomplete({
+        minLength: 0,
+        source: jsonArr[i],
+    }).focus(function() {
+        $(this).autocomplete("search", $(this).val());
+    });
+}
+      
+});
+</script>
+
+	
+<!--  文本框自动变长的脚本 -->
+    <script src="__LILYCDN__/Public/qwadmin/js/chosen.jquery.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.autosize.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.inputlimiter.1.3.1.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.maskedinput.js"></script>
+    <script type="text/javascript">
+    function autosize(obj) {
+        var el = obj;
+        setTimeout(function() {
+            el.style.cssText = 'height:auto; padding:0';
+            // for box-sizing other than "content-box" use:
+            // el.style.cssText = '-moz-box-sizing:content-box';
+            el.style.cssText = 'height:' + el.scrollHeight + 'px';
+        }, 0);
+    }
+
+    </script>	
+<!--  文本框自动变长的脚本 -->
+
+
+
+
+
+
+
+
+
+
+	</body>
+</html>

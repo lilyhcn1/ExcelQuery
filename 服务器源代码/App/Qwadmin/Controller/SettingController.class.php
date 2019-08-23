@@ -17,7 +17,7 @@ class SettingController extends ComController {
 		
 		$vars = M('setting')->where('type=1')->select();
 		$this->assign('vars',$vars);
-		
+// pr($_SESSION);		
 		$this -> display();
     }
 

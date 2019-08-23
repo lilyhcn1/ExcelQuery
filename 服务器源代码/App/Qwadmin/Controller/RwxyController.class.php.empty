@@ -1,0 +1,52 @@
+<?php
+/**
+*
+* 版权所有：三思网络<upsir.com>
+* 作    者：老黄牛<53053056>
+* 日    期：2018
+* 版    本：1.0.0
+*
+**/
+namespace Qwadmin\Controller;
+use Common\Controller\BaseController;
+use Think\Controller;
+class RwxyController extends BaseController{
+    
+// namespace Qwadmin\Controller;
+// use Qwadmin\Controller\ComController;
+// class RwxyComController extends ComController{    
+    
+public function index(){
+echo "Error, please check your have login in.";
+}
+
+
+public function excel___________() {
+}
+    
+
+// 查询数据私有的数据表
+public function echoteacherdb(){
+echo "Error, you  have not login in.";
+
+
+}
+
+
+public function u___________() {
+}
+    
+
+// 准备弃用
+// php
+public function phpupload($post="",$files="",$server="") {
+echo "Error, you  have not login in.";
+}
+
+
+
+
+
+
+// 结尾处
+}

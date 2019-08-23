@@ -10,9 +10,10 @@
 // +----------------------------------------------------------------------
 
 // 应用入口文件
-if(!file_exists("./App/install/templates/install.lock")){
+if(!file_exists("./App/install/install.lock")){
    header('Location:./App/install/index.php');
 }else{
+
     // 检测PHP环境
     if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
     

@@ -37,7 +37,7 @@ function addlog($log,$name='AdminUser'){
 // 	    $data['name']='AdminUser';
 // 	}
 $Model = M('log');
-    $data['name']='AdminUser';
+    $data['name']=$name;
 	$data['t'] = time();
 	$data['ip'] = $_SERVER["REMOTE_ADDR"];
 	$data['log'] = $log;
@@ -209,12 +209,10 @@ function logg($text){
 function shorturl($url,$d_url='d/dwz_api.php'){
     // addlog(json_encode($_SERVER));
 $d_urlall=$_SERVER["REQUEST_SCHEME"]."://".$_SERVER["HTTP_HOST"].'/'.$d_url;
-    
     $uu=$d_urlall.'?url='.$url;
-    
     if(file_exists($d_url)){
-        
-        $short_url=file_get_contents($uu);   //这个不能抓有端口的       
+        // $short_url=geturl($uu);   //这个不能抓有端口的   
+        $short_url=file_get_contents($uu);
         if(empty($short_url)){
             $short_url=$url;
         }
@@ -222,8 +220,6 @@ $d_urlall=$_SERVER["REQUEST_SCHEME"]."://".$_SERVER["HTTP_HOST"].'/'.$d_url;
         $short_url=$url;
     }
     
-addlog($uu);    
-addlog($short_url);
     return $short_url;
  
 }
@@ -395,6 +391,30 @@ function twoarray2onearr($twoarray,$col='id',$flag='true'){
         return $twoarrayunique;
     }
     
+}
+
+
+/**
+*
+* 函数：数组获取特定的键值
+* @param  array $twoarray   二级数组。
+* @param  strs 键值字符串  可以获得的键值字符串
+*
+**/
+function arraygetkeys($twoarray,$strs="d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18,d19,d20,d21,d22,d23,d24,d25,d26,d27,d28,d29,d30,d31,d32,d33,d34,d35,d36,d37,d38,d39,d40,d41,d42,d43,d44,d45,d46,d47,d48,d49,d50"){
+    $strarr=explode(",",$strs);
+    // pr($strarr);
+    foreach ($twoarray as $key => $arraytemp) {
+       if(is_array($arraytemp)){
+           $twoarraynew[$key]=arraygetkeys($arraytemp,$strs);
+       }else{
+           if(in_array($key,$strarr) ){
+                $twoarraynew[$key]=$arraytemp;
+            }
+       }
+       
+    }
+     return $twoarraynew;
 }
 
 /**
@@ -1773,55 +1793,46 @@ return $allpage;
 
 
 /*
- * @purpose: 使用curl并行处理url
+ * @purpose: 单url发送
  * @return: array 每个url获取的数据
  * @param: $urls array url列表
  * @param: $callback string 需要进行内容处理的回调函数。示例：func(array)
  */
-function curl($urls = array(), $callback = '')
-{
-    $response = array();
-    if (empty($urls)) {
-        return $response;
-    }
-    $chs = curl_multi_init();
-    $map = array();
-    foreach($urls as $url){
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_NOSIGNAL, true);
-        curl_multi_add_handle($chs, $ch);
-        $map[strval($ch)] = $url;
-    }
-    do{
-        if (($status = curl_multi_exec($chs, $active)) != CURLM_CALL_MULTI_PERFORM) {
-            if ($status != CURLM_OK) { break; } //如果没有准备就绪，就再次调用curl_multi_exec
-            while ($done = curl_multi_info_read($chs)) {
-                $info = curl_getinfo($done["handle"]);
-                $error = curl_error($done["handle"]);
-                $result = curl_multi_getcontent($done["handle"]);
-                $url = $map[strval($done["handle"])];
-                $rtn = compact('info', 'error', 'result', 'url');
-                if (trim($callback)) {
-                    $callback($rtn);
-                }
-                $response[$url] = $rtn;
-                curl_multi_remove_handle($chs, $done['handle']);
-                curl_close($done['handle']);
-                //如果仍然有未处理完毕的句柄，那么就select
-                if ($active > 0) {
-                    curl_multi_select($chs, 0.5); //此处会导致阻塞大概0.5秒。
-                }
-            }
+function geturl($url="http://www.baidu.com"){
+$UserAgent = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506; .NET CLR 3.5.21022; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
+        $curl = curl_init(); // 启动一个CURL会话
+        curl_setopt($curl, CURLOPT_URL, $url); // 要访问的地址
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); // 对认证证书来源的检查
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2); // 从证书中检查SSL加密算法是否存在
+        curl_setopt($curl, CURLOPT_USERAGENT, $UserAgent/*$_SERVER['HTTP_USER_AGENT']*/); // 模拟用户使用的浏览器
+
+        if (ini_get('open_basedir') == '' && ini_get('safe_mode' == 'Off')) {
+
+            curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+
         }
-    }
-    while($active > 0); //还有句柄处理还在进行中
-    curl_multi_close($chs);
-    return $response;
+        //curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1); // 使用自动跳转
+        curl_setopt($curl, CURLOPT_AUTOREFERER, 1); // 自动设置Referer
+        
+		if ($data) {
+            curl_setopt($curl, CURLOPT_POST, 1); // 发送一个常规的Post请求
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // Post提交的数据包
+        }
+        
+        curl_setopt($curl, CURLOPT_TIMEOUT, 200); // 设置超时限制防止死循环
+        curl_setopt($curl, CURLOPT_HEADER, 0); // 显示返回的Header区域内容
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); // 获取的信息以文件流的形式返回
+        $tmpInfo = curl_exec($curl); // 执行操作
+        if (curl_errno($curl)) {
+            echo 'Errno'.curl_error($curl);//捕抓异常
+        }
+        curl_close($curl); // 关闭CURL会话
+        return $tmpInfo; // 返回数据
+    
 }
+
+
+
 
 // 修改了网上的模板，原来是url会变，我现在是post会变
 function  curlpost($url,$postarr, $callback = '')
@@ -2115,5 +2126,13 @@ function savefile(){
     return $newfiletwoarr;
 }
 
-
-
+function r34_________________________(){
+    
+}
+// 看有没有登陆，登陆了加个Com
+function getcomstr($str,$thisuser=""){
+    if(session('login')=="yes"){
+        $str=$str."Com";
+    }
+    return $str;
+}

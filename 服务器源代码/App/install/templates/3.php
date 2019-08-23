@@ -1,4 +1,6 @@
 <?php require './templates/header.php';?>
+  <meta charset="utf-8">
+
 	<form id="J_install_form" action="index.php?step=4" method="post">
 		<div class="section">
 			<div class="main server">
@@ -107,12 +109,54 @@
 						<td><div id="J_install_tip_manager_email"></div></td>
 					</tr>
 				</table>
+				
+				<table width="100%">
+
+		<tr>
+<div class="control-group" style="font-size:15px">
+  <label class="control-label leipiplugins-orgname td1">网站类型选择</label>
+  <div class="controls leipiplugins-orgvalue"><!-- Multiple Checkboxes -->
+<div style="padding:5px">
+<label class="radio ">
+<input type="radio" name="sitetype" checked="checked"  title="网站类型选择" value="pub0" orginline="" class="leipiplugins" leipiplugins="radio">局域网版：用户无需注册，使用方便
+<p>未注册用户可进行任何操作。</p> 
+</label>
+</div>
+
+<div style="padding:5px">
+    <label  class="radio ">
+<input type="radio" name="sitetype" title="网站类型选择" value="pub1" orginline="inline" class="leipiplugins" leipiplugins="radio">互联网1型：比较安全
+<p>未注册用户可查看数据，填写表单。</p> 
+</label>
+</div>
+
+<div style="padding:5px">
+    <label  class="radio ">
+<input type="radio" name="sitetype" title="网站类型选择" value="pub2" orginline="inline" class="leipiplugins" leipiplugins="radio">互联网2型：更为安全
+<p>未注册用户仅可填写表单。</p> 
+</label>
+</div>
+
+<div style="padding:5px">
+<label  class="radio ">
+<input type="radio" name="sitetype" title="网站类型选择" value="pub3"  class="leipiplugins" leipiplugins="radio">互联网用户版：安全性最高，仅注册用户可访问
+<p>未注册用户无法做任何事。</p> 
+</label>
+</div>
+
+
+</div>
+</div>
+
+		</tr>    
+				</table>				
+				
 				<div id="J_response_tips" style="display:none;"></div>
 			</div>
 		</div>
-		<div class="btn-box">
-			<a href="./index.php?step=2" class="btn">上一步</a>
-			<button type="submit" class="btn btn_submit J_install_btn">创建数据</button>
+		<div class="btn-box" style="padding:0px 12px;">
+			<a href="./index.php?step=2" class="btn" >上一步</a>
+			<button type="submit" class="btn btn_submit" >创建数据</button>
 		</div>
 	</form>
 	<script src="./templates/js/jquery.js"></script> 

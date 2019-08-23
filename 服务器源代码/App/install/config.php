@@ -25,7 +25,7 @@ return array(
 		//数据库配置文件
 		'dbConfig'=>'../../App/Common/Conf/config.php',
 		//数据库名
-		'dbName' => 'r34',
+		'dbName' => '',
 		//数据库表前缀
 		'dbPrefix' => 'qw_',
 		//站点名称
@@ -49,6 +49,6 @@ return array(
 		/* ------生成数据库配置文件的模板------ */
 		'dbSetFile'=> 'config.ini.php',
 		/* ------安装验证/生成文件;非云平台安装有效------ */
-		'installFile' => './templates/install.lock',
-		'alreadyInstallInfo' => '你已经安装过该系统，如果想重新安装，请先删除站点config目录下的 install/templates/install.lock 文件，然后再尝试安装！',
+		'installFile' => './install.lock',
+		'alreadyInstallInfo' => '你已经安装过该系统，如果想重新安装，请先删除站App/install/install.lock 文件，然后再尝试安装！',
 	);

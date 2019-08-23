@@ -15,15 +15,13 @@ use Think\Auth;
 class LoginController extends BaseController {
     public function index(){
 	$Req_URL=$_GET['Req_URL'];
+	
+	$data=I('get.');
+// C('EXCELSECRETSHEET');
+// pr($_SESSION,'54356');
 
-
-// 用于小程序的免登陆
-	list($temp1, $wx_openid) = explode('=', $Req_URL);
-// 	addlog('login/index.$temp1'.json_encode($temp1));	
-	if(!empty($wx_openid) && $temp1="\/?wx_openid"){
-        R('Login/wxlogin',array($wx_openid));
-	}
-// addlog('login/index.$temp1'.json_encode($temp1));	
+// add-log('已进入login模块index');
+// add-log('login/index.$temp1'.json_encode($temp1));	
 // 用于小程序的免登陆	--------------------------------
 
 	
@@ -53,13 +51,6 @@ public function login($dataarr=''){
    $Req_URL=$_POST['Req_URL'];
    $ErrJumpURL=U("login/index").'?Req_URL='.$Req_URL;
 
-//   addlog('成功后33'.strlen($Req_URL));
-//	   if($Req_URL!='NoReq_URL'){
-//	       addlog('有传值22 REQ');
-//	   }else{
-//	       addlog('没有传值22 REQ');
-//	   }    
-    
 
 //暂时去除验证码
 //		$verify = isset($_POST['verify'])?trim($_POST['verify']):'';
@@ -88,6 +79,7 @@ public function login($dataarr=''){
 		$Req_URL=$_POST['Req_URL'];
 
 // 强增数据
+// add-log(json_encode($dataarr),'342356');
     if(is_array($dataarr)){
         $Req_URL=$dataarr['Req_URL'];
         $ErrJumpURL=$dataarr['ErrJumpURL'];
@@ -95,10 +87,13 @@ public function login($dataarr=''){
         $password=$dataarr['password'];
     }
 
+// add-log($Req_URL,'$Req_URL');
+// add-log($username,'$username');
+// add-log($password,'$password');
 
 		$model = M("Member");
 		$user = $model ->field('uid,user')-> where(array('user'=>$username,'password'=>$password)) -> find();
-	
+// add-log(json_encode($user),'$user563');	
 
 		if($user) {
 			$token = password(uniqid(rand(), TRUE));
@@ -124,10 +119,20 @@ public function login($dataarr=''){
 			}else{
 			     $url=$Req_URL;
 			}
-addlog('登录成功。jumpurl='.$url.'$Req_URL'.$Req_URL);
-			header("Location: $url");
 			
+			
+    // session('login','yes');
+    // $flag = true;
+    // $this->USER = $user;   
+    // cookie('auth',$user['identifier'].','.$user['token']);    
+    
+addlog('登录成功。jumpurl= '.$url);
+if(!empty($dataarr['username']) && !empty($dataarr['password']) ){
+    // R('RwxyCom/phpupload',array($_POST,$_FILES,$_SERVER));
+}
 
+
+			header("Location: $url");
             exit(0);
 		}else{
 			addlog('登录失败。',$password);
@@ -159,7 +164,7 @@ public function loginidentifier($uid=''){
     
     $condition['uid']=$uid;
     $user=M('member')->where($condition)->find();
-    // addlog('login.loginidentifier'.json_encode($user));
+    // add-log('login.loginidentifier'.json_encode($user));
 		if($user) {
 			$token = password(uniqid(rand(), TRUE));
 			$salt = random(10);

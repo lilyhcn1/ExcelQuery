@@ -60,6 +60,7 @@ mysqli_query($conn,"UPDATE `{$dbPrefix}member` SET  `email` = '$email' WHERE uid
 
 return array('status'=>2,'info'=>'成功添加管理员<br />成功写入配置文件<br>安装完成...');
 
+
 // if(mysql_query($query)){
 // 	return array('status'=>2,'info'=>'成功添加管理员<br />成功写入配置文件<br>安装完成...');
 // }

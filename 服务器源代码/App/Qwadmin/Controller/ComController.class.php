@@ -21,14 +21,18 @@ class ComController extends BaseController
     {
     $flag = false; 
     $code=$_GET['code'];
-    // addlog('com.getMenu.first.oepnid.else');
+    // addlog($code,'$code');
+
+
+//addlog(json_encode($this->USER),'user32432');
 
 if($this->USER){
+//addlog(json_encode($this->USER),'查到了user');
     session('login','yes');
     $flag = true;
     $this->USER = $iduser;   
     cookie('auth',$iduser['identifier'].','.$iduser['token']);    
-}elseif($code){
+}elseif($code){  //openid 进行登陆
 // 读取openid
     if(empty($_SESSION["wx_openid"])){
         $openid=R('Lilyweixin/weixincodegetopenid',array($code));
@@ -46,11 +50,28 @@ if($this->USER){
     		$flag = true;
     		$this->USER = $iduser;   
     		cookie('auth',$iduser['identifier'].','.$iduser['token']);
+    		session('login','yes');
     }
+}else{  //输入用户名及密码进行登陆
+    $postdata=empty(I('post.'))?I('get.'):I('post.');
+    $con2=R("Queryfun/constr2conarr",array($postdata,'eq'));
+// pr($con2,'5432');
+    $username=$con2['user'];
+    $password=$con2['password'];
+// addlog('已进_initialize模块user '.$username);    
+		$model = M("Member");
+		$iduser = $model ->field('uid,user')-> where(array('user'=>$username,'password'=>password($password))) -> find();
+// 		pr($iduser,'73f');
+    if($iduser){
+    		$flag = true;
+    		$this->USER = $iduser;   
+    		cookie('auth',$iduser['identifier'].','.$iduser['token']);
+    		session('login','yes');
+    // 		addlog('已进_initialize模块user登陆了 '.$username);    
+    }
+
 }
-
-
-        C(setting());
+       C(setting());
         $auth = cookie('auth');
 		list($identifier, $token) = explode(',', $auth);
 		if (ctype_alnum($identifier) && ctype_alnum($token)) {
