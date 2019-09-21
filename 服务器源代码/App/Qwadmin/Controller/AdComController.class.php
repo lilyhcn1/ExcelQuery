@@ -15,7 +15,7 @@
 namespace Qwadmin\Controller;
 use Qwadmin\Controller\ComController;
 class AdComController extends ComController{    
-  
+    
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
         header("Location: $url");
@@ -29,13 +29,17 @@ $db=M(C('EXCELSECRETSHEET'));
     $sheetname=empty(I('get.sheetname'))?C('MLSHEETNAME'):I('get.sheetname');
     session('sheetname',$sheetname);
     $fieldstr=compute_fieldstr(C('MLNOTFIELD'));
-// pr($fieldstr);    
-
+// pr($fieldstr);  
+// pr($id,'d2ff3r');    
+// pr($id,'567564');     
     // 用户填表权限检测
-    R("Queryfun/Auth2FillForm",array($sheetname));    
-
+    $au=R("Queryfun/Auth2FillForm",array($sheetname,'','',$id));    
+    // pr($au);
+    
+// pr($id,'ef43rfsd2343333333');        
     if($id){
-// pr('fdsafds');        
+        // 用户修改表格的权限检测
+        $bu=R("Queryfun/Auth2edit",array($sheetname,'','',$id));       
         $titlearr=R('Queryfun/gettitlearr',array('',$id,$fieldstr));
         
         // 先用管理员身份查查
@@ -68,7 +72,11 @@ $db=M(C('EXCELSECRETSHEET'));
     $this->assign('titlearr',$titlearr);
     $this->assign('datalistonearr',$datalistonearr);
     $this->assign('mynavline',R('Queryfun/mynavline',array($sheetname,$id,$this->USER)));
-    $this->display();    
+    $this->display();           
+    // }else{
+    //     $this->error("错误，未登陆。",U("index/index"));
+    // }
+
 }
 
 

@@ -30,13 +30,16 @@ $db=M(C('EXCELSECRETSHEET'));
     session('sheetname',$sheetname);
     $fieldstr=compute_fieldstr(C('MLNOTFIELD'));
 // pr($fieldstr);  
-// pr($id,'d23r');    
+// pr($id,'d2ff3r');    
 // pr($id,'567564');     
     // 用户填表权限检测
-    $au=R("Queryfun/Auth2FillForm",array($sheetname));    
-
+    $au=R("Queryfun/Auth2FillForm",array($sheetname,'','',$id));    
+    // pr($au);
+    
+// pr($id,'ef43rfsd2343333333');        
     if($id){
-// pr($id,'d23r');        
+        // 用户修改表格的权限检测
+        $bu=R("Queryfun/Auth2edit",array($sheetname,'','',$id));       
         $titlearr=R('Queryfun/gettitlearr',array('',$id,$fieldstr));
         
         // 先用管理员身份查查

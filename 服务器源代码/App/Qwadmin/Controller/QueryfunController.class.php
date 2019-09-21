@@ -165,11 +165,14 @@ class QueryfunController extends BaseController {
         $aa['ID字段'] = 'pidkey';
         $aa['分类字段'] = 'classkey';
         $aa['排序字段'] = 'orderkey';
+        $aa['是否升序'] = 'isasc';        
         $aa['缩略显示'] = 'weborder';
         $aa['覆盖上传'] = 'replaceadd';
         $aa['匿名填表'] = 'anonymousfill';
         $aa['提示字段'] = 'autotip';
         $aa['不提示字段'] = 'notautotip';
+        $aa['显示条数'] = 'limitnum';        
+        
         foreach ($arr as $keycn => $v) {
             foreach ($aa as $kval => $vkey) {
                 if ($keycn == $kval) {
@@ -364,7 +367,7 @@ public function updatetoadd($id=0){
 if(empty($id)){
     $id=I('get.id');}
 $sheetname=session('sheetname');
-
+$bu=R("Queryfun/Auth2edit",array($sheetname,'','',$id));       
 $newarr=R('Queryfun/echoiddatacontent',array($id,$this->USER));
 
 // pr($id);
@@ -387,13 +390,13 @@ return $echohtml;
 
 
 // 判断是否有授权,看能否填表 
-public function Auth2FillForm($sheetname,$titlearrall="",$paraarr="") {
+public function Auth2FillForm($sheetname,$titlearrall="",$paraarr="",$id="") {
 // pr($titlearrall,"fds234");
 // pr($titlearrall,"34534");
     if(empty($titlearrall) ||empty($paraarr) ){
 // pr($titlearrall,"3333333");
 // pr($titlearrall,"342222234534");        
-        $titlearrall=R('Queryfun/gettitlearr',array($sheetname));
+        $titlearrall=R('Queryfun/gettitlearr',array($sheetname,$id));
         $paraarr=json_decode($titlearrall['custom1'],'true');       
     }
     // pr($paraarr);
@@ -409,6 +412,37 @@ public function Auth2FillForm($sheetname,$titlearrall="",$paraarr="") {
     }
 }
 
+// 判断是否有授权,看能否修改表格,一般10分钟内可以修改
+public function Auth2edit($sheetname,$titlearrall="",$paraarr="",$id="") {
+if(session('login')=='yes'){
+    return true;
+}else{
+$db=M(C('EXCELSECRETSHEET'));
+    if(empty($titlearrall) ||empty($paraarr) ){
+        $titlearrall=R('Queryfun/gettitlearr',array($sheetname,$id));
+        $paraarr=json_decode($titlearrall['custom1'],'true');       
+    }
+    $con['id']=$id;
+    // $con['sheetname']=$sheetname;
+    $t=$db->where($con)->find();
+    $edtime=$t['data1'];
+    // pr($edtime,'$edtime');
+    // pr($edtime+C('EDITTIME'),'$edtime+C');
+    if($edtime){
+        
+        if(time() > $edtime+C('EDITTIME')){
+            $this->error("错误7544，此单元格修改时间超时，请登陆后修改！~",U("index/index"));
+            return false;
+        }else{
+            return true;
+        }
+    }else{
+        $this->error("错误234122，找不到对应的记录！~",U("index/index"));
+    }        
+    }
+
+
+}
 
 //
 public function ud___________________(){
@@ -538,7 +572,8 @@ return $newarr;
 
 // 这是数值
 function isphone($value){
-    if(($value>600 && $value < 900 ) ||($value>500000 && $value < 699999 ) || ($value>13000000000 && $value < 19000000000 ) || ($value>10000000 && $value < 100000000 )){
+    if(($value>600 && $value < 900 ) ||($value>500000 && $value < 699999 ) || ($value>13000000000 && $value < 19000000000 ) ){
+        // pr($value);
         return true;
     }else{
         // pr("非文本3");

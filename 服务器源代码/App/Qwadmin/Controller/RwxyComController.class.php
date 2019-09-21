@@ -15,7 +15,7 @@
 namespace Qwadmin\Controller;
 use Qwadmin\Controller\ComController;
 class RwxyComController extends ComController{    
-    
+   
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
         header("Location: $url");
@@ -71,8 +71,9 @@ unset($likecon['user']);
 
   
 $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
-
- 
+$isasc=($con2['isasc']=="否")?"desc":"asc";
+$ordstr=$ordstr." ".$isasc;
+// pr($ordstr);
 // 0. 读取第一行
     // $sheetcon['sheetname']=$con2['sheetname'];
     // $queryfirst=$db->where($sheetcon)->order('id')->find(); 
