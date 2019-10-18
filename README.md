@@ -58,7 +58,7 @@ PPT: http://vps0.upsir.com/lily/3.pptx
 2. 上传源码到服务器的根目录；
 3. 按照向导填数据库的密码等即可。
 
-php+Mysql平台windows平台建议PHPStudy，linux平台我是使用宝塔。
+php+Mysql平台windows平台建议PHPStudy 2016版本的（最新版本的，好像有问题），linux平台我是使用宝塔。
 
 
 
