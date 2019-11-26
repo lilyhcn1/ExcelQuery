@@ -22,7 +22,7 @@ return array(
 	//数据库用户名
 	'DB_USER'=>'root',
 	//数据库用户密码
-	'DB_PWD'=> 'lily53053067',
+	'DB_PWD'=> 'root',
 	//数据库库表前缀
 	'DB_PREFIX'=>'qw_',
 	// 端口
