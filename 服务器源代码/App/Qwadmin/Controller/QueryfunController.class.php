@@ -172,7 +172,8 @@ class QueryfunController extends BaseController {
         $aa['提示字段'] = 'autotip';
         $aa['不提示字段'] = 'notautotip';
         $aa['显示条数'] = 'limitnum';        
-        
+        $aa['表格说明'] = 'titleexplain';        
+        $aa['初始数据行数'] = 'tipnumlimt';                 
         foreach ($arr as $keycn => $v) {
             foreach ($aa as $kval => $vkey) {
                 if ($keycn == $kval) {
@@ -402,13 +403,13 @@ public function Auth2FillForm($sheetname,$titlearrall="",$paraarr="",$id="") {
     // pr($paraarr);
     if($paraarr['anonymousfill']=="否"){
         if(session('login')=='yes'){
-            return true;
+            return $paraarr;
         }else{
             $this->error("错误，此表单需要登陆后才能填写！~",U("index/index"));
-            return false;
+            return $paraarr;
         }
     }else{
-        return true;
+        return $paraarr;
     }
 }
 
@@ -477,7 +478,7 @@ $db=M(C('EXCELSECRETSHEET'));
 if(!empty($id)){
     $con['id']=$id;
     $idarr=$db->where($con)->order('id asc')->find();
-// pr($idarr,"343");    
+pr($idarr,"343");    
     $titlearr=$this->gettitlearr($idarr['sheetname'],'',$fieldstr);
 }elseif(empty($sheetname) ){
     $this->error('未找到您的个人记录！~');
@@ -696,11 +697,16 @@ public function LastInputs($sheetname="古村落"){
         // }
         // 把首行排除掉
         $firsrtlinearr=$db->where($querycon)->order('id asc')->limit(100)->distinct()->find();  
+// pr('$firsrtlinearr',$firsrtlinearr);
 
         $custom1arr=json_decode($firsrtlinearr['custom1'],true);
-        // pr($custom1arr);
+// var_dump($custom1arr);
         $autotip=$custom1arr['autotip'];
         $notautotip=$custom1arr['notautotip'];
+        $tipnumlimt=$custom1arr['tipnumlimt'];
+
+// pr('$tipnumlimt',$tipnumlimt);        
+// pr('$custom1arr',$custom1arr);
         if(!empty($autotip)){
             $fieldstr=$autotip;
         }elseif(!empty($notautotip)){
@@ -723,7 +729,11 @@ public function LastInputs($sheetname="古村落"){
             $querycon['id']=array('neq',$firsrtlinearr['id']);
         }
         // pr($querycon);
-        $datalistonearr=$db->where($querycon)->Field($fieldstr)->order('id desc')->limit(C('TIPNUM'))->distinct()->select();
+        $limitnum=empty($tipnumlimt)?C('TIPNUM'):$tipnumlimt;
+// pr('$limitnum',$limitnum);
+
+
+        $datalistonearr=$db->where($querycon)->Field($fieldstr)->order('id asc')->limit($limitnum)->distinct()->select();
         // pr($datalistonearr);
         // $datalistonearr=delemptyfield($datalistonearr);
         // pr($datalistonearr);

@@ -33,8 +33,8 @@ $db=M(C('EXCELSECRETSHEET'));
 // pr($id,'d2ff3r');    
 // pr($id,'567564');     
     // 用户填表权限检测
-    $au=R("Queryfun/Auth2FillForm",array($sheetname,'','',$id));    
-    // pr($au);
+    $paraarr=R("Queryfun/Auth2FillForm",array($sheetname,'','',$id));    
+    // $titleexplain=$paraarr['titleexplain'];
     
 // pr($id,'ef43rfsd2343333333');        
     if($id){
@@ -67,6 +67,7 @@ $db=M(C('EXCELSECRETSHEET'));
     // $datalistonearr[0]=["天台","临海"];
 
     $this->assign('fillingarr',$fillingarr);
+    $this->assign('paraarr',$paraarr);
     $this->assign('id',$id);
     $this->assign('sheetname',$sheetname);    
     $this->assign('titlearr',$titlearr);

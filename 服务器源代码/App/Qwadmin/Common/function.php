@@ -799,6 +799,7 @@ function pr($data,$title=''){
     }elseif (is_null($data)) {
         $show_data='null';
     }else{
+        // $show_data=print_r($data,true);
         $show_data=print_r($data,true);
     }
     $str.=$show_data;
@@ -1960,6 +1961,9 @@ function IpAuth($ip, $config){
 	    }elseif($type=='web'){
 	        $ReplyMsg=str_replace('\n',"\n",$ReplyMsg);
 	        $ReplyMsg = str_replace("", '<br\>', $ReplyMsg);  
+	    }elseif($type=='h5'){
+	        $ReplyMsg=str_replace('\n',"<br>",$ReplyMsg);
+	        $ReplyMsg=str_replace("\n","<br>",$ReplyMsg);
 	    }
 	    return $ReplyMsg;
 	}

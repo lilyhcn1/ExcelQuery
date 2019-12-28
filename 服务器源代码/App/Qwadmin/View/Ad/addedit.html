@@ -43,17 +43,26 @@
 <div class="col-xs-12">
 <if condition="empty($id) eq true">
     <div class="form-group">
-        <h3 align="center">  {$sheetname}  <?php echo "<a href='https://cli.im/api/qrcode/code?text=".curPageURL()."?sheetname=".$sheetname."&mhid=sELPDFnok80gPHovKdI' >二维码</a>"; ?>   
+        <h3 align="center">  {$sheetname}  <?php echo "<a href='https://cli.im/api/qrcode/code?text=".curPageURL()."?sheetname=".$sheetname."&mhid=sELPDFnok80gPHovKdI' >二维码</a>"; ?> <span style="color:#BBB;"> New</span> 
         </h3>
-        <h4 align="center">  新增数据</h4>
+        <!--<h4 align="center">  新增数据</h4>-->
     </div>
 <else /> 
     <div class="form-group">
-        <h3 align="center">  {$sheetname} <?php echo "<a href='https://cli.im/api/qrcode/code?text=".curPageURL()."?sheetname=".$sheetname."&mhid=sELPDFnok80gPHovKdI' >二维码</a>"; ?>
+        <h3 align="center">  {$sheetname} <?php echo "<a href='https://cli.im/api/qrcode/code?text=".curPageURL()."?sheetname=".$sheetname."&mhid=sELPDFnok80gPHovKdI' >二维码</a>"; ?> <span style="color:#BBB;"> Edit</span> 
         </h3> 
-        <h4 align="center">  更新数据</h4>
     </div>
 </if>   
+<div class="form-group">
+
+<div class="col-md-offset-3 col-sm-offset-3 col-md-offset-3 " >
+    <if condition="empty($paraarr['titleexplain']) neq true">
+        <h4 ><?php echo returnmsg($paraarr['titleexplain'],"h5");?></h4>
+        
+    </if>     
+</div>
+
+</div>
 
 <input type="hidden" name="id" value="{$id}">
 </div>
