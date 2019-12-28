@@ -478,7 +478,7 @@ $db=M(C('EXCELSECRETSHEET'));
 if(!empty($id)){
     $con['id']=$id;
     $idarr=$db->where($con)->order('id asc')->find();
-pr($idarr,"343");    
+//pr($idarr,"343");    
     $titlearr=$this->gettitlearr($idarr['sheetname'],'',$fieldstr);
 }elseif(empty($sheetname) ){
     $this->error('未找到您的个人记录！~');
