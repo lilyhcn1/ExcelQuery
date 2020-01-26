@@ -24,10 +24,14 @@ public function index(){
 
 public function addedit(){
 $db=M(C('EXCELSECRETSHEET'));    
+
     // 编辑
     $id=I('get.id');   
     $sheetname=empty(I('get.sheetname'))?C('MLSHEETNAME'):I('get.sheetname');
     session('sheetname',$sheetname);
+    
+    
+    
     $fieldstr=compute_fieldstr(C('MLNOTFIELD'));
 // pr($fieldstr);  
 // pr($id,'d2ff3r');    

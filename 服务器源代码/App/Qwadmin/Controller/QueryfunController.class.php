@@ -401,11 +401,15 @@ public function Auth2FillForm($sheetname,$titlearrall="",$paraarr="",$id="") {
         $paraarr=json_decode($titlearrall['custom1'],'true');       
     }
     // pr($paraarr);
+    // pr($_SERVER);
     if($paraarr['anonymousfill']=="否"){
         if(session('login')=='yes'){
             return $paraarr;
         }else{
-            $this->error("错误，此表单需要登陆后才能填写！~",U("index/index"));
+            // session('jumpurl',$_SERVER['REQUEST_URI']);
+            // pr('REQUEST_URI '.$_SERVER['REQUEST_URI']);
+            // pr('jumpurl '.session('jumpurl'));
+            $this->error("错误，此表单需要登陆后才能填写！~",U("login/index").'?Req_URL='.$_SERVER['REQUEST_URI'],1);
             return $paraarr;
         }
     }else{
@@ -478,7 +482,7 @@ $db=M(C('EXCELSECRETSHEET'));
 if(!empty($id)){
     $con['id']=$id;
     $idarr=$db->where($con)->order('id asc')->find();
-//pr($idarr,"343");    
+// pr($idarr,"343");    
     $titlearr=$this->gettitlearr($idarr['sheetname'],'',$fieldstr);
 }elseif(empty($sheetname) ){
     $this->error('未找到您的个人记录！~');

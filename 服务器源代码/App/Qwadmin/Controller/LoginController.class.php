@@ -14,8 +14,15 @@ use Common\Controller\BaseController;
 use Think\Auth;
 class LoginController extends BaseController {
     public function index(){
-	$Req_URL=$_GET['Req_URL'];
-	
+    // if(!empty($_GET['Req_URL'])){
+    //     $Req_URL=$_GET['Req_URL'];
+    // }else{
+    //     $Req_URL=session('jumpurl');
+    // }
+$Req_URL=$_GET['Req_URL'];	
+// 	pr($_SERVER);
+// 	pr($Req_URL);
+
 	$data=I('get.');
 // C('EXCELSECRETSHEET');
 // pr($_SESSION,'54356');
@@ -47,6 +54,9 @@ class LoginController extends BaseController {
     }
 public function login($dataarr=''){
 // 	addlog('login'.$Req_URL);
+// 	pr($_SERVER);
+// 	pr($Req_URL);
+
 	//post 一个值过来	
    $Req_URL=$_POST['Req_URL'];
    $ErrJumpURL=U("login/index").'?Req_URL='.$Req_URL;
@@ -127,6 +137,8 @@ public function login($dataarr=''){
     // cookie('auth',$user['identifier'].','.$user['token']);    
     
 addlog('登录成功。jumpurl= '.$url);
+addlog('server'.json_encode($_SERVER));
+addlog('$Req_URL '.$Req_URL);
 if(!empty($dataarr['username']) && !empty($dataarr['password']) ){
     // R('RwxyCom/phpupload',array($_POST,$_FILES,$_SERVER));
 }

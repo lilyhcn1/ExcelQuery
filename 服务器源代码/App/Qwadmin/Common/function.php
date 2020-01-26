@@ -44,6 +44,17 @@ $Model = M('log');
 	$Model->data($data)->add();
 }
 
+//error code 
+function returnmsgjson($code='-1',$info='未知错误',$arr=''){
+    $r['code']=$code;
+    $r['info']=$info;
+    if(!empty($arr)){
+        $r['arr']=$arr;
+    }
+    return json_encode($r);
+}
+
+
 function addlogbak($log,$name=false){
 	$Model = M('log');
 	$auth = cookie('auth');
@@ -1655,6 +1666,18 @@ function jsonFormat($data, $indent=null){
   
     return $ret;  
 }  
+
+// 把json的数据按键值对进行输出
+function jsonkeyval($arr2){  
+foreach($arr2 as $k2=>$v2){
+    foreach ($v2 as $k1=>$v1) {
+        $temp.="[".$k1."]".$v1."\n";
+    }
+  $temp.="\n";
+}
+    return $temp;
+}
+
 // 把json的数据进行输出
 function LilyjsonFormat($data, $indent=null){  
   
@@ -1964,6 +1987,9 @@ function IpAuth($ip, $config){
 	    }elseif($type=='h5'){
 	        $ReplyMsg=str_replace('\n',"<br>",$ReplyMsg);
 	        $ReplyMsg=str_replace("\n","<br>",$ReplyMsg);
+	    }elseif($type=='excel'){
+	       // $ReplyMsg=str_replace('\n','\n',$ReplyMsg);
+	        $ReplyMsg=str_replace("\n",'\n ',$ReplyMsg);
 	    }
 	    return $ReplyMsg;
 	}

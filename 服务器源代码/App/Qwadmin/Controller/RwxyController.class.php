@@ -54,7 +54,7 @@ if($this->isadmin($con2)){
 }
 
 // 通用查询
-public function echounisheetuni($dbsheetname,$con2,$likecon){
+public function echounisheetuni($dbsheetname,$con2,$likecon,$type='table'){
 $db=M($dbsheetname);
     // pr($con2);
     // pr($likecon);
@@ -80,9 +80,9 @@ $ordstr=$ordstr." ".$isasc;
     // $queryfirst=$db->where($con2)->where($likecon)->order('id')->find(); 
     $sheetname=empty($con2['sheetname'])?C('MLSHEETNAME'):$con2['sheetname'];
     $queryfirst=R('Queryfun/findfirstline',array($sheetname,true));
-    // pr($queryfirst);
-    $queryfirst=delemptyfield($queryfirst);
 
+    $queryfirst=delemptyfield($queryfirst);
+    // pr($queryfirst,'    pr($queryfirst);');
 
 // 1. 先把所有的字段都计算出来，除了wrpw
     $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
@@ -142,9 +142,13 @@ $fieldstr=implode($field,',');
     // $notfirstline['id']=array('NEQ',0);
     // pr($ordstr);
     $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
+    
+    
 // pr($con2,'con211');
-// pr($likecon,'likecon22');
+// // pr($likecon,'likecon22');
 // pr($query,'$query');    
+// pr($queryfirst,'$queryfirst');
+
     // 插入字段行
     $fieldline['0']=$field;
 // pr($field,'$field');
@@ -153,13 +157,16 @@ $fieldstr=implode($field,',');
         $emptyline['0'][$fieldkey]="";
     }
 
-// pr($queryfirst);
+
+if($type=='table'){
+//   pr($queryfirst,'$queryfirst2222222');
+//   pr($fieldstr,'$fieldstr');
+
     if(!empty($queryfirst)){
         $sheetcon['sheetname']=$queryfirst['sheetname'];
         $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
         $firstline['0']=$firstlinearrtemp;
-        
-
+        // pr($firstlinearrtemp,'$firstlinearrtemp');
     $temp=twoarraymerge($fieldline,$emptyline); 
 
     if(!empty($firstline)){
@@ -167,7 +174,6 @@ $fieldstr=implode($field,',');
     }
     $query=twoarraymerge($temp,$query);         
     }
-// pr($query,'query');
 
 
     // // 输出结果
@@ -176,11 +182,73 @@ $fieldstr=implode($field,',');
             echo    $output="error, \nnothing \nis \nfound3. \n";
         }else{
             echo $output;           
-        }        
+        }       
+}elseif($type=='json'){
+    if(!empty($queryfirst)){
+        foreach($query as $kq=>$kv){
+           foreach($kv as $k=>$v){
+               $newquery[$kq][$queryfirst[$k]]=$kv[$k];
+           }             
+        }
+    }
+    // pr($newquery);    
+    
+
+    
+    
+    return    json_encode($newquery);
+}else{
+    
+    return returnerror('2','echounisheetuni的type类型未指定!~');
+}
+     
+}
+
+    
+
+
+// 查询数据结果的json数据，与echoteacherdb的结果是一致的，但显示方式不同
+public function echojson(){
+$data=I('get.');
+// pr($data,'$data11');
+if(empty($data)){
+    $data=I('post.');
+}
+// pr($data);
+    $result = $this->Auth2Use();
+    if(!$result){
+        echo returnmsgjson('1','IP地址不在可访问列表中，禁止访问。');
+    }else{
+
+// $sheetname=C('EXCELSECRETSHEET');
+    $dbsheetname=C('EXCELSECRETSHEET');
+    // C('EXCELSECRETSHEET');
+    $con2=R("Queryfun/constr2conarr",array($data,'eq'));
+    $likecon=R("Queryfun/constr2conarr",array($data,'like'));
+
+    if($this->isadmin($con2)){
+        unset($con2['rpw']);
+        $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
+        echo   returnmsgjson('0','正常返回json数据。',$r);
+    }elseif(!empty($likecon['sheetname']['0'] == 'in')){
+        $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
+        echo   returnmsgjson('0','正常返回json数据。',$r);
+    }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
+         echo returnmsgjson('3','"error, \nsheetname \n  or\n rpw\nis \nempty.\n"; ');
+    }else{
+
+// echo 323;pr($likecon);
+// pr($con2);        
+      $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
+      echo   returnmsgjson('0','正常返回json数据。',$r);
+    }  
+        
+    }
+    
 }
 
 // 查询数据私有的数据表
-public function echoteacherdb(){
+public function echoteacherdb($type='table'){
 $data=I('get.');
 // pr($data,'$data11');
 if(empty($data)){
@@ -444,8 +512,11 @@ foreach ($data as $rows) {
         }
        
     }
-    $temp2=$temp2.'<tr>'.$temp22.'</tr>';
+    $temp2=$temp2.'<tr>'.returnmsg($temp22,'excel').'</tr>';
 }      
+// pr($temp3,'temp3');
+// $temp3=returnmsg($temp3,'excel');
+// pr($temp3,'temp3');
 $temp3='     </tbody>
 </table>
 </body>
@@ -457,7 +528,7 @@ $temp3='     </tbody>
 $temp=$temp1.$temp2.$temp3;
 
 
-return $temp;    
+return  $temp;    
 }
 
 
@@ -713,20 +784,20 @@ $queryurl2=U('ViCom/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 $phonemodify2=U('UdCom/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
 // $queryurl=U(getcomstr('Vi').'/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 
-$urls="<hr><hr>"
-    ."<hr>您的在线填表网址为：<hr>"."<a href=\"".$phoneurl."\">".$phoneurl."</a>"
-    ."<hr>填表短网址为：<hr>"."<a href=\"".shorturl($phoneurl)."\">".shorturl($phoneurl)."</a>"
+$urls=
+"<hr><hr>"
+    // ."<hr>"."<a href=\"".$phoneurl."\">".$phoneurl."</a>"
+    ."<hr>填表的短网址为<hr>"."<a href=\"".shorturl($phoneurl)."\">".shorturl($phoneurl)."</a>"
     ."<hr><br>-------------以下为保密区，请注意保密。-----------------------------------<br>"
-    ."<hr>您的所有数据网址为（请保密）：<hr>"."<a href=\"".$recurl."\">".$recurl."</a>"
-    ."<hr>您的免密码查询网址为（请保密）：<hr>"."<a href=\"".$queryurl."\">".$queryurl."</a>"
-    ."<hr>您的在线修改网址为（请保密）：<hr>"."<a href=\"".$phonemodify."\">".$phonemodify."</a>"
+    ."<hr>"."<a href=\"".$recurl."\">"."您的所有数据网址为（请保密）"."</a>"
+    ."<hr>"."<a href=\"".$queryurl."\">"."您的免密码查询网址为（请保密）"."</a>"
+    ."<hr>"."<a href=\"".$phonemodify."\">"."您的在线修改网址为（请保密）"."</a>"
     ."<hr><br>-------------以下网址必须先登陆才能访问，请注意保密。-----------------------------------<br>"
-    ."<hr>您的在线填表网址为：<hr>"."<a href=\"".$phoneurl2."\">".$phoneurl2."</a>"
-    ."<hr>您的所有数据网址为（请保密）：<hr>"."<a href=\"".$recurl2."\">".$recurl2."</a>"
-    ."<hr>您的免密码查询网址为（请保密）：<hr>"."<a href=\"".$queryurl2."\">".$queryurl2."</a>"
-    ."<hr>您的在线修改网址为（请保密）：<hr>"."<a href=\"".$phonemodify2."\">".$phonemodify2."</a>"    
-    
-    
+    ."<hr>"."<a href=\"".$phoneurl2."\">"."您的在线填表网址为"."</a>"
+    ."<hr>"."<a href=\"".$recurl2."\">"."您的所有数据网址为（请保密）"."</a>"
+    ."<hr>"."<a href=\"".$queryurl2."\">"."您的免密码查询网址为（请保密）"."</a>"
+    ."<hr>"."<a href=\"".$phonemodify2."\">"."您的在线修改网址为（请保密）"."</a>"    
+   
     ;
 $result.=$urls;
 $resultweb=h5page('上传结果',$result);
