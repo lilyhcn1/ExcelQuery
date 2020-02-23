@@ -1,6 +1,0 @@
-													<label class="block clearfix">
-														<span class="block input-icon ">
-															<span class="inline"><input type="text" class="form-control" name="verify" placeholder="验证码" id="code" required /></span>
-															<img style="cursor:pointer;" src="{:U('login/verify')}" width="100" height="30" title="看不清楚？点击刷新" onclick="this.src = '{:U('login/verify')}?'+new Date().getTime()">
-														</span>
-													</label>
