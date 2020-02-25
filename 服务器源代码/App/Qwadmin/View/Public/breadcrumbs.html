@@ -1,17 +1,54 @@
-<div class="breadcrumbs" id="breadcrumbs">
-						<script type="text/javascript">
-							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-						</script>
+<?php $loginsessin=$_SESSION['login'];		?>
+<if condition="empty($loginsessin) eq false">
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<ul class="nav nav-tabs">
+				<li >
+					<a href="{:U('index/index')}">返回首页</a>
+				</li>
+				<li >
+					<a href="{:U('UdCom/sheetindex')}">管理数据</a>
+				</li>		
+				<li >
+					<a href="{:U('UdCom/mysheet')}">个人数据</a>
+				</li>
 
-						<ul class="breadcrumb">
-							<li>
-								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="{:U('index/index')}">首页</a>
-							</li>
+				<!--<li >-->
+				<!--<a href="/index.php/Qwadmin/Show">台院信息</a>-->
+				<!--</li>-->
+				<li >
+				<a href="/index.php/Qwadmin/ViCom/uniquerydata.html">通用查询</a>
+				</li>				
+				<!--
+				<li >
+				<a href="/index.php/Qwadmin/Lilynoticeview/haveread">已读通知</a>
+				</li>
+				
+				
+				
+				<li class="dropdown pull-right">-->
+				<!--	 <a class="dropdown-toggle" href="#" data-toggle="dropdown">下拉<strong class="caret"></strong></a>-->
+				<!--	<ul class="dropdown-menu">-->
+				<!--		<li>-->
+				<!--			<a href="#">操作</a>-->
+				<!--		</li>-->
+				<!--		<li>-->
+				<!--			<a href="#">设置栏目</a>-->
+				<!--		</li>-->
+				<!--		<li>-->
+				<!--			<a href="#">更多设置</a>-->
+				<!--		</li>-->
+				<!--		<li class="divider">-->
+				<!--		</li>-->
+				<!--		<li>-->
+				<!--			<a href="#">分割线</a>-->
+				<!--		</li>-->
+				<!--	</ul>-->
+				<!--</li>-->
+			</ul>
+		</div>
+	</div>
+</div>
 
-							<li>
-								<a href="#">{$current['ptitle']}</a>
-							</li>
-							<li class="active">{$current['title']}</li>
-						</ul><!-- /.breadcrumb -->
-					</div>
+</if>

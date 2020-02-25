@@ -1,3 +1,5 @@
+<?php $loginsessin=$_SESSION['login'];		?>
+<if condition="empty($loginsessin) eq false">
 <!-- #section:settings.box -->
 						<if condition="$current.tips neq ''">
 						<div class="alert alert-block alert-success">
@@ -94,3 +96,4 @@
 								</div><!-- /.pull-left -->
 							</div><!-- /.ace-settings-box -->
 						</div><!-- /.ace-settings-container -->
+</if>

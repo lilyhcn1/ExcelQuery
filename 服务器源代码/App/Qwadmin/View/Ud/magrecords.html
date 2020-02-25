@@ -42,7 +42,7 @@
 									    <a class="btn btn-info" href="{:U(getcomstr('Ad').'/addedit')}?sheetname={$sheetname}&id={$val['id']}" value="">新增</a>
 										<input id="alldel" class="btn btn-info" type="button" value="删除">
 
-										<input type="text" name="keyword" class="form-control"  placeholder="通知标题" >
+										<input type="text" name="keyword" class="form-control"  placeholder="请输入姓名" >
 										<button type="submit" class="btn btn-purple btn-sm">
 											<span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
 											搜索
@@ -59,7 +59,11 @@
 											    
 											    <th class="center "><input  class="check-all" type="checkbox" value=""></th>
 												<th class="center">操作</th>
-												<th class="center ">内容</th>
+												<th class="center ">所在学院</th>
+												<th class="center ">姓名</th>
+												<th class="center ">课程名称</th>
+												<th class="center ">班级</th>
+												<th class="center ">互联网授课内容</th>
 
                                                
 	
@@ -78,7 +82,12 @@
 												    "<?php echo U(getcomstr('Ad').'/addedit?id='.$val['id']); ?>">修改</a><br>
 											    </td>
 
-                                                <td style="white-space:nowrap;" class="center lilyth"><a href="<?php echo U(getcomstr('Vi').'/echoiddata?id='.$val['id']); ?>">{$val['content']}</a></td>
+                                                <td style="" class="center lilyth"><a href="<?php echo U(getcomstr('Vi').'/echoiddata?id='.$val['id']); ?>">{$val['d1']}</a></td>
+                                                 <td style="" class="center lilyth"><a href="<?php echo U(getcomstr('Vi').'/echoiddata?id='.$val['id']); ?>">{$val['d2']}</a></td>
+                                                  <td style="" class="center lilyth"><a href="<?php echo U(getcomstr('Vi').'/echoiddata?id='.$val['id']); ?>">{$val['d3']}</a></td>
+                                                   <td style="" class="center lilyth"><a href="<?php echo U(getcomstr('Vi').'/echoiddata?id='.$val['id']); ?>">{$val['d4']}</a></td>
+                                                   <td style="" class="center lilyth"><a href="<?php echo U(getcomstr('Vi').'/echoiddata?id='.$val['id']); ?>">{$val['d5']}</a></td>
+
 
  
 											</tr>

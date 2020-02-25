@@ -15,7 +15,7 @@ class RwxyController extends BaseController{
 // namespace Qwadmin\Controller;
 // use Qwadmin\Controller\ComController;
 // class RwxyComController extends ComController{    
-    
+   
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
         header("Location: $url");
@@ -80,9 +80,9 @@ $ordstr=$ordstr." ".$isasc;
     // $queryfirst=$db->where($con2)->where($likecon)->order('id')->find(); 
     $sheetname=empty($con2['sheetname'])?C('MLSHEETNAME'):$con2['sheetname'];
     $queryfirst=R('Queryfun/findfirstline',array($sheetname,true));
-
+    // pr($queryfirst);
     $queryfirst=delemptyfield($queryfirst);
-    // pr($queryfirst,'    pr($queryfirst);');
+
 
 // 1. 先把所有的字段都计算出来，除了wrpw
     $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
@@ -142,13 +142,9 @@ $fieldstr=implode($field,',');
     // $notfirstline['id']=array('NEQ',0);
     // pr($ordstr);
     $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
-    
-    
 // pr($con2,'con211');
-// // pr($likecon,'likecon22');
+// pr($likecon,'likecon22');
 // pr($query,'$query');    
-// pr($queryfirst,'$queryfirst');
-
     // 插入字段行
     $fieldline['0']=$field;
 // pr($field,'$field');
@@ -471,6 +467,7 @@ public function simpletable($data){
 <html>
 <head>
     <meta charset="utf-8"> 
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -596,6 +593,9 @@ public function Auth2Use() {
     $ip = $_SERVER['REMOTE_ADDR'];
     $ip_config=json_decode(C('IPCONFIG'),true);
     $result = IpAuth($ip, $ip_config); 
+    if($ip="::1"){
+      $result=true;              
+    }
     return $result;
 }
     
@@ -706,7 +706,7 @@ $notautotip=$con2['notautotip'];
 $uploadfields=$con2['uploadfields'];
 
 $con2temp=$con2;
-unset($con2temp['wrpw']);unset($con2temp['rpw']);unset($con2temp['namekey']);unset($con2temp['pidkey']);
+unset($con2temp['wrpw']);unset($con2temp['rpw']);unset($con2temp['pidkey']);
 unset($con2temp['sheetname']);unset($con2temp['notfield']);unset($con2temp['password']);
 // pr($wrpw,'$wrpw');
 // pr($sheetname,'$sheetname');
@@ -737,7 +737,8 @@ if(!empty($uploadfields)){
             $twoarrexcel[$key]['ord']=$key -1;
             $twoarrexcel[$key]['custom1']=json_encode($con2temp);
             if(!empty($con2['namekey'])){
-                $twoarrexcel[$key]['name']=$twoarrexcel[$key][$con2['namekey']];
+                $tnamekey=$this->namekeysgetfirst($con2['namekey']);
+                $twoarrexcel[$key]['name']=$twoarrexcel[$key][$tnamekey];
             }
             if(!empty($con2['pidkey'])){
                 $twoarrexcel[$key]['pid']=$twoarrexcel[$key][$con2['pidkey']];
@@ -862,7 +863,17 @@ $newcout=$newcout-1;
 
 $result='用户成功清空原有数据，并导入' . '<span style="color:red">' . $newcout . "</span>条数据了！"."，其中失败".$newfailcout."条";
 return $result;
-} 
+}
+
+public function namekeysgetfirst($namekeys) {
+    $namekeyarr=explode(",",$namekeys);
+    if(count($namekeyarr)>1){
+        $namekey=$namekeyarr[0];
+    }else{
+        $namekey=$namekeys;
+    }
+    return $namekey;
+}
 
 
 

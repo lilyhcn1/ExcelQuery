@@ -1,9 +1,35 @@
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='__LILYCDN__/Public/qwadmin/js/jquery.js'>"+"<"+"/script>");
+		</script>
+  <link rel="stylesheet" href="http://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+  <script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='<?php echo C('LILYCDN')?>/Public/qwadmin/js/jquery1x.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='__LILYCDN__/Public/qwadmin/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+		</script>
+		<script src="__LILYCDN__/Public/qwadmin/js/bootstrap.js"></script>
 
 
 
+
+		<!-- page specific plugin scripts -->
+    		<!--<script charset="utf-8" src="__LILYCDN__/Public/kindeditor/kindeditor-min.js"></script>-->
+    		<!--<script charset="utf-8" src="__LILYCDN__/Public/kindeditor/lang/zh_CN.js"></script>-->
+    		<!--<script src="__LILYCDN__/Public/qwadmin/js/bootbox.js"></script>-->
+<!--<script src="https://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.js"></script>    -->
+<script src="__LILYCDN__/Public/qwadmin/js/bootbox.min.js"></script>
+		<!-- ace scripts -->
 <?php $loginsessin=$_SESSION['login'];		?>
 <if condition="empty($loginsessin) eq false">
-    
 		<script src="__LILYCDN__/Public/qwadmin/js/ace/ace.js"></script>
 		<script src="__LILYCDN__/Public/qwadmin/js/ace/ace.ajax-content.js"></script>
 		<script src="__LILYCDN__/Public/qwadmin/js/ace/ace.touch-drag.js"></script>
@@ -16,5 +42,7 @@
 		<script src="__LILYCDN__/Public/qwadmin/js/ace/ace.settings-skin.js"></script>
 		<script src="__LILYCDN__/Public/qwadmin/js/ace/ace.widget-on-reload.js"></script>
     	<script src="__LILYCDN__/Public/qwadmin/js/ace/ace.searchbox-autocomplete.js"></script>
-  	
 </if>
+    		
+    		
+    		

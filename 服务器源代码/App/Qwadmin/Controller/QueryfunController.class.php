@@ -421,6 +421,15 @@ public function Auth2FillForm($sheetname,$titlearrall="",$paraarr="",$id="") {
 public function Auth2edit($sheetname,$titlearrall="",$paraarr="",$id="") {
 if(session('login')=='yes'){
     return true;
+}elseif(!empty(session('wrpw'))){
+    $wrpw=session('wrpw');
+   $db=M(C('EXCELSECRETSHEET'));
+    $querycon22['wrpw']=array("in",returncomma($wrpw));
+    $querycon22['sheetname']=$sheetname;
+    $l=$db->where($querycon22)->find();
+    if(!empty($l)){
+        return true;
+    }
 }else{
 $db=M(C('EXCELSECRETSHEET'));
     if(empty($titlearrall) ||empty($paraarr) ){

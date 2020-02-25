@@ -322,11 +322,32 @@ function shorturlself($d_url='d/dwz_api.php'){
 **/
 function twoarraytostr ($array,$col='id',$separator=','){
     $array2=array_column($array,$col);
+    $array2=delemptyfieldgetnew($array2);
     $str=arraytostr($array2,',');
 
 
     return $str;
 }
+
+/**
+*
+* 函数：二维数组中的多列转逗号字符串
+* @param  array $array   二级数组。
+* @param  str $cols  二级数组的列指标
+*
+**/
+function twoarraycolstostr ($array,$cols='d1,d2,d3',$separator=','){
+$colarr=explode(",",$cols);
+// pr($colarr);
+foreach ($colarr as $value) {
+    $str.=twoarraytostr($array,$value).",";
+    // pr($str);
+}
+
+
+return delendchar($str,",");
+}
+
 /**
 *
 * 函数：二维数组重新排序，从0开始
@@ -476,6 +497,15 @@ function delemptyfield($array){
         }
     }
     return $newarr;
+}
+
+/**
+*
+* 函数：删除字符串未尾的字符
+*
+**/
+function delendchar($str,$char){
+return substr($str,0,-strlen($char));
 }
 
 /**
@@ -1988,8 +2018,11 @@ function IpAuth($ip, $config){
 	        $ReplyMsg=str_replace('\n',"<br>",$ReplyMsg);
 	        $ReplyMsg=str_replace("\n","<br>",$ReplyMsg);
 	    }elseif($type=='excel'){
-	       // $ReplyMsg=str_replace('\n','\n',$ReplyMsg);
-	        $ReplyMsg=str_replace("\n",'\n ',$ReplyMsg);
+	        $ReplyMsg=str_replace('<div>','',$ReplyMsg);
+	        $ReplyMsg=str_replace('</div>','\n',$ReplyMsg);
+	        $ReplyMsg=str_replace('<br />','',$ReplyMsg);
+	        $ReplyMsg=str_replace('<br>','',$ReplyMsg);
+	        $ReplyMsg=str_replace("\n",'\n',$ReplyMsg);
 	    }
 	    return $ReplyMsg;
 	}

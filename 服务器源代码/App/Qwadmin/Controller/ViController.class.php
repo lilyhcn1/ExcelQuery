@@ -15,7 +15,7 @@ class ViController extends BaseController{
 // namespace Qwadmin\Controller;
 // use Qwadmin\Controller\ComController;
 // class ViComController extends ComController{    
-  
+
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
         header("Location: $url");
@@ -69,6 +69,15 @@ $sheetname=I('get.sheetname');
 $querycon=I('get.');
 $querycon=delemptyfield($querycon);
 
+if(!empty($sheetname)){
+    $titlearr=R("Queryfun/gettitlearr",array($sheetname));
+    $custom1arr=json_decode($titlearr['custom1'],true);
+    $namekeys=$custom1arr['namekey'];
+}
+if(empty($namekeys)){
+    $namekeys="name";
+}
+
 
     if(!empty($querycon['rpw'])){
         $temp=$querycon['rpw'];
@@ -100,24 +109,30 @@ if(empty($user_querypw)){
 
 
 $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
-$datalistarr=$db->where($querycon)->distinct(true)->field('name')->order('id')->limit(C('TIPNUM'))->select();
+$datalistarr=$db->where($querycon)->distinct(true)->field($namekeys)->order('id')->limit(C('TIPNUM'))->select();
 // pr($datalistarr);
-$datalistonearr=array_column($datalistarr,'name');
-$datalistonearr=delemptyfieldgetnew($datalistonearr);
+$datalistonestr=twoarraycolstostr($datalistarr,$namekeys);
+// pr($datalistonestr);
+$datalistonearr=explode(",",$datalistonestr);
 // pr($datalistonearr);
-// $datalistjson=json_encode($datalistonearr);
-// addlog($datalistjson);
-    foreach($datalistonearr as $key11=>$value11){
-        if(!empty($value11)){
-            $newarr[$key11]=preg_replace( '/[\x00-\x1F]/','',$value11);
-        }
-    }
-$datalistonearr=$newarr;
-// pr($datalistonearr);
+//原来的name代码块
+// pr($datalistarr);
+// $datalistonearr=array_column($datalistarr,'name');
+// $datalistonearr=delemptyfieldgetnew($datalistonearr);
+// twoarraycolstostr
+//     foreach($datalistonearr as $key11=>$value11){
+//         if(!empty($value11)){
+//             $newarr[$key11]=preg_replace( '/[\x00-\x1F]/','',$value11);
+//         }
+//     }
+// $datalistonearr=$newarr;
 
+
+
+$namecon=str_replace(",","|",$namekeys);
 if(!empty($name)){
     unset($querycon['name']);
-    $querycon['name']=$name;
+    $querycon[$namecon]=$name;
     // pr($con);
 }
 
@@ -171,6 +186,26 @@ if(empty($querycontemp)){
 
     $this->display();    
 }
+
+// 返回datalist
+public function getdatalistarr($querycon){
+$db=M(C('EXCELSECRETSHEET'));
+$datalistarr=$db->where($querycon)->distinct(true)->field('name')->order('id')->limit(C('TIPNUM'))->select();
+// pr($datalistarr);
+$datalistonearr=array_column($datalistarr,'name');
+$datalistonearr=delemptyfieldgetnew($datalistonearr);
+
+    foreach($datalistonearr as $key11=>$value11){
+        if(!empty($value11)){
+            $newarr[$key11]=preg_replace( '/[\x00-\x1F]/','',$value11);
+        }
+    }
+$datalistonearr=$newarr;
+
+    return $datalistonearr;
+}
+
+
 
 
 // 智能显示字段或者数据表分类
@@ -267,3 +302,4 @@ function querypersoninfo(){
 
 // 结尾处
 }
+

@@ -195,9 +195,12 @@ public function echorecords($sheetname,$magage='true'){
 		$pagesize = C('PAGESIZE');#每页数量
 		$offset = $pagesize*($p-1);//计算记录偏移量
 // 计算首页 结束    
+// pr('fdffffffffffff');
+// pr(I('get.'));
     // $querycon=I('get.');
     // $sheetname=I('get.sheetname');
     // pr(I('get.'));
+$keyword=I('get.keyword');    
     $temp22=I('get.sheetname');
     if(!empty($temp22)){
         session('sheetname',$temp22);
@@ -206,7 +209,7 @@ public function echorecords($sheetname,$magage='true'){
     $querycon['sheetname']=empty(session('sheetname'))?I('get.sheetname'):session(sheetname);    
 $titlearrall=R('Queryfun/gettitlearr',array($sheetname));
 
-
+// pr($titlearrall,'$titlearrall');
 // pr($querycon,'$querycong563');
 
 // 核心语句，查询所有数据集，$magage是标记是否管理
@@ -214,7 +217,8 @@ $titlearrall=R('Queryfun/gettitlearr',array($sheetname));
 $querycon=R('Queryfun/querycon',array($querycon,$magage,$this->USER));
 // pr($querycon,'$querycon3213');
     if(!empty($keyword)){
-        $querycon['name'] = array('like',"%".$keyword."%");
+        // $querycon['name'] = array('like',"%".$keyword."%");
+        $querycon['name'] =$keyword;
     }
     
     $querycon=delemptyfield($querycon);
@@ -236,17 +240,24 @@ $r=$db->where($querycon)->limit($offset.','.$pagesize)->field($fieldstr)->order(
 // pr($querycon,'fdsfdsfds333');
 foreach($r as $key1=>$val1_arr){
 // pr($val1_arr);
-    $temp='';
+    // $temp='';
+    // foreach($val1_arr as $k2=>$v2){
+    //     if($k2 !='id'){
+    //         $temp.=$v2.' | ';
+    //     }
+    // }
+    // $newqueryarr[$key1]['id']=$val1_arr['id'];  
+    // $newqueryarr[][$key1]['content']=$temp;
     foreach($val1_arr as $k2=>$v2){
-        if($k2 !='id'){
-            $temp.=$v2.' | ';
-        }
-    }
-    $newqueryarr[$key1]['id']=$val1_arr['id'];  
-    $newqueryarr[$key1]['content']=$temp;
+         $newqueryarr[$key1][$k2]=$v2;
+    }    
+
 }
+
+
+
 $queryarr= $newqueryarr;
-// pr($queryarr);
+// pr($queryarr,'queryqrr');
 
 //计算记录偏移量等
 	$page	=	new \Think\Page($count,$pagesize); 

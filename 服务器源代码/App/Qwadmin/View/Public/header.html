@@ -1,3 +1,5 @@
+<?php $loginsessin=$_SESSION['login'];		?>
+<if condition="empty($loginsessin) eq false">
 		<!-- #section:basics/navbar.layout -->
 		<div id="navbar" class="navbar navbar-default">
 			<script type="text/javascript">
@@ -19,10 +21,13 @@
 				<!-- /section:basics/sidebar.mobile.toggle -->
 				<div class="navbar-header pull-left">
 					<!-- #section:basics/navbar.layout.brand -->
-					<a href="{:U('index/index')}" class="navbar-brand">
+					<!--<a href="{:U($Think.CONTROLLER_NAME.'uniquerydata')}" class="navbar-brand">-->
+					    <a href="{:U('index/index')}" class="navbar-brand">
 						<small>
 							<!--<i class="fa fa-home"></i>-->
 							{$Think.CONFIG.title}
+
+							
 						</small>
 					</a>
 
@@ -88,3 +93,4 @@
 		</div>
 
 		<!-- /section:basics/navbar.layout -->
+</if>

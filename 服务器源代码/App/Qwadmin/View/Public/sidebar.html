@@ -1,4 +1,6 @@
-<!-- #section:basics/sidebar -->
+<?php $loginsessin=$_SESSION['login'];		?>
+<if condition="empty($loginsessin) eq false">
+    <!-- #section:basics/sidebar -->
 			<div id="sidebar" class="sidebar responsive">
 				<script type="text/javascript">
 					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
@@ -96,5 +98,5 @@
 					try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
 				</script>
 			</div>
-
+</if>
 			<!-- /section:basics/sidebar -->
