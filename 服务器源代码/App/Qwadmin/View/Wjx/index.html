@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>问卷星</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<div class="main-container" id="main-container">
+		
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+						
+							<!--<hr>-->
+									<form class="form-horizontal" action="{:U('wjxupdate')}" method="post">
+							
+            <div class="form-group">
+<h2 style="center-block" >问卷星参数填写</h2>
+              </div> 
+
+									    
+             <!--问卷星用户名--> 
+            <div class="form-group">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">问卷星用户名</label>
+              <div class="col-xs-9 col-sm-9">
+
+                <textarea  name="wjx_user" id="wjx_user"
+                               placeholder="" oninput="autosize(this)" class="col-xs-12 col-sm-12 " rows="1">13058659320</textarea>
+               
+              </div> 
+
+
+             </div>
+             <!--问卷星密码--> 
+            <div class="form-group">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">问卷星密码</label>
+              <div class="col-xs-9 col-sm-9">
+
+                <textarea  name="wjx_passwd" id="wjx_passwd"
+                               placeholder="" oninput="autosize(this)" class="col-xs-12 col-sm-12 " rows="1">Lilyhcn123</textarea>
+               
+              </div> 
+
+
+             </div>
+             <!--问卷星表id--> 
+            <div class="form-group">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">问卷星表id</label>
+              <div class="col-xs-9 col-sm-9">
+
+                <textarea  name="wjx_id" id="wjx_id"
+                               placeholder="" oninput="autosize(this)" class="col-xs-12 col-sm-12 " rows="1">57179887</textarea>
+               
+              </div> 
+
+
+             </div>
+             <!--填表对象--> 
+            <div class="form-group">
+              <label class="col-sm-3 col-xs-3 control-label no-padding-right" for="form-field-3">填表对象</label>
+              <div class="col-xs-9 col-sm-9">
+
+                <textarea  name="touser" id="touser"
+                               placeholder="" oninput="" class="col-xs-12 col-sm-12 " rows="6">1626010001	茅可	16中文教育1班
+1626010002	高佳盈	16中文教育1班
+1626010003	干珂珂	16中文教育1班
+1626010004	蔡铠杰	16中文教育2班
+1626010005	徐淑慧	16中文教育2班
+1626010006	薛佳琦	16中文教育3班
+
+</textarea>
+ 
+               
+              </div> 
+
+
+             </div>
+
+
+
+
+
+
+    	<div class="space-4"></div>  
+
+                <div class="form-group">
+					<div class="col-md-9">
+					<div class="col-sm-3 col-xs-3">
+					    <input type="reset" class="btn"  value="重置" />    
+					</div>
+					<div class="col-sm-3 col-xs-3">
+					    
+					</div>
+
+					<div class=" col-sm-2 col-xs-2">
+					    <input class="btn btn-info submit" type="submit" value="提交" />
+					</div>					
+					</div>
+					
+				</div>
+									
+
+								</form>
+								
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+
+					
+					
+					
+						</div><!-- /.row -->
+
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+
+<script>
+$(document).ready(function(){
+var availableTags = new Array();   
+  // 自动完成功能
+
+    var temp='<?php  echo json_encode($datalistonearr); ?>'
+    var jsonObj  =JSON.parse(temp);
+
+     var jsonArr = [];
+
+for (let i in jsonObj) {
+    var temp=[]
+    for (let j in jsonObj[i]) {
+        temp.push(jsonObj[i][j]);
+    }
+    jsonArr[i]=temp; //属性
+}     
+for(let i in jsonArr) {
+    var ff="#"+i
+    $(ff).autocomplete({
+        minLength: 0,
+        source: jsonArr[i],
+    }).focus(function() {
+        $(this).autocomplete("search", $(this).val());
+    });
+}
+      
+});
+</script>
+
+	
+<!--  文本框自动变长的脚本 -->
+    <script src="__LILYCDN__/Public/qwadmin/js/chosen.jquery.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.autosize.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.inputlimiter.1.3.1.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.maskedinput.js"></script>
+    <script type="text/javascript">
+    function autosize(obj) {
+        var el = obj;
+        setTimeout(function() {
+            el.style.cssText = 'height:auto; padding:0';
+            // for box-sizing other than "content-box" use:
+            // el.style.cssText = '-moz-box-sizing:content-box';
+            el.style.cssText = 'height:' + el.scrollHeight + 'px';
+        }, 0);
+    }
+
+    </script>	
+<!--  文本框自动变长的脚本 -->
+
+
+
+
+
+
+
+
+
+
+	</body>
+</html>
+

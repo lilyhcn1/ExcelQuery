@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>问卷星</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<div class="main-container" id="main-container">
+		
+			<div class="main-content">
+				<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+
+<h1>正在从问卷星下载数据，并进行分析，可能需要20秒左右才能完成，请耐心等待。</h1>
+
+<div ><h1 id="timer"></h1 ><div>
+<script type="text/javascript">
+   function f() {
+    var date = new Date();
+    var h = date.getHours();
+    var m = date.getMinutes();
+    var s = date.getSeconds();
+    var str = h + ':' + m + ':' + s;
+    $('#timer').text(str);
+   }
+   setInterval(f, 1000); 
+</script>
+
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+
+					
+					
+					
+						</div><!-- /.row -->
+
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+
+
+	
+<!--  文本框自动变长的脚本 -->
+    <script src="__LILYCDN__/Public/qwadmin/js/chosen.jquery.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.autosize.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.inputlimiter.1.3.1.js"></script>
+    <script src="__LILYCDN__/Public/qwadmin/js/jquery.maskedinput.js"></script>
+    <script type="text/javascript">
+    function autosize(obj) {
+        var el = obj;
+        setTimeout(function() {
+            el.style.cssText = 'height:auto; padding:0';
+            // for box-sizing other than "content-box" use:
+            // el.style.cssText = '-moz-box-sizing:content-box';
+            el.style.cssText = 'height:' + el.scrollHeight + 'px';
+        }, 0);
+    }
+
+    </script>	
+<!--  文本框自动变长的脚本 -->
+
+
+
+
+
+
+
+
+
+
+	</body>
+</html>
+
