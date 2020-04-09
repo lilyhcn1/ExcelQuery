@@ -2,14 +2,12 @@
 
 ﻿# 应用案例
 我不太会语言描述，让案例来说话吧。   
-![44](http://vps0.upsir.com/lilypub/txl.png)
+![44](https://cdn.jsdelivr.net/gh/lilyhcn1/files/img/txl.png)
 
 
 
 案例网址：
 http://aa.r34.cc/index.php/Qwadmin/vi/uniquerydata/rpw/excel/sheetname/通用系统应用案例
-
-如果你用的还可以，欢迎你来新增案例： http://aa.r34.cc/d/x5
 
 最新测试服务器是 http://aa.r34.cc
 
@@ -19,42 +17,41 @@ http://aa.r34.cc/index.php/Qwadmin/vi/uniquerydata/rpw/excel/sheetname/通用系
 我来抛砖引玉吧，大家一起来完善这类系统。
 
 我自己制作的小程序通讯录：
-http://aa.r34.cc/index.php/Qwadmin/vi/uniquerydata/rpw/excel/sheetname/通用系统应用案例
+[http://aa.r34.cc/index.php/Qwadmin/vi/uniquerydata/rpw/excel/sheetname/通用系统应用案例](http://aa.r34.cc/index.php/Qwadmin/vi/uniquerydata/rpw/excel/sheetname/通用系统应用案例)
 
 
 # 万能表单系统
 古村落调研的网站  
-http://aa.r34.cc/index.php/Qwadmin/vi/uniquerydata/rpw/excel/sheetname/通用系统应用案例
+[http://aa.r34.cc/index.php/Qwadmin/vi/uniquerydata/rpw/excel/sheetname/通用系统应用案例](http://aa.r34.cc/index.php/Qwadmin/vi/uniquerydata/rpw/excel/sheetname/通用系统应用案例)
 
 # 教程
 我设计通用数据库系统的使用教程。教程PPT及相关的文件：
 
 ## 基础功能
-简单的Excel网页共享教程 http://vps0.upsir.com/lily/excel/jc/Excel网络共享教程.html
-
+简单的Excel网页共享教程 [http://vps0.upsir.com/lily/excel/jc/Excel网络共享教程.html]( http://vps0.upsir.com/lily/excel/jc/Excel网络共享教程.html)
 
 
 
 PPT教程文件
-http://vps0.upsir.com/lily/excel.pptx
+[http://vps0.upsir.com/lily/excel.pptx](http://vps0.upsir.com/lily/excel.pptx)
 
 excel控制文件及源码请直接下载代码。
 
 
 
 通用数据库系统介绍及使用方法
-http://vps0.upsir.com/lily/1.mp4
+[http://vps0.upsir.com/lily/1.mp4](http://vps0.upsir.com/lily/1.mp4)
 
 自建数据库及excel共享案例、手机数据查询案例、多表查询案例
-http://vps0.upsir.com/lily/2.mp4
+[http://vps0.upsir.com/lily/2.mp4](http://vps0.upsir.com/lily/2.mp4)
 
 ## 高级功能
 
 百万行、千万行数据查询教程
 查询效率我测试千万行excel控制端 15秒左右，百万行 3秒。网页端没优化好，千万行要30秒以上了，不推荐。
 
-视频：http://vps0.upsir.com/lily/3.mp4   
-PPT: http://vps0.upsir.com/lily/3.pptx 
+视频：[http://vps0.upsir.com/lily/3.mp4](http://vps0.upsir.com/lily/3.mp4)   
+PPT: [http://vps0.upsir.com/lily/3.pptx](http://vps0.upsir.com/lily/3.pptx ) 
 
 有服务器的高手请参见虚拟主机布置来安装。
 
@@ -68,6 +65,11 @@ PPT: http://vps0.upsir.com/lily/3.pptx
 
 php+Mysql平台windows平台建议PHPStudy 2016版本的（最新版本的，好像有问题），linux平台我是使用宝塔。
 
+已知问题：
+
+1. Mysql 数据库5.6以上会出错，建议使用5.5版本。
+2. 最新的宝塔windows面板会有问题
+
 
 
 
@@ -75,6 +77,7 @@ php+Mysql平台windows平台建议PHPStudy 2016版本的（最新版本的，好
 ### 能否保存敏感数据？
 我至少自己就在保存，但我也不敢保证绝对安全，其它就算我保证了也没用，因为我的水平实在有限。
 现在自己在安全性上进行了进一步的优化，我感觉应该不会有什么问题了。
+
 ### 外网能否访问？
 可以运行frp服务，网上找了个免费的 http://vps0.upsir.com/lilypub/frp_free.zip
 
