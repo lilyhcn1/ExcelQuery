@@ -50,48 +50,50 @@ if($this->isadmin($con2)){
 }    
 
 
+    
 }
 
-
-/* 
-// 通用查询的各种输出形式
-// $con2代表明确的条件，数组格式
-// $likecon代表模糊查询，向量格式
-// $type代表格式，table是表格输出，json是前缀是第一行，
-*/
+// 通用查询
 public function echounisheetuni($dbsheetname,$con2,$likecon,$type='table'){
 $db=M($dbsheetname);
+    // pr($con2);
+    // pr($likecon);
 
+   
 // 去除一些无关的条件
 unset($con2['conall']);
 unset($con2['wrpw']);  
 unset($con2['user']); 
-if(is_array($likecon)){
-    unset($likecon['conall']);
-    unset($likecon['wrpw']);  
-    unset($likecon['user']);     
-}
-
-
+unset($likecon['conall']);
+unset($likecon['wrpw']);  
+unset($likecon['user']); 
 
 
   
 $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
 $isasc=($con2['isasc']=="否")?"desc":"asc";
 $ordstr=$ordstr." ".$isasc;
-
-
-
+// pr($ordstr);
 // 0. 读取第一行
+    // $sheetcon['sheetname']=$con2['sheetname'];
+    // $queryfirst=$db->where($sheetcon)->order('id')->find(); 
+    // $queryfirst=$db->where($con2)->where($likecon)->order('id')->find(); 
     $sheetname=empty($con2['sheetname'])?C('MLSHEETNAME'):$con2['sheetname'];
     $queryfirst=R('Queryfun/findfirstline',array($sheetname,true));
+    // pr($queryfirst);
     $queryfirst=delemptyfield($queryfirst);
+
+
 // 1. 先把所有的字段都计算出来，除了wrpw
     $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
     $field=$Model->query("select COLUMN_NAME from information_schema.COLUMNS where table_name ='".C('DB_PREFIX').$dbsheetname."' and table_schema = '".C('DB_NAME')."';");
+// pr($field,'$field221');    
     $t1[]='wrpw';
     $field=array_column($field,'column_name');
     $field=array_diff($field,$t1);
+
+
+// pr($con2['field'],'11');
 // 2. 先处理显示字段
     if(!empty($con2['field'])){
         $fieldarr=explode(',',$con2['field']);
@@ -99,6 +101,7 @@ $ordstr=$ordstr." ".$isasc;
         if(empty($field)){
             $field[]='id';
         }  
+         
     }else{
 // 3. 不显字段处理
         if(!empty($con2['notfield'])){
@@ -114,7 +117,16 @@ $ordstr=$ordstr." ".$isasc;
         }
     } 
     $field=$newfieldarr;
+        
     }
+
+
+
+
+// 5. 把字段写成str    
+// if(!empty($con2['vlookup'])){
+//     array_unshift($field,$con2['vlookup']);
+// }
 
 unset($con2['field']);
 unset($con2['notfield']);
@@ -122,25 +134,17 @@ $fieldstr=implode($field,',');
 // pr($fieldstr,'$fieldstr');
 
 // 这里可能有问题，，，，，，，，，，，，，，，，，，，，，，，，，，
-    if(empty($con['id'])){
-        if(!empty($queryfirst['id'])){
-            $notfirstline['id']=array('NEQ',$queryfirst['id']);
-        }else{
-            $notfirstline['id']=array('NEQ',0);
-        }
-    }
-
-
-// pr($con2,'con2222');// pr($queryfirst,'$queryfirst');// pr($notfirstline,'$notfirstline');
-    if(empty($con['id'])){
-        $query=$db->where($con2)->field($fieldstr)->order($ordstr)->select(); 
-    }elseif(empty($likecon)){
-        $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
+    if(!empty($queryfirst['id'])){
+        $notfirstline['id']=array('NEQ',$queryfirst['id']);
     }else{
-        $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
+        $notfirstline['id']=array('NEQ',0);
     }
-
-// pr($query,'$query');
+    // $notfirstline['id']=array('NEQ',0);
+    // pr($ordstr);
+    $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
+// pr($con2,'con211');
+// pr($likecon,'likecon22');
+// pr($query,'$query');    
     // 插入字段行
     $fieldline['0']=$field;
 // pr($field,'$field');
@@ -151,10 +155,14 @@ $fieldstr=implode($field,',');
 
 
 if($type=='table'){
+//   pr($queryfirst,'$queryfirst2222222');
+//   pr($fieldstr,'$fieldstr');
+
     if(!empty($queryfirst)){
         $sheetcon['sheetname']=$queryfirst['sheetname'];
         $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
         $firstline['0']=$firstlinearrtemp;
+        // pr($firstlinearrtemp,'$firstlinearrtemp');
     $temp=twoarraymerge($fieldline,$emptyline); 
 
     if(!empty($firstline)){
@@ -184,39 +192,7 @@ if($type=='table'){
 
     
     
-    return    $newquery;
-}elseif($type=='tablejson'){
-    if(!empty($queryfirst)){
-        $sheetcon['sheetname']=$queryfirst['sheetname'];
-        $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
-        $firstline['0']=$firstlinearrtemp;
-        // pr($firstlinearrtemp,'$firstlinearrtemp');
-    // $temp=twoarraymerge($fieldline,$emptyline); 
-
-    if(!empty($firstline)){
-        $temp=twoarraymerge($temp,$firstline);  
-    }
-    $query=twoarraymerge($temp,$query);         
-    }
-    return    $query;
-}elseif($type=='tubiaoxiu'){
-    if(!empty($queryfirst)){
-        $sheetcon['sheetname']=$queryfirst['sheetname'];
-        $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
-        $firstline['0']=$firstlinearrtemp;
-        // pr($firstlinearrtemp,'$firstlinearrtemp');
-    // $temp=twoarraymerge($fieldline,$emptyline); 
-
-    if(!empty($firstline)){
-        $temp=twoarraymerge($temp,$firstline);  
-    }
-    $query=twoarraymerge($temp,$query);         
-    }
-    // pr($query);
-    return    $query;
-}elseif($type=='arr'){
-    return    $query;
-   
+    return    json_encode($newquery);
 }else{
     
     return returnerror('2','echounisheetuni的type类型未指定!~');

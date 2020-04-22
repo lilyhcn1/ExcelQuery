@@ -30,8 +30,10 @@ return array(
 	'DB_PREFIX' => 'qw_', // 数据库表前缀
 	'DB_CHARSET'=>  'utf8',      // 数据库编码默认采用utf8
     'TMPL_PARSE_STRING'  =>array(
-        '__LILYCDN__' => '' // CDN设置，如使用，必须设置跨域，如*，post,get, *
+        '__LILYCDN__' => '' // CDN设置，如在外网使用，建议修改，速度快很多。'__LILYCDN__' => 'https://cdn.jsdelivr.net/gh/lilyhcn1/files/execelquery/'
     ),	
+    
+    // https://cdn.jsdelivr.net/gh/lilyhcn1/files/execelquery/Public/qwadmin/images/avatar.png
 //***********************************excel**********************************	
 	'QUERYPW'        => 'admin', // excel默认查看密码	
 	'PERSONPW'=> 'admin123',// 个人查询密码

@@ -15,7 +15,7 @@ use Think\Auth;
 class IndexController extends ComController {
     public function index(){
         //header("Location: U('Lilynoticeview/index')");
-        $url=U('ViCom/pindex');
+        $url=U('ViCom/uniquerydata');
         	header("Location: $url");
     }
     public function oldindex(){

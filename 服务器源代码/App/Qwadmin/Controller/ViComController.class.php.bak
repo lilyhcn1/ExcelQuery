@@ -34,16 +34,18 @@ public function Rwxysercher_____________________(){
 
 public function echoliststr($id=''){
 $postarr=I('post.');
-// pr($postarr);
+pr($postarr);
 
 }
 
-public function echoiddata(){
+public function echoiddata($id=''){
+if(empty($id)){
+    $id=I('get.id');}
 
-$newarr=R('ApiCom/data',array($id));
+$newarr=R('Queryfun/echoiddatacontent',array($id,$this->USER));
 // pr($id);
 // pr($newarr);
-echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"/\">查询首页</a></h3>";
+echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"".session('indexpage')."\">查询首页</a></h3>";
 
 
 // $echohtml=R('Task/echoarrresult',array($newarr,"信息详情页"));
@@ -55,70 +57,10 @@ return $echohtml;
     
 }
 
-public function pindex(){
-
-// $url=getwholeurl(U('ApiCom/pindex',array('false')));
-// $r=file_get_contents($url);
-// pr($r);
-// $rr=json_decode($r,true);
-// pr($rr);
-
-
-$rr=R('ApiCom/pindex',array('false'));
-$sheetarr=$rr['sheets']['sheetarr'];
-$this->assign("sheetarr",$sheetarr);
-$sheetname=I('get.sheetname');
-$this->assign("postpage",U("ViCom/uniquerydata?sheetname=$sheetname"));
-
-
-
-$this->display();
-
-
-}
-
-
-
 
 
 
 public function uniquerydata(){
-// 列表部分都一样
-$rr=R('ApiCom/pindex','false');
-$sheetarr=$rr['sheets']['sheetarr'];
-$this->assign("sheetarr",$sheetarr);
-
-
-// $name=I('get.name');
-// $sheetname=I('get.sheetname');
-
-// $rr=R("ApiCom/searchdata"."?name=".$name."&sheetname=".$sheetname,'false');
-$rr=R("ApiCom/searchdata",array('false'));
-// pr($rr);
-$this->assign("res",$rr['res']);
-
-
-$rrnum=count($rr['res']);
-if($rrnum==1 && $rr['res'][0]['sheetlistnum']==1){
-    $id=$rr['res'][0]['data'][0]['id'];
-    $url=U("ViCom/echoiddata?id=$id");
-    header("Location: $url");
-    
-}
-
-$rr1=R('ApiCom/tiplist',array('false'));
-$tipliststr=$rr1['tipliststr'];
-$this->assign("tiplistarr",explode(",",$tipliststr));
-
-
-$sheetname=I('get.sheetname');
-$this->assign("postpage",U("ViCom/uniquerydata?sheetname=$sheetname"));
-$this->display();
-
-
-}
-
-public function uniquerydatabak(){
 // session(null);
 $db=M(C('EXCELSECRETSHEET'));
 // pr(I('get.'));
@@ -172,6 +114,20 @@ $datalistarr=$db->where($querycon)->distinct(true)->field($namekeys)->order('id'
 $datalistonestr=twoarraycolstostr($datalistarr,$namekeys);
 // pr($datalistonestr);
 $datalistonearr=explode(",",$datalistonestr);
+// pr($datalistonearr);
+//原来的name代码块
+// pr($datalistarr);
+// $datalistonearr=array_column($datalistarr,'name');
+// $datalistonearr=delemptyfieldgetnew($datalistonearr);
+// twoarraycolstostr
+//     foreach($datalistonearr as $key11=>$value11){
+//         if(!empty($value11)){
+//             $newarr[$key11]=preg_replace( '/[\x00-\x1F]/','',$value11);
+//         }
+//     }
+// $datalistonearr=$newarr;
+
+
 
 $namecon=str_replace(",","|",$namekeys);
 if(!empty($name)){
@@ -183,14 +139,13 @@ if(!empty($name)){
 $querycontemp=$querycon;
 unset($querycontemp['rpw']);
 
-// pr($querycontemp);
-
 if(empty($querycontemp)){
     $inforesult="<h3><p>您能查询的数据表：</p><h3>";
     foreach($sheetnamearr as $sheetvaluearr){
         $sheetvalue=$sheetvaluearr['sheetname'];
         $inforesult.="<p> <a href=\"" . U($Think.CONTROLLER_NAME."/uniquerydata?sheetname=$sheetvalue") . "\">$sheetvalue</a></p>";
         
+        // $inforesult.="<hr>";
     }
        
     $inforesult .=$this->querypersoninfo();
@@ -202,7 +157,6 @@ if(empty($querycontemp)){
     $inforesult .= R('Queryfun/conquery',array($db,$querycon,$name,$this->USER));
 
 }
-// pr($inforesult);
 
     
 // pr($datalistarr);

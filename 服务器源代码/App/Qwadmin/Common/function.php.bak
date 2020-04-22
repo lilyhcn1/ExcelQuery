@@ -43,12 +43,6 @@ $Model = M('log');
 	$data['log'] = $log;
 	$Model->data($data)->add();
 }
-//如果为空就跳出，结束
-function emptyexit($r){
-    if(empty($r)){
-       die("输入为空，出错退回，请检查代码！~");
-    }
-}
 
 //error code 
 function returnmsgjson($code='-1',$info='未知错误',$arr=''){
@@ -59,23 +53,6 @@ function returnmsgjson($code='-1',$info='未知错误',$arr=''){
     }
     return json_encode($r);
 }
-//显示http json或数组
-function returnhttpjson($r,$echojson="true"){
-    // pr($echojson);
-if($echojson=="true"){
-    echo json_encode($r); 
-}else{
-    return $r;
-}
-}
-// //显示get,post传递
-// function getpostarr($arr,$type){
-//     if(!emtpy($arr)){
-//         $arr=$arr
-//     }else{
-        
-//     }
-// }
 
 
 function addlogbak($log,$name=false){
@@ -257,25 +234,6 @@ $d_urlall=$_SERVER["REQUEST_SCHEME"]."://".$_SERVER["HTTP_HOST"].'/'.$d_url;
     return $short_url;
  
 }
-
-function getwholeurl($url=""){
-     $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
-if(strstr($url,"http")){
-    return $url;
-}     
-if(empty($url)){
-    return $http_type.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-}else{
-    return $http_type.$_SERVER['HTTP_HOST'].$url;
-}
-
-
-    
-    
-}
-
-
-
 function shorturlbyid($id,$d_url='d/dwz_api.php'){
     
      $url='http://'.$_SERVER['SERVER_NAME'].'/index.php/Qwadmin/Lilynoticeview/toreadpage.html?id='.$id;
@@ -370,26 +328,6 @@ function twoarraytostr ($array,$col='id',$separator=','){
 
     return $str;
 }
-
-
-/**
-*
-* 函数：二维数组取出第二级数组中的部分列
-* @param  array $array   二级数组。
-* @param  str $colstrs  二级数组的列指标
-*
-**/
-function twoarraygetcols($twoarray,$colstrs){
-foreach($twoarray as $k0=>$array){
-    foreach($array as $k1=>$v1){
-        if(strstr($colstrs,$k1)){
-            $newtwoarray[$k0][$k1]=$v1;
-        }
-    }
-}
-    return $newtwoarray;
-}
-
 
 /**
 *
@@ -660,25 +598,6 @@ $str=implode($separator,$array);
     
     return $str;
 }
-
-
-//返回数组
-function addarray($array,$flag='val'){
-$i=0;
-if($flag=="val"){
-    foreach($array as $k=>$v){
-        $newarray[$i]=$v;
-        $i++;
-    }    
-}elseif($flag=="key"){
-    foreach($array as $k=>$v){
-        $newarray[$i]=$k;
-        $i++;
-    }      
-}
-    return $newarray;
-}
-
 
 
 
@@ -1664,8 +1583,7 @@ function twoarrayfindval($twoarr,$key,$val) {
             $twoarrnew[$i]=$vtemp;
             $i=$i+1;
         }
-    }    
-
+    }
     return $twoarrnew;
 }
 

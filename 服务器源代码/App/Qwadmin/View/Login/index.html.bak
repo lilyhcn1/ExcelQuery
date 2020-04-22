@@ -10,8 +10,8 @@
 
 		<include file="Public/head" />
 <!--这里是验证字符-->
-<!--<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.min.js"></script>-->
-<!--<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/localization/messages_zh.js"></script>-->
+<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/localization/messages_zh.js"></script>
 <script>
 $.validator.setDefaults({
     submitHandler: function() {
