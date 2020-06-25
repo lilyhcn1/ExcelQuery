@@ -16,12 +16,12 @@
 				</tr>
 				<tr>
 					<td>PHP版本</td>
-					<td>>5.3.x</td>
+					<td>>5.6.x</td>
 					<td><span class="correct_span">&radic;</span> <?php echo $server['php']; ?></td>
-					<td>5.2.0</td>
+					<td>5.6.0</td>
 				</tr>
 				<tr>
-					<td>Mysql版本</td>
+					<td>Mysql版本(5.7明确会出错)</td>
 					<td>>5.x.x</td>
 					<td><?php echo $server['mysql']; ?></td>
 					<td>4.2</td>

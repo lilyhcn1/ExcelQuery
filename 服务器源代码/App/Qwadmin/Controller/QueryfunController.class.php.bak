@@ -484,7 +484,7 @@ $rpw=empty(session('rpw'))?C('MLRPW'):session('rpw');
 }
 
 
-
+//通过多种途径查询出对应的标题数组
 public function gettitlearr($sheetname,$id='',$fieldstr='',$delempty='true'){
 $db=M(C('EXCELSECRETSHEET'));
 // pr($id,"343");    
