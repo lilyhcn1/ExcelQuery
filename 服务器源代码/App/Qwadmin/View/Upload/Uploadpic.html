@@ -34,7 +34,8 @@
         <input type="hidden" value="{$Height}" name="Height">
         <input type="hidden" value="{$BackCall}" name="BackCall">
         <div class="uploadpic">
-		<img id="ImgPr" src="<if condition="$Img eq ''">__PUBLIC__/qwadmin/images/nopic.gif<else />__ROOT__{$Img}</if>"  width="{$Width}" height="{$Height}">
+		<!--<img id="ImgPr" src="<if condition="$Img eq ''">__PUBLIC__/qwadmin/images/nopic.gif<else />__ROOT__{$Img}</if>"  width="{$Width}" height="{$Height}">-->
+		<img id="ImgPr" src="<if condition="$Img eq ''">__PUBLIC__/qwadmin/images/nopic.gif<else />{$smallImgnocomma}</if>"  width="{$Width}" height="{$Height}">
         <div class="uploadtext">上传</div>
 			<div class="inputfile" title="点击上传图片">
 				<input type="file" accept="image/*"  name="img" id="uploadicon" value="upload"/>

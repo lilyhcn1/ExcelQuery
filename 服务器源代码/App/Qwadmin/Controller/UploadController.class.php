@@ -5,7 +5,7 @@
 * 作    者：小马哥<hanchuan@qiawei.com>
 * 日    期：2015-09-17
 * 版    本：1.0.3
-* 功能说明：文件上传控制器。
+* 功能说明：文件上传控制器。老黄牛修改
 *
 **/
 
@@ -69,10 +69,13 @@ class UploadController extends BaseController{
       $orgpic=I('get.pic');
       $smallImg=$this->savesmallimg($Img);  
       $this->assign('smallImg',$smallImg);
-      
+      $smallImgnocomma=mb_substr($smallImg,1,mb_strlen($smallImg)-1,"utf-8");
+      $this->assign('smallImgnocomma',$smallImgnocomma);      
+// echo $smallImgnocomma;
       $this->assign('Width',$Width);
       $this->assign('BackCall',$BackCall);
       $this->assign('Img',$Img);
+      
       $this->assign('Height',$Height);
       $this->display('Uploadpic');
     }
