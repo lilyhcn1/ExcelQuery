@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>图片文件工具</title>
+</head>
+<body>
+<input type="file" onchange="fileChange(event)" accept="image/*">
+<script src="/dist/imageFileConvert.umd.js"></script>
+<script>
+    function fileChange(ev) {
+        let file = ev.target.files[0];
+        // ImageFile.fileToCanvas(file, {
+        //     width: 300,       // canvas宽度
+        //     height: 300,      // canvas高度
+        //     cover: true
+        // }).then(({ canvas, image }) => {
+        //     document.body.appendChild(canvas);
+        //     document.body.appendChild(image);
+        //     ImageFile.rotate(canvas, image, 90);
+        //     canvas.toBlob(function(blob){
+        //         // console.log(blob);
+        //     })
+        //     // let file = ImageFile.dataUrlToFile(canvas, 'helloworld');
+        //     // console.log(file);
+        // });
+        ImageFileConvert.getImageFileData(file).then(res => {
+            console.log(res);
+        });
+    }
+</script>
+</body>
+</html>

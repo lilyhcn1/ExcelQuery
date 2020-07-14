@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>canvas</h3>
+    <canvas id="cvs"></canvas>
+    <h3>canvas to image</h3>
+    <script src="../dist/imageFileConvert.umd.js"></script>
+    <script>
+        const cvs = document.getElementById('cvs');
+        const ctx = cvs.getContext('2d');
+        ctx.fillStyle = '#333';
+        ctx.fillRect(0, 0, 100, 200);
+        ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+        ctx.fillStyle = 'red';
+        ctx.fill();
+
+        ImageFileConvert.canvasToImage(cvs, 'image/png').then(canvas => {
+            document.body.append(canvas);
+        })
+        
+        let file = ImageFileConvert.canvasToFile(cvs);
+        console.log(file)
+    </script>
+</body>
+</html>

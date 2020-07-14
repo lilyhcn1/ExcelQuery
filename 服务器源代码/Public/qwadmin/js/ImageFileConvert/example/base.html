@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>base</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+</head>
+<body>
+<input type="file" accept="image/*" onchange="fileChange(event)">
+<script src="../dist/imageFileConvert.umd.js"></script>
+<script>
+function fileChange(ev) {
+    let file = ev.target.files[0];
+    ImageFileConvert.getImageFileData(file, { width: 600, height: 800, cover: false }).then(({ blob, base64 }) => {
+        let img = ImageFileConvert.blobToImage(blob);
+        img.style.width = '300px';
+        console.log(blob, base64.length)
+        document.body.appendChild(img);
+    });
+}
+</script>
+</body>
+</html>

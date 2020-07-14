@@ -1,0 +1,20 @@
+.index{width: 100%;padding-bottom: 1.1rem;}
+
+/*topic页面*/
+.topic{position: relative;height: 100%;overflow-y:auto;width: 100%;background-attachment:fixed;box-sizing: border-box;}
+
+.topic-frameli{text-align: center;line-height: 1.5rem;font-size: 0.36rem;width: 5.65rem;height: 1.3rem;margin: 0.15rem auto 0.6rem auto;color: #000000;background-size: cover;}
+.topic-frameli div{display: inline-block;font-size: 0.54rem;color: #fbb561;}
+.entrance-bottom{width: 100%;position: relative;z-index: 10;height:-webkit-fill-available;overflow-x: hidden;}
+.entrance-bottom-frame{transition: all 0.5s;width: 10000%;margin: 0 auto;margin-top:0.3rem;}
+.entrance-bottom-frame-beijing{position: absolute;z-index: 1;width: 100%;height: 100%;top:0;left: 0;background: url(../img/evaluating/yincang.png);background-size:cover;}
+.entrance-bottom-frame-line{transition: all 0.5s;pointer-events: none;cursor: default;width: 1%;float: left;position: relative;padding: 0 0.35rem;box-sizing: border-box;}
+.entrance-bottom-frame-line-id{font-size: 30px;color: white;text-align:center;line-height: 60px;position: absolute;left: 50%;margin-left: -30px;height: 60px;width: 60px;background: url(../img/evaluating/e-id.png);background-size: cover;top: -30px;}
+.entrance-bottom-frame-line-title{font-size: 0.28rem;margin-bottom: 0.8rem;line-height: 0.5rem;}
+.entrance-bottom-frame-line-button{transition: margin 0.5s;position: relative;cursor: pointer;width: 100%;min-height:0.9rem;margin-bottom:0.5rem;float: left;box-sizing: border-box;background: #f7f7f7;border-radius: 0.54rem;padding: 0 0.5rem;}
+.entrance-bottom-frame-line-button-frame{width: 100%;min-height: 0.9rem;display: table-cell; vertical-align:middle;font-size: 0.3rem;padding:0.1rem 0rem 0.1rem 0.5rem;}
+.entrance-bottom-frame-line-button-id{height: 0.9rem;display: table-cell;line-height: 0.9rem;font-size: 0.3rem;}
+.entrance-bottom-frame-line-button:hover{color: white; background: #f86d07}
+.entrance-bottom-frame-line.active{pointer-events: auto;  }
+.entrance-bottom-frame-line.active .entrance-bottom-frame-beijing{display: none;}
+.entrance-bottom-frame-beijing.none{background: #000000;opacity: 0.2;}

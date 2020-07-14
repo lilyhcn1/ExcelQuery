@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rotate</title>
+</head>
+<body>
+<div>
+    <h3>选择图片</h3>
+    <input type="file" accept="image/*" onchange="fileChange(event)">
+    <hr>
+    <input type="range" min="0" max="360" onchange="rangeChange(this)" value="0">
+    <h3>旋转度数<span id="degree"></span></h3>
+</div>
+<script src="../dist/imageFileConvert.umd.js"></script>
+<script>
+
+    let cvs, img;
+    let degree = document.getElementById('degree');
+
+    function fileChange(ev) {
+        let file = ev.target.files[0];
+        ImageFileConvert.fileToCanvas(file, { width: 400, height: 400 }).then(({ canvas, image }) => {
+            document.body.appendChild(canvas);
+            cvs = canvas;
+            img = image;
+        })
+    }
+
+    function rangeChange(r) {
+        degree.innerText = r.value; 
+        if (cvs && img) {
+          ImageFileConvert.rotate(cvs, img, r.value)
+        }
+    }
+
+</script>
+</body>
+</html>
