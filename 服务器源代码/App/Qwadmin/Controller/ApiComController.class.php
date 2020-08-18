@@ -8,8 +8,17 @@
 *
 **/
 namespace Qwadmin\Controller;
+//com带权限
+define("LILYCOM",     "Com");
 use Qwadmin\Controller\ComController;
 class ApiComController extends ComController{    
+// // //无权限
+// define("LILYCOM",     "");
+// use Common\Controller\BaseController;
+// use Think\Controller;
+// class ApiController extends BaseController{    
+    
+//开始代码    
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
         header("Location: $url");
@@ -20,6 +29,9 @@ public function index(){
 public function tiplist($echojson="true"){
     $db=M(C('EXCELSECRETSHEET'));
     $querycon=$this->consafe(I('get.'));
+    
+// pr($querycon,'$queryconfds23');    
+    
     if(!empty($querycon['name'])){
         $sheetnamearr=$db->where($querycon)->distinct(true)->field('name')->order('id')->select();
         $tipliststr=twoarraytostr ($sheetnamearr,'name');
@@ -46,24 +58,28 @@ return returnhttpjson($r,$echojson);
 public function searchdata($echojson="true",$type="search"){
 $con2=$this->consafe(I('get.'));
 $con2['notfield']="wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2";
-
-$t=R('RwxyCom/echounisheetuni',array(C('EXCELSECRETSHEET'),$con2,'','arr'));
-
 // pr($con2,'con2dfwfef');
-// pr($t,"tttt");
+// pr($t,"2er2er23");
+$t=R('Rwxy'.LILYCOM.'/echounisheetuni',array(C('EXCELSECRETSHEET'),$con2,'','arr'));
+
+
 
 $r['code']='200';   
 $r['getarr']=I('get.');
 // $r['res']['listnum']=count($t); 
 //用户相关信息返回
-$r['userarr']=$this->USER;   
+$userarr=$this->USER;
+if(!is_array($userarr)){
+    $r['userarr']=$userarr;   
+}
+
 
 
 emptyexit($r['code']);
 
 //查询结果返回
 $sheets_list=twoarray2onearr($t,'sheetname');
-// pr('1111111111111');
+// pr($t,'324fcd54');
 foreach($sheets_list as $k0=>$sheetname){
     $sttwoarr=twoarrayfindval($t,'sheetname',$sheetname);
     $r['res'][$k0]['sheetname']=$sheetname;
@@ -140,7 +156,7 @@ public function pindex($echojson="true"){
 foreach($sheetnamearr as $k=>$v){
     $sheetname=$v['sheetname'];
     $r['sheets']['sheetarr'][$k]['sheetname']=$sheetname;        //数据表名
-    $r['sheets']['sheetarr'][$k]['url']=U("ViCom/uniquerydata?sheetname=$sheetname");  //对应的网址    
+    $r['sheets']['sheetarr'][$k]['url']=U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname");  //对应的网址    
 }    
 
 return returnhttpjson($r,$echojson);
@@ -208,11 +224,6 @@ public function login(){
 
 }
 
-public function test(){
-    pr($_SESSION);
-    pr($this->user);
-}
-
 
 // con条件的安全性检查
 //把get中的条件进行检查，并把name的查询转变为模糊查询。
@@ -225,8 +236,12 @@ if(!empty($con['name'])){
 }    
 
     if(empty($this->USER)){
-        $rpw=empty(session('rpw'))?C('MLRPW'):session('rpw');
-        
+        if(empty($con['rpw'])){
+            $rpw=empty(session('rpw'))?C('MLRPW'):session('rpw');
+        }else{
+            $rpw=$con['rpw'];
+            session('rpw',$rpw);
+        }
     }else{
         $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
     }
@@ -240,11 +255,14 @@ if(!empty($con['name'])){
 
 
 
+
+
+
 //新增url
 public function resaddurl($sttwoarr){
     foreach($sttwoarr as $key=>$val){
         $id=$sttwoarr[$key]['id'];
-        $sttwoarr[$key]['url']=U("ViCom/echoiddata?id=$id");
+        $sttwoarr[$key]['url']=U("Vi".LILYCOM."/echoiddata?id=$id");
     }
     return $sttwoarr;
 }

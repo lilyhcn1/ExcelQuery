@@ -7,15 +7,17 @@
 * 版    本：1.0.0
 *
 **/
-// namespace Qwadmin\Controller;
+namespace Qwadmin\Controller;
+define("LILYCOM",     "Com");  //统一写com用的
+
 // use Common\Controller\BaseController;
 // use Think\Controller;
-// class ViController extends BaseController{
+// class AdController extends BaseController{
 
 namespace Qwadmin\Controller;
 use Qwadmin\Controller\ComController;
 class AdComController extends ComController{    
-    
+ 
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
         header("Location: $url");
@@ -38,7 +40,7 @@ $db=M(C('EXCELSECRETSHEET'));
     
 // pr($id,'ef43rfsd2343333333');        
     if($id){
-        // 用户修改表格的权限检测
+        // 用户修改表格的权限检测,出错中止执行。
         $bu=R("Queryfun/Auth2edit",array($sheetname,'','',$id));       
         $titlearr=R('Queryfun/gettitlearr',array('',$id,$fieldstr));
         
@@ -85,3 +87,4 @@ $db=M(C('EXCELSECRETSHEET'));
 
 // 结尾处
 }
+

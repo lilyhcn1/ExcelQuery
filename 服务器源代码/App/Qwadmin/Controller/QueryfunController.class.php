@@ -173,7 +173,11 @@ class QueryfunController extends BaseController {
         $aa['不提示字段'] = 'notautotip';
         $aa['显示条数'] = 'limitnum';        
         $aa['表格说明'] = 'titleexplain';        
-        $aa['初始数据行数'] = 'tipnumlimt';                 
+        $aa['初始数据行数'] = 'tipnumlimt';               
+        $aa['读权限字段'] = 'rpw_right';         
+        $aa['写权限字段'] = 'wrpw_right';         
+        
+        
         foreach ($arr as $keycn => $v) {
             foreach ($aa as $kval => $vkey) {
                 if ($keycn == $kval) {
@@ -202,6 +206,8 @@ public function findfirstline($sheetname,$forall=false){
             $firstline=$db->where($sheetcon)->Field(C('FIELDSTR'))->order('id asc')->find();  
         }
         
+// pr($sheetcon,'$sheetcon234');        
+// pr($firstline,'$firstliner5435');    
     return $firstline;
 }
 
@@ -315,6 +321,8 @@ public function update($id=0){
 // pr($wrpw,'$wrpw');   	    
         $titlearrall=R('Queryfun/gettitlearr',array($sheetname));
         $paraarr=json_decode($titlearrall['custom1'],'true');
+
+
         // 用户填表权限检测
         $this->Auth2FillForm($sheetname,$titlearrall,$paraar);
 
@@ -337,11 +345,11 @@ public function update($id=0){
         $data['rpw']=$titlearrall['rpw'];
         $data['wrpw']=$titlearrall['wrpw'];
         $data['sheetname']=$sheetname;
-	    $data['data1'] = time();	 
+        $data['t']=time();
 	    
 	    $data['custom1'] = json_encode($paraarr);	
 // pr($data,'data34322');	    
-    
+// pr($paraarr['rpw_right'],'324');    
         $db=M(C('EXCELSECRETSHEET'));        
 		if($id){
 			$db->data($data)->where('id='.$id)->save();
@@ -349,6 +357,8 @@ public function update($id=0){
 			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/updatetoadd?id=$flag"));
 // 			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/magrecords?sheetname=$sheetname"));
 		}else{
+    		$data['r']=$data[$paraarr['rpw_right']];
+            $data['w']=$data[$paraarr['wrpw_right']];
 			$flag=$db->data($data)->add();
 // 			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/magrecords?sheetname=$sheetname"));
 			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/updatetoadd?id=$flag"));
@@ -419,23 +429,44 @@ public function Auth2FillForm($sheetname,$titlearrall="",$paraarr="",$id="") {
 
 // 判断是否有授权,看能否修改表格,一般10分钟内可以修改
 public function Auth2edit($sheetname,$titlearrall="",$paraarr="",$id="") {
-if(session('login')=='yes'){
-    return true;
-}elseif(!empty(session('wrpw'))){
+// if(session('login')=='yes'){
+//     return true;
+// }
+// pr($thisuser,'324');
+// pr($_SESSION,'fdsf');
+// 这里有漏洞，别人编辑了，10分种之内可编辑。
+    $thisuser=$this->getthisuser();   
+    $db=M(C('EXCELSECRETSHEET'));
+    if(empty($titlearrall) ||empty($paraarr) ){
+        $titlearrall=R('Queryfun/gettitlearr',array($sheetname,$id));
+        $paraarr=json_decode($titlearrall['custom1'],'true');       
+    }   
+
+if(!empty(session('wrpw'))){
     $wrpw=session('wrpw');
-   $db=M(C('EXCELSECRETSHEET'));
+
     $querycon22['wrpw']=array("in",returncomma($wrpw));
     $querycon22['sheetname']=$sheetname;
     $l=$db->where($querycon22)->find();
     if(!empty($l)){
         return true;
     }
-}else{
-$db=M(C('EXCELSECRETSHEET'));
-    if(empty($titlearrall) ||empty($paraarr) ){
-        $titlearrall=R('Queryfun/gettitlearr',array($sheetname,$id));
-        $paraarr=json_decode($titlearrall['custom1'],'true');       
+}
+elseif(!empty($thisuser['user'])){
+    if(empty($id)){$this->error("错误q100，请输入ID~",U("index/index"));}
+    $con['id']=$id;
+    // $con['sheetname']=$sheetname;
+    $r=$db->where($con)->find();
+    $w=$r['w'];
+    if($r==$thisuser['user']){
+        return true;
+    }else{
+        $this->error("错误q103，未授权修改！~",U("index/index"));
     }
+
+}
+else{
+    if(empty($id)){$this->error("错误q100，请输入ID~",U("index/index"));}
     $con['id']=$id;
     // $con['sheetname']=$sheetname;
     $t=$db->where($con)->find();
@@ -443,20 +474,37 @@ $db=M(C('EXCELSECRETSHEET'));
     // pr($edtime,'$edtime');
     // pr($edtime+C('EDITTIME'),'$edtime+C');
     if($edtime){
-        
         if(time() > $edtime+C('EDITTIME')){
-            $this->error("错误7544，此单元格修改时间超时，请登陆后修改！~",U("index/index"));
+            $this->error("错误q101，此单元格修改时间超时，请登陆后修改！~",U("index/index"));
             return false;
         }else{
             return true;
         }
     }else{
-        $this->error("错误234122，找不到对应的记录！~",U("index/index"));
+        $this->error("错误q102，找不到对应的记录！~",U("index/index"));
     }        
     }
 
 
 }
+
+
+public function getthisuser(){
+    if(!empty($this->USER)){
+        $thisuser=$this->USER;
+    }else{
+        $thisuseruser=session("thisuseruser");
+        if(empty($thisuseruser)){
+            $thisuser=null;
+        }else{
+            $db=M('member');
+            $con['user']=$thisuseruser;
+            $thisuser=$db->where($con)->find();
+        }
+    }
+    return $thisuser;
+}
+
 
 //
 public function ud___________________(){
@@ -476,6 +524,11 @@ $rpw=empty(session('rpw'))?C('MLRPW'):session('rpw');
         if(!empty($thisuser)){
             $querycon['pid']=$thisuser['user'];      
         }
+    }elseif($magage=='r'){
+        if(!empty($thisuser)){
+            $querycon['r']=$thisuser['user'];      
+        }
+                
     }else{
         $this->error('必须有查看密码或上传密码！~');
     }    
@@ -530,16 +583,16 @@ $db=M(C('EXCELSECRETSHEET'));
 
 $fieldstr=C('FIELDSTR');
 $arr=$db->where($con2)->find();    
-// $arr=$db->where($con2)->Field($fieldstr)->find();  
+// $arr=$db->where($con2)->Field($fieldstr)->finfindfirstlined();  
 // pr($arr['sheetname']);
-
+// pr($arr,'234234');
 
     // 查出第一行
     $firstline=R('Queryfun/findfirstline',array($arr['sheetname'],''));
 
+// pr($firstline,'43534');
 $arr=delemptyfield($arr);
-// pr($arr);
-// pr($firstline);
+// pr($arr,'4323');
 foreach ($arr as $key=> $value) {
 // $value=returnmsg($value,'weixin');
 if(!is_null($firstline[$key])){

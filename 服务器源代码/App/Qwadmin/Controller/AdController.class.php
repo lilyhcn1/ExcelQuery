@@ -8,6 +8,8 @@
 *
 **/
 namespace Qwadmin\Controller;
+define("LILYCOM",     "Com");  //统一写com用的
+
 use Common\Controller\BaseController;
 use Think\Controller;
 class AdController extends BaseController{

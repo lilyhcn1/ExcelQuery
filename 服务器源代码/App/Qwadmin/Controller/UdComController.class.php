@@ -17,8 +17,7 @@ use Qwadmin\Controller\ComController;
 class UdComController extends ComController{    
 
 public function index(){
-        // $url=U($Think.CONTROLLER_NAME.'/sheetindex');
-        $url=U('UdCom/sheetindex');
+        $url=U($Think.CONTROLLER_NAME.'/sheetindex');
         	header("Location: $url");    
 }
 
@@ -65,7 +64,7 @@ public function magmyrecords(){
 $sheetname=I('get.sheetname');
 $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
 // $wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
-$list=$this->echorecords($sheetname,'false');
+$list=$this->echorecords($sheetname,'r');
 // pr($sheetname,'sheetnamef23r');
 // pr($list,'$listfdsf');
 if(count($list)==1){
@@ -73,6 +72,7 @@ if(count($list)==1){
 }else{
     // $this->display();    
 }
+$this->assign('thisuser',$this->USER);
 $this->display();    
 
 
@@ -173,9 +173,9 @@ public function mysheet(){
 
     // $user_querypw=$this->USER['querypw']?$this->USER['querypw']:C('MLPW');
     $pid=$this->USER['user']?$this->USER['user']:C('MLPW');
-    $querycon['rpw']=array("in",returncomma($rpw));
-    $querycon['pid']=$pid;
-
+    // $querycon['rpw']=array("in",returncomma($rpw));
+    // $querycon['pid']=$pid;
+        $querycon['r']=$this->USER['user'];
 // pr($querycon,'5634ve');
 $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
 // pr($sheetnamearr);
@@ -196,9 +196,12 @@ public function echorecords($sheetname,$magage='true'){
 		$pagesize = C('PAGESIZE');#每页数量
 		$offset = $pagesize*($p-1);//计算记录偏移量
 // 计算首页 结束    
+// pr('fdffffffffffff');
+// pr(I('get.'));
     // $querycon=I('get.');
     // $sheetname=I('get.sheetname');
     // pr(I('get.'));
+$keyword=I('get.keyword');    
     $temp22=I('get.sheetname');
     if(!empty($temp22)){
         session('sheetname',$temp22);
@@ -206,8 +209,8 @@ public function echorecords($sheetname,$magage='true'){
     // pr($_SESSION);
     $querycon['sheetname']=empty(session('sheetname'))?I('get.sheetname'):session(sheetname);    
 $titlearrall=R('Queryfun/gettitlearr',array($sheetname));
-
-
+// gettitlearr($sheetname,$id='',$fieldstr='',$delempty='true')
+// pr($titlearrall,'$titlearrall');
 // pr($querycon,'$querycong563');
 
 // 核心语句，查询所有数据集，$magage是标记是否管理
@@ -215,7 +218,8 @@ $titlearrall=R('Queryfun/gettitlearr',array($sheetname));
 $querycon=R('Queryfun/querycon',array($querycon,$magage,$this->USER));
 // pr($querycon,'$querycon3213');
     if(!empty($keyword)){
-        $querycon['name'] = array('like',"%".$keyword."%");
+        // $querycon['name'] = array('like',"%".$keyword."%");
+        $querycon['name'] =$keyword;
     }
     
     $querycon=delemptyfield($querycon);
@@ -230,24 +234,29 @@ $querycon=R('Queryfun/querycon',array($querycon,$magage,$this->USER));
  
     
     $fieldstr="id,".$fieldstr;
+$titlearr=R('Queryfun/gettitlearr',array($sheetname,"",$fieldstr));
+// pr($titlearr,'$titlearr');
 
+// pr($querycon,'$querycon3213');
 $count = $db->where($querycon)->limit($offset.','.$pagesize)->count();
 $r=$db->where($querycon)->limit($offset.','.$pagesize)->field($fieldstr)->order('id desc')->select();
+
+
+//这里把标题也加进去
+array_unshift($r,$titlearr);;
 // pr($r,'r,fddsfdsaf');
 // pr($querycon,'fdsfdsfds333');
 foreach($r as $key1=>$val1_arr){
-// pr($val1_arr);
-    $temp='';
     foreach($val1_arr as $k2=>$v2){
-        if($k2 !='id'){
-            $temp.=$v2.' | ';
-        }
-    }
-    $newqueryarr[$key1]['id']=$val1_arr['id'];  
-    $newqueryarr[$key1]['content']=$temp;
+         $newqueryarr[$key1][$k2]=$v2;
+    }    
+
 }
+
+
+
 $queryarr= $newqueryarr;
-// pr($queryarr);
+// pr($queryarr,'queryqrr');
 
 //计算记录偏移量等
 	$page	=	new \Think\Page($count,$pagesize); 

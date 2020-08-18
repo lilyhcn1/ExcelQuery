@@ -17,6 +17,7 @@ class LogoutController extends ComController {
 // 		pr($_SESSION,'345');
 		session('login',null);
 		session(null);
+		session('thisuseruser',null);
 // 		pr($_SESSION,'32rf');
 		$url = U("login/index");
 		header("Location: {$url}");

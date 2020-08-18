@@ -172,10 +172,10 @@ public function mysheet(){
 
     // $user_querypw=$this->USER['querypw']?$this->USER['querypw']:C('MLPW');
     $pid=$this->USER['user']?$this->USER['user']:C('MLPW');
-    $querycon['rpw']=array("in",returncomma($rpw));
-    $querycon['pid']=$pid;
-
-// pr($querycon,'5634ve');
+    // $querycon['rpw']=array("in",returncomma($rpw));
+    // $querycon['pid']=$pid;
+        $querycon['r']=$this->USER['user'];
+pr($querycon,'5634ve');
 $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
 // pr($sheetnamearr);
     $this->echosheet($sheetnamearr,$sheetname,$magage='false');
@@ -208,7 +208,7 @@ $keyword=I('get.keyword');
     // pr($_SESSION);
     $querycon['sheetname']=empty(session('sheetname'))?I('get.sheetname'):session(sheetname);    
 $titlearrall=R('Queryfun/gettitlearr',array($sheetname));
-
+// gettitlearr($sheetname,$id='',$fieldstr='',$delempty='true')
 // pr($titlearrall,'$titlearrall');
 // pr($querycon,'$querycong563');
 
@@ -233,21 +233,19 @@ $querycon=R('Queryfun/querycon',array($querycon,$magage,$this->USER));
  
     
     $fieldstr="id,".$fieldstr;
+$titlearr=R('Queryfun/gettitlearr',array($sheetname,"",$fieldstr));
+// pr($titlearr,'$titlearr');
+
 
 $count = $db->where($querycon)->limit($offset.','.$pagesize)->count();
 $r=$db->where($querycon)->limit($offset.','.$pagesize)->field($fieldstr)->order('id desc')->select();
+
+
+//这里把标题也加进去
+array_unshift($r,$titlearr);;
 // pr($r,'r,fddsfdsaf');
 // pr($querycon,'fdsfdsfds333');
 foreach($r as $key1=>$val1_arr){
-// pr($val1_arr);
-    // $temp='';
-    // foreach($val1_arr as $k2=>$v2){
-    //     if($k2 !='id'){
-    //         $temp.=$v2.' | ';
-    //     }
-    // }
-    // $newqueryarr[$key1]['id']=$val1_arr['id'];  
-    // $newqueryarr[][$key1]['content']=$temp;
     foreach($val1_arr as $k2=>$v2){
          $newqueryarr[$key1][$k2]=$v2;
     }    

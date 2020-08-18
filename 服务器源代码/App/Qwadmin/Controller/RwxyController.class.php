@@ -8,6 +8,7 @@
 *
 **/
 namespace Qwadmin\Controller;
+define("LILYCOM",     "");  //统一写com用的
 use Common\Controller\BaseController;
 use Think\Controller;
 class RwxyController extends BaseController{
@@ -34,8 +35,8 @@ public function echounisheet($dbsheetname,$data){
 // C('EXCELSECRETSHEET');
 $con2=R("Queryfun/constr2conarr",array($data,'eq'));
 $likecon=R("Queryfun/constr2conarr",array($data,'like'));
-echo 343;pr($likecon);
-pr($con2);
+// echo 343;pr($likecon);
+// pr($con2);
 if($this->isadmin($con2)){
     unset($con2['rpw']);
     $this->echounisheetuni($dbsheetname,$con2,$likecon);
@@ -56,44 +57,49 @@ if($this->isadmin($con2)){
 // 通用查询
 public function echounisheetuni($dbsheetname,$con2,$likecon,$type='table'){
 $db=M($dbsheetname);
-    // pr($con2);
-    // pr($likecon);
+    // pr($con2,'43242');
+    // pr($likecon,'465654');
 
-   
 // 去除一些无关的条件
-unset($con2['conall']);
-unset($con2['wrpw']);  
-unset($con2['user']); 
-unset($likecon['conall']);
-unset($likecon['wrpw']);  
-unset($likecon['user']); 
+if(is_array($con2)){
+    unset($con2['conall']);
+    unset($con2['wrpw']);  
+    unset($con2['user']);
+}
+if(is_array($likecon)){
+    unset($likecon['conall']);
+    unset($likecon['wrpw']);  
+    unset($likecon['user']); 
+}
+
+
 
 
   
 $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
 $isasc=($con2['isasc']=="否")?"desc":"asc";
 $ordstr=$ordstr." ".$isasc;
-// pr($ordstr);
+// pr1($ordstr);
 // 0. 读取第一行
     // $sheetcon['sheetname']=$con2['sheetname'];
     // $queryfirst=$db->where($sheetcon)->order('id')->find(); 
     // $queryfirst=$db->where($con2)->where($likecon)->order('id')->find(); 
     $sheetname=empty($con2['sheetname'])?C('MLSHEETNAME'):$con2['sheetname'];
     $queryfirst=R('Queryfun/findfirstline',array($sheetname,true));
-    // pr($queryfirst);
+    // pr1($queryfirst);
     $queryfirst=delemptyfield($queryfirst);
 
 
 // 1. 先把所有的字段都计算出来，除了wrpw
     $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
     $field=$Model->query("select COLUMN_NAME from information_schema.COLUMNS where table_name ='".C('DB_PREFIX').$dbsheetname."' and table_schema = '".C('DB_NAME')."';");
-// pr($field,'$field221');    
+// pr1($field,'$field221');    
     $t1[]='wrpw';
     $field=array_column($field,'column_name');
     $field=array_diff($field,$t1);
 
 
-// pr($con2['field'],'11');
+// pr1($con2['field'],'11');
 // 2. 先处理显示字段
     if(!empty($con2['field'])){
         $fieldarr=explode(',',$con2['field']);
@@ -131,7 +137,7 @@ $ordstr=$ordstr." ".$isasc;
 unset($con2['field']);
 unset($con2['notfield']);
 $fieldstr=implode($field,',');
-// pr($fieldstr,'$fieldstr');
+// pr1($fieldstr,'$fieldstr');
 
 // 这里可能有问题，，，，，，，，，，，，，，，，，，，，，，，，，，
     if(!empty($queryfirst['id'])){
@@ -140,20 +146,23 @@ $fieldstr=implode($field,',');
         $notfirstline['id']=array('NEQ',0);
     }
     // $notfirstline['id']=array('NEQ',0);
-    // pr($ordstr);
-    $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
+    // pr1($ordstr);
+    
+
+    $query=$db->where($con2)->where(wheresafe($likecon))->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
+    // $query=$db->where(wheresafe($likecon))->select(); 
 // pr($con2,'con211');
-// pr($likecon,'likecon22');
-// pr($query,'$query');    
-    // 插入字段行
+// pr(wheresafe($likecon),'likecon22');
+// pr($query,'$query5435h');    
+//     // 插入字段行
     $fieldline['0']=$field;
-// pr($field,'$field');
+// pr1($field,'$field');
     // 插入空行
     foreach ($field as $fieldkey) {
         $emptyline['0'][$fieldkey]="";
     }
 
-
+// pr1($type,'type122');
 if($type=='table'){
 //   pr($queryfirst,'$queryfirst2222222');
 //   pr($fieldstr,'$fieldstr');
@@ -162,7 +171,7 @@ if($type=='table'){
         $sheetcon['sheetname']=$queryfirst['sheetname'];
         $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
         $firstline['0']=$firstlinearrtemp;
-        // pr($firstlinearrtemp,'$firstlinearrtemp');
+        // pr1($firstlinearrtemp,'$firstlinearrtemp');
     $temp=twoarraymerge($fieldline,$emptyline); 
 
     if(!empty($firstline)){
@@ -182,17 +191,26 @@ if($type=='table'){
 }elseif($type=='json'){
     if(!empty($queryfirst)){
         foreach($query as $kq=>$kv){
-           foreach($kv as $k=>$v){
-               $newquery[$kq][$queryfirst[$k]]=$kv[$k];
-           }             
+          foreach($kv as $k=>$v){
+              $newquery[$kq][$queryfirst[$k]]=$kv[$k];
+          }             
         }
     }
-    // pr($newquery);    
+    // pr1($newquery);    
     
 
     
     
     return    json_encode($newquery);
+}elseif($type=='arr'){
+        if(!empty($queryfirst)){
+        foreach($query as $kq=>$kv){
+          foreach($kv as $k=>$v){
+              $newquery[$kq][$queryfirst[$k]]=$kv[$k];
+          }             
+        }
+    }
+    return $query;
 }else{
     
     return returnerror('2','echounisheetuni的type类型未指定!~');
@@ -206,11 +224,11 @@ if($type=='table'){
 // 查询数据结果的json数据，与echoteacherdb的结果是一致的，但显示方式不同
 public function echojson(){
 $data=I('get.');
-// pr($data,'$data11');
+// pr1($data,'$data11');
 if(empty($data)){
     $data=I('post.');
 }
-// pr($data);
+// pr1($data);
     $result = $this->Auth2Use();
     if(!$result){
         echo returnmsgjson('1','IP地址不在可访问列表中，禁止访问。');
@@ -234,7 +252,7 @@ if(empty($data)){
     }else{
 
 // echo 323;pr($likecon);
-// pr($con2);        
+// pr1($con2);        
       $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
       echo   returnmsgjson('0','正常返回json数据。',$r);
     }  
@@ -246,12 +264,12 @@ if(empty($data)){
 // 查询数据私有的数据表
 public function echoteacherdb($type='table'){
 $data=I('get.');
-// pr($data,'$data11');
+// pr1($data,'$data11');
 if(empty($data)){
     $data=I('post.');
     // addlog("post 提交的数据");
 }
-// pr($data);
+// pr1($data);
     $result = $this->Auth2Use();
     if(!$result){
         echo "error\n,IP地址\n不在可访问列表中，\n禁止访问。";
@@ -273,7 +291,7 @@ if(empty($data)){
     }else{
 
 // echo 323;pr($likecon);
-// pr($con2);        
+// pr1($con2);        
         $this->echounisheetuni($dbsheetname,$con2,$likecon);
     
     }  
@@ -325,7 +343,7 @@ public function personaldata(){
 
 $db=M(C('EXCELSECRETSHEET'));
 $con['pid']=$this->USER['user'];
-pr($this->USER);
+// pr($this->USER);
 $inforesult=R($Think.CONTROLLER_NAME."/conquery",array($db,$con));
 $this->assign("inforesult",$inforesult);
 
@@ -369,7 +387,7 @@ public function deltextsymbol($text,$symbol="?"){
         // echo 'second text is <hr>'.$newtext;
         return $newtext;
     }else{
-        // pr($text);
+        // pr1($text);
         return $text;
     }  
 // str_replace("??","?",$text);
@@ -428,7 +446,7 @@ function isnum($val){
     if($val>100000000000 ){
         return true;
     }else{
-        // pr("非文本3");
+        // pr1("非文本3");
         return false;         
     }
 }
@@ -489,14 +507,14 @@ foreach ($data as $rows2) {
 } 
 
 $textsymbol=C('TEXTSYMBOL');
-    // pr($firstline);
+    // pr1($firstline);
 $temp2='';   
 foreach ($data as $rows) {
     $temp22='';
     $n=0;
     foreach ($rows as $key=>$value) {
         // $n++;
-        // pr($n);
+        // pr1($n);
         $tablestyle=($n % 2 == 0)?'class="success"':'class="warning"';
         if($this->isnum($value) ){
             $temp22=$temp22
@@ -511,9 +529,9 @@ foreach ($data as $rows) {
     }
     $temp2=$temp2.'<tr>'.returnmsg($temp22,'excel').'</tr>';
 }      
-// pr($temp3,'temp3');
+// pr1($temp3,'temp3');
 // $temp3=returnmsg($temp3,'excel');
-// pr($temp3,'temp3');
+// pr1($temp3,'temp3');
 $temp3='     </tbody>
 </table>
 </body>
@@ -538,7 +556,7 @@ return  $temp;
 
         foreach ($data as $k => $v) {
             if ($k > 1) {
-                 pr($v);
+                //  pr($v);
                 $datatemp['user'] = $v['1'];
                 $datatemp['nickname'] = $v['2'];
                 $datatemp['password'] = password($v['3']);
@@ -564,7 +582,7 @@ return  $temp;
                          $data_access['uid'] =$result;
                          $result = M('auth_group_access')->add($data_access);
                         // echo '空';
-                        // pr($datatemp);
+                        // pr1($datatemp);
                     }
                 }else{
                      $datatemp['uid'] = $v['0'];
@@ -653,7 +671,7 @@ if (($files["file"]["type"] == "application/vnd.ms-excel")
   else
     {
     $path=$server["DOCUMENT_ROOT"] .'/Uploads/'. $files["file"]["name"];
-    // pr($path);
+    // pr1($path);
       move_uploaded_file($files["file"]["tmp_name"],$path);
     
     }
@@ -684,13 +702,13 @@ echo h5page('上传结果',$result);
 
 // 处理上传过来的数据
 public function dealuploadexcel($filename,$data) {
-    // pr($data);
+    // pr1($data);
 $DBNAME='rwxy';
 $DBSHEET='tzcdata';
 // $conall=$data['conall'];
 $con2=R("Queryfun/constr2conarr",array($data,'eq'));
-// pr($con2,'$con2');
-// pr($data);
+// pr1($con2,'$con2');
+// pr1($data);
 unset($con2['conall']);
 $wrpw=$con2['wrpw'];
 $rpw=$con2['rpw'];
@@ -705,11 +723,15 @@ $autotip=$con2['autotip'];
 $notautotip=$con2['notautotip'];
 $uploadfields=$con2['uploadfields'];
 
+$rpw_right=$con2['rpw_right'];
+$wrpw_right=$con2['wrpw_right'];
+
+
 $con2temp=$con2;
 unset($con2temp['wrpw']);unset($con2temp['rpw']);unset($con2temp['pidkey']);
 unset($con2temp['sheetname']);unset($con2temp['notfield']);unset($con2temp['password']);
-// pr($wrpw,'$wrpw');
-// pr($sheetname,'$sheetname');
+// pr1($wrpw,'$wrpw');
+// pr1($sheetname,'$sheetname');
 if(!empty($wrpw) && !empty($sheetname)){  //pw非空再说
     $filenameright3=substr($filename,-3);
     if($filenameright3=="lsx"){
@@ -745,7 +767,18 @@ if(!empty($uploadfields)){
             }
             if(empty($twoarrexcel[$key]['rpw'])){
                  $twoarrexcel[$key]['rpw']=$rpw;
-            }               
+            }      
+            //写入可读权限
+            if(!empty($rpw_right)){
+                 $twoarrexcel[$key]['r']=$twoarrexcel[$key][$rpw_right];
+            }     
+            //写入可写权限
+            if(!empty($wrpw_right)){
+                 $twoarrexcel[$key]['w']=$twoarrexcel[$key][$wrpw_right];
+            }   
+            //写入时间
+            $twoarrexcel[$key]['t']=time();
+            
         }
     }
     $twoarrexcel=delemptyfieldtwoarr($twoarrexcel);
@@ -756,7 +789,7 @@ if(!empty($uploadfields)){
 
 
     
-// pr(count($twoarrexcel),'$twoarrexcel');
+// pr($twoarrexcel,'$twoarrexcel1212');
     if($replaceadd=='否'){
         $result=$this->data2add($sheetname,$wrpw,$twoarrexcel);
     }else{
@@ -814,8 +847,8 @@ $db=M(C('EXCELSECRETSHEET'));
 // 密码与先有的一样才行
 $existdatacon['sheetname']=$sheetname;
 $existdata=$db->where($existdatacon)->order('id')->find();
-// pr($twoarrexcel[2]);
-// pr("实际密码是".$existdata['2']['wrpw']."输入密码".$wrpw);
+// pr1($twoarrexcel[2]);
+// pr1("实际密码是".$existdata['2']['wrpw']."输入密码".$wrpw);
 if($existdata['wrpw']==$wrpw || empty($existdata)){
 // 把数据表中的数据删了
         if(isset($existdata['sheetname']) ){ //第0行数据库字段名，第1行中文字段名
@@ -859,7 +892,7 @@ foreach($datatwoarr as $key=>$dataarr){
 $newcout=$newcout-1;
 
 // $existdatacount=$db->where($existdatacon)->order('id')->count();
-// pr($existdatacount,'写入后的数据量为');
+// pr1($existdatacount,'写入后的数据量为');
 
 $result='用户成功清空原有数据，并导入' . '<span style="color:red">' . $newcout . "</span>条数据了！"."，其中失败".$newfailcout."条";
 return $result;

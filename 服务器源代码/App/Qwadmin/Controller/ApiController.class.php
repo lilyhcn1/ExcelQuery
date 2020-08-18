@@ -8,9 +8,17 @@
 *
 **/
 namespace Qwadmin\Controller;
+// //com带权限
+// define("LILYCOM",     "Com");
+// use Qwadmin\Controller\ComController;
+// class ApiComController extends ComController{    
+// //无权限
+define("LILYCOM",     "");
 use Common\Controller\BaseController;
 use Think\Controller;
-class ApiController extends BaseController{
+class ApiController extends BaseController{    
+    
+//开始代码    
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
         header("Location: $url");
@@ -18,21 +26,26 @@ public function index(){
 
 
 // 返回datalist
-public function getdatalistarr($querycon){
-$db=M(C('EXCELSECRETSHEET'));
-$datalistarr=$db->where($querycon)->distinct(true)->field('name')->order('id')->limit(C('TIPNUM'))->select();
-// pr($datalistarr);
-$datalistonearr=array_column($datalistarr,'name');
-$datalistonearr=delemptyfieldgetnew($datalistonearr);
-
-    foreach($datalistonearr as $key11=>$value11){
-        if(!empty($value11)){
-            $newarr[$key11]=preg_replace( '/[\x00-\x1F]/','',$value11);
-        }
+public function tiplist($echojson="true"){
+    $db=M(C('EXCELSECRETSHEET'));
+    $querycon=$this->consafe(I('get.'));
+    
+// pr($querycon,'$queryconfds23');    
+    
+    if(!empty($querycon['name'])){
+        $sheetnamearr=$db->where($querycon)->distinct(true)->field('name')->order('id')->select();
+        $tipliststr=twoarraytostr ($sheetnamearr,'name');
+    }else{
+        $tipliststr=",";
     }
-$datalistonearr=$newarr;
 
-    return $datalistonearr;
+//返回code等
+    $r['code']='200';                     //200代表正常
+    $r['getarr']=I('get.');
+    $r['tipliststr']=$tipliststr;
+
+
+return returnhttpjson($r,$echojson);
 }
 
 
@@ -42,23 +55,31 @@ $datalistonearr=$newarr;
 // $con2代表明确的条件，数组格式
 // $likecon代表模糊查询，向量格式
 */
-public function searchdata(){
-$con2=$this->consafecheck(I('get.'));
-// $con2['sheetname']="申报表3T";
+public function searchdata($echojson="true",$type="search"){
+$con2=$this->consafe(I('get.'));
 $con2['notfield']="wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2";
+// pr($con2,'con2dfwfef');
+// pr($t,"2er2er23");
+$t=R('Rwxy'.LILYCOM.'/echounisheetuni',array(C('EXCELSECRETSHEET'),$con2,'','arr'));
 
-$t=R('Rwxy/echounisheetuni',array(C('EXCELSECRETSHEET'),$con2,"",'arr'));
+
+
 $r['code']='200';   
-$r['getarr']=$this->consafecheck(I('get.'));
+$r['getarr']=I('get.');
 // $r['res']['listnum']=count($t); 
 //用户相关信息返回
-$r['userarr']['user']='2013014';   
+$userarr=$this->USER;
+if(!is_array($userarr)){
+    $r['userarr']=$userarr;   
+}
+
 
 
 emptyexit($r['code']);
 
 //查询结果返回
 $sheets_list=twoarray2onearr($t,'sheetname');
+// pr($t,'324fcd54');
 foreach($sheets_list as $k0=>$sheetname){
     $sttwoarr=twoarrayfindval($t,'sheetname',$sheetname);
     $r['res'][$k0]['sheetname']=$sheetname;
@@ -66,21 +87,30 @@ foreach($sheets_list as $k0=>$sheetname){
     
     
     //标题相关信息
-    $titlearr=R("Queryfun/gettitlearr",array($sheetname,"",C('DATAFIELDSTR')));
-    // pr($titlearr);
     $titleallarr=R("Queryfun/gettitlearr",array($sheetname));
+    $custom1=json_decode($titleallarr['custom1'],true);
+// pr($custom1,'$custom1');    
+    $field=empty($custom1['field'])?"d1,d2,d3,d4,d5":$custom1['field'];
+    
+
+    //这里看是否强制改变输出的字段
+    if($type=="detail"){
+        $field=C('DATAFIELDSTR');  //这里强制更改输出信息
+    }
+
+    $titlearr=R("Queryfun/gettitlearr",array($sheetname,"",$field));
     $r['res'][$k0]['sheetfieldlen']=0; 
     $r['res'][$k0]['sheetfieldname']=addarray($titlearr);
     $r['res'][$k0]['sheetfieldkey']=addarray($titlearr,"key");
     $r['res'][$k0]['sheetfieldlen']=count($r['res'][$k0]['sheetfieldname']); 
-    // pr($sttwoarr,'$sttwoarr');
-    $r['res'][$k0]['data']=twoarraygetcols($sttwoarr,implode(",",$r['res'][$k0]['sheetfieldkey']));
-
+ 
+    
+    $temp=twoarraygetcols($sttwoarr,"id,".implode(",",$r['res'][$k0]['sheetfieldkey']));
+    $temp2=$this->resaddurl($temp);
+    $r['res'][$k0]['data']=$temp2;
+        
 }
-
-
-echo json_encode($r); 
-
+return returnhttpjson($r,$echojson);
 }    
 
 /* 
@@ -88,31 +118,50 @@ echo json_encode($r);
 // $con2代表明确的条件，数组格式
 // $likecon代表模糊查询，向量格式
 */
-public function pindex(){
-$r=$this->r_pindex(I('get.'),I('post.'));
-echo json_encode($r);
+public function detail($echojson="true"){
+    $r=$this->searchdata("false","detail");
+    return returnhttpjson($r,$echojson);
+} 
+
+
+
+
+
+/* 
+// 通用查询的各种输出形式
+// $con2代表明确的条件，数组格式
+// $likecon代表模糊查询，向量格式
+*/
+public function data($echojson="true",$id=""){
+if(empty($id)){
+    $id=I('get.id');}
+
+$r=R('Queryfun/echoiddatacontent',array($id,$this->USER));    
+return returnhttpjson($r,$echojson);    
 }
 
-public function r_pindex(){
-    // pr($_SESSION);
+public function pindex($echojson="true"){
+    //get条件的转化及rpw
+    $con2=$this->consafe(I('get.'));
+    
+    $db=M(C('EXCELSECRETSHEET'));
+    $sheetnamearr=$db->where($con2)->distinct(true)->field('sheetname')->order('id')->select();
+    // pr($sheetnamearr);
+
+
+//返回code等
     $r['code']='200';                     //200代表正常
     $r['getarr']=I('get.');
-    $r['sheets']['sheetlistnum']="5";             //数据表的数量
+    $r['sheets']['sheetlistnum']=count($sheetnamearr);             //数据表的数量
+foreach($sheetnamearr as $k=>$v){
+    $sheetname=$v['sheetname'];
+    $r['sheets']['sheetarr'][$k]['sheetname']=$sheetname;        //数据表名
+    $r['sheets']['sheetarr'][$k]['url']=U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname");  //对应的网址    
+}    
 
-    $r['sheets']['sheetarr'][0]['sheetname']="申报表3T";        //数据表名
-    $r['sheets']['sheetarr'][0]['url']="/index.php/Qwadmin/ViCom/uniquerydata/sheetname/申报表3T";        //对应的网址
-    $r['sheets']['sheetarr'][1]['sheetname']="经费使用测试";        //数据表名
-    $r['sheets']['sheetarr'][1]['url']="/index.php/Qwadmin/ViCom/uniquerydata/sheetname/经费使用测试";        //对应的网址
-    $r['sheets']['sheetarr'][2]['sheetname']="测试2";        //数据表名
-    $r['sheets']['sheetarr'][2]['url']="/index.php/Qwadmin/ViCom/uniquerydata/sheetname/测试2";        //对应的网址
-    $r['sheets']['sheetarr'][3]['sheetname']="测试3";        //数据表名
-    $r['sheets']['sheetarr'][3]['url']="/index.php/Qwadmin/ViCom/uniquerydata/sheetname/测试3";        //对应的网址
-    $r['sheets']['sheetarr'][4]['sheetname']="测试4";        //数据表名
-    $r['sheets']['sheetarr'][4]['url']="/index.php/Qwadmin/ViCom/uniquerydata/sheetname/测试4";        //对应的网址
-
-return $r;
-
+return returnhttpjson($r,$echojson);
 }
+
 
 public function login(){
 	//post 一个值过来	
@@ -175,126 +224,47 @@ public function login(){
 
 }
 
-public function test(){
-    pr($_SESSION);
-    pr($this->user);
-}
-public function returnrestful(){
-    $r['code']='200';                     //200代表正常
-    $r['getarr']=I('get.');
-    $r['res']['listnum']="22";             //总输出的记录条数
-    $r['res'][0]['sheetname']="申报表3T";
-    $r['res'][0]['sheetlistnum']="3";       //输出的这个表的记录条数，不包括标题
-    $r['res'][0]['sheetfieldlen']="4";  //输出的字段长度
-    
-    $r['res'][0]['sheetfieldname'][0]="id";
-    $r['res'][0]['sheetfieldname'][1]="姓名";
-    $r['res'][0]['sheetfieldname'][2]="电话";
-    $r['res'][0]['sheetfieldname'][3]="手机号";
-    // $r['res'][0]['sheetfieldtype'][0]="text";//暂时都只有文本
-    // $r['res'][0]['sheetfieldtype'][1]="url";
-    // $r['res'][0]['sheetfieldtype'][2]="phone";
-    // $r['res'][0]['sheetfieldtype'][3]="text";    
-    
-    $r['res'][0]['data'][0]['url']="http://www.baidu.com";     //进入详情页的网址
-    $r['res'][0]['data'][0][0]="1";
-    $r['res'][0]['data'][0][1]="王一";
-    $r['res'][0]['data'][0][2]="1111";
-    $r['res'][0]['data'][0][3]="111112";
-    
-    $r['res'][0]['data'][1]['url']="http://www.sina.com.cn";
-    $r['res'][0]['data'][1][0]="2";
-    $r['res'][0]['data'][1][1]="赵二";
-    $r['res'][0]['data'][1][2]="222222";
-    $r['res'][0]['data'][1][3]="22222234";
-    
-    
-    return $r;
-    
-}
-
-
-// 查询结果
-public function searchdata1(){
-
-$con=$this->consafecheck(I('get.'));
-
-
-$r=R('Rwxy/echounisheetuni',array($dbsheetname,$con2,$likecon,$type='arr'));
-pr($r);
-
-
-$db=M(C('EXCELSECRETSHEET'));
-$r=$db->where($con)->limit(C('QUERYLIMIT'))->order('id asc')->select();
-$rnum=$db->where($con)->count();
-pr($rnum);
-// 是否应用强制查询
-if(empty($r) && $rnum > C('FORCEQUERYNUM')){
-    $r=$this->forcequery($db,$con,$name);
-    $rnum=count($r);
-}
-
-// delemptyfield
-pr($r);
-if(!empty($r)){
-    $temp2['数据表名称']="信息摘要（点击查看详情）";
-
-
-foreach ($r as $k1=> $value) {
-    // pr($value);
-    $id=$value['id'];
-    $k=$k1+1;
-    $temp5="";
-    
-    $ordconarr=json_decode($value['custom1'],'true');
-    $weborderarr=explode(',',$ordconarr['weborder']);
-    if(empty($weborderarr[0])){
-        $temp5 .=$value['d1'].' | '.' '.$value['d2'].' | '.$value['d3'].' | '.$value['d4'].' | '.$value['d5'];
-    }else{
-        foreach($weborderarr as $k4=>$v4){
-            $temp5 .= $value[$v4].' | ';
-        }
-    }
-// pr($_SESSION,'756');    
-    $temp2[$k.". ".$value['sheetname']]="<a href=\"".U(getcomstr('Vi',$thisuser)."/echoiddata?id=$id")."\">".$temp5."</a>";
-    // pr($temp2);
-}
-}
-
-
-$echohtml=echoarrcontent($temp2);
-if(!empty($echohtml)){
-    if($rnum>50 ){
-    $temp9="(仅显示前50条)";}
-    if(!empty($r)){
-    $echohtml="<h3>共查询到".$rnum."条记录".$temp9."<h3>".$zy.$echohtml;}
-}
-
-
-
- if($rnum <= 3 && $rnum > 0){
-     foreach ($r as $k2=> $value2) {
-         // pr($value2);
-         $id=$value2['id'];
-         $newarr1 =R("Queryfun/echoiddatacontent",array($id));
-        //   pr($newarr1);
-          $echohtml .=R("Task/echoarrcontent",array($newarr1));
-         $echohtml .=echoarrcontent($newarr1);
-     }  
-     // "<h3>以下为详细信息（若结果小于三条）：</h3>".
-     $echohtml =$echohtml;
- }
-return $echohtml;
-// $title='查询结果';
-// $content="查询结果如下：\n".$temp;
-// $content=R('Reply/returnmsg',array($echohtml,'web'));          
-// return h5page($title,$content);
-
-}
 
 // con条件的安全性检查
-public function consafecheck($getcon){
-    return $getcon;
+//把get中的条件进行检查，并把name的查询转变为模糊查询。
+//添加rpw条件
+public function consafe($con,$type='likecon'){
+    $con=delemptyfield($con);
+
+if(!empty($con['name'])){
+   $con['name']=array('like',"%".$con['name']."%");
+}    
+
+    if(empty($this->USER)){
+        if(empty($con['rpw'])){
+            $rpw=empty(session('rpw'))?C('MLRPW'):session('rpw');
+        }else{
+            $rpw=$con['rpw'];
+            session('rpw',$rpw);
+        }
+    }else{
+        $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
+    }
+
+    $con['rpw']=array("in",returncomma($rpw));    
+    return delemptyfield($con);
+
+}
+
+
+
+
+
+
+
+
+//新增url
+public function resaddurl($sttwoarr){
+    foreach($sttwoarr as $key=>$val){
+        $id=$sttwoarr[$key]['id'];
+        $sttwoarr[$key]['url']=U("Vi".LILYCOM."/echoiddata?id=$id");
+    }
+    return $sttwoarr;
 }
 
 // 结尾处

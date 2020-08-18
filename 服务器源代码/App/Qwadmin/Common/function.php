@@ -76,6 +76,13 @@ if($echojson=="true"){
         
 //     }
 // }
+function returnerror($flag,$text=""){
+    if($flag==2){
+        return $text;
+    }
+}
+
+
 
 
 function addlogbak($log,$name=false){
@@ -2183,7 +2190,10 @@ function compute_fieldstr($notfieldstr='',$fieldstr=''){
         if(!empty($notfieldstr)){
             $todel=explode(',',$notfieldstr);
         }
-        $field=array_diff($field,$todel);        
+        $field=array_diff($field,$todel);    
+        
+// pr($notfieldstr,'$notfieldstr453');
+// pr($field,'3424234');
 // // 4. field中删除字段   
 //     foreach($field as $fkey=>$fvalue){ 
 //         if(!empty($queryfirst[$fvalue])){
@@ -2280,4 +2290,25 @@ function getcomstr($str,$thisuser=""){
         $str=$str."Com";
     }
     return $str;
+}
+
+function Mysql_________________________(){
+    
+}
+
+// 对where的数组条件进行检测，如果是NULL，那就强制加个全满足的条件，不为空即可
+function wheresafe($con,$type="id"){
+    if($con==NULL){
+        if($type=="id"){
+            unset($con);
+            $con['id']=array('egt',0); 
+        }elseif($type=="filedstr"){
+            unset($con);
+            $con['id']=array('egt',0); 
+            
+        }
+       
+    }
+    return $con;
+
 }

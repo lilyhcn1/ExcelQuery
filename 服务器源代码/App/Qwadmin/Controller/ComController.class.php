@@ -29,6 +29,7 @@ class ComController extends BaseController
 if($this->USER){
 //addlog(json_encode($this->USER),'查到了user');
     session('login','yes');
+    session('thisuseruser',$this->USER['user']);
     $flag = true;
     $this->USER = $iduser;   
     cookie('auth',$iduser['identifier'].','.$iduser['token']);    
@@ -51,6 +52,7 @@ if($this->USER){
     		$this->USER = $iduser;   
     		cookie('auth',$iduser['identifier'].','.$iduser['token']);
     		session('login','yes');
+    		session('thisuseruser',$this->USER['user']);
     }
 }else{  //输入用户名及密码进行登陆
     $postdata=empty(I('post.'))?I('get.'):I('post.');
@@ -67,6 +69,7 @@ if($this->USER){
     		$this->USER = $iduser;   
     		cookie('auth',$iduser['identifier'].','.$iduser['token']);
     		session('login','yes');
+    		session('thisuseruser',$this->USER['user']);
     // 		addlog('已进_initialize模块user登陆了 '.$username);    
     }
 
@@ -82,6 +85,7 @@ if($this->USER){
 					$flag = true;
 					$this->USER = $user;
 					session('login','yes');
+					session('thisuseruser',$this->USER['user']);
 				}
 			}
 		}

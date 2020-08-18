@@ -1,0 +1,29 @@
+
+<script type="text/javascript">
+$("#classa").bind("input propertychange",function(event){
+//  取值并发送
+    var tt=$("#classa").val();
+    $.get("/index.php/Qwadmin/Api/tiplist",
+    {
+        name:tt
+    },
+    function(data,status){
+        var jsonObj  =JSON.parse(data);
+        var str=jsonObj['tipliststr'];
+        if(str !== null){
+            var arr=str.split(",");
+                    $( "#classa" ).autocomplete({
+                      source: arr
+            });        
+        }
+    });
+})
+// 回填数据到空格，并提交表单
+    $( "#classa" ).autocomplete({
+    select: function( event, ui ) {
+        $("#classa").val(ui.item.value)
+        $("#uniform").submit()
+        }
+        
+    });	
+</script>	

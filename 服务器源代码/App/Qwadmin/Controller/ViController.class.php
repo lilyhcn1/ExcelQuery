@@ -7,7 +7,10 @@
 * 版    本：1.0.0
 *
 **/
+
 namespace Qwadmin\Controller;
+define("LILYCOM",     "");  //统一写com用的
+
 use Common\Controller\BaseController;
 use Think\Controller;
 class ViController extends BaseController{
@@ -40,7 +43,7 @@ $postarr=I('post.');
 
 public function echoiddata(){
 
-$newarr=R('ApiCom/data',array($id));
+$newarr=R('Api'.LILYCOM.'/data',array($id));
 // pr($id);
 // pr($newarr);
 echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"/\">查询首页</a></h3>";
@@ -57,18 +60,11 @@ return $echohtml;
 
 public function pindex(){
 
-// $url=getwholeurl(U('ApiCom/pindex',array('false')));
-// $r=file_get_contents($url);
-// pr($r);
-// $rr=json_decode($r,true);
-// pr($rr);
-
-
-$rr=R('ApiCom/pindex',array('false'));
+$rr=R('Api'.LILYCOM.'/pindex',array('false'));
 $sheetarr=$rr['sheets']['sheetarr'];
 $this->assign("sheetarr",$sheetarr);
 $sheetname=I('get.sheetname');
-$this->assign("postpage",U("ViCom/uniquerydata?sheetname=$sheetname"));
+$this->assign("postpage",U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname"));
 
 
 
@@ -84,16 +80,10 @@ $this->display();
 
 public function uniquerydata(){
 // 列表部分都一样
-$rr=R('ApiCom/pindex','false');
+$rr=R('Api'.LILYCOM.'/pindex','false');
 $sheetarr=$rr['sheets']['sheetarr'];
 $this->assign("sheetarr",$sheetarr);
-
-
-// $name=I('get.name');
-// $sheetname=I('get.sheetname');
-
-// $rr=R("ApiCom/searchdata"."?name=".$name."&sheetname=".$sheetname,'false');
-$rr=R("ApiCom/searchdata",array('false'));
+$rr=R("Api".LILYCOM."/searchdata",array('false'));
 // pr($rr);
 $this->assign("res",$rr['res']);
 
@@ -101,137 +91,23 @@ $this->assign("res",$rr['res']);
 $rrnum=count($rr['res']);
 if($rrnum==1 && $rr['res'][0]['sheetlistnum']==1){
     $id=$rr['res'][0]['data'][0]['id'];
-    $url=U("ViCom/echoiddata?id=$id");
+    $url=U("Vi".LILYCOM."/echoiddata?id=$id");
     header("Location: $url");
     
 }
 
-$rr1=R('ApiCom/tiplist',array('false'));
+$rr1=R("Api".LILYCOM.'/tiplist',array('false'));
 $tipliststr=$rr1['tipliststr'];
 $this->assign("tiplistarr",explode(",",$tipliststr));
 
 
 $sheetname=I('get.sheetname');
-$this->assign("postpage",U("ViCom/uniquerydata?sheetname=$sheetname"));
+$this->assign("postpage",U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname"));
 $this->display();
 
 
 }
 
-public function uniquerydatabak(){
-// session(null);
-$db=M(C('EXCELSECRETSHEET'));
-// pr(I('get.'));
-$name=I('get.name');
-$sheetname=I('get.sheetname');
-$querycon=I('get.');
-$querycon=delemptyfield($querycon);
-
-if(!empty($sheetname)){
-    $titlearr=R("Queryfun/gettitlearr",array($sheetname));
-    $custom1arr=json_decode($titlearr['custom1'],true);
-    $namekeys=$custom1arr['namekey'];
-}
-if(empty($namekeys)){
-    $namekeys="name";
-}
-
-
-    if(!empty($querycon['rpw'])){
-        $temp=$querycon['rpw'];
-        session('rpw',$temp);
-    }
-
-$user_querypw=$this->USER['querypw'];
-// pr($user_querypw);
-if(empty($user_querypw)){
-    if(!empty(session('rpw'))){
-        $querycon['rpw']=$_SESSION['rpw'];
-        $user_querypw=$querycon['rpw'];
-    }elseif(empty($querycon['rpw'])){
-        $querycon['rpw']=C("QUERYPW");
-        $user_querypw=$querycon['rpw'];
-    }
-    else{
-        
-    }
-//   pr($querycon);  
-}
-    $user_querypw=str_replace(";",",",$user_querypw);
-    $user_querypw=str_replace("，",",",$user_querypw);
-    $querycon['rpw']=array("in",$user_querypw);
-
-// pr($con);
-
-
-
-
-$sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
-$datalistarr=$db->where($querycon)->distinct(true)->field($namekeys)->order('id')->limit(C('TIPNUM'))->select();
-// pr($datalistarr);
-$datalistonestr=twoarraycolstostr($datalistarr,$namekeys);
-// pr($datalistonestr);
-$datalistonearr=explode(",",$datalistonestr);
-
-$namecon=str_replace(",","|",$namekeys);
-if(!empty($name)){
-    unset($querycon['name']);
-    $querycon[$namecon]=$name;
-    // pr($con);
-}
-
-$querycontemp=$querycon;
-unset($querycontemp['rpw']);
-
-// pr($querycontemp);
-
-if(empty($querycontemp)){
-    $inforesult="<h3><p>您能查询的数据表：</p><h3>";
-    foreach($sheetnamearr as $sheetvaluearr){
-        $sheetvalue=$sheetvaluearr['sheetname'];
-        $inforesult.="<p> <a href=\"" . U($Think.CONTROLLER_NAME."/uniquerydata?sheetname=$sheetvalue") . "\">$sheetvalue</a></p>";
-        
-    }
-       
-    $inforesult .=$this->querypersoninfo();
-
-}else{
-    
-    $inforesult=$this->echofieldcon($db,$querycon);
-    // 查数据表
-    $inforesult .= R('Queryfun/conquery',array($db,$querycon,$name,$this->USER));
-
-}
-// pr($inforesult);
-
-    
-// pr($datalistarr);
-    $this->assign("slectsheet",$sheetname);
-    $this->assign("datalistonearr",$datalistonearr);
-    
-    $this->assign("sheetnamearr",$sheetnamearr);
-    $this->assign("inforesult",$inforesult);
-    $this->assign("sheetarr",$sheetarr);
-
-
-// 计算首页
-
-
-    $temp=session('rpw');
-        // pr($_SESSION);
-    if(empty($this->USER['user'])){
-        $indexpage=U($Think.CONTROLLER_NAME."/uniquerydata",array('rpw'=>$temp));
-
-    }else{
-        $indexpage=U('index/index');
-    }
-    session('indexpage',$indexpage);
-    
-    $this->assign("indexpage",$indexpage);
-    $this->assign("postpage",U($Think.CONTROLLER_NAME.'/uniquerydata'));
-
-    $this->display();    
-}
 
 // 返回datalist
 public function getdatalistarr($querycon){
@@ -348,3 +224,4 @@ function querypersoninfo(){
 
 // 结尾处
 }
+
