@@ -432,8 +432,7 @@ public function Auth2edit($sheetname,$titlearrall="",$paraarr="",$id="") {
 // if(session('login')=='yes'){
 //     return true;
 // }
-// pr($thisuser,'324');
-// pr($_SESSION,'fdsf');
+
 // 这里有漏洞，别人编辑了，10分种之内可编辑。
     $thisuser=$this->getthisuser();   
     $db=M(C('EXCELSECRETSHEET'));
@@ -452,12 +451,13 @@ if(!empty(session('wrpw'))){
         return true;
     }
 }
-elseif(!empty($thisuser['user'])){
+if(!empty($thisuser['user'])){
     if(empty($id)){$this->error("错误q100，请输入ID~",U("index/index"));}
     $con['id']=$id;
     // $con['sheetname']=$sheetname;
     $r=$db->where($con)->find();
     $w=$r['w'];
+
     if($r==$thisuser['user']){
         return true;
     }else{
@@ -465,7 +465,7 @@ elseif(!empty($thisuser['user'])){
     }
 
 }
-else{
+
     if(empty($id)){$this->error("错误q100，请输入ID~",U("index/index"));}
     $con['id']=$id;
     // $con['sheetname']=$sheetname;
@@ -482,7 +482,6 @@ else{
         }
     }else{
         $this->error("错误q102，找不到对应的记录！~",U("index/index"));
-    }        
     }
 
 
