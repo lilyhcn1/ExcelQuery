@@ -37,15 +37,15 @@ public function Rwxysercher_____________________(){
 
 public function echoliststr($id=''){
 $postarr=I('post.');
-// pr($postarr);
+// pr1($postarr);
 
 }
 
 public function echoiddata(){
 
 $newarr=R('Api'.LILYCOM.'/data',array($id));
-// pr($id);
-// pr($newarr);
+// pr1($id);
+// pr1($newarr);
 echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"/\">查询首页</a></h3>";
 
 
@@ -84,9 +84,9 @@ $rr=R('Api'.LILYCOM.'/pindex','false');
 $sheetarr=$rr['sheets']['sheetarr'];
 $this->assign("sheetarr",$sheetarr);
 $rr=R("Api".LILYCOM."/searchdata",array('false'));
-// pr($rr);
+// pr1($rr);
 $this->assign("res",$rr['res']);
-
+// pr($rr,'rr');
 
 $rrnum=count($rr['res']);
 if($rrnum==1 && $rr['res'][0]['sheetlistnum']==1){
@@ -113,7 +113,7 @@ $this->display();
 public function getdatalistarr($querycon){
 $db=M(C('EXCELSECRETSHEET'));
 $datalistarr=$db->where($querycon)->distinct(true)->field('name')->order('id')->limit(C('TIPNUM'))->select();
-// pr($datalistarr);
+// pr1($datalistarr);
 $datalistonearr=array_column($datalistarr,'name');
 $datalistonearr=delemptyfieldgetnew($datalistonearr);
 
@@ -135,31 +135,31 @@ public function echofieldcon($db,$querycon){
 $firstlinearr=$db->where($querycon)->find();
 $ordconarr=json_decode($firstlinearr['custom1'],'true');
 $classkeyarr=explode(',',$ordconarr['classkey']);    
-// pr($classkeyarr);
+// pr1($classkeyarr);
 
 // $temp=$db->where($querycon)->Field($value)->distinct('true')->select();
-    // pr($temp);
+    // pr1($temp);
     
 foreach($classkeyarr as $value){
-    // pr($key);
-    // pr($value);
+    // pr1($key);
+    // pr1($value);
     // $temp1=$db->where("sheetname=".$querycon['sheetname'])->Field($value)->order($value)->where('ord =0')->distinct('true')->select();
-    // pr($temp1);
+    // pr1($temp1);
     $temp=$db->where($querycon)->Field($value)->distinct('true')->order('id asc')->select();
     // $temp=$db->where($querycon)->Field($value)->distinct('true')->select();
     // $temp=twoarraymerge($temp1,$temp2);
-    // pr($temp);
+    // pr1($temp);
     $tempcount=count($temp);
-    // pr(count( $temp));
+    // pr1(count( $temp));
     $fieldcon[$value]=$temp;
 }
-// pr($fieldcon);
+// pr1($fieldcon);
 
 
 foreach($fieldcon as $key2=>$value2){
 
         $echohtml .="<p>";
-        // pr($value2);
+        // pr1($value2);
         foreach($value2 as $key =>$value){
             if(!empty($value[$key2])){
                 
@@ -202,9 +202,9 @@ function querypersoninfo(){
     if($this->USER['user']){
        $queryconandid['pid']=$this->USER['user'];
         $queryconandid['rpw']=C("PERSONPW");
-        // pr($queryconandid);
+        // pr1($queryconandid);
         $sheetnamearr=$db->where($queryconandid)->field('sheetname')->distinct(true)->order('id')->select();
-        // pr($sheetnamearr);
+        // pr1($sheetnamearr);
         $sheetstr=twoarraytostr ($sheetnamearr,'sheetname');
 
         $inforesult .= R('Queryfun/conquery',array($db,$queryconandid,"",$this->USER));

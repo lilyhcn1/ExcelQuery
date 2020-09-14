@@ -5,9 +5,7 @@
         <title>{$_SESSION['sheetname']}--{$Think.CONFIG.title}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<include file="Public/head" /> 
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-  <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
   <!--<link rel="stylesheet" href="jqueryui/style.css">-->
 
 <!--// datatables的js-->
@@ -123,32 +121,7 @@
 	<include file="Public/footer" />
 		<include file="Public/footerjs" />
 		<!-- inline scripts related to this page -->
-<script type="text/javascript">
-$("#classa").bind("input propertychange",function(event){
-//  取值并发送
-    var tt=$("#classa").val();
-    $.get("/index.php/Qwadmin/ApiCom/tiplist",
-    {
-        name:tt
-    },
-    function(data,status){
-        var jsonObj  =JSON.parse(data);
-        var arr=jsonObj['tipliststr'].split(",");
-        $( "#classa" ).autocomplete({
-          source: arr
-        });
-    });
-})
-// 回填数据到空格，并提交表单
-    $( "#classa" ).autocomplete({
-    select: function( event, ui ) {
-        $("#classa").val(ui.item.value)
-        $("#uniform").submit()
-        }
-        
-    });	
-
-</script>
+        <include file="Public/tiplist" />   <!--这里就是自动提示的代码-->
 
 <script>
 

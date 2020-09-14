@@ -36,7 +36,7 @@ public function echounisheet($dbsheetname,$data){
 $con2=R("Queryfun/constr2conarr",array($data,'eq'));
 $likecon=R("Queryfun/constr2conarr",array($data,'like'));
 // echo 343;pr($likecon);
-// pr($con2);
+// pr1($con2);
 if($this->isadmin($con2)){
     unset($con2['rpw']);
     $this->echounisheetuni($dbsheetname,$con2,$likecon);
@@ -57,20 +57,19 @@ if($this->isadmin($con2)){
 // 通用查询
 public function echounisheetuni($dbsheetname,$con2,$likecon,$type='table'){
 $db=M($dbsheetname);
-    // pr($con2,'43242');
-    // pr($likecon,'465654');
+    // pr1($con2,'43242');
+    // pr1($likecon,'465654');
 
+   
 // 去除一些无关的条件
-if(is_array($con2)){
-    unset($con2['conall']);
-    unset($con2['wrpw']);  
-    unset($con2['user']);
-}
-if(is_array($likecon)){
-    unset($likecon['conall']);
-    unset($likecon['wrpw']);  
-    unset($likecon['user']); 
-}
+$con2=delearrfield($con2,'conall');
+$con2=delearrfield($con2,'wrpw');  
+$con2=delearrfield($con2,'user'); 
+$likecon=delearrfield($likecon,'conall');
+$likecon=delearrfield($likecon,'wrpw');  
+$likecon=delearrfield($likecon,'user'); 
+
+
 
 
 
@@ -115,6 +114,8 @@ $ordstr=$ordstr." ".$isasc;
         }else{
             $todel=explode(',',C('NOTFIELDSTR'));
         }
+//  pr($con2,'$con2l323');       
+// pr($todel,'todel323');
         $field=array_diff($field,$todel);        
 // 4. field中删除字段   
     foreach($field as $fkey=>$fvalue){ 
@@ -140,21 +141,24 @@ $fieldstr=implode($field,',');
 // pr1($fieldstr,'$fieldstr');
 
 // 这里可能有问题，，，，，，，，，，，，，，，，，，，，，，，，，，
-    if(!empty($queryfirst['id'])){
-        $notfirstline['id']=array('NEQ',$queryfirst['id']);
-    }else{
-        $notfirstline['id']=array('NEQ',0);
+    if(empty($con['id'])){
+        if(!empty($queryfirst['id'])){
+            $notfirstline['id']=array('NEQ',$queryfirst['id']);
+        }else{
+            $notfirstline['id']=array('NEQ',0);
+        }
     }
-    // $notfirstline['id']=array('NEQ',0);
-    // pr1($ordstr);
-    
 
-    $query=$db->where($con2)->where(wheresafe($likecon))->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
-    // $query=$db->where(wheresafe($likecon))->select(); 
-// pr($con2,'con211');
-// pr(wheresafe($likecon),'likecon22');
-// pr($query,'$query5435h');    
-//     // 插入字段行
+    if(empty($con['id'])){
+        $query=$db->where($con2)->field($fieldstr)->order($ordstr)->select(); 
+    }elseif(empty($likecon)){
+        $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
+    }else{
+        $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
+    }
+
+// pr($query,'$query2121');
+    // 插入字段行
     $fieldline['0']=$field;
 // pr1($field,'$field');
     // 插入空行
@@ -162,21 +166,17 @@ $fieldstr=implode($field,',');
         $emptyline['0'][$fieldkey]="";
     }
 
-// pr1($type,'type122');
-if($type=='table'){
-//   pr($queryfirst,'$queryfirst2222222');
-//   pr($fieldstr,'$fieldstr');
 
+if($type=='table'){
     if(!empty($queryfirst)){
         $sheetcon['sheetname']=$queryfirst['sheetname'];
         $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
         $firstline['0']=$firstlinearrtemp;
-        // pr1($firstlinearrtemp,'$firstlinearrtemp');
     $temp=twoarraymerge($fieldline,$emptyline); 
 
-    if(!empty($firstline)){
-        $temp=twoarraymerge($temp,$firstline);  
-    }
+    // if(!empty($firstline)){
+    //     $temp=twoarraymerge($temp,$firstline);  
+    // }
     $query=twoarraymerge($temp,$query);         
     }
 
@@ -201,16 +201,40 @@ if($type=='table'){
 
     
     
-    return    json_encode($newquery);
-}elseif($type=='arr'){
-        if(!empty($queryfirst)){
-        foreach($query as $kq=>$kv){
-          foreach($kv as $k=>$v){
-              $newquery[$kq][$queryfirst[$k]]=$kv[$k];
-          }             
-        }
+    return    $newquery;
+}elseif($type=='tablejson'){
+    if(!empty($queryfirst)){
+        $sheetcon['sheetname']=$queryfirst['sheetname'];
+        $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
+        $firstline['0']=$firstlinearrtemp;
+        // pr1($firstlinearrtemp,'$firstlinearrtemp');
+    // $temp=twoarraymerge($fieldline,$emptyline); 
+
+    if(!empty($firstline)){
+        $temp=twoarraymerge($temp,$firstline);  
     }
-    return $query;
+    $query=twoarraymerge($temp,$query);         
+    }
+    return    $query;
+}elseif($type=='tubiaoxiu'){
+    if(!empty($queryfirst)){
+        $sheetcon['sheetname']=$queryfirst['sheetname'];
+        $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
+        $firstline['0']=$firstlinearrtemp;
+        // pr1($firstlinearrtemp,'$firstlinearrtemp');
+    // $temp=twoarraymerge($fieldline,$emptyline); 
+
+    if(!empty($firstline)){
+        $temp=twoarraymerge($temp,$firstline);  
+    }
+    $query=twoarraymerge($temp,$query);         
+    }
+    // pr1($query);
+    return    $query;
+}elseif($type=='arr'){
+// pr($query,'111');
+    return    $query;
+   
 }else{
     
     return returnerror('2','echounisheetuni的type类型未指定!~');
@@ -267,9 +291,9 @@ $data=I('get.');
 // pr1($data,'$data11');
 if(empty($data)){
     $data=I('post.');
-    // addlog("post 提交的数据");
+
 }
-// pr1($data);
+// pr($data,"post 提交的数据");
     $result = $this->Auth2Use();
     if(!$result){
         echo "error\n,IP地址\n不在可访问列表中，\n禁止访问。";
@@ -280,7 +304,7 @@ if(empty($data)){
     // C('EXCELSECRETSHEET');
     $con2=R("Queryfun/constr2conarr",array($data,'eq'));
     $likecon=R("Queryfun/constr2conarr",array($data,'like'));
-
+// pr($con2,'000000');
     if($this->isadmin($con2)){
         unset($con2['rpw']);
         $this->echounisheetuni($dbsheetname,$con2,$likecon);
@@ -343,7 +367,7 @@ public function personaldata(){
 
 $db=M(C('EXCELSECRETSHEET'));
 $con['pid']=$this->USER['user'];
-// pr($this->USER);
+// pr1($this->USER);
 $inforesult=R($Think.CONTROLLER_NAME."/conquery",array($db,$con));
 $this->assign("inforesult",$inforesult);
 
@@ -638,7 +662,22 @@ public function Auth2Use() {
     }
 }
  
+// 供excel上传文件专用
+public function phpuploadonefile($post="",$files="",$server="") {
+$post=empty($_POST)?$post:$_POST;
+$files=empty($_FILES)?$files:$_FILES;
+$server=empty($_SERVER)?$server:$_SERVER;
+// addlog(json_encode($post),'post34');
+// addlog(json_encode($files),'$_FILES4353456');
 
+    $result = $this->Auth2Use();
+    $returnfileuploadarr=savefile();
+// addlog(json_encode($returnfileuploadarr),'$returnfileuploadarr');    
+    $returnurl=$returnfileuploadarr['file'];
+    echo $returnurl;
+    
+   
+}
 
 // 准备弃用
 // php
@@ -745,7 +784,7 @@ if(!empty($uploadfields)){
 }
 
 
-// pr($datatwoarr);
+// pr1($datatwoarr);
     foreach ($datatwoarr as $key => $dataarr) {
         if($key==0){
             $title=$dataarr;
@@ -789,7 +828,7 @@ if(!empty($uploadfields)){
 
 
     
-// pr($twoarrexcel,'$twoarrexcel1212');
+// pr1($twoarrexcel,'$twoarrexcel1212');
     if($replaceadd=='否'){
         $result=$this->data2add($sheetname,$wrpw,$twoarrexcel);
     }else{
@@ -807,13 +846,13 @@ $con23['sheetname']=$sheetname;
 $num23=$db->where($con23)->count();$num23=$num23-1;
 $result.="。 【".$sheetname."】现有".$num23."条数据。";
 $phoneurl=U('Ad/addedit',"sheetname=".$sheetname,"",true);
-$recurl=U('Rwxy/echoteacherdb',"conall=;数据表名等于".$sheetname.";不显字段等于id,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname;查看密码等于".$rpw."","",true);
+$recurl=U('Rwxy/echoteacherdb',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
 $queryurl=U('Vi/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 $phonemodify=U('Ud/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
 
 
 $phoneurl2=U('AdCom/addedit',"sheetname=".$sheetname,"",true);
-$recurl2=U('RwxyCom/echoteacherdb',"conall=;数据表名等于".$sheetname.";不显字段等于id,wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2,sheetname;查看密码等于".$rpw."","",true);
+$recurl2=U('RwxyCom/echoteacherdb',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
 $queryurl2=U('ViCom/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 $phonemodify2=U('UdCom/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
 // $queryurl=U(getcomstr('Vi').'/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);

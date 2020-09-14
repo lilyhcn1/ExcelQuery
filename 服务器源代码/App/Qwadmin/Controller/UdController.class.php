@@ -24,7 +24,7 @@ public function index(){
 
 // 管理数据表，显示能管理的数据集
 public function magrecords(){
-$sheetname=I('get.sheetname');
+$sheetname=R('Queryfun/set_session',array("sheetname"));
 
     if(is_array($this->USER)){
         $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
@@ -33,20 +33,20 @@ $sheetname=I('get.sheetname');
     }
     
         if(!empty(I('get.wrpw'))){
-            // pr(I('get.'));
+            // pr1(I('get.'));
             $wrpw2=I('get.wrpw');
             session('wrpw',$wrpw.",".$wrpw2);
         }
         $wrpw=empty(session('wrpw'))?C('MLRPW'):session('wrpw');
 
 
-// pr($wrpw); 
+// pr1($wrpw); 
     session('wrpw',$wrpw);  
-    // pr($_SESSION);
+    // pr1($_SESSION);
 // echo $wrpw;
 
 $list=$this->echorecords($sheetname,'true');
-// pr($list,'3422323');
+// pr1($list,'3422323');
 
  $this->assign('thisuser',$this->USER);
 
@@ -65,8 +65,8 @@ $sheetname=I('get.sheetname');
 $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
 // $wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
 $list=$this->echorecords($sheetname,'false');
-// pr($sheetname,'sheetnamef23r');
-// pr($list,'$listfdsf');
+// pr1($sheetname,'sheetnamef23r');
+// pr1($list,'$listfdsf');
 if(count($list)==1){
     $id=$list['0']['id'];
 }else{
@@ -119,13 +119,13 @@ public function sheetindex(){
 
 
 $db=M(C('EXCELSECRETSHEET'));
-// pr(I('get.'));
+// pr1(I('get.'));
 $name=I('get.name');
 $sheetname=I('get.sheetname');
 $querycon=I('get.');
 $querycon=delemptyfield($querycon);
 
-// pr($this->USER,'$this->USER');
+// pr1($this->USER,'$this->USER');
     if(empty($this->USER)){
         session('wrpw',I('get.wrpw'));
         $user_querywrpw=empty(session('wrpw'))?C('MLRPW'):session('wrpw');
@@ -138,10 +138,10 @@ $querycon=delemptyfield($querycon);
     
     $querycon['wrpw']=array("in",returncomma($user_querywrpw));
 
-// pr($querycon,'$querycon23');
+// pr1($querycon,'$querycon23');
 
 $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
-// pr($sheetnamearr,'$sheetnamearr43');
+// pr1($sheetnamearr,'$sheetnamearr43');
     $this->echosheet($sheetnamearr,$sheetname,$magage='true');
     $this->display();        
 }
@@ -175,9 +175,9 @@ public function mysheet(){
     // $querycon['rpw']=array("in",returncomma($rpw));
     // $querycon['pid']=$pid;
         $querycon['r']=$this->USER['user'];
-pr($querycon,'5634ve');
+// pr($querycon,'5634ve');
 $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
-// pr($sheetnamearr);
+// pr1($sheetnamearr);
     $this->echosheet($sheetnamearr,$sheetname,$magage='false');
     
     $this->display();        
@@ -195,27 +195,27 @@ public function echorecords($sheetname,$magage='true'){
 		$pagesize = C('PAGESIZE');#每页数量
 		$offset = $pagesize*($p-1);//计算记录偏移量
 // 计算首页 结束    
-// pr('fdffffffffffff');
-// pr(I('get.'));
+// pr1('fdffffffffffff');
+// pr1(I('get.'));
     // $querycon=I('get.');
     // $sheetname=I('get.sheetname');
-    // pr(I('get.'));
+    // pr1(I('get.'));
 $keyword=I('get.keyword');    
     $temp22=I('get.sheetname');
     if(!empty($temp22)){
         session('sheetname',$temp22);
     }
-    // pr($_SESSION);
+    // pr1($_SESSION);
     $querycon['sheetname']=empty(session('sheetname'))?I('get.sheetname'):session(sheetname);    
 $titlearrall=R('Queryfun/gettitlearr',array($sheetname));
 // gettitlearr($sheetname,$id='',$fieldstr='',$delempty='true')
-// pr($titlearrall,'$titlearrall');
-// pr($querycon,'$querycong563');
+// pr1($titlearrall,'$titlearrall');
+// pr1($querycon,'$querycong563');
 
 // 核心语句，查询所有数据集，$magage是标记是否管理
 
 $querycon=R('Queryfun/querycon',array($querycon,$magage,$this->USER));
-// pr($querycon,'$querycon3213');
+// pr1($querycon,'$querycon3213');
     if(!empty($keyword)){
         // $querycon['name'] = array('like',"%".$keyword."%");
         $querycon['name'] =$keyword;
@@ -223,7 +223,7 @@ $querycon=R('Queryfun/querycon',array($querycon,$magage,$this->USER));
     
     $querycon=delemptyfield($querycon);
 
-// pr($querycon,'$querycon,fdsafds');
+// pr1($querycon,'$querycon,fdsafds');
 
     $ordconarr=json_decode($titlearrall['custom1'],'true');
     $fieldstr=$ordconarr['weborder'];
@@ -234,7 +234,7 @@ $querycon=R('Queryfun/querycon',array($querycon,$magage,$this->USER));
     
     $fieldstr="id,".$fieldstr;
 $titlearr=R('Queryfun/gettitlearr',array($sheetname,"",$fieldstr));
-// pr($titlearr,'$titlearr');
+// pr1($titlearr,'$titlearr');
 
 
 $count = $db->where($querycon)->limit($offset.','.$pagesize)->count();
@@ -243,8 +243,8 @@ $r=$db->where($querycon)->limit($offset.','.$pagesize)->field($fieldstr)->order(
 
 //这里把标题也加进去
 array_unshift($r,$titlearr);;
-// pr($r,'r,fddsfdsaf');
-// pr($querycon,'fdsfdsfds333');
+// pr1($r,'r,fddsfdsaf');
+// pr1($querycon,'fdsfdsfds333');
 foreach($r as $key1=>$val1_arr){
     foreach($val1_arr as $k2=>$v2){
          $newqueryarr[$key1][$k2]=$v2;
@@ -255,7 +255,7 @@ foreach($r as $key1=>$val1_arr){
 
 
 $queryarr= $newqueryarr;
-// pr($queryarr,'queryqrr');
+// pr1($queryarr,'queryqrr');
 
 //计算记录偏移量等
 	$page	=	new \Think\Page($count,$pagesize); 
@@ -298,7 +298,7 @@ public function echosheet($sheetnamearr,$sheetname,$magage='true'){
         $inforesult=$inforesult1.$inforesult;
     }
 
-// pr($sheetname,'sheetname');
+// pr1($sheetname,'sheetname');
     $this->assign("sheetname",$sheetname);
     $this->assign("sheetnamearr",$sheetnamearr);
     $this->assign("inforesult",$inforesult);

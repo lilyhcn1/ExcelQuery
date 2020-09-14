@@ -28,7 +28,7 @@ $code= I('post.code');
 $encryptedData=I('post.encryptedData');
 $iv = I('post.iv');     
 $openid=R('Lilyweixin/MiniproGetOpenId',array($code,$encryptedData,$iv));
-// addlog('openid = '.$openid);
+addlog('openid = '.$openid);
 if(!empty($openid)){
     
     $con['wx_openid']=array('like',"%".$openid."%");    

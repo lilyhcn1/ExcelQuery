@@ -554,19 +554,7 @@ function twoarray_chinese ($twoarray,$keyarray){
 }
 
 
-/**
-*
-* 函数：删除空字段
-*
-**/
-function delemptyfield($array){
-    foreach($array as $key=>$value){
-        if(!empty($value)){
-            $newarr[$key]=$value;
-        }
-    }
-    return $newarr;
-}
+
 
 /**
 *
@@ -622,6 +610,41 @@ function delemptyfieldgetnew($array){
     }
     return $newarr;
 }
+
+/**
+*
+* 函数：删除字段
+*
+**/
+function delearrfield($arr,$field){
+//  pr($arr,'arr34234');
+//   pr($field,'$field342');
+if(empty($arr)){
+    
+}else{
+ if(!is_null($arr[$field])){
+     unset($arr[$field]);
+ }    
+} 
+ 
+   
+ return $arr;
+    
+}
+    /**
+*
+* 函数：删除空字段
+*
+**/
+function delemptyfield($array){
+    foreach($array as $key=>$value){
+        if(!empty($value)){
+            $newarr[$key]=$value;
+        }
+    }
+    return $newarr;
+}
+
 
 // 数组与对象的互转
 function array2object($array) {
@@ -1510,6 +1533,15 @@ if($tobe=="2"){
         $newtwoarr[$n++]=$v;
     }       
 }
+if($tobe=="3"){   //数组按key合并
+    $newtwoarr=$twoarr1;
+    foreach($twoarr2 as $k2=>$v2){
+        $newtwoarr[$k2]=$v2;
+    }
+    
+}
+
+
 
     return $newtwoarr;
 }

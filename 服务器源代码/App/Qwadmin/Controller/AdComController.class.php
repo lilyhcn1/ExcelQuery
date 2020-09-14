@@ -28,22 +28,23 @@ public function addedit(){
 $db=M(C('EXCELSECRETSHEET'));    
     // 编辑
     $id=I('get.id');   
-    $sheetname=empty(I('get.sheetname'))?C('MLSHEETNAME'):I('get.sheetname');
+    $sheetname=R('Queryfun/set_session',array("sheetname"));
     session('sheetname',$sheetname);
     $fieldstr=compute_fieldstr(C('MLNOTFIELD'));
-// pr($fieldstr);  
-// pr($id,'d2ff3r');    
-// pr($id,'567564');     
+// pr1($fieldstr);  
+// pr1($id,'d2ff3r');    
+// pr1($sheetname,'$sheetname567564');     
     // 用户填表权限检测
     $paraarr=R("Queryfun/Auth2FillForm",array($sheetname,'','',$id));    
     // $titleexplain=$paraarr['titleexplain'];
-    
-// pr($id,'ef43rfsd2343333333');        
+// pr1($_SESSION,'session');
+// pr1($id,'ef43rfsd2343333333');        
     if($id){
-        // 用户修改表格的权限检测,出错中止执行。
+        // 用户修改表格的权限检测
         $bu=R("Queryfun/Auth2edit",array($sheetname,'','',$id));       
         $titlearr=R('Queryfun/gettitlearr',array('',$id,$fieldstr));
-        
+// pr1($bu,'fdsfds');
+//  pr($titlearr,'$titlearr');       
         // 先用管理员身份查查
         $con['id']=$id;
         $con=R('Queryfun/querycon',array($con,'true'));
@@ -56,7 +57,7 @@ $db=M(C('EXCELSECRETSHEET'));
                 $fillingarr=$db->where($confalse)->order('id asc')->find();    
         }        
         session('sheetname',$fillingarr['sheetname']);
-// pr($fillingarr,'$fillingarr');     
+// pr1($fillingarr,'$fillingarr');     
     }else{
         $fillingarr=arraygetkeys(I('get.'));
         $titlearr=R('Queryfun/gettitlearr',array($sheetname,'',$fieldstr));

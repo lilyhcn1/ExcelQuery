@@ -57,12 +57,17 @@ return returnhttpjson($r,$echojson);
 */
 public function searchdata($echojson="true",$type="search"){
 $con2=$this->consafe(I('get.'));
-$con2['notfield']="wrpw,data1,data2,ord,rpw,name,pid,custom1,custom2";
+
+$todelall=explode(',',C('NOTFIELDSTR'));        
+$idsheet=explode(",","id,sheetname");
+$ttt=array_diff($todelall,$idsheet);
+// pr($ttt);
+$con2['notfield']=implode(",",$ttt);
 // pr($con2,'con2dfwfef');
 // pr($t,"2er2er23");
 $t=R('Rwxy'.LILYCOM.'/echounisheetuni',array(C('EXCELSECRETSHEET'),$con2,'','arr'));
 
-
+// pr($t,'t2222');
 
 $r['code']='200';   
 $r['getarr']=I('get.');
@@ -79,7 +84,7 @@ emptyexit($r['code']);
 
 //查询结果返回
 $sheets_list=twoarray2onearr($t,'sheetname');
-// pr($t,'324fcd54');
+// pr('1111111111111');
 foreach($sheets_list as $k0=>$sheetname){
     $sttwoarr=twoarrayfindval($t,'sheetname',$sheetname);
     $r['res'][$k0]['sheetname']=$sheetname;
@@ -90,7 +95,7 @@ foreach($sheets_list as $k0=>$sheetname){
     $titleallarr=R("Queryfun/gettitlearr",array($sheetname));
     $custom1=json_decode($titleallarr['custom1'],true);
 // pr($custom1,'$custom1');    
-    $field=empty($custom1['field'])?"d1,d2,d3,d4,d5":$custom1['field'];
+    $field=empty($custom1['weborder'])?"d1,d2,d3,d4,d5":$custom1['weborder'];
     
 
     //这里看是否强制改变输出的字段
@@ -111,7 +116,7 @@ foreach($sheets_list as $k0=>$sheetname){
         
 }
 return returnhttpjson($r,$echojson);
-}    
+}      
 
 /* 
 // 通用查询的各种输出形式

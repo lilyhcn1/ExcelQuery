@@ -17,8 +17,8 @@ class QueryfunController extends BaseController {
         $twoarr[0]['d1'] = "d1d1";
         $twoarr[1]['d2'] = "2222";
         $twoarr[1]['d12'] = "d1d1";
-        // pr($twoarr);
-        // pr(arraygetkeys($twoarr,"d1,d2,d4"));
+        // // pr1($twoarr);
+        // // pr1(arraygetkeys($twoarr,"d1,d2,d4"));
 
     }
 
@@ -38,6 +38,7 @@ class QueryfunController extends BaseController {
 
     // 把excel 传过来的中文字符串转成标准格式
     public function constr2conarr($data,$type = 'eq') {
+// pr1($data,'data34234');        
         foreach ($data as $key => $value) {
             if (!empty($value)) {
                 // $con2[$key]=characettouft8(unicode_to_utf8($value));
@@ -45,14 +46,14 @@ class QueryfunController extends BaseController {
                 //修正
             }
         }
-// pr($con2,"con285634");
+// // pr1($con2,"con285634");
         $conall = explode(";",$con2['conall']);
-// pr($conall,"CONALLfd34232");
+// // pr1($conall,"CONALLfd34232");
         foreach ($conall as $value) {
             $ex = '';
-            // pr($value,'value11');
-            // pr(strstr($value,"不等"));
-            // echo '大于等1';pr(strstr($value,"大于等1"));
+            // // pr1($value,'value11');
+            // // pr1(strstr($value,"不等"));
+            // echo '大于等1';// pr1(strstr($value,"大于等1"));
             if (!empty($value)) {
                 if (strstr($value,"等于")) {
                     $ex = explode('等于',$value);
@@ -63,7 +64,7 @@ class QueryfunController extends BaseController {
                     }
                 } elseif (strstr($value,"包含")) {
                     $ex = explode('包含',$value);
-                    //   pr($ex);
+                    //   // pr1($ex);
                     if (count($ex) == 2) {
                         $likecon[$ex['0']] = array('LIKE',"%".$ex['1']."%");;
                     } else {
@@ -100,7 +101,7 @@ class QueryfunController extends BaseController {
                     }
                 } elseif (strstr($value,"小于等")) {
                     $ex = explode('小于等',$value);
-                    //   pr($ex);
+                    //   // pr1($ex);
                     if (count($ex) == 2) {
                         if (empty($likecon[$ex['0']])) {
                             $likecon[$ex['0']] = array(array('ELT',$ex['1']));
@@ -197,7 +198,7 @@ public function findfirstline($sheetname,$forall=false){
     // 查出第一行
         $sheetcon['sheetname']=$sheetname;
         // $firstlinearrtemp=$db->where($sheetcon)->order('id')->find();
-        // // pr($firstlinearrtemp);
+        // // // pr1($firstlinearrtemp);
         // $firstcon['id']=array(array("eq",$firstlinearrtemp['id']-1),array("eq",$firstlinearrtemp['id']),"OR");
         // $firstcon['ord']=0;
         if($forall){
@@ -206,8 +207,8 @@ public function findfirstline($sheetname,$forall=false){
             $firstline=$db->where($sheetcon)->Field(C('FIELDSTR'))->order('id asc')->find();  
         }
         
-// pr($sheetcon,'$sheetcon234');        
-// pr($firstline,'$firstliner5435');    
+// // pr1($sheetcon,'$sheetcon234');        
+// // pr1($firstline,'$firstliner5435');    
     return $firstline;
 }
 
@@ -215,15 +216,15 @@ public function findfirstline($sheetname,$forall=false){
 
 
 function forcequery($db,$con,$rev){
-    // pr($con);
+    // // pr1($con);
     $rev=$con['name'];
     $rpw=$con['rpw'];
     $forcecon['rpw']=$rpw;
     $forcecon['d1|d2|d3|d4|d5|d6|d7|d8|d9|d10|d11|d12|d13|d14|d15|d16|d17|d18|d19|d20|d21|d22|d23|d24|d25|d26|d27|d28|d29|d30|d31|d32|d33|d34|d35|d36|d37|d38|d39|d40|d41|d42|d43|d44|d45|d46|d47|d48|d49|d50']=array('like',"%".$rev."%");
-    // pr($forcecon);
+    // // pr1($forcecon);
     if($rev && $rpw){
         $forceresulttwoarr=$db->where($forcecon)->select();
-        // pr($forceresulttwoarr);
+        // // pr1($forceresulttwoarr);
     }
     return $forceresulttwoarr;
 }
@@ -235,22 +236,22 @@ public function conquery($db,$con,$name="",$thisuser=""){
 // $ordconarr=json_decode($firstlinearr['custom1'],'true');
 // $weborderarr=explode(',',$ordconarr['weborder']);
 
-// pr($weborderarr);
-// pr($con);
+// // pr1($weborderarr);
+// // pr1($con);
 $r=$db->where($con)->limit(C('QUERYLIMIT'))->order('id asc')->select();
 $rnum=$db->where($con)->count();
-// pr($rnum);
+// // pr1($rnum);
 if(empty($r) && $rnum > C('FORCEQUERYNUM')){
     $r=$this->forcequery($db,$con,$name);
     $rnum=count($r);
 }
-// pr($r);
+// // pr1($r);
 if(!empty($r)){
     $temp2['数据表名称']="信息摘要（点击查看详情）";
 
 
 foreach ($r as $k1=> $value) {
-    // pr($value);
+    // // pr1($value);
     $id=$value['id'];
     $k=$k1+1;
     $temp5="";
@@ -264,9 +265,9 @@ foreach ($r as $k1=> $value) {
             $temp5 .= $value[$v4].' | ';
         }
     }
-// pr($_SESSION,'756');    
+// // pr1($_SESSION,'756');    
     $temp2[$k.". ".$value['sheetname']]="<a href=\"".U(getcomstr('Vi',$thisuser)."/echoiddata?id=$id")."\">".$temp5."</a>";
-    // pr($temp2);
+    // // pr1($temp2);
 }
 }
 
@@ -283,10 +284,10 @@ if(!empty($echohtml)){
 
  if($rnum <= 3 && $rnum > 0){
      foreach ($r as $k2=> $value2) {
-         // pr($value2);
+         // // pr1($value2);
          $id=$value2['id'];
          $newarr1 =R("Queryfun/echoiddatacontent",array($id));
-        //   pr($newarr1);
+        //   // pr1($newarr1);
           $echohtml .=R("Task/echoarrcontent",array($newarr1));
          $echohtml .=echoarrcontent($newarr1);
      }  
@@ -306,19 +307,19 @@ return $echohtml;
 
 
 public function update($id=0){
-	   // pr(I('post.'),'post');
+	   // // pr1(I('post.'),'post');
 	   
 		$id=I('post.id','','strip_tags');
         $data=arrtrim(I('post.'));
-        // pr(session());
+        // // pr1(session());
 		$sheetname=session('sheetname');	
 // 		$rpw=session('rpw');	
 // 		$wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
 
 
 	    
-// pr($sheetname,'$sheetname');        
-// pr($wrpw,'$wrpw');   	    
+// // pr1($sheetname,'$sheetname');        
+// // pr1($wrpw,'$wrpw');   	    
         $titlearrall=R('Queryfun/gettitlearr',array($sheetname));
         $paraarr=json_decode($titlearrall['custom1'],'true');
 
@@ -329,7 +330,7 @@ public function update($id=0){
         $user=empty($data[$paraarr['pidkey']])?$this->USER['user']:$data[$paraarr['pidkey']];
 
 	    // 保存文件并保存链接
-	   // pr($_FILES,'$_FILES');
+	   // // pr1($_FILES,'$_FILES');
 	    if(R("Queryfun/fileisnotempty",array($_FILES))){
     	    $uploadfilearr=savefile();
     	    foreach ($uploadfilearr as $k4=>$v4) {
@@ -348,8 +349,8 @@ public function update($id=0){
         $data['t']=time();
 	    
 	    $data['custom1'] = json_encode($paraarr);	
-// pr($data,'data34322');	    
-// pr($paraarr['rpw_right'],'324');    
+// // pr1($data,'data34322');	    
+// // pr1($paraarr['rpw_right'],'324');    
         $db=M(C('EXCELSECRETSHEET'));        
 		if($id){
 			$db->data($data)->where('id='.$id)->save();
@@ -364,7 +365,7 @@ public function update($id=0){
 			$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/updatetoadd?id=$flag"));
 		}
 		
-// 		pr($flag);
+// 		// pr1($flag);
 // 		$this->success('恭喜，操作成功！',U($Think.CONTROLLER_NAME."/addedit"),7);
 		
 		
@@ -381,8 +382,8 @@ $sheetname=session('sheetname');
 $bu=R("Queryfun/Auth2edit",array($sheetname,'','',$id));       
 $newarr=R('Queryfun/echoiddatacontent',array($id,$this->USER));
 
-// pr($id);
-// pr($newarr);
+// // pr1($id);
+// // pr1($newarr);
 // echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"".session('indexpage')."\">查询首页</a></h3>";
 
 
@@ -402,23 +403,23 @@ return $echohtml;
 
 // 判断是否有授权,看能否填表 
 public function Auth2FillForm($sheetname,$titlearrall="",$paraarr="",$id="") {
-// pr($titlearrall,"fds234");
-// pr($titlearrall,"34534");
+// // pr1($titlearrall,"fds234");
+// // pr1($titlearrall,"34534");
     if(empty($titlearrall) ||empty($paraarr) ){
-// pr($titlearrall,"3333333");
-// pr($titlearrall,"342222234534");        
+// // pr1($titlearrall,"3333333");
+// // pr1($titlearrall,"342222234534");        
         $titlearrall=R('Queryfun/gettitlearr',array($sheetname,$id));
         $paraarr=json_decode($titlearrall['custom1'],'true');       
     }
-    // pr($paraarr);
-    // pr($_SERVER);
+    // // pr1($paraarr);
+    // // pr1($_SERVER);
     if($paraarr['anonymousfill']=="否"){
         if(session('login')=='yes'){
             return $paraarr;
         }else{
             // session('jumpurl',$_SERVER['REQUEST_URI']);
-            // pr('REQUEST_URI '.$_SERVER['REQUEST_URI']);
-            // pr('jumpurl '.session('jumpurl'));
+            // // pr1('REQUEST_URI '.$_SERVER['REQUEST_URI']);
+            // // pr1('jumpurl '.session('jumpurl'));
             $this->error("错误，此表单需要登陆后才能填写！~",U("login/index").'?Req_URL='.$_SERVER['REQUEST_URI'],1);
             return $paraarr;
         }
@@ -441,12 +442,14 @@ public function Auth2edit($sheetname,$titlearrall="",$paraarr="",$id="") {
         $paraarr=json_decode($titlearrall['custom1'],'true');       
     }   
 
-if(!empty(session('wrpw'))){
+if(!empty(session('wrpw')) && !empty($id)){
     $wrpw=session('wrpw');
 
     $querycon22['wrpw']=array("in",returncomma($wrpw));
-    $querycon22['sheetname']=$sheetname;
+    $querycon22['id']=$id;
     $l=$db->where($querycon22)->find();
+// // pr1($querycon22,'l,$querycon22');    
+// // pr1($l,'l,342');
     if(!empty($l)){
         return true;
     }
@@ -471,8 +474,8 @@ if(!empty($thisuser['user'])){
     // $con['sheetname']=$sheetname;
     $t=$db->where($con)->find();
     $edtime=$t['data1'];
-    // pr($edtime,'$edtime');
-    // pr($edtime+C('EDITTIME'),'$edtime+C');
+    // // pr1($edtime,'$edtime');
+    // // pr1($edtime+C('EDITTIME'),'$edtime+C');
     if($edtime){
         if(time() > $edtime+C('EDITTIME')){
             $this->error("错误q101，此单元格修改时间超时，请登陆后修改！~",U("index/index"));
@@ -504,6 +507,36 @@ public function getthisuser(){
     return $thisuser;
 }
 
+//设定session的值，并取出，有值取值并设定，没值用原来的
+//两个都没有，返回默认值
+public function set_session($key,$val=""){
+    $value=I('get.'.$key);
+        if(!empty($value)){
+            session($key,$value);
+           return $value;
+        }else{
+            if(session($key)){
+                return $value;
+            }else{
+                // switch ($key)
+                // {
+                // case "querypw":
+                //   return C('MLRPW');
+                //   break;  
+                // case "querywrpw":
+                //   return C('MLRPW');
+                //   break;  
+                // case "sheetname":
+                //   return C('MLSHEETNAME');
+                //   break;                    
+                // default:
+                 
+                // }
+                return $val;
+            }
+        }
+}
+
 
 //
 public function ud___________________(){
@@ -514,12 +547,12 @@ public function querycon($querycon,$magage,$thisuser=""){
 
 $wrpw=empty(session('wrpw'))?C('MLWRPW'):session('wrpw');    
 $rpw=empty(session('rpw'))?C('MLRPW'):session('rpw'); 
-// pr($wrpw);
+// // pr1($wrpw);
     if($magage=='true'){
         $querycon['wrpw']=array("in",returncomma($wrpw));
     }elseif($magage=='false'){
         $querycon['rpw']=array("in",returncomma($rpw));
-        // pr($thisuser);
+        // // pr1($thisuser);
         if(!empty($thisuser)){
             $querycon['pid']=$thisuser['user'];      
         }
@@ -539,11 +572,11 @@ $rpw=empty(session('rpw'))?C('MLRPW'):session('rpw');
 //通过多种途径查询出对应的标题数组
 public function gettitlearr($sheetname,$id='',$fieldstr='',$delempty='true'){
 $db=M(C('EXCELSECRETSHEET'));
-// pr($id,"343");    
+// // pr1($id,"343");    
 if(!empty($id)){
     $con['id']=$id;
     $idarr=$db->where($con)->order('id asc')->find();
-// pr($idarr,"343");    
+// // pr1($idarr,"343");    
     $titlearr=$this->gettitlearr($idarr['sheetname'],'',$fieldstr);
 }elseif(empty($sheetname) ){
     $this->error('未找到您的个人记录！~');
@@ -570,12 +603,12 @@ if(!empty($id)){
 
 
 function echoiddatacontent($id='',$thisuser=""){
-// pr($thisuser);
+// // pr1($thisuser);
 if(empty($id)){
     return '请输入id';
 }else{
 $con2['id']=$id;
-// pr($con2);
+// // pr1($con2);
 
 
 $db=M(C('EXCELSECRETSHEET'));
@@ -583,15 +616,15 @@ $db=M(C('EXCELSECRETSHEET'));
 $fieldstr=C('FIELDSTR');
 $arr=$db->where($con2)->find();    
 // $arr=$db->where($con2)->Field($fieldstr)->finfindfirstlined();  
-// pr($arr['sheetname']);
-// pr($arr,'234234');
+// // pr1($arr['sheetname']);
+// // pr1($arr,'234234');
 
     // 查出第一行
     $firstline=R('Queryfun/findfirstline',array($arr['sheetname'],''));
 
-// pr($firstline,'43534');
+// // pr1($firstline,'43534');
 $arr=delemptyfield($arr);
-// pr($arr,'4323');
+// // pr1($arr,'4323');
 foreach ($arr as $key=> $value) {
 // $value=returnmsg($value,'weixin');
 if(!is_null($firstline[$key])){
@@ -613,7 +646,7 @@ if(!is_null($firstline[$key])){
     }elseif($this->isurl($value)){
         $newarr[$firstline[$key]]=autolink($value);
     }elseif(mb_strlen($value)<20){
-        // pr('333333'.$value);
+        // // pr1('333333'.$value);
         if(!empty($value)){
             $newarr[$firstline[$key]]="<a href=\"/index.php/Qwadmin/".getcomstr('Vi',$thisuser)."/uniquerydata.html?$key=$value\">".'<span class="glyphicon glyphicon-search"></span>'.$value."</a>";
         }        //	glyphicon glyphicon-search
@@ -624,7 +657,7 @@ if(!is_null($firstline[$key])){
     }    
 }    
     
-// pr($newarr);
+// // pr1($newarr);
     
 }
 
@@ -639,10 +672,10 @@ return $newarr;
 // 这是数值
 function isphone($value){
     if(($value>600 && $value < 900 ) ||($value>500000 && $value < 699999 ) || ($value>13000000000 && $value < 19000000000 ) ){
-        // pr($value);
+        // // pr1($value);
         return true;
     }else{
-        // pr("非文本3");
+        // // pr1("非文本3");
         return false;         
     }
 }
@@ -660,7 +693,7 @@ function isurl($val){
 // 是否是图片
 function isimg($firstline,$key){
 $keystr=mb_substr($firstline[$key],0,2,"UTF-8");
-// pr($keystr);
+// // pr1($keystr);
 if($keystr=="照片"){
     return true;
 }else{
@@ -682,10 +715,10 @@ return false;
 // 是否是时间或日期
 function isdateortime($v){
 $keystr=mb_substr($v,-2,2,"UTF-8");    
-// pr($keystr,'keystr');
+// // pr1($keystr,'keystr');
     $f1=strstr($keystr,'时间 ');
     $f2=strstr($keystr,'日期 ');
-    // pr($keystr);
+    // // pr1($keystr);
     if($f1 || $f2){
         return true;
     }else{
@@ -696,10 +729,10 @@ $keystr=mb_substr($v,-2,2,"UTF-8");
 function isGPS($v){
 $keystr1=mb_substr($v,-3,3,"UTF-8");  
 $keystr2=mb_substr($v,-3,3,"UTF-8");   
-// pr($keystr,'keystr');
+// // pr1($keystr,'keystr');
     $f1=strstr($keystr,'位置 ');
     $f2=strstr($keystr,'GPS');
-    // pr($keystr);
+    // // pr1($keystr);
     if($f1 || $f2){
         return true;
     }else{
@@ -746,7 +779,7 @@ public function SmartInput($sheetname="古村落",$key='d1',$value=''){
         }
         $smartinputtwoarr=$db->where($querycon)->Field($key)->order('id desc')->limit(C('TIPNUM'))->distinct()->select(); 
         $keyarr=twoarray2onearr($smartinputtwoarr,$key);
-        // pr($smartinputarr);
+        // // pr1($smartinputarr);
         return $keyarr;
 
 }
@@ -762,7 +795,7 @@ public function LastInputs($sheetname="古村落"){
         // }
         // 把首行排除掉
         $firsrtlinearr=$db->where($querycon)->order('id asc')->limit(100)->distinct()->find();  
-// pr('$firsrtlinearr',$firsrtlinearr);
+// // pr1('$firsrtlinearr',$firsrtlinearr);
 
         $custom1arr=json_decode($firsrtlinearr['custom1'],true);
 // var_dump($custom1arr);
@@ -770,8 +803,8 @@ public function LastInputs($sheetname="古村落"){
         $notautotip=$custom1arr['notautotip'];
         $tipnumlimt=$custom1arr['tipnumlimt'];
 
-// pr('$tipnumlimt',$tipnumlimt);        
-// pr('$custom1arr',$custom1arr);
+// // pr1('$tipnumlimt',$tipnumlimt);        
+// // pr1('$custom1arr',$custom1arr);
         if(!empty($autotip)){
             $fieldstr=$autotip;
         }elseif(!empty($notautotip)){
@@ -782,32 +815,32 @@ public function LastInputs($sheetname="古村落"){
         
         // 不管怎么说，再删去特殊字段，如文件，照片
         $fieldstr=StrMinusStr2($fieldstr,$this->AutoTipdelField($firsrtlinearr));
-        // pr($fieldstr);
+        // // pr1($fieldstr);
         
         // $newfieldstr=$this->AutoTipField($firsrtlinearr);
-        // pr($newfieldstr);
+        // // pr1($newfieldstr);
         
 
         
-        // pr($firsrtlinearr);
+        // // pr1($firsrtlinearr);
         if(!empty($firsrtlinearr)){
             $querycon['id']=array('neq',$firsrtlinearr['id']);
         }
-        // pr($querycon);
+        // // pr1($querycon);
         $limitnum=empty($tipnumlimt)?C('TIPNUM'):$tipnumlimt;
-// pr('$limitnum',$limitnum);
+// // pr1('$limitnum',$limitnum);
 
 
         $datalistonearr=$db->where($querycon)->Field($fieldstr)->order('id asc')->limit($limitnum)->distinct()->select();
-        // pr($datalistonearr);
+        // // pr1($datalistonearr);
         // $datalistonearr=delemptyfield($datalistonearr);
-        // pr($datalistonearr);
+        // // pr1($datalistonearr);
         $datalistonearr=TwoArrayAllColUnique($datalistonearr);
-        // pr($datalistonearr);
+        // // pr1($datalistonearr);
         // $datalistonearr=twoarray2onearr($smartinputtwoarr,$key);
         
 
-        // pr($datalistonearr);
+        // // pr1($datalistonearr);
         return $datalistonearr;
 
 }
