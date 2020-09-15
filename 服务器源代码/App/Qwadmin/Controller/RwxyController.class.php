@@ -148,9 +148,9 @@ $fieldstr=implode($field,',');
             $notfirstline['id']=array('NEQ',0);
         }
     }
-
+// pr($queryfirst);
     if(empty($con['id'])){
-        $query=$db->where($con2)->field($fieldstr)->order($ordstr)->select(); 
+        $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
     }elseif(empty($likecon)){
         $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
     }else{
@@ -174,9 +174,9 @@ if($type=='table'){
         $firstline['0']=$firstlinearrtemp;
     $temp=twoarraymerge($fieldline,$emptyline); 
 
-    // if(!empty($firstline)){
-    //     $temp=twoarraymerge($temp,$firstline);  
-    // }
+    if(!empty($firstline)){
+        $temp=twoarraymerge($temp,$firstline);  
+    }
     $query=twoarraymerge($temp,$query);         
     }
 

@@ -16,7 +16,7 @@ define("LILYCOM",     "Com");  //统一写com用的
 namespace Qwadmin\Controller;
 use Qwadmin\Controller\ComController;
 class RwxyComController extends ComController{    
-   
+
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
         header("Location: $url");
@@ -148,9 +148,9 @@ $fieldstr=implode($field,',');
             $notfirstline['id']=array('NEQ',0);
         }
     }
-
+// pr($queryfirst);
     if(empty($con['id'])){
-        $query=$db->where($con2)->field($fieldstr)->order($ordstr)->select(); 
+        $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
     }elseif(empty($likecon)){
         $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
     }else{
@@ -174,9 +174,9 @@ if($type=='table'){
         $firstline['0']=$firstlinearrtemp;
     $temp=twoarraymerge($fieldline,$emptyline); 
 
-    // if(!empty($firstline)){
-    //     $temp=twoarraymerge($temp,$firstline);  
-    // }
+    if(!empty($firstline)){
+        $temp=twoarraymerge($temp,$firstline);  
+    }
     $query=twoarraymerge($temp,$query);         
     }
 
