@@ -54,4 +54,6 @@ return array(
     'TIPNUM' => '9999', //自动提示的数目，越大越卡
     'FORCEQUERYNUM' => '99999', //查询结果为空时，是否
     'EDITTIME' => '600', //强制查询的极限，
+    'AILINKLEN'=> '20', //文本超过这个数值就不再加链接了，直接输出文本
+    'AILINK' => 'auto', //auto猜测并自动加链接，link就加成搜索，nolink不加链接，
 );

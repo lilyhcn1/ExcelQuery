@@ -141,15 +141,15 @@ $fieldstr=implode($field,',');
 // pr1($fieldstr,'$fieldstr');
 
 // 这里可能有问题，，，，，，，，，，，，，，，，，，，，，，，，，，
-    if(empty($con['id'])){
+    if(empty($con2['id'])){
         if(!empty($queryfirst['id'])){
             $notfirstline['id']=array('NEQ',$queryfirst['id']);
         }else{
             $notfirstline['id']=array('NEQ',0);
         }
     }
-// pr($queryfirst);
-    if(empty($con['id'])){
+
+    if(!empty($con2['id'])){
         $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
     }elseif(empty($likecon)){
         $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
@@ -157,7 +157,8 @@ $fieldstr=implode($field,',');
         $query=$db->where($con2)->where($likecon)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
     }
 
-// pr($query,'$query2121');
+
+
     // 插入字段行
     $fieldline['0']=$field;
 // pr1($field,'$field');

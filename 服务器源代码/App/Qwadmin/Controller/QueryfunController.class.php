@@ -626,7 +626,30 @@ $arr=$db->where($con2)->find();
 $arr=delemptyfield($arr);
 // // pr1($arr,'4323');
 foreach ($arr as $key=> $value) {
-// $value=returnmsg($value,'weixin');
+
+switch (C('AILINK')) {
+    // case 'auto':   //自动就改成默认吧，免得出错
+    // break;
+    
+    case 'link':
+if(!is_null($firstline[$key])){
+
+        if(!empty($value)){
+            $newarr[$firstline[$key]]="<a href=\"/index.php/Qwadmin/".getcomstr('Vi',$thisuser)."/uniquerydata.html?$key=$value\">".'<span class="glyphicon glyphicon-search"></span>'.$value."</a>";
+        }        
+    
+}        
+        break;
+    
+    case 'nolink':
+if(!is_null($firstline[$key])){
+        if(!empty($value) ){
+            $newarr[$firstline[$key]]=$value;
+        }
+}        
+        break;    
+    default:
+        
 if(!is_null($firstline[$key])){
     if($this->isimg($firstline,$key,$value)){//专门图片的处理
 
@@ -645,17 +668,22 @@ if(!is_null($firstline[$key])){
         $newarr[$firstline[$key]]="<a href=\"tel:$value\">".'<span class="glyphicon glyphicon-earphone"></span>'.$value."</a>";  
     }elseif($this->isurl($value)){
         $newarr[$firstline[$key]]=autolink($value);
-    }elseif(mb_strlen($value)<20){
+    }elseif(mb_strlen($value)<C('AILINKLEN')){
         // // pr1('333333'.$value);
         if(!empty($value)){
             $newarr[$firstline[$key]]="<a href=\"/index.php/Qwadmin/".getcomstr('Vi',$thisuser)."/uniquerydata.html?$key=$value\">".'<span class="glyphicon glyphicon-search"></span>'.$value."</a>";
-        }        //	glyphicon glyphicon-search
+        }      
     }else{
         if(!empty($value) ){
             $newarr[$firstline[$key]]=$value;
         }
     }    
-}    
+}
+        break;
+        break;
+}
+
+    
     
 // // pr1($newarr);
     
