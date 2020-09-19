@@ -899,7 +899,7 @@ $robot = array(
 );
 QQROT::init($robot['qq'], $robot['ip'], $robot['port'], $robot['pass']); //初始化
 QQROT::sendGroupMsg(467011246, 'hello word22222222!');//给QQ：12345 发好友消息
-QQROT::sendPrivateMsg(762865826, 'hello word!');//给QQ：12345 发好友消息
+QQROT::sendPrivateMsg(53053067, 'hello word!');//给QQ：12345 发好友消息
 }
 public function HstbHttp(){
     addlog('$ReplyMsg','QQreply1');
@@ -910,7 +910,10 @@ $Array = json_decode($input);//对解码后的数据进行Json解析
 $constr=I('get.conall');
 $aiqq=I('get.aiqq');
 addlog(json_encode($Array));
-// addlog(''.json_encode($constr));
+//addlog(''.json_encode($constr));
+// $aiqq="762865826";
+$aiqq=$Array->{'LogonQQ'};
+
 
     $QQReplyMsg=R('Datause/echohstb',array($Array,$constr,$aiqq));  
 // addlog($QQReplyMsg,'QQreply9');
@@ -926,7 +929,7 @@ $arrstr=
 // aaa;
 
 <<<aaa
-{"Type":"GroupMsg","FromQQ":{"UIN":53053067,"Card":"\u8001\u9ec4\u725b","SpecTitle":"","Pos":{"Lo":12,"La":0}},"LogonQQ":187277552,"TimeStamp":{"Recv":1600184774,"Send":1600184774},"FromGroup":{"GIN":237676351,"name":"\u8001\u9ec4\u725b\u7f51\u7ad9\u5236\u4f5c\u7fa4"},"Msg":{"Req":1835,"Random":357932890,"SubType":134,"AppID":0,"Text":"\u5404\u4f4d\u8001\u5e08\uff0c\u660e\u5929\u5f00\u4f1a\uff0c\u8fd9\u662f\u6d4b\u8bd5\u4fe1\u606f","Text_Reply":"","BubbleID":4},"File":{"ID":"","MD5":"","Name":"","Size":17179869184}}
+{"Type":"GroupMsg","FromQQ":{"UIN":53053067,"Card":"\u8001\u9ec4\u725b","SpecTitle":"","Pos":{"Lo":12,"La":0}},"LogonQQ":762865826,"TimeStamp":{"Recv":1600480888,"Send":1600480888},"FromGroup":{"GIN":467011246,"name":"\u6d4b\u8bd5\u7fa42"},"Msg":{"Req":2602,"Random":2039368459,"SubType":134,"AppID":0,"Text":"github\uff1f","Text_Reply":"","BubbleID":4},"File":{"ID":"","MD5":"","Name":"","Size":17179869184}}
 aaa;
 
 
@@ -940,9 +943,9 @@ $constr="数据表名等于公开信息数据库;查看密码等于CGATY5L562;�
 $arr=json_decode($arrstr);
 $aiqq="762865826";
 // pr($aiqq);
-    // $QQReplyMsg=R('Datause/echohstb',array($arr,$constr,$aiqq));  
+    $QQReplyMsg=R('Datause/echohstb',array($arr,$constr,$aiqq));  
 // pr($arr);    
-    R('Dingding/relaymsg',array($arr));
+    // R('Dingding/relaymsg',array($arr));
 // R("dingding/sendmsg",array("e38e56c7aef51091217d318404d4f67dbfabe185ec28335224438ae4e8bcb57d",'fsdfsd'));
 
 // pr($QQReplyMsg);
@@ -956,6 +959,7 @@ public function echohstb($Array='',$constr,$aiqq="762865826"){
 
 // addlog($aiqq,"qq23");
 // pr($Array,'arrar');
+// $aiqq="762865826";
 $robot = array(
 	'qq' => $aiqq, //机器人QQ号码
 	'ip' => '127.0.0.1', //接口IP
