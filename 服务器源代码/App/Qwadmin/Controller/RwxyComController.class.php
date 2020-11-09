@@ -8,12 +8,11 @@
 *
 **/
 namespace Qwadmin\Controller;
-define("LILYCOM",     "Com");  //统一写com用的
+define("LILYCOM",     "");  //统一写com用的
 // use Common\Controller\BaseController;
 // use Think\Controller;
 // class RwxyController extends BaseController{
-    
-namespace Qwadmin\Controller;
+
 use Qwadmin\Controller\ComController;
 class RwxyComController extends ComController{    
 
@@ -60,7 +59,6 @@ $db=M($dbsheetname);
     // pr1($con2,'43242');
     // pr1($likecon,'465654');
 
-   
 // 去除一些无关的条件
 $con2=delearrfield($con2,'conall');
 $con2=delearrfield($con2,'wrpw');  
@@ -184,11 +182,32 @@ if($type=='table'){
 
     // // 输出结果
     $output=$this->simpletable($query); 
-        if(count($query) < 4){
+        if(count($query) < 1){
             echo    $output="error, \nnothing \nis \nfound3. \n";
         }else{
             echo $output;           
-        }       
+        }    
+}elseif($type=='tablenoempty'){
+    if(!empty($queryfirst)){
+        $sheetcon['sheetname']=$queryfirst['sheetname'];
+        $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
+        $firstline['0']=$firstlinearrtemp;
+    // $temp=twoarraymerge($fieldline,$emptyline); 
+
+    if(!empty($firstline)){
+        $temp=twoarraymerge($temp,$firstline);  
+    }
+    $query=twoarraymerge($temp,$query);         
+    }
+
+// pr($query);
+    // // 输出结果
+    $output=$this->simpletable($query); 
+        if(count($query) < 1){
+            echo    $output="error, \nnothing \nis \nfound3. \n";
+        }else{
+            echo $output;           
+        }             
 }elseif($type=='json'){
     if(!empty($queryfirst)){
         foreach($query as $kq=>$kv){
@@ -284,6 +303,33 @@ if(empty($data)){
         
     }
     
+}
+
+// 查询数据私有的数据表
+public function echoteacherdbnep($type='tablenoempty'){
+$data=I('get.');
+if(empty($data)){
+    $data=I('post.');
+}
+    $result = $this->Auth2Use();
+    if(!$result){
+        echo "error\n,IP地址\n不在可访问列表中，\n禁止访问。";
+    }else{
+    $dbsheetname=C('EXCELSECRETSHEET');
+    // C('EXCELSECRETSHEET');
+    $con2=R("Queryfun/constr2conarr",array($data,'eq'));
+    $likecon=R("Queryfun/constr2conarr",array($data,'like'));
+    if($this->isadmin($con2)){
+        unset($con2['rpw']);
+        $this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
+    }elseif(!empty($likecon['sheetname']['0'] == 'in')){
+        $this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
+    }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
+        echo    $output="error, \nsheetname \n  or\n rpw\nis \nempty.\n";    
+    }else{
+        $this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
+    }  
+    }
 }
 
 // 查询数据私有的数据表
@@ -845,13 +891,13 @@ $con23['sheetname']=$sheetname;
 $num23=$db->where($con23)->count();$num23=$num23-1;
 $result.="。 【".$sheetname."】现有".$num23."条数据。";
 $phoneurl=U('Ad/addedit',"sheetname=".$sheetname,"",true);
-$recurl=U('Rwxy/echoteacherdb',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl=U('Rwxy/echoteacherdbnep',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
 $queryurl=U('Vi/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 $phonemodify=U('Ud/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
 
 
 $phoneurl2=U('AdCom/addedit',"sheetname=".$sheetname,"",true);
-$recurl2=U('RwxyCom/echoteacherdb',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl2=U('RwxyCom/echoteacherdbnep',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
 $queryurl2=U('ViCom/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 $phonemodify2=U('UdCom/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
 // $queryurl=U(getcomstr('Vi').'/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
