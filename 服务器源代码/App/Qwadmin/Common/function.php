@@ -2171,8 +2171,19 @@ return "
 </body>
 </html>";
 }
-
+// 跳转下载
+function getarr2str($arr){
+    foreach($arr as $k=>$v){
+        if(!empty($v)){
+            $str.="/".$k."/".$v;
+        }
+    }
+    return $str;
+}
 // -------------------------------------------------------以下是通用数据库的专属函数------------------------------------
+
+
+
 
 // 就是输出二级数组的表单形式	
 function echoarrform($arr){

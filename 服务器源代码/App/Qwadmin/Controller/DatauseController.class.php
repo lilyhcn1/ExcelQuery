@@ -924,13 +924,13 @@ $aiqq=$Array->{'LogonQQ'};
 
 public function Kqtestnew(){
 $arrstr=
-// <<<aaa
-// {"Type":"GroupMsg","FromQQ":{"UIN":53053067,"Card":"\u8001\u9ec4\u725b","SpecTitle":"","Pos":{"Lo":12,"La":0}},"LogonQQ":762865826,"TimeStamp":{"Recv":1600089307,"Send":1600089307},"FromGroup":{"GIN":467011246,"name":"\u6d4b\u8bd5\u7fa42"},"Msg":{"Req":2524,"Random":1439559671,"SubType":134,"AppID":0,"Text":"\u7a0e\u53f7\uff1f","Text_Reply":"","BubbleID":4},"File":{"ID":"","MD5":"","Name":"","Size":17179869184}}
-// aaa;
-
 <<<aaa
-{"Type":"GroupMsg","FromQQ":{"UIN":53053067,"Card":"\u8001\u9ec4\u725b","SpecTitle":"","Pos":{"Lo":12,"La":0}},"LogonQQ":762865826,"TimeStamp":{"Recv":1600480888,"Send":1600480888},"FromGroup":{"GIN":467011246,"name":"\u6d4b\u8bd5\u7fa42"},"Msg":{"Req":2602,"Random":2039368459,"SubType":134,"AppID":0,"Text":"github\uff1f","Text_Reply":"","BubbleID":4},"File":{"ID":"","MD5":"","Name":"","Size":17179869184}}
+{"Type":"GroupMsg","FromQQ":{"UIN":53053067,"Card":"\u8001\u9ec4\u725b","SpecTitle":"","Pos":{"Lo":12,"La":0}},"LogonQQ":762865826,"TimeStamp":{"Recv":1600089307,"Send":1600089307},"FromGroup":{"GIN":467011246,"name":"\u6d4b\u8bd5\u7fa42"},"Msg":{"Req":2524,"Random":1439559671,"SubType":134,"AppID":0,"Text":"\u7a0e\u53f7\uff1f","Text_Reply":"","BubbleID":4},"File":{"ID":"","MD5":"","Name":"","Size":17179869184}}
 aaa;
+
+// <<<aaa
+// {"Type":"GroupMsg","FromQQ":{"UIN":53053067,"Card":"\u8001\u9ec4\u725b","SpecTitle":"","Pos":{"Lo":12,"La":0}},"LogonQQ":762865826,"TimeStamp":{"Recv":1600480888,"Send":1600480888},"FromGroup":{"GIN":467011246,"name":"\u6d4b\u8bd5\u7fa42"},"Msg":{"Req":2602,"Random":2039368459,"SubType":134,"AppID":0,"Text":"github\uff1f","Text_Reply":"","BubbleID":4},"File":{"ID":"","MD5":"","Name":"","Size":17179869184}}
+// aaa;
 
 
 
@@ -941,10 +941,10 @@ aaa;
 $constr="数据表名等于公开信息数据库;查看密码等于CGATY5L562;显示字段等于d1,d3;";
 // pr($constr,'constr');
 $arr=json_decode($arrstr);
-$aiqq="762865826";
+$aiqq="187277552";
 // pr($aiqq);
     $QQReplyMsg=R('Datause/echohstb',array($arr,$constr,$aiqq));  
-// pr($arr);    
+pr($arr);    
     // R('Dingding/relaymsg',array($arr));
 // R("dingding/sendmsg",array("e38e56c7aef51091217d318404d4f67dbfabe185ec28335224438ae4e8bcb57d",'fsdfsd'));
 
@@ -1008,19 +1008,20 @@ if($robot['qq']!=$QQ ){
                 $Is_Quesion=R('Datause/Is_Quesion',array($rev));  
                 pr($rev,'rev');
 
-// addlog($rev,'接收到的问句');
+addlog($rev,'接收到的问句');
                 // pr(I("get."));
                 
                 if($Is_Quesion){
                     $allkeywordstr=$this->UpdateExistKeyword($constr); 
                     $keywordarr=$this->FindKeywordInRev($rev,$allkeywordstr); 
-                    // pr($allkeywordstr);
+                    pr($constr,'fdsfsdf');
+                    pr($allkeywordstr);
                     if(!empty($keywordarr)){
                         // pr($keywordarr);
                         // pr($constr,'$constr');
                         $url='http://'.$_SERVER['SERVER_NAME'].U('Rwxy/echojson')."?conall=".$constr.";";
          
-// addlog($url,'url');
+// pr($url,'url');
                         foreach($keywordarr as $kkey=>$keyword){
                             //查询条件
                             $constr="d2包含".$keyword.";";
@@ -1048,7 +1049,8 @@ if($robot['qq']!=$QQ ){
 // $ReplyMsg="11111";
 // session("lastsendtime",time());
 if($this->havepassed5second()){  //怕多发，强制等15秒
-    QQROT::sendGroupMsg($Group, $ReplyMsg);
+addlog($ReplyMsg,'$ReplyMsg');
+    QQROT::sendGroupMsg($Group, returnmsg($ReplyMsg,"weixin"));
 }
 
 
@@ -1134,11 +1136,16 @@ public function Is_Quesion($words){
 public function UpdateExistKeyword($constr=""){ 
 $constrarrtemp['conall']=$constr;
 $conarr=R("Queryfun/constr2conarr",array($constrarrtemp));
-// pr($conarr);
+
+// $con=$conarr;
+// unset($con['conall']);
 $con['sheetname']=$conarr['sheetname'];
+$con['rpw']=$conarr['rpw'];
 $con['d2']= array('exp',' is not NULL');
+pr($con,"con");
+
 $keywordtwoarr=M(C('EXCELSECRETSHEET'))->where($con)->select();
-// pr($keywordtwoarr,'$keywordtwoarr');
+pr($keywordtwoarr,'$keywordtwoarr');
 $keywordarr=array_column($keywordtwoarr,'d2');
 
 foreach ($keywordarr as $keywords) {
@@ -1150,7 +1157,7 @@ foreach ($keywordarr as $keywords) {
     }
     
 }
-// pr($allkeyword); 
+pr($allkeyword); 
  $allkeywordstr=implode(';',$allkeyword);   
 //     // pr($allkeywordstr);
 

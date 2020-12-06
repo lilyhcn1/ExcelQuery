@@ -69,7 +69,7 @@ php+Mysql平台windows平台建议PHPStudy 2016版本的（最新版本的，好
 
 1. Mysql 数据库5.6以上会出错，建议使用5.5版本。
 2. 最新的宝塔windows面板会有问题
-
+3. Mysql 数据库的编码请使用 utf-8
 
 
 
