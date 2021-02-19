@@ -130,17 +130,26 @@ class QueryfunController extends BaseController {
         }
 
         if ($type == 'eq') {
-            return $con2;
+            return $this->replace_error_con($con2);
         } elseif ($type == 'like') {
-            return $likecon;
+            return $this->replace_error_con($likecon);
         } else {
             return "con is error";
         }
+
+        
     }
 
-
-
-
+    // 删除不正常的条件
+ public function replace_error_con($arr) {
+foreach($arr as $k=>$v){
+    if(strlen($k)>1){
+        $arrnew[$k]=$v;
+    }
+    
+}
+return $arrnew;
+}
     // 替换中文为英文
     public function replacechinesekey($arr) {
         $aa['维护人'] = 'owner';

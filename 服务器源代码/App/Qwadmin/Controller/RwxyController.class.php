@@ -12,10 +12,9 @@ define("LILYCOM",     "");  //统一写com用的
 use Common\Controller\BaseController;
 use Think\Controller;
 class RwxyController extends BaseController{
-    
-// namespace Qwadmin\Controller;
+
 // use Qwadmin\Controller\ComController;
-// class RwxyComController extends ComController{    
+// class RwxyController extends ComController{    
 
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
@@ -75,6 +74,7 @@ $likecon=delearrfield($likecon,'user');
 
   
 $ordstr=empty($con2['orderkey'])?"id":$con2['orderkey'];
+// pr($ordstr,'$ordstr');
 $isasc=($con2['isasc']=="否")?"desc":"asc";
 $ordstr=$ordstr." ".$isasc;
 // pr1($ordstr);
@@ -268,43 +268,90 @@ if($type=='table'){
 
 // 查询数据结果的json数据，与echoteacherdb的结果是一致的，但显示方式不同
 public function echojson(){
-$data=I('get.');
-// pr1($data,'$data11');
-if(empty($data)){
-    $data=I('post.');
-}
-// pr1($data);
+    $arrjson="";
+    $data=I('get.');
+    $type=I('get.type');
+    if(empty($data)){
+        $data=I('post.');
+    }
+
+
     $result = $this->Auth2Use();
     if(!$result){
         echo returnmsgjson('1','IP地址不在可访问列表中，禁止访问。');
-    }else{
-
-// $sheetname=C('EXCELSECRETSHEET');
-    $dbsheetname=C('EXCELSECRETSHEET');
-    // C('EXCELSECRETSHEET');
-    $con2=R("Queryfun/constr2conarr",array($data,'eq'));
-    $likecon=R("Queryfun/constr2conarr",array($data,'like'));
-
-    if($this->isadmin($con2)){
-        unset($con2['rpw']);
-        $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
-        echo   returnmsgjson('0','正常返回json数据。',$r);
-    }elseif(!empty($likecon['sheetname']['0'] == 'in')){
-        $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
-        echo   returnmsgjson('0','正常返回json数据。',$r);
-    }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
-         echo returnmsgjson('3','"error, \nsheetname \n  or\n rpw\nis \nempty.\n"; ');
-    }else{
-
-// echo 323;pr($likecon);
-// pr1($con2);        
-      $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
-      echo   returnmsgjson('0','正常返回json数据。',$r);
-    }  
-        
+        }else{
+    
+    // $sheetname=C('EXCELSECRETSHEET');
+        $dbsheetname=C('EXCELSECRETSHEET');
+        // C('EXCELSECRETSHEET');
+        $con2=R("Queryfun/constr2conarr",array($data,'eq'));
+        $likecon=R("Queryfun/constr2conarr",array($data,'like'));
+    
+        if($this->isadmin($con2)){
+            unset($con2['rpw']);
+            $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
+            
+            $arrjson=returnmsgjson('0','正常返回json数据。',$r);
+        }elseif(!empty($likecon['sheetname']['0'] == 'in')){
+            $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
+            $arrjson=returnmsgjson('0','正常返回json数据。',$r);
+        }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
+             $arrjson=returnmsgjson('3','"error, \nsheetname \n  or\n rpw\nis \nempty.\n"; ');
+        }else{
+          $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
+          $arrjson=returnmsgjson('0','正常返回json数据。',$r);
+        }  
+            
     }
+echo $arrjson;
+
+}
+
+// 查询数据结果的json数据，与echoteacherdb的结果是一致的，但显示方式不同
+// 数组的不同输出方式
+// twotable 双列
+// kyevalue 按键值对进行输出
+// texttable 按固定长度输出
+// 默认是只输出一个数据，适合已合成语句的情况。
+public function echoline1($type="twotable"){
+$data=I('get.');
+$url='http://'.$_SERVER['SERVER_NAME'].U("echojson","conall=".$data['conall']);
+// pr($url,"url");
+$data1 =curlurl($url);
+$dataarr1=json_decode($data1,"false");
+$firstarr=$dataarr1['arr']['0'];
+// pr($firstarr,'$firstarr');
+$out=echojsonalltypes($firstarr,$type);
+echo $out;
     
 }
+
+
+
+// 查询数据结果的json数据，与echoteacherdb的结果是一致的，但显示方式不同
+// 数组的不同输出方式
+// twotable 双列
+// kyevalue 按键值对进行输出
+// texttable 按固定长度输出
+// 默认是只输出一个数据，适合已合成语句的情况。
+public function echolist($type="twotable",$num="6"){
+$data=I('get.');
+$url='http://'.$_SERVER['SERVER_NAME'].U("echojson","conall=".$data['conall']);
+$data1 =curlurl($url);
+$dataarr1=json_decode($data1,"false");
+for ($i = 0; $i < $num; $i++) {
+    $firstarrs[$i]=$dataarr1['arr'][$i];
+}
+pr($firstarrs);
+$arr=array_column($firstarrs,"标题");
+// pr($firstarr,'$firstarr');
+$out=echojsonalltypes($arr,$type);
+echo $out;
+    
+}
+
+
+
 
 // 查询数据私有的数据表
 public function echoteacherdbnep($type='tablenoempty'){
@@ -715,9 +762,13 @@ $files=empty($_FILES)?$files:$_FILES;
 $server=empty($_SERVER)?$server:$_SERVER;
 // addlog(json_encode($post),'post34');
 // addlog(json_encode($files),'$_FILES4353456');
+// pr($post,'$post');
+$nowfield=$post['nowfield'];
+$ufilename=$post['ufilename'];
+
 
     $result = $this->Auth2Use();
-    $returnfileuploadarr=savefile();
+    $returnfileuploadarr=savefile($ufilename);
 // addlog(json_encode($returnfileuploadarr),'$returnfileuploadarr');    
     $returnurl=$returnfileuploadarr['file'];
     echo $returnurl;
@@ -733,6 +784,7 @@ public function phpupload($post="",$files="",$server="") {
 $post=empty($_POST)?$post:$_POST;
 $files=empty($_FILES)?$files:$_FILES;
 $server=empty($_SERVER)?$server:$_SERVER;
+// pr($post);
 // addlog(json_encode($post),'post34');
 // addlog(json_encode($files),'$_FILES4353456');
 

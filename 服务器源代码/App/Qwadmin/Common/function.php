@@ -18,24 +18,9 @@
 **/
 
 function addlog($log,$name='AdminUser'){
-	
-// 	$auth = cookie('auth');
-// 	if(!empty($auth)){
-//     	if(!$name){
-//     		list($identifier, $token) = explode(',', $auth);
-//     		if (ctype_alnum($identifier) && ctype_alnum($token)) {
-//     			$user = M('member')->field('user')->where(array('identifier'=>$identifier))->find();
-//     			$data['name'] = $user['user'];
-//     		}else{
-//     			$data['name'] = '空';
-//     		}
-//     	}else{
-//     // 原来代码 $data['name'] = $name;
-//     		$data['name'] = $name;
-//     	}	    
-// 	}else{
-// 	    $data['name']='AdminUser';
-// 	}
+if(empty($log)){
+    $log="";
+}
 $Model = M('log');
     $data['name']=$name;
 	$data['t'] = time();
@@ -369,7 +354,7 @@ function shorturlself($d_url='d/dwz_api.php'){
 * @param  str $col  二级数组的列指标
 *
 **/
-function twoarraytostr ($array,$col='id',$separator=','){
+function twoarraytostr($array,$col='id',$separator=','){
     $array2=array_column($array,$col);
     $array2=delemptyfieldgetnew($array2);
     $str=arraytostr($array2,',');
@@ -1626,6 +1611,35 @@ function arrtrim($arr){
 }
 
 
+
+// arr数组按固定长度输出
+function texttable($text,$belen){
+ $text_len = mb_strlen($text,'UTF8'); 
+
+//  $space = '&nbsp; ';
+$space1 = '&nbsp; ';
+$space2 = '&nbsp; ';
+ if($text_len>$belen){
+    return $text;
+ }else{
+  
+    $fend=floor(($belen-$text_len)/2)-1;
+     for($i=0; $i<=$fend; $i++){
+      $zero1 .= $space1;
+     }  
+    $estart=$text_len+$fend;
+     for($i=$estart+1; $i<$belen; $i++){
+      $zero2 .= $space2;
+     } 
+ $newtext=$zero1.$text.$zero2;
+ }
+// pr($text_len,'$text_len');
+// pr($belen,'$belen');   
+// pr($newtext,'$newtext');   
+return $newtext;
+}
+
+
 // 返回表格样式的数据输出
 function h5table($data){
      $temp2=$temp2.'<table class="table table-striped"> <tbody>';
@@ -1651,6 +1665,67 @@ foreach ($data as $rows) {
 </table>';
 $temp=$temp1.$temp2.$temp3;
 return $temp;
+
+}
+
+
+// 返回表格样式的数据输出
+function h5twotable($arr,$keyout="true"){
+
+$temp1="";$temp2="";$temp3="";
+$temp1='<div class="col-md-6 col-sm-6 col-xs-6" >
+   <div class="table"  >
+    <table class="table">
+     <tbody>
+       <tr>';
+    $i=0;
+foreach ($arr as $key=>$value) {  
+    $i++;
+    if($i%2==1){
+          if($keyout=="true"){
+              $temp2.="<td style='padding:3px 5px'>".$key."</td>";}
+              $temp2.="
+              <td style='padding:3px 5px'>$value</td></tr>";
+    }
+}
+$temp3='</tbody>
+    </table>
+   </div>
+  </div>';
+$temp.=$temp1.$temp2.$temp3;
+// pr($temp);
+$temp1="";$temp2="";$temp3="";
+$temp1='<div class="col-md-6 col-sm-6 col-xs-6" >
+   <div class="table"  >
+    <table class="table">
+     <tbody>
+       <tr  >';
+    $i=0;
+foreach ($arr as $key=>$value) {  
+    $i++;
+    if($i%2==0){
+          if($keyout=="true"){
+              $temp2.="<td style='padding:3px 5px'>".$key."</td>";}
+              $temp2.="
+              <td style='padding:3px 5px'>$value</td></tr>";
+    }
+}
+$temp3='</tbody>
+    </table>
+   </div>
+  </div>';
+$temp.=$temp1.$temp2.$temp3;
+// pr($temp);
+
+$f='<div>';
+$e='   </div>
+  ';
+
+
+
+return $f.$temp.$e;
+
+
 
 }
 
@@ -1891,7 +1966,8 @@ function jsonFormatProtect(&$val){
         $val = urlencode($val);  
     }  
 }  
-
+function network______________($url,$data=array()){
+}
 
 // 发送post数据
 function http_request($url,$data=array()){
@@ -1939,8 +2015,8 @@ return $textleft.'<br>'.$textright;
  * @param  string  $url  url连接
  * @param  integer $size 尺寸 纯数字
  */
-function h5page($title,$content){
-$allpage="<html>
+function h5page($title,$content,$type="h4"){
+$f="<html>
 <head>
   <title>".$title."</title>
   <meta charset=\"utf-8\">
@@ -1957,13 +2033,18 @@ $allpage="<html>
 </style>
 </head>
 <body style=\"padding:15px\">
-<div class=\"col-xs-12 col-md-12\">
-<h1>".$title."</h1>
-<hr><h4>".$content."</h4><hr>
-</div>
+<div class=\"col-xs-12 col-md-12\">";
+$title="<h1>".$title."</h1>";
+$content="<hr><h4>".$content."</h4><hr>";
+if($type=="empty"){
+    $title="";
+    $content="";
+}
+
+$e="</div>
 </body>
 </html>";
-return $allpage;
+return $f.$title.$content.$e;
 }
 
 
@@ -2058,6 +2139,97 @@ function  curlpost($url,$postarr, $callback = '')
     return $response;
 }
  
+
+//https抓网页
+function curlurl($url){
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,$url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+$result = curl_exec($ch);
+curl_close ($ch);
+    // pr($result);
+return $result;
+}
+
+//返回两个数之间的第一个值，只是直接输入即可。
+function RegGetcontentFirst($left,$right,$content){
+
+    $content=characettouft8($content);
+    $Reg='/'.str_replace('/','\/',$left).'(.*?)'.str_replace('/','\/',$right).'/is';
+    preg_match_all($Reg,$content,$result);
+    return $result[1][0];
+
+// 结尾处
+} 
+
+
+
+
+//返回两个数之间的值，只是直接输入即可。
+function RegGetcontentAll($left,$right,$content){
+$content=characettouft8($content);
+$Reg='/'.str_replace('/','\/',$left).'(.*?)'.str_replace('/','\/',$right).'/is';
+
+    preg_match_all($Reg,$content,$result);
+
+    return $result[1];
+
+// 结尾处
+}  
+ 
+ 
+
+// 数组的不同输出方式
+// twotable 双列
+// kyevalue 按键值对进行输出
+// texttable 按固定长度输出
+// 默认是只输出一个数据，适合已合成语句的情况。
+function echojsonalltypes($arr,$type="text"){
+switch ($type) {
+    case 'twotable':
+        return h5html("",h5twotable($arr),"empty");
+        break;
+    case 'twotable1':
+        return h5html("",h5twotable($arr,"false"),"empty");
+        break;        
+    case 'keyvalue':
+        foreach ($arr as $key=>$value) {
+            $out.="[".$key."]".$value."<br/>";
+        }
+        return $out;
+        break;
+    case 'texttable':
+        $i=0;
+        foreach ($arr as $key=>$value) {
+            $i++;
+            $ktext=texttable($key,8);
+            $kvalue=texttable($value,8);
+            $out.=$ktext.$kvalue;
+            if($i % 2==0){
+                $out.="<br/>";
+            }
+        }
+        return $out;
+        break;  
+    case 'text':
+        foreach ($arr as $key=>$value) {
+            $out.=$value;
+            break;
+        }
+        return $out;
+        break;  
+    default:
+        return json_encode($arr);
+        break;
+}
+
+}
+
+
+ 
 //使用方法
 function deal($data){
     if ($data["error"] == '') {
@@ -2068,6 +2240,9 @@ function deal($data){
         pr($data);
     }
 }
+
+
+
 
 
 
@@ -2290,7 +2465,7 @@ function curPageURL()
 
 
 //   thinkphp 的多文件上传，最得要的，是replace属性
-function savefile(){
+function savefile($newfilename=""){
 
 // pr($_FILES,'$_FILES');
     $uptypes=arrtrim(explode(',',C('EXTS')));
@@ -2302,8 +2477,14 @@ function savefile(){
     $upload->maxSize   =     $max_file_size ;// 设置附件上传大小
     $upload->exts      =     $uptypes;// 设置附件上传类型
     $upload->replace  = true;
+    
+if(!empty($newfilename) && C('ZDYUPLOAD')=='true'){   
+    $upload->saveName=$newfilename;
+}else{
     // $upload->saveName = array('uniqid', mt_rand(1,999999).'_'.md5(uniqid()));array('uniqid','');
-    $upload->saveName = array('uniqid', array('', true));
+    $upload->saveName = array('uniqid', array('', true));    
+}
+
     $upload->rootPath  =     $destination_folder; // 设置附件上传根目录
     if(!file_exists($destination_folder)){
         mkdir($destination_folder);
@@ -2315,10 +2496,8 @@ function savefile(){
          die(($upload->getError()));
     }else{// 上传成功 获取上传文件信息
         foreach($info as $filekey=>$file){
-            // pr($file,$filekey);
             $destination=$destination_folder_small.$file['savepath'].$file['savename'];
             $newfiletwoarr[$filekey]=$destination;
-    
         }
     }
     return $newfiletwoarr;

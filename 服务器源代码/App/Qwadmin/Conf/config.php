@@ -46,9 +46,11 @@ return array(
                     aplication/rar
                     
                     ", //准备弃用
-    'EXTS'=>  "  jpeg,jpg,jpeg,png,pjpeg,gif,bmp,pdf,zip,rar,doc,docx,xls,xlsx,xlsm,mp4
+    'EXTS'=>  "  jpeg,jpg,jpeg,png,pjpeg,gif,bmp,pdf,zip,rar,doc,docx,xls,xlsx,xlsm,mp4,ppt,pptx,iso
                     ",      
     'PHOTOEXTS'  =>"jpeg,jpg,jpeg,png,pjpeg,gif,bmp",
+    'ZDYUPLOAD'  =>"true",   //自定义上传时不改文件名，怕有危险，弄个开关
+    'ZDYUPLOADSYMBOL'  =>"自定义",   //自定义时的标志符
     'PAGESIZE'=>    '15',
     'PICWIDTH'=>     '150',
     'TIPNUM' => '9999', //自动提示的数目，越大越卡
