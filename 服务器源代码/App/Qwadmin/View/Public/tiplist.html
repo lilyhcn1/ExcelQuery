@@ -3,7 +3,10 @@
 $("#classa").bind("input propertychange",function(event){
 //  取值并发送
     var tt=$("#classa").val();
-    $.get("/index.php/Qwadmin/Api/tiplist",
+    var getstr= "<?php echo getarr2str($_GET); ?>";
+    var getstr2="/index.php/Qwadmin/Api/tiplist" + getstr;
+    
+    $.get(getstr2,
     {
         name:tt
     },

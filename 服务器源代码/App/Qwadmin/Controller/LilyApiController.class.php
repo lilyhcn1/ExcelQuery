@@ -32,6 +32,37 @@ $autext=date("m-d H:i",$autime/1000)."为【".$au."】";
 return $autext;
 }
 
+//获取实时黄金价格
+public function getrealbtcprice(){
+$url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest';
+$parameters = [
+  'start' => '1',
+  'limit' => '5000',
+  'convert' => 'USD'
+];
+
+$headers = [
+  'Accepts: application/json',
+  'X-CMC_PRO_API_KEY: 83314916-aef2-4777-8f7a-3cce874b7703'
+];
+$qs = http_build_query($parameters); // query string encode the parameters
+$request = "{$url}?{$qs}"; // create the request URL
+
+
+$curl = curl_init(); // Get cURL resource
+// Set cURL options
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $request,            // set the request URL
+  CURLOPT_HTTPHEADER => $headers,     // set the headers 
+  CURLOPT_RETURNTRANSFER => 1         // ask for raw response instead of bool
+));
+
+$response = curl_exec($curl); // Send the request, save the response
+
+pr(json_decode($response)); // print json decoded response
+curl_close($curl); // Close request
+}
+
 //获取实时临海天气
 public function getreallinhaiweather22(){
 $url="http://www.tz121.com/linhai/Forecast/Local/Short";
@@ -66,28 +97,7 @@ $aa=$autext."\n<br>"."".$ftime."临海气象台发布：<br>".$weather."";
 
 return $aa;
 }
-// 获取人文学院教师信息
-public function getrwinfo1($url="http://rw.r34.cc/index.php/Qwadmin/Rwxy/echojson/conall/%3B%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E7%AD%89%E4%BA%8E%E4%BA%BA%E6%96%87%E6%95%99%E5%B8%88%E7%8A%B6%E6%80%81%E6%95%B0%E6%8D%AE%3B%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Etemp1234"){
 
-$firstarr = $this->geturlfirstarr($url);    
-$out=$this->echojsonalltypes($firstarr,"text");
-echo $out;
-}
-
-// 获取人文学院教师信息
-public function getrwinfo2($url="http://rw.r34.cc/index.php/Qwadmin/Rwxy/echojson/conall/%3B%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E7%AD%89%E4%BA%8E%E4%BA%BA%E6%96%87%E6%95%99%E5%B8%88%E7%8A%B6%E6%80%81%E6%95%B0%E6%8D%AE2%3B%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Etemp1234"){
-$firstarr = $this->geturlfirstarr($url);    
-// pr($firstarr);
-$out=$this->echojsonalltypes($firstarr,"texttable");
-echo $out;
-}
-
-// 获取人文学院教师信息
-public function getrwinfo3($url="http://rw.r34.cc/index.php/Qwadmin/Rwxy/echojson/conall/%3B%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E7%AD%89%E4%BA%8E%E4%BA%BA%E6%96%87%E6%95%99%E5%B8%88%E7%8A%B6%E6%80%81%E6%95%B0%E6%8D%AE2%3B%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E7%AD%89%E4%BA%8Etemp1234"){
-$firstarr = $this->geturlfirstarr($url);    
-$out=$this->echojsonalltypes($firstarr,"twotable");
-echo $out;
-}
 
 
 

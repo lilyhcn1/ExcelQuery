@@ -53,6 +53,8 @@ if($this->isadmin($con2)){
     
 }
 
+
+
 // 通用查询
 public function echounisheetuni($dbsheetname,$con2,$likecon,$type='table'){
 $db=M($dbsheetname);

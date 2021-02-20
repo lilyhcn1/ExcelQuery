@@ -33,15 +33,14 @@ return array(
         '__LILYCDN__' => '' // CDN设置，如在外网使用，建议修改，速度快很多。'__LILYCDN__' => 'https://cdn.jsdelivr.net/gh/lilyhcn1/files/execelquery/'
     ),	
     
-    // https://cdn.jsdelivr.net/gh/lilyhcn1/files/execelquery/Public/qwadmin/images/avatar.png
 //***********************************excel**********************************	
 	'QUERYPW'        => 'admin', // excel默认查看密码	
 	'PERSONPW'=> 'admin123',// 个人查询密码
 
 //***********************************这是是通用数据编辑的参数**********************************		    
     'MLSHEETNAME'=>'个人查询系统',         //默认新增的表单名
-    'MLRPW'=>'gcl',                //默认新增的表单名查看密码
-    'MLWRPW'=>'fw3ewf',                //默认新增的上传密码
+    'MLRPW'=>'admin',                //默认新增的表单名查看密码
+    'MLWRPW'=>'admin123',                //默认新增的上传密码
 
 //***********************************阿里大鱼短信**********************************		
 'DAYUSMSAPPKEY'=>'',

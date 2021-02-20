@@ -77,8 +77,6 @@ if(count($list)==1 && $firstid <> $id){
 }else{
     $this->display("Ud/magrecords");   
 }
-$this->display();    
-
 
 }
 
@@ -339,3 +337,4 @@ public function echosheet($sheetnamearr,$sheetname,$magage='true'){
 
 // 结尾处
 }
+

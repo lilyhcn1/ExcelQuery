@@ -17,7 +17,7 @@ class ApiComController extends ComController{
 // use Common\Controller\BaseController;
 // use Think\Controller;
 // class ApiController extends BaseController{    
-    
+   
 //开始代码    
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
@@ -29,17 +29,15 @@ public function index(){
 public function tiplist($echojson="true"){
     $db=M(C('EXCELSECRETSHEET'));
     $querycon=$this->consafe(I('get.'));
-        // addlog(json_encode($sheetnamearr),'$sheetnamearr');    
-
+    
+// pr($querycon,'$queryconfds23');    
     
     if(!empty($querycon['name'])){
-        $sheetnamearr=$db->where($querycon)->distinct(true)->field('name')->order('id asc')->select();
-
+        $sheetnamearr=$db->where($querycon)->distinct(true)->field('name')->order('id')->select();
         $tipliststr=twoarraytostr ($sheetnamearr,'name');
     }else{
         $tipliststr=",";
     }
-
 
 //返回code等
     $r['code']='200';                     //200代表正常

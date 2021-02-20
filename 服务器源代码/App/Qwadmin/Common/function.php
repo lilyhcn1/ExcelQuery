@@ -1329,7 +1329,7 @@ $file = fopen($uploadfile, "r");
     while (!feof($file)) {
         $data[] = fgetcsv($file);
     }
-     $data = eval('return ' . iconv('gbk', 'utf-8', var_export($data, true)) . ';');
+    $data = eval('return ' . iconv('gbk', 'utf-8//IGNORE', var_export($data, true)) . ';');
     foreach ($data as $key => $value) {
         if (!$value) {
             unset($data[$key]);
@@ -2192,6 +2192,9 @@ switch ($type) {
     case 'twotable':
         return h5html("",h5twotable($arr),"empty");
         break;
+    case 'twotabletext':
+        return h5twotable($arr);
+        break;        
     case 'twotable1':
         return h5html("",h5twotable($arr,"false"),"empty");
         break;        
