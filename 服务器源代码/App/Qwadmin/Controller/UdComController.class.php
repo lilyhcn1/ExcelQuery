@@ -7,12 +7,13 @@
 * 版    本：1.0.0
 *
 **/
-// namespace Qwadmin\Controller;
+
+namespace Qwadmin\Controller;
+define("LILYCOM",     "Com");  //统一写com用的
 // use Common\Controller\BaseController;
 // use Think\Controller;
 // class UdController extends BaseController{
-    
-namespace Qwadmin\Controller;
+
 use Qwadmin\Controller\ComController;
 class UdComController extends ComController{    
 
@@ -49,12 +50,14 @@ $list=$this->echorecords($sheetname,'true');
 // pr1($list,'3422323');
 
  $this->assign('thisuser',$this->USER);
-
-if(count($list)==1){
-    $id=$list['0']['id'];
+$this->assign('sheetname',$sheetname);
+$titlearr=R("Queryfun/gettitlearr",array($sheetname));
+$firstid=$titlearr['id'];
+$id=$list['0']['id'];
+if(count($list)==1 && $firstid <> $id){
     $this->success('......',U(getcomstr('Ad')."/addedit?id=$id"),0);
 }else{
-    $this->display();    
+    $this->display("Ud/magrecords");    
 }
 
 }
@@ -65,12 +68,14 @@ $sheetname=I('get.sheetname');
 $rpw=$this->USER['querypw']?$this->USER['querypw']:C('MLRPW');
 // $wrpw=$this->USER['querywrpw']?$this->USER['querywrpw']:C('MLRPW');
 $list=$this->echorecords($sheetname,'false');
-// pr1($sheetname,'sheetnamef23r');
-// pr1($list,'$listfdsf');
-if(count($list)==1){
-    $id=$list['0']['id'];
+$titlearr=R("Queryfun/gettitlearr",array($sheetname));
+$titlearr=R("Queryfun/gettitlearr",array($sheetname));
+$firstid=$titlearr['id'];
+$id=$list['0']['id'];
+if(count($list)==1 && $firstid <> $id){
+    $this->success('......',U(getcomstr('Ad')."/addedit?id=$id"),0);
 }else{
-    // $this->display();    
+    $this->display("Ud/magrecords");   
 }
 $this->display();    
 
@@ -141,9 +146,20 @@ $querycon=delemptyfield($querycon);
 // pr1($querycon,'$querycon23');
 
 $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
-// pr1($sheetnamearr,'$sheetnamearr43');
+
+$sheetnamearrcount=count($sheetnamearr);
+if($sheetnamearrcount==1){
+    $sheetname=$sheetnamearr[0]['sheetname'];
+    $url=U("Ud".LILYCOM."/magrecords?sheetname=$sheetname");
+    // pr($url);
+    header("Location: $url");    
+}else{
     $this->echosheet($sheetnamearr,$sheetname,$magage='true');
-    $this->display();        
+    $this->display();     
+}
+
+
+    
 }
 
 

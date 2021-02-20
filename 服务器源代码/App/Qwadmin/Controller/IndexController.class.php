@@ -14,9 +14,17 @@ use Qwadmin\Controller\ComController;
 use Think\Auth;
 class IndexController extends ComController {
     public function index(){
-        //header("Location: U('Lilynoticeview/index')");
+    $userarr=$this->USER;
+    $con['uid']=$userarr['uid'];
+    $g=M('auth_group_access')->where($con)->find();
+    $groupid=$g['group_id'];
+    if($groupid==2 || $groupid==1){
+        $url=U('UdCom/sheetindex');
+    }else{
         $url=U('ViCom/pindex');
-        	header("Location: $url");
+    }
+
+        header("Location: $url");
     }
     public function oldindex(){
 		
@@ -39,4 +47,6 @@ class IndexController extends ComController {
         $this->assign('nav',array('','',''));//导航
 		$this -> display();
     }
+
+    
 }

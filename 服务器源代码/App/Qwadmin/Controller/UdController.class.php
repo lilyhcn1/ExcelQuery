@@ -7,12 +7,13 @@
 * 版    本：1.0.0
 *
 **/
+
 namespace Qwadmin\Controller;
+define("LILYCOM",     "Com");  //统一写com用的
 use Common\Controller\BaseController;
 use Think\Controller;
 class UdController extends BaseController{
-    
-// namespace Qwadmin\Controller;
+
 // use Qwadmin\Controller\ComController;
 // class UdComController extends ComController{    
 
@@ -49,12 +50,12 @@ $list=$this->echorecords($sheetname,'true');
 // pr1($list,'3422323');
 
  $this->assign('thisuser',$this->USER);
-
+$this->assign('sheetname',$sheetname);
 if(count($list)==1){
     $id=$list['0']['id'];
     $this->success('......',U(getcomstr('Ad')."/addedit?id=$id"),0);
 }else{
-    $this->display();    
+    $this->display("Ud/magrecords");   
 }
 
 }
@@ -72,7 +73,7 @@ if(count($list)==1){
 }else{
     // $this->display();    
 }
-$this->display();    
+    $this->display("Ud/magrecords");   
 
 
 }
@@ -141,9 +142,20 @@ $querycon=delemptyfield($querycon);
 // pr1($querycon,'$querycon23');
 
 $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('id')->select();
-// pr1($sheetnamearr,'$sheetnamearr43');
+
+$sheetnamearrcount=count($sheetnamearr);
+if($sheetnamearrcount==1){
+    $sheetname=$sheetnamearr[0]['sheetname'];
+    $url=U("Ud".LILYCOM."/magrecords?sheetname=$sheetname");
+    // pr($url);
+    header("Location: $url");    
+}else{
     $this->echosheet($sheetnamearr,$sheetname,$magage='true');
-    $this->display();        
+    $this->display();     
+}
+
+
+    
 }
 
 

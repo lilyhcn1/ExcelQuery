@@ -264,8 +264,13 @@ if($type=='table'){
 }
 
     
-
-
+//这里没有参数，但可以传入type参数
+// table 就是输出表格
+// tablenoempty 就是输出表格没有空行
+// json 是key为标题，value为值
+// tablejson 行+数据
+// arr 只是返回数据
+// tubiaoxiu,tablejson 是行标题+数据
 // 查询数据结果的json数据，与echoteacherdb的结果是一致的，但显示方式不同
 public function echojson(){
     $arrjson="";
@@ -274,7 +279,9 @@ public function echojson(){
     if(empty($data)){
         $data=I('post.');
     }
-
+if(empty($type)){
+    $type="json";
+}
 
     $result = $this->Auth2Use();
     if(!$result){
@@ -289,16 +296,16 @@ public function echojson(){
     
         if($this->isadmin($con2)){
             unset($con2['rpw']);
-            $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
+            $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
             
             $arrjson=returnmsgjson('0','正常返回json数据。',$r);
         }elseif(!empty($likecon['sheetname']['0'] == 'in')){
-            $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
+            $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
             $arrjson=returnmsgjson('0','正常返回json数据。',$r);
         }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
              $arrjson=returnmsgjson('3','"error, \nsheetname \n  or\n rpw\nis \nempty.\n"; ');
         }else{
-          $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,'json');
+          $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
           $arrjson=returnmsgjson('0','正常返回json数据。',$r);
         }  
             
@@ -766,6 +773,11 @@ $server=empty($_SERVER)?$server:$_SERVER;
 $nowfield=$post['nowfield'];
 $ufilename=$post['ufilename'];
 
+//如果有自定义几个字，那不改文件名
+$aa=strstr($nowfield,C('ZDYUPLOADSYMBOL'));
+if(!$aa){
+    $ufilename="";
+}
 
     $result = $this->Auth2Use();
     $returnfileuploadarr=savefile($ufilename);

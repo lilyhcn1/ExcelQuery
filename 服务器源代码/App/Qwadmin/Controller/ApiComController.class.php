@@ -29,15 +29,17 @@ public function index(){
 public function tiplist($echojson="true"){
     $db=M(C('EXCELSECRETSHEET'));
     $querycon=$this->consafe(I('get.'));
-    
-// pr($querycon,'$queryconfds23');    
+        // addlog(json_encode($sheetnamearr),'$sheetnamearr');    
+
     
     if(!empty($querycon['name'])){
-        $sheetnamearr=$db->where($querycon)->distinct(true)->field('name')->order('id')->select();
+        $sheetnamearr=$db->where($querycon)->distinct(true)->field('name')->order('id asc')->select();
+
         $tipliststr=twoarraytostr ($sheetnamearr,'name');
     }else{
         $tipliststr=",";
     }
+
 
 //返回code等
     $r['code']='200';                     //200代表正常

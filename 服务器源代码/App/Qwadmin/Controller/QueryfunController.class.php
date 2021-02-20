@@ -482,9 +482,11 @@ if(!empty($thisuser['user'])){
     $con['id']=$id;
     // $con['sheetname']=$sheetname;
     $t=$db->where($con)->find();
-    $edtime=$t['data1'];
-    // // pr1($edtime,'$edtime');
-    // // pr1($edtime+C('EDITTIME'),'$edtime+C');
+// pr($id,'id');    
+// pr($t,'id_data');
+    $edtime=$t['t'];
+    // pr($edtime,'$edtime');
+    // pr($edtime+C('EDITTIME'),'$edtime+C');
     if($edtime){
         if(time() > $edtime+C('EDITTIME')){
             $this->error("错误q101，此单元格修改时间超时，请登陆后修改！~",U("index/index"));
@@ -752,6 +754,7 @@ return false;
 // 是否是时间或日期
 function isdateortime($v){
 $keystr=mb_substr($v,-2,2,"UTF-8");    
+$keystr=$v;
 // // pr1($keystr,'keystr');
     $f1=strstr($keystr,'时间 ');
     $f2=strstr($keystr,'日期 ');
@@ -868,7 +871,7 @@ public function LastInputs($sheetname="古村落"){
 // // pr1('$limitnum',$limitnum);
 
 
-        $datalistonearr=$db->where($querycon)->Field($fieldstr)->order('id asc')->limit($limitnum)->distinct()->select();
+        $datalistonearr=$db->where($querycon)->Field($fieldstr)->order('t desc,id desc')->limit($limitnum)->distinct()->select();
         // // pr1($datalistonearr);
         // $datalistonearr=delemptyfield($datalistonearr);
         // // pr1($datalistonearr);
