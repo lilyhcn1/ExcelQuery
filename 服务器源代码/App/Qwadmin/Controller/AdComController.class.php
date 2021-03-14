@@ -17,7 +17,7 @@ define("LILYCOM",     "Com");  //统一写com用的
 namespace Qwadmin\Controller;
 use Qwadmin\Controller\ComController;
 class AdComController extends ComController{    
- 
+  
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
         header("Location: $url");
@@ -67,7 +67,7 @@ $db=M(C('EXCELSECRETSHEET'));
 }
 
     $datalistonearr=R('Queryfun/LastInputs',array($sheetname));
-    // $datalistonearr[0]=["天台","临海"];
+
 
     $this->assign('fillingarr',$fillingarr);
     $this->assign('paraarr',$paraarr);
@@ -76,10 +76,7 @@ $db=M(C('EXCELSECRETSHEET'));
     $this->assign('titlearr',$titlearr);
     $this->assign('datalistonearr',$datalistonearr);
     $this->assign('mynavline',R('Queryfun/mynavline',array($sheetname,$id,$this->USER)));
-    $this->display();           
-    // }else{
-    //     $this->error("错误，未登陆。",U("index/index"));
-    // }
+    $this->display("Ad/addedit");           
 
 }
 

@@ -84,16 +84,17 @@ $ordstr=$ordstr." ".$isasc;
     // $sheetcon['sheetname']=$con2['sheetname'];
     // $queryfirst=$db->where($sheetcon)->order('id')->find(); 
     // $queryfirst=$db->where($con2)->where($likecon)->order('id')->find(); 
-    $sheetname=empty($con2['sheetname'])?C('MLSHEETNAME'):$con2['sheetname'];
+    // $sheetname=empty($con2['sheetname'])?C('MLSHEETNAME'):$con2['sheetname'];
+    $sheetname=R('Queryfun/getsheetname',array($con2,$likecon));
     $queryfirst=R('Queryfun/findfirstline',array($sheetname,true));
-    // pr1($queryfirst);
+    // pr($sheetname,'sheetname');
     $queryfirst=delemptyfield($queryfirst);
 
 
 // 1. 先把所有的字段都计算出来，除了wrpw
     $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
     $field=$Model->query("select COLUMN_NAME from information_schema.COLUMNS where table_name ='".C('DB_PREFIX').$dbsheetname."' and table_schema = '".C('DB_NAME')."';");
-// pr1($field,'$field221');    
+// pr($field,'$field221');    
     $t1[]='wrpw';
     $field=array_column($field,'column_name');
     $field=array_diff($field,$t1);
@@ -115,9 +116,12 @@ $ordstr=$ordstr." ".$isasc;
         }else{
             $todel=explode(',',C('NOTFIELDSTR'));
         }
-//  pr($con2,'$con2l323');       
-// pr($todel,'todel323');
-        $field=array_diff($field,$todel);        
+// pr($todel);
+    // pr($todel);
+        // pr($field);
+        $field=array_diff($field,$todel);      
+    // pr($field);
+    // pr($queryfirst,'$queryfirst');
 // 4. field中删除字段   
     foreach($field as $fkey=>$fvalue){ 
         if(!empty($queryfirst[$fvalue])){
@@ -125,9 +129,9 @@ $ordstr=$ordstr." ".$isasc;
         }
     } 
     $field=$newfieldarr;
-        
+// pr($field);        
     }
-
+// pr($field,'$field');
 
 
 
@@ -139,7 +143,10 @@ $ordstr=$ordstr." ".$isasc;
 unset($con2['field']);
 unset($con2['notfield']);
 $fieldstr=implode($field,',');
-// pr1($fieldstr,'$fieldstr');
+if(!empty($fieldaddstr) && !empty($fieldstr)){
+    $fieldstr=$fieldstr.$fieldaddstr;
+}
+// pr($fieldstr,'$fieldstr');
 
 // 这里可能有问题，，，，，，，，，，，，，，，，，，，，，，，，，，
     if(empty($con2['id'])){
@@ -316,12 +323,8 @@ echo $arrjson;
 
 }
 
-// 查询数据结果的json数据，与echoteacherdb的结果是一致的，但显示方式不同
-// 数组的不同输出方式
-// twotable 双列
-// kyevalue 按键值对进行输出
-// texttable 按固定长度输出
-// 默认是只输出一个数据，适合已合成语句的情况。
+//只输出第一行
+// type 参数  twotable为第一行两列输出,text 为第一行第一列输出
 public function echoline1($type="twotable"){
 $data=I('get.');
 $url='http://'.$_SERVER['SERVER_NAME'].U("echojson","conall=".$data['conall']);
@@ -337,13 +340,9 @@ echo $out;
 
 
 
-// 查询数据结果的json数据，与echoteacherdb的结果是一致的，但显示方式不同
-// 数组的不同输出方式
-// twotable 双列
-// kyevalue 按键值对进行输出
-// texttable 按固定长度输出
-// 默认是只输出一个数据，适合已合成语句的情况。
-public function echolist($type="twotable",$num="6"){
+//只输出第一列
+// type 参数  twotable为第一行两列输出,text 为第一行第一列输出
+public function echolist($type="twotablenokey",$num="6"){
 $data=I('get.');
 $url='http://'.$_SERVER['SERVER_NAME'].U("echojson","conall=".$data['conall']);
 $data1 =curlurl($url);
@@ -351,9 +350,12 @@ $dataarr1=json_decode($data1,"false");
 for ($i = 0; $i < $num; $i++) {
     $firstarrs[$i]=$dataarr1['arr'][$i];
 }
-pr($firstarrs);
-$arr=array_column($firstarrs,"标题");
-// pr($firstarr,'$firstarr');
+
+if(isset($firstarrs[0])){
+    $key=key($firstarrs[0]);
+    $arr=array_column($firstarrs,$key);
+}
+
 $out=echojsonalltypes($arr,$type);
 echo $out;
     
@@ -958,13 +960,25 @@ $con23['sheetname']=$sheetname;
 $num23=$db->where($con23)->count();$num23=$num23-1;
 $result.="。 【".$sheetname."】现有".$num23."条数据。";
 $phoneurl=U('Ad/addedit',"sheetname=".$sheetname,"",true);
-$recurl=U('Rwxy/echoteacherdbnep',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl11=U('Rwxy/echoteacherdbnep',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl12=U('Rwxy/echojson',"type=json&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl13=U('Rwxy/echojson',"type=tablejson&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl14=U('Rwxy/echolist',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl15=U('Rwxy/echoline1',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl16=U('Rwxy/echoline1',"type=text&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+
 $queryurl=U('Vi/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 $phonemodify=U('Ud/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
 
 
 $phoneurl2=U('AdCom/addedit',"sheetname=".$sheetname,"",true);
-$recurl2=U('RwxyCom/echoteacherdbnep',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl21=U('RwxyCom/echoteacherdbnep',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl22=U('RwxyCom/echojson',"type=json&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl23=U('RwxyCom/echojson',"type=tablejson&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl24=U('RwxyCom/echolist',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl25=U('RwxyCom/echoline1',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl26=U('RwxyCom/echoline1',"type=text&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+
 $queryurl2=U('ViCom/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 $phonemodify2=U('UdCom/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
 // $queryurl=U(getcomstr('Vi').'/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
@@ -972,14 +986,26 @@ $phonemodify2=U('UdCom/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",tru
 $urls=
 "<hr><hr>"
     // ."<hr>"."<a href=\"".$phoneurl."\">".$phoneurl."</a>"
-    ."<hr>填表的短网址为<hr>"."<a href=\"".shorturl($phoneurl)."\">".shorturl($phoneurl)."</a>"
+    // ."<hr>填表的网址为<hr>"."<a href=\"".shorturl($phoneurl)."\">".shorturl($phoneurl)."</a>"
+    ."<hr>填表的网址为<hr>"."<a href=\"".$phoneurl."\">".$phoneurl."</a>"
     ."<hr><br>-------------以下为保密区，请注意保密。-----------------------------------<br>"
-    ."<hr>"."<a href=\"".$recurl."\">"."您的所有数据网址为（请保密）"."</a>"
+    ."<hr>"."<a title='所有数据输出' href=\"".$recurl11."\">"."您的所有数据网址为（请保密）"."</a>"."|"
+    ."<a title='键值对方式输出' href=\"".$recurl12."\">"." 格式二"."</a>"
+    ."<a title='表格行json，图表秀' href=\"".$recurl13."\">"." 格式三"."</a>"
+    ."<a title='只第一列输出' href=\"".$recurl14."\">"." 格式四"."</a>"
+    ."<a title='只第一行输出' href=\"".$recurl15."\">"." 格式五"."</a>"
+    ."<a title='只第一个值输出' href=\"".$recurl16."\">"." 格式六"."</a>"
     ."<hr>"."<a href=\"".$queryurl."\">"."您的免密码查询网址为（请保密）"."</a>"
     ."<hr>"."<a href=\"".$phonemodify."\">"."您的在线修改网址为（请保密）"."</a>"
     ."<hr><br>-------------以下网址必须先登陆才能访问，请注意保密。-----------------------------------<br>"
     ."<hr>"."<a href=\"".$phoneurl2."\">"."您的在线填表网址为"."</a>"
-    ."<hr>"."<a href=\"".$recurl2."\">"."您的所有数据网址为（请保密）"."</a>"
+    ."<hr>"."<a title='所有数据输出' href=\"".$recurl21."\">"."您的所有数据网址为（请保密）"."</a>"."|"
+    ."<a title='键值对方式输出' href=\"".$recurl22."\">"." 格式二"."</a>"
+    ."<a title='表格行json，图表秀' href=\"".$recurl23."\">"." 格式三"."</a>"
+    ."<a title='只第一列输出' href=\"".$recurl24."\">"." 格式四"."</a>"
+    ."<a title='只第一行输出' href=\"".$recurl25."\">"." 格式五"."</a>"
+    ."<a title='只第一个值输出' href=\"".$recurl26."\">"." 格式六"."</a>"
+    
     ."<hr>"."<a href=\"".$queryurl2."\">"."您的免密码查询网址为（请保密）"."</a>"
     ."<hr>"."<a href=\"".$phonemodify2."\">"."您的在线修改网址为（请保密）"."</a>"    
    

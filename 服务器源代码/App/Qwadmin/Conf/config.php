@@ -43,10 +43,11 @@ return array(
                     application/pdf,
                     aplication/zip,
                     aplication/mp4,
+                    aplication/txt,
                     aplication/rar
                     
                     ", //准备弃用
-    'EXTS'=>  "  jpeg,jpg,jpeg,png,pjpeg,gif,bmp,pdf,zip,rar,doc,docx,xls,xlsx,xlsm,mp4,ppt,pptx,iso
+    'EXTS'=>  "  jpeg,jpg,jpeg,png,pjpeg,gif,bmp,pdf,zip,rar,doc,docx,xls,xlsx,xlsm,mp4,ppt,pptx,iso,txt
                     ",      
     'PHOTOEXTS'  =>"jpeg,jpg,jpeg,png,pjpeg,gif,bmp",
     'ZDYUPLOAD'  =>"true",   //自定义上传时不改文件名，怕有危险，弄个开关

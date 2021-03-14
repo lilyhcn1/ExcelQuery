@@ -199,7 +199,18 @@ return $arrnew;
         return $arr;
     }
 
-
+// 获取sheetname，多条件就取第一个值
+public function getsheetname($con2="",$likecon=""){
+if(isset($con2['sheetname'])){
+    return $con2['sheetname'];
+}elseif(isset($likecon['sheetname'][1])){
+    $sheetnamearr=explode(",",$likecon['sheetname'][1]);
+    if(isset($sheetnamearr[0])){
+        return  $sheetnamearr[0];
+    }
+}
+return C('MLSHEETNAME');
+}
 
 // 查出数据表名为sheetname,的第一行，返回一维数组
 public function findfirstline($sheetname,$forall=false){

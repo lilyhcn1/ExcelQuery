@@ -17,7 +17,7 @@ define("LILYCOM",     "");
 use Common\Controller\BaseController;
 use Think\Controller;
 class ApiController extends BaseController{    
-    
+   
 //开始代码    
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
@@ -57,7 +57,7 @@ return returnhttpjson($r,$echojson);
 */
 public function searchdata($echojson="true",$type="search"){
 $con2=$this->consafe(I('get.'));
-
+// pr($con2,'con2');
 $todelall=explode(',',C('NOTFIELDSTR'));        
 $idsheet=explode(",","id,sheetname");
 $ttt=array_diff($todelall,$idsheet);
@@ -84,7 +84,7 @@ emptyexit($r['code']);
 
 //查询结果返回
 $sheets_list=twoarray2onearr($t,'sheetname');
-// pr('1111111111111');
+// pr($sheets_list,'$sheets_list');
 foreach($sheets_list as $k0=>$sheetname){
     $sttwoarr=twoarrayfindval($t,'sheetname',$sheetname);
     $r['res'][$k0]['sheetname']=$sheetname;

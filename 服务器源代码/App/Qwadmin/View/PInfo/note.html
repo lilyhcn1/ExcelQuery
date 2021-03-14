@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>note</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<div class="main-container" id="main-container">
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+							<h7 style="float:right" >老黄牛每日一记</h7>
+							<!--<hr>-->
+									<form class="form-horizontal" action="{:U('examupdate')}" method="post">
+									    
+               <input type="hidden" name="id" id="id"  value= "<?php  echo $examarr['id']; ?>"  readonly>       
+                <input  type="hidden"  name="familiarity" id="familiarity"  value= "1"  >    
+               
+
+
+             <div class="form-group">
+                 <h2 align="center">   {$examarr[$key['标题']]} </h2>
+             </div>
+  
+ <button type="button" class="showanswer btn btn-primary btn btn-default btn-block">显示答案</button>
+    
+             
+             <hr>
+<div class="form-group col-xs-12">             
+    <div class="col-xs-6">
+     <button type="button"   id="post1" class="btn btn-primary btn-danger btn btn-block">不需知道</button>    
+    </div>             
+    <div class="col-xs-6">
+     <button type="button"  id="post3" class="btn btn-primary  btn-info btn btn-block">正常 * 1.05</button>
+    </div>             
+</div>
+<hr>
+
+
+
+<div class="form-group col-xs-12">    
+    <div class="col-xs-6">
+     <button type="button" id="post2"  class="btn btn-primary  btn-success btn btn-block">不熟悉 * 0.8</button>  
+    </div>             
+    <div class="col-xs-6">
+     <button type="button"  id="post4" class="btn btn-primary  btn-warning btn btn-block">很熟悉 * 1.2</button>
+    </div>             
+</div>
+
+
+            <div class="form-group col-xs-12">
+                 <!--<h2>   {$examarr[$key['内容']]} </h2>-->
+                 <p class="content">
+                        █████████████ <br>
+                        █████████████ <br>   
+                        █████████████ <br>   
+                        █████████████ <br>
+                 </p>
+                 
+             </div>   
+
+									
+
+								</form>
+								
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+
+					
+					
+					
+						</div><!-- /.row -->
+
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		</div><!-- /.main-container -->
+
+
+<script>
+var ct ="<?php echo returnmsg($examarr[$key['内容']],"h5")?>"
+console.log(ct)
+$(document).ready(function(){
+  $(".showanswer").click(function(){
+    //   $("#familiarity").val(2);
+    $(".content").html(ct);
+
+  });    
+    
+    
+    
+    
+  $("#post1").click(function(){
+    $("#familiarity").val(-1);
+    $("form").submit()
+  });
+
+  $("#post2").click(function(){
+    $("#familiarity").val(0.8);
+    $("form").submit()
+  });
+  
+   $("#post3").click(function(){
+    $("#familiarity").val(1.05);
+    $("form").submit()
+  });
+  
+  $("#post4").click(function(){
+    $("#familiarity").val(1.2);
+    $("form").submit()
+  });
+  
+  
+  
+});
+</script>
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+
+
+
+
+	</body>
+</html>

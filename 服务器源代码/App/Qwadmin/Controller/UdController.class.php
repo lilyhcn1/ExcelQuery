@@ -153,7 +153,7 @@ if($sheetnamearrcount==1){
     header("Location: $url");    
 }else{
     $this->echosheet($sheetnamearr,$sheetname,$magage='true');
-    $this->display();     
+    $this->display("Ud/sheetindex");     
 }
 
 
@@ -194,7 +194,7 @@ $sheetnamearr=$db->where($querycon)->distinct(true)->field('sheetname')->order('
 // pr1($sheetnamearr);
     $this->echosheet($sheetnamearr,$sheetname,$magage='false');
     
-    $this->display();        
+    $this->display("Ud/mysheet");        
 }
 
 
@@ -337,4 +337,3 @@ public function echosheet($sheetnamearr,$sheetname,$magage='true'){
 
 // 结尾处
 }
-

@@ -20,7 +20,8 @@ use Qwadmin\Controller\ComController;
 class ViComController extends ComController{    
 
 public function index(){
-    $url=U($Think.CONTROLLER_NAME."/uniquerydata");
+    $url=U($Think.CONTROLLER_NAME."/pindex");
+        // $url=U($Think.CONTROLLER_NAME."/uniquerydata");
         header("Location: $url");
 }
 
@@ -68,7 +69,7 @@ $this->assign("postpage",U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname"));
 
 
 
-$this->display();
+$this->display("Vi/pindex");
 
 
 }
@@ -80,30 +81,41 @@ $this->display();
 
 public function uniquerydata(){
 // 列表部分都一样
-$rr=R('Api'.LILYCOM.'/pindex','false');
-$sheetarr=$rr['sheets']['sheetarr'];
-$this->assign("sheetarr",$sheetarr);
-$rr=R("Api".LILYCOM."/searchdata",array('false'));
-// pr1($rr);
-$this->assign("res",$rr['res']);
-// pr($rr,'rr');
+$pp=R('Api'.LILYCOM.'/pindex','false');
+$sheetarr=$pp['sheets']['sheetarr'];
+$getarr=I('get.');
+$name=I('get.name');
+$sheetname=I('get.sheetname');
 
-$rrnum=count($rr['res']);
-if($rrnum==1 && $rr['res'][0]['sheetlistnum']==1){
-    $id=$rr['res'][0]['data'][0]['id'];
-    $url=U("Vi".LILYCOM."/echoiddata?id=$id");
-    header("Location: $url");
+    $rr=R("Api".LILYCOM."/searchdata",array('false'));
+// pr($res);
+    $rrnum=count($rr['res']);
+    if($rrnum==1 && $rr['res'][0]['sheetlistnum']==1){
+        $id=$rr['res'][0]['data'][0]['id'];
+        $url=U("Vi".LILYCOM."/echoiddata?id=$id");
+        header("Location: $url");
+    }
+    
+    $rr1=R("Api".LILYCOM.'/tiplist',array('false'));
+    $tipliststr=$rr1['tipliststr'];
+    $this->assign("tiplistarr",explode(",",$tipliststr));
+// pr($name,'name');
+// pr($sheetname,'$sheetname');
+// pr(!empty($name) || !empty($sheetname),'非空计算');
+if(!empty($getarr)){
+    
+    // pr("",'有关键词');
+    // pr($rr);
+    $this->assign("res",$rr['res']);    
+}else{
+    $this->assign("sheetarr",$sheetarr);
+    // pr('','没有关键词');    
     
 }
-
-$rr1=R("Api".LILYCOM.'/tiplist',array('false'));
-$tipliststr=$rr1['tipliststr'];
-$this->assign("tiplistarr",explode(",",$tipliststr));
-
-
+ 
 $sheetname=I('get.sheetname');
 $this->assign("postpage",U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname"));
-$this->display();
+$this->display("Vi/uniquerydata");
 
 
 }

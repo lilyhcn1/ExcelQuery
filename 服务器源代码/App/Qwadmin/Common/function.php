@@ -1677,15 +1677,15 @@ $temp1='<div class="col-md-6 col-sm-6 col-xs-6" >
    <div class="table"  >
     <table class="table">
      <tbody>
-       <tr>';
+       <tr style="">';
     $i=0;
 foreach ($arr as $key=>$value) {  
     $i++;
     if($i%2==1){
           if($keyout=="true"){
-              $temp2.="<td style='padding:3px 5px'>".$key."</td>";}
+              $temp2.="<td style='padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;'>".$key."</td>";}
               $temp2.="
-              <td style='padding:3px 5px'>$value</td></tr>";
+              <td style='padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;'>$value</td></tr>";
     }
 }
 $temp3='</tbody>
@@ -1705,9 +1705,9 @@ foreach ($arr as $key=>$value) {
     $i++;
     if($i%2==0){
           if($keyout=="true"){
-              $temp2.="<td style='padding:3px 5px'>".$key."</td>";}
+              $temp2.="<td style='padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;'>".$key."</td>";}
               $temp2.="
-              <td style='padding:3px 5px'>$value</td></tr>";
+              <td style='padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;'>$value</td></tr>";
     }
 }
 $temp3='</tbody>
@@ -2192,6 +2192,9 @@ switch ($type) {
     case 'twotable':
         return h5html("",h5twotable($arr),"empty");
         break;
+    case 'twotablenokey':
+        return h5html("",h5twotable($arr,'false'),"empty");
+        break;        
     case 'twotabletext':
         return h5twotable($arr);
         break;        
