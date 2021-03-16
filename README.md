@@ -7,24 +7,22 @@
 
 | 应用类型       | 重要性   | 应用名                                                       |
 | -------------- | -------- | ------------------------------------------------------------ |
-| 安装及安全优化 | 必学     | [前期安装](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=前期安装) |
-| 表格共享       | 必学     | [Excel网络共享](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=Excel网络共享) |
-| 表格共享       | 必学     | [多条件查询](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=多条件查询) |
-| 通用查询       | 建议学会 | [教师通讯录、学生信息查询](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=教师通讯录、学生信息查询) |
-| 安装及安全优化 | 建议学会 | [自建服务器系统（旧）](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=自建服务器系统（旧）) |
-| 数据整理       | 建议学会 | [数据、文件台帐化管理](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=数据、文件台帐化管理) |
-| 表格共享       |          | [猎头跟进系统](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=猎头跟进系统) |
-| 万能表单       |          | [万能表单查询](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=万能表单查询) |
-| 万能表单       |          | [古村落调研实时资料录入](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=古村落调研实时资料录入) |
-| 通用查询       |          | [千万级数据查询](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=千万级数据查询) |
-| 表格共享       |          | [多表汇总](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=多表汇总) |
-| 表格共享       |          | [多条件查询（旧版 ）](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=多条件查询（旧版 ）) |
-| 安装及安全优化 |          | [系统配置的安全优化](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=系统配置的安全优化) |
-| 安装及安全优化 |          | [虚拟局域网的构建n2n](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=虚拟局域网的构建n2n) |
-| 安装及安全优化 |          | [老毛子路由器异地组网](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=老毛子路由器异地组网) |
-| 通用查询       |          | [权限管理](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata.html?d3=权限管理) |
-
-
+| 安装及安全优化 | 必学     | [前期安装](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=前期安装) |
+| 表格共享       | 必学     | [Excel网络共享](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=Excel网络共享) |
+| 表格共享       | 必学     | [多条件查询](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=多条件查询) |
+| 通用查询       | 建议学会 | [教师通讯录、学生信息查询](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=教师通讯录、学生信息查询) |
+| 安装及安全优化 | 建议学会 | [自建服务器系统（旧）](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=自建服务器系统（旧）) |
+| 数据整理       | 建议学会 | [数据、文件台帐化管理](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=数据、文件台帐化管理) |
+| 表格共享       |          | [猎头跟进系统](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=猎头跟进系统) |
+| 万能表单       |          | [万能表单查询](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=万能表单查询) |
+| 万能表单       |          | [古村落调研实时资料录入](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=古村落调研实时资料录入) |
+| 通用查询       |          | [千万级数据查询](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=千万级数据查询) |
+| 表格共享       |          | [多表汇总](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=多表汇总) |
+| 表格共享       |          | [多条件查询（旧版 ）](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=多条件查询（旧版 ）) |
+| 安装及安全优化 |          | [系统配置的安全优化](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=系统配置的安全优化) |
+| 安装及安全优化 |          | [虚拟局域网的构建n2n](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=虚拟局域网的构建n2n) |
+| 安装及安全优化 |          | [老毛子路由器异地组网](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=老毛子路由器异地组网) |
+| 通用查询       |          | [权限管理](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=权限管理) |
 
 
 

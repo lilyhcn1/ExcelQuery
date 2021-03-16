@@ -107,12 +107,10 @@ if(!empty($getarr)){
     // pr("",'有关键词');
     // pr($rr);
     $this->assign("res",$rr['res']);    
-}else{
-    $this->assign("sheetarr",$sheetarr);
-    // pr('','没有关键词');    
-    
 }
- 
+    
+
+$this->assign("sheetarr",$sheetarr);
 $sheetname=I('get.sheetname');
 $this->assign("postpage",U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname"));
 $this->display("Vi/uniquerydata");
@@ -236,4 +234,3 @@ function querypersoninfo(){
 
 // 结尾处
 }
-
