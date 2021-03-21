@@ -198,11 +198,17 @@ return $arrnew;
         }
         return $arr;
     }
-
 // 获取sheetname，多条件就取第一个值
 public function getsheetname($con2="",$likecon=""){
+$db=M(C('EXCELSECRETSHEET'));
 if(isset($con2['sheetname'])){
     return $con2['sheetname'];
+}elseif(isset($con2['id'])){
+    $con3['id']=$con2['id'];
+    $arr=$db->where($con3)->find();
+    if(!empty($arr)){
+        return $arr['sheetname'];
+    }
 }elseif(isset($likecon['sheetname'][1])){
     $sheetnamearr=explode(",",$likecon['sheetname'][1]);
     if(isset($sheetnamearr[0])){
@@ -211,7 +217,6 @@ if(isset($con2['sheetname'])){
 }
 return C('MLSHEETNAME');
 }
-
 // 查出数据表名为sheetname,的第一行，返回一维数组
 public function findfirstline($sheetname,$forall=false){
     $db=M(C('EXCELSECRETSHEET'));

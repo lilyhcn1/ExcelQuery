@@ -17,7 +17,7 @@ define("LILYCOM",     "");
 use Common\Controller\BaseController;
 use Think\Controller;
 class ApiController extends BaseController{    
-   
+
 //开始代码    
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
@@ -63,11 +63,12 @@ $idsheet=explode(",","id,sheetname");
 $ttt=array_diff($todelall,$idsheet);
 // pr($ttt);
 $con2['notfield']=implode(",",$ttt);
-// pr($con2,'con2dfwfef');
-// pr($t,"2er2er23");
+
+
+
 $t=R('Rwxy'.LILYCOM.'/echounisheetuni',array(C('EXCELSECRETSHEET'),$con2,'','arr'));
 
-// pr($t,'t2222');
+
 
 $r['code']='200';   
 $r['getarr']=I('get.');
@@ -108,9 +109,12 @@ foreach($sheets_list as $k0=>$sheetname){
     $r['res'][$k0]['sheetfieldname']=addarray($titlearr);
     $r['res'][$k0]['sheetfieldkey']=addarray($titlearr,"key");
     $r['res'][$k0]['sheetfieldlen']=count($r['res'][$k0]['sheetfieldname']); 
- 
+    
+    // pr($sttwoarr,'$sttwoarr122');
     
     $temp=twoarraygetcols($sttwoarr,"id,".implode(",",$r['res'][$k0]['sheetfieldkey']));
+    $temp=$this->d1d2tojson($temp);
+    // pr($this->d1d2tojson($temp),'d1d2tojson');
     $temp2=$this->resaddurl($temp);
     $r['res'][$k0]['data']=$temp2;
         
@@ -125,6 +129,15 @@ return returnhttpjson($r,$echojson);
 */
 public function detail($echojson="true"){
     $r=$this->searchdata("false","detail");
+    // pr($r['res']);
+    // pr(count($r['res']));
+    // pr(count($r['res'][0]['sheetlistnum']));
+    // pr($r['res'][0]);
+    if(count($r['res'])>1 || count($r['res'][0]['sheetlistnum']) >2){
+        unset($r);
+        $r['code']='203';
+    }
+    
     return returnhttpjson($r,$echojson);
 } 
 
@@ -157,7 +170,11 @@ public function pindex($echojson="true"){
 //返回code等
     $r['code']='200';                     //200代表正常
     $r['getarr']=I('get.');
-    $r['sheets']['sheetlistnum']=count($sheetnamearr);             //数据表的数量
+    $sheetlistnum=count($sheetnamearr)-1;
+    if($sheetlistnum==-1){
+        $sheetlistnum=0;
+    }
+    $r['sheets']['sheetlistnum']=$sheetlistnum;             //数据表的数量
 foreach($sheetnamearr as $k=>$v){
     $sheetname=$v['sheetname'];
     $r['sheets']['sheetarr'][$k]['sheetname']=$sheetname;        //数据表名
@@ -259,7 +276,23 @@ if(!empty($con['name'])){
 
 
 
-
+//新增url
+public function d1d2tojson($twoarr){
+       
+    foreach($twoarr as $key=>$arr){
+        // $con2['id']=$arr['id'];
+        $titlearr=R('Queryfun/gettitlearr',array("",$arr['id']));
+        $queryfirst=delemptyfield($titlearr);
+        foreach ($arr as $k=>$v) {
+            if($k=="id"){
+                $sttwoarr[$key][$k]=$arr[$k];
+            }else{
+                $sttwoarr[$key][$queryfirst[$k]]=$arr[$k];
+            }
+        }
+    }
+    return $sttwoarr;
+}
 
 
 

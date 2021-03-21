@@ -158,7 +158,7 @@ if(!empty($fieldaddstr) && !empty($fieldstr)){
     }
 
     if(!empty($con2['id'])){
-        $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
+        $query=$db->where($con2)->field($fieldstr)->order($ordstr)->select(); 
     }elseif(empty($likecon)){
         $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
     }else{
