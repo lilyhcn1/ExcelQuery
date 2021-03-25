@@ -156,8 +156,10 @@ if(!empty($fieldaddstr) && !empty($fieldstr)){
             $notfirstline['id']=array('NEQ',0);
         }
     }
-
+// pr($con2,'$con23232');
+// pr($con2,'$con23232');
     if(!empty($con2['id'])){
+        // unset($con2['id']);
         $query=$db->where($con2)->field($fieldstr)->order($ordstr)->select(); 
     }elseif(empty($likecon)){
         $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
@@ -166,7 +168,7 @@ if(!empty($fieldaddstr) && !empty($fieldstr)){
     }
 
 
-
+// pr($query,'$query432432');
     // 插入字段行
     $fieldline['0']=$field;
 // pr1($field,'$field');

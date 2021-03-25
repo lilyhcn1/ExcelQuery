@@ -67,7 +67,7 @@ $con2['notfield']=implode(",",$ttt);
 
 
 $t=R('Rwxy'.LILYCOM.'/echounisheetuni',array(C('EXCELSECRETSHEET'),$con2,'','arr'));
-
+// pr($t,'tt');
 
 
 $r['code']='200';   
@@ -108,12 +108,21 @@ foreach($sheets_list as $k0=>$sheetname){
     $r['res'][$k0]['sheetfieldlen']=0; 
     $r['res'][$k0]['sheetfieldname']=addarray($titlearr);
     $r['res'][$k0]['sheetfieldkey']=addarray($titlearr,"key");
+    $titlearrkeystr=implode(addarray($titlearr,"key"),",");
+    // pr($titlearrkeystr,'keys');
+    
+    $temp22=R("Queryfun/idfieldtype",array(I('get.id'),'',$titlearrkeystr));
+    // pr($temp22,'temp22ddd2434');
+    $r['res'][$k0]['sheetfieldtype']=addarray($temp22);
     $r['res'][$k0]['sheetfieldlen']=count($r['res'][$k0]['sheetfieldname']); 
     
     // pr($sttwoarr,'$sttwoarr122');
     
     $temp=twoarraygetcols($sttwoarr,"id,".implode(",",$r['res'][$k0]['sheetfieldkey']));
-    $temp=$this->d1d2tojson($temp);
+    if($echojson=='true'){
+        $temp=$this->d1d2tojson($temp);
+    }
+
     // pr($this->d1d2tojson($temp),'d1d2tojson');
     $temp2=$this->resaddurl($temp);
     $r['res'][$k0]['data']=$temp2;
@@ -129,7 +138,7 @@ return returnhttpjson($r,$echojson);
 */
 public function detail($echojson="true"){
     $r=$this->searchdata("false","detail");
-    // pr($r['res']);
+    // pr($r);
     // pr(count($r['res']));
     // pr(count($r['res'][0]['sheetlistnum']));
     // pr($r['res'][0]);

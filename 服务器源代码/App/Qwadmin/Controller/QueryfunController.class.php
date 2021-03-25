@@ -722,6 +722,52 @@ return $newarr;
 
 
 
+// field字段类型判断
+// pic,url,phone,text,
+function idfieldtype($id='',$thisuser="",$fieldstr=""){
+// // pr1($thisuser);
+if(empty($id)){
+    return '请输入id';
+}else{
+$con2['id']=$id;
+// // pr1($con2);
+
+
+$db=M(C('EXCELSECRETSHEET'));
+
+$fieldstr=empty($fieldstr)?C('FIELDSTR'):$fieldstr;
+$arr=$db->where($con2)->field($fieldstr)->find();    
+// $arr=$db->where($con2)->Field($fieldstr)->finfindfirstlined();  
+// // pr1($arr['sheetname']);
+    // 查出第一行
+    $firstline=R('Queryfun/gettitlearr',array($arr['sheetname'],$id));
+// pr($firstline,'fdsfdsfe343');
+// pr($arr);
+foreach ($arr as $key=> $value) {
+    $fieldtype[$key]="text";
+
+        if(!is_null($firstline[$key])){
+            if($this->isbigimg($value)){//专门图片的处理
+                $fieldtype[$key]="pic";
+            }elseif($this->isdateortime($firstline[$key])){
+                $fieldtype[$key]="dateortime";
+            }elseif($this->isphone($value) ){
+                $fieldtype[$key]="phone";
+            }elseif($this->isurl($value)){
+                $fieldtype[$key]="url";
+            }else{
+                $fieldtype[$key]="text";
+            }
+        }
+    
+}
+return $fieldtype;
+}//存在id的结尾
+
+
+}//函数结尾
+
+
 
 
 // 这是数值

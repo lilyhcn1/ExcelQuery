@@ -18,10 +18,10 @@
 | 万能表单       |          | [古村落调研实时资料录入](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=古村落调研实时资料录入) |
 | 通用查询       |          | [千万级数据查询](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=千万级数据查询) |
 | 表格共享       |          | [多表汇总](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=多表汇总) |
-| 表格共享       |          | [多条件查询_旧版 ](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=多条件查询（旧版 ）) |
+| 表格共享       |          | [多条件查询_旧版 ](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=多条件查询_旧版) |
 | 安装及安全优化 |          | [系统配置的安全优化](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=系统配置的安全优化) |
 | 安装及安全优化 |          | [虚拟局域网的构建n2n](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=虚拟局域网的构建n2n) |
-| 安装及安全优化 |          | [老毛子路由器异地组网](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=老毛子路由器异地组网) |
+| 安装及安全优化 |          | [路由器异地组网](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=路由器异地组网) |
 | 通用查询       |          | [权限管理](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=权限管理) |
 
 
