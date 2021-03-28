@@ -65,9 +65,9 @@ $ttt=array_diff($todelall,$idsheet);
 $con2['notfield']=implode(",",$ttt);
 
 
-
+// pr($con2,'con24324');
 $t=R('Rwxy'.LILYCOM.'/echounisheetuni',array(C('EXCELSECRETSHEET'),$con2,'','arr'));
-// pr($t,'tt');
+// pr($t,'tt3424');
 
 
 $r['code']='200';   
@@ -299,6 +299,7 @@ public function d1d2tojson($twoarr){
                 $sttwoarr[$key][$queryfirst[$k]]=$arr[$k];
             }
         }
+        $sttwoarr[$key]=delemptyfield($sttwoarr[$key]);
     }
     return $sttwoarr;
 }
@@ -316,4 +317,5 @@ public function resaddurl($sttwoarr){
 
 // 结尾处
 }
+
 

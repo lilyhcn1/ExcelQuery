@@ -753,8 +753,8 @@ foreach ($arr as $key=> $value) {
                 $fieldtype[$key]="dateortime";
             }elseif($this->isphone($value) ){
                 $fieldtype[$key]="phone";
-            }elseif($this->isurl($value)){
-                $fieldtype[$key]="url";
+            // }elseif($this->isurl($value)){
+            //     $fieldtype[$key]="url";
             }else{
                 $fieldtype[$key]="text";
             }

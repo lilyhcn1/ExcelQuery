@@ -65,9 +65,9 @@ $ttt=array_diff($todelall,$idsheet);
 $con2['notfield']=implode(",",$ttt);
 
 
-
+// pr($con2,'con24324');
 $t=R('Rwxy'.LILYCOM.'/echounisheetuni',array(C('EXCELSECRETSHEET'),$con2,'','arr'));
-// pr($t,'tt');
+// pr($t,'tt3424');
 
 
 $r['code']='200';   
@@ -122,12 +122,13 @@ foreach($sheets_list as $k0=>$sheetname){
     if($echojson=='true'){
         $temp=$this->d1d2tojson($temp);
     }
-
+    // $temp=$this->d1d2tojson($temp);
     // pr($this->d1d2tojson($temp),'d1d2tojson');
     $temp2=$this->resaddurl($temp);
     $r['res'][$k0]['data']=$temp2;
         
 }
+// pr($r,'r34');
 return returnhttpjson($r,$echojson);
 }      
 
@@ -299,7 +300,9 @@ public function d1d2tojson($twoarr){
                 $sttwoarr[$key][$queryfirst[$k]]=$arr[$k];
             }
         }
+        $sttwoarr[$key]=delemptyfield($sttwoarr[$key]);
     }
+    
     return $sttwoarr;
 }
 

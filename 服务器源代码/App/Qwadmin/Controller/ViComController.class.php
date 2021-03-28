@@ -65,10 +65,11 @@ $rr=R('Api'.LILYCOM.'/pindex',array('false'));
 $sheetarr=$rr['sheets']['sheetarr'];
 $this->assign("sheetarr",$sheetarr);
 $sheetname=I('get.sheetname');
-$this->assign("postpage",U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname"));
 
-
-
+    $rr1=R("Api".LILYCOM.'/tiplist',array('false'));
+    $tipliststr=$rr1['tipliststr'];
+    $this->assign("tiplistarr",explode(",",$tipliststr));
+$this->assign("postpage",U("Vi".LILYCOM."/uniquerydata"));
 $this->display("Vi/pindex");
 
 
@@ -86,9 +87,14 @@ $sheetarr=$pp['sheets']['sheetarr'];
 $getarr=I('get.');
 $name=I('get.name');
 $sheetname=I('get.sheetname');
+if($sheetname=="" && $name==""){
+    $url=U($Think.CONTROLLER_NAME."/pindex");
+    header("Location: $url");
+}else{
+
 
     $rr=R("Api".LILYCOM."/searchdata",array('false'));
-// pr($res);
+// pr($rr,'rr432423');
     $rrnum=count($rr['res']);
     if($rrnum==1 && $rr['res'][0]['sheetlistnum']==1){
         $id=$rr['res'][0]['data'][0]['id'];
@@ -112,9 +118,10 @@ if(!empty($getarr)){
 
 $this->assign("sheetarr",$sheetarr);
 $sheetname=I('get.sheetname');
-$this->assign("postpage",U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname"));
+$postpage=empty($sheetname)?U("Vi".LILYCOM."/uniquerydata"):U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname");
+$this->assign("postpage",$postpage);
 $this->display("Vi/uniquerydata");
-
+}
 
 }
 
@@ -234,3 +241,6 @@ function querypersoninfo(){
 
 // 结尾处
 }
+
+
+
