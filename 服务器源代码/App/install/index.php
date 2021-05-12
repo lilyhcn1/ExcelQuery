@@ -143,7 +143,7 @@ switch ($_POST['sitetype']){
     // 全公开，不操作任何事
     // 半公开，就删rwxy,ud,及view
     delFile("../Qwadmin/Controller/RwxyController.class.php");    
-    delDirAndFile("../Qwadmin/View/Rwxy");       
+        // delDirAndFile("../Qwadmin/View/Rwxy");       
     // renameFile($oldname,$newname); 
  
     delFile("../Qwadmin/Controller/UdController.class.php");    
@@ -153,26 +153,26 @@ switch ($_POST['sitetype']){
     case 'pub2':
     // 半公开，就删rwxy,ud,及vi
     delFile("../Qwadmin/Controller/RwxyController.class.php");    
-    delDirAndFile("../Qwadmin/View/Rwxy");       
+        // delDirAndFile("../Qwadmin/View/Rwxy");       
     // renameFile($oldname,$newname); 
  
     delFile("../Qwadmin/Controller/UdController.class.php");    
-    delDirAndFile("../Qwadmin/View/Ud");   
+        // delDirAndFile("../Qwadmin/View/Ud");   
     delFile("../Qwadmin/Controller/ViController.class.php");    
-    delDirAndFile("../Qwadmin/View/Vi");       
+        // delDirAndFile("../Qwadmin/View/Vi");       
     break;
     case 'pub3':
     // 全保密，就删rwxy,vi,ud,ad
     delFile("../Qwadmin/Controller/RwxyController.class.php");    
-    delDirAndFile("../Qwadmin/View/Rwxy");       
+        // delDirAndFile("../Qwadmin/View/Rwxy");       
     // renameFile($oldname,$newname); 
  
     delFile("../Qwadmin/Controller/UdController.class.php");    
-    delDirAndFile("../Qwadmin/View/Ud");   
+        // delDirAndFile("../Qwadmin/View/Ud");   
     delFile("../Qwadmin/Controller/ViController.class.php");    
-    delDirAndFile("../Qwadmin/View/Vi");       
+        // delDirAndFile("../Qwadmin/View/Vi");       
     delFile("../Qwadmin/Controller/AdController.class.php");    
-    delDirAndFile("../Qwadmin/View/Ad");           
+        // delDirAndFile("../Qwadmin/View/Ad");           
     break;    
 }
 
