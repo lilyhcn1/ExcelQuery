@@ -23,7 +23,7 @@ class IndexController extends ComController {
     }else{
         $url=U('ViCom/pindex');
     }
-
+		$url=U('ViCom/pindex');
         header("Location: $url");
     }
     public function oldindex(){
