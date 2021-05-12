@@ -244,11 +244,13 @@ switch ($_POST['sitetype']){
 // 			//设置数据库编码
 // 			mysqli_query("SET NAMES 'utf8'"); //,character_set_client=binary,sql_mode='';
 // 			//获取数据库版本信息
-// 			$version = mysqli_get_server_info($conn);
-// 			if ($version < 4.1) {
-// 				alert(0,'连接数版本太低!');
-// 			}
-
+ 			$version = mysqli_get_server_info($conn);
+ 			if ($version < 4.1) {
+ 				alert(0,'连接数版本太低!');
+ 			}
+ 			if ($version > 5.6) {
+ 				alert(0,'连接版本过高，只能使用5.6版本的数据库，建议使用PhpStudy2018。');
+ 			}
 			//选择数据库
 			if (!mysqli_select_db($conn,$dbName)) {
 				//创建数据时同时设置编码

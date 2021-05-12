@@ -17,7 +17,7 @@ return array(
 		//系统powered
 		'powered'=>'Powered by upsir.com',
 		//系统脚部信息
-		'footerInfo'=> 'Copyright © 2012-2013 upsir.com Corporation',
+		'footerInfo'=> 'Copyright © 2019-2021 upsir.com Corporation',
 
 		/* ------站点------ */
 		//数据库文件
@@ -29,11 +29,11 @@ return array(
 		//数据库表前缀
 		'dbPrefix' => 'qw_',
 		//站点名称
-		'siteName' => '通用数据查询系统',
+		'siteName' => '通用查询系统',
 		//站点关键字
-		'siteKeywords' => '通用数据查询系统',
+		'siteKeywords' => '通用查询系统',
 		//站点描述
-		'siteDescription' => '通用数据查询系统',
+		'siteDescription' => '通用查询系统',
 		//附件上传的目录
 		'uploaddir' => 'Uploads',
 		//需要读写权限的目录
