@@ -1,8 +1,0 @@
-rpw是除非session改变的，新的rpw会替换旧的rpw
-api显示正常，admin通用查询显示不正常。
-正式版-修正4 更新App
-
-数据库5.7会出错的解决
-提示下互联网模式会出错，建议用frpc
-
-https://cdn.jsdelivr.net/gh/lilyhcn1/files/execelquery
