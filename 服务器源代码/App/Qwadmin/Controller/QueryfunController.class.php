@@ -681,7 +681,7 @@ if(!is_null($firstline[$key])){
     if($this->isimg($firstline,$key,$value)){//专门图片的处理
 
         $newarr[$firstline[$key]]="<a href=\"".$value."\" class=\"thumbnail\">
-                                        <img src=\"/temp".$value."\">
+                                        <img src=\"".$value."\">
                                     </a>";
     }elseif($this->isbigimg($value)){      //大图的处理
 

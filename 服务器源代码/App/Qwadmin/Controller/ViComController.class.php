@@ -235,7 +235,47 @@ function querypersoninfo(){
 }
 
 
+//通过代码生成
+public function codeindex(){
+    $db=M(C('EXCELSECRETSHEET'));
+    $temp="";
+    $concode['sheetname']="老黄牛首页代码";
+// $concode['d1']="banner";
 
+// $codevalue='参数13参数13参数13
+// ';
+// $aa=utf8_str_replace("参数13",  "111111111111111",$codevalue);
+// pr($aa);
+
+// $codearr=$db->where($concode)->field('d1,d2')->distinct(true)->order('id')->select();
+// pr($codearr);
+$sheetname=I("get.sheetname");
+$con['sheetname']=$sheetname;
+
+$indexarr=$db->where($con)->distinct(true)->order('id')->select();
+// pr($indexarr);
+foreach ($indexarr as $key=>$valarr){
+// pr($key);
+        $concode['d1']=$valarr['d1'];
+        // pr($concode);
+        $codearr=$db->where($concode)->field('d2')->find();
+        // pr($codearr);
+        $codevalue=$codearr["d2"];
+        // echo "原代码：\n".$codevalue;
+        for ($i=1; $i<=50; $i++){
+            $t=$valarr["d".$i];
+            // if(!empty($t)){
+                // echo "-----------".$t;
+                $xs="参数".str_pad($i,2,"0",STR_PAD_LEFT);   
+                $codevalue=utf8_str_replace($xs, $t, $codevalue);
+            // }
+        }
+        // echo "此时代码：\n".$codevalue;
+        $temp=$temp.$codevalue;
+}
+
+echo $temp;
+}
 
 
 

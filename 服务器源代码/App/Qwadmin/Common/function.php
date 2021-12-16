@@ -69,6 +69,40 @@ function returnerror($flag,$text=""){
 
 
 
+	
+/**
+ * @param $str 规定被搜索的字符串
+ * @param $find 规定要查找的值
+ * @param $replace 规定替换的值
+ * @return string 返回替换的结果
+ */
+function utf8_str_replace($find,$replace,$str){
+    # 记录位置
+    $strpos = 0;
+    # 储存替换的字符串
+    $strstr = $str;
+    # $find在$str中查找到的次数
+    $count = mb_substr_count($str,$find,"utf-8");
+    # 遍历替换
+    for ($i=0;$i<$count;$i++){
+        # 获取当前查找到的字符位置
+        $strpos = mb_strpos($strstr,$find,$strpos,"utf-8");
+        # 获取查找的值的长度
+        $chr_len = mb_strlen($find,"utf-8");
+        # 截取字符前面部分
+        $first_str = mb_substr($strstr,0,$strpos,"utf-8");
+        # 截取字符后面部分
+        $last_str = mb_substr($strstr,$strpos+$chr_len);
+        # 拼接字符串
+        $strstr = $first_str.$replace.$last_str;
+        # 计算下次的位置
+        $strpos+=mb_strlen($replace,"utf-8");
+    }
+    return $strstr;
+}
+
+
+
 
 function addlogbak($log,$name=false){
 	$Model = M('log');
@@ -1740,8 +1774,8 @@ return "
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='stylesheet' href='http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css'>  
   <link href='https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
-  <script src='http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js'></script>
-  <script src='http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+  <script src='https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js'></script>
+  <script src='https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 
 
 </head>
@@ -2021,10 +2055,10 @@ $f="<html>
   <title>".$title."</title>
   <meta charset=\"utf-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-  <link rel=\"stylesheet\" href=\"http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css\">  
+  <link rel=\"stylesheet\" href=\"https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css\">  
   <link href=\"https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-  <script src=\"http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js\"></script>
-  <script src=\"http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js\"></script>
+  <script src=\"https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js\"></script>
+  <script src=\"https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js\"></script>
 <style type=\"text/css\">
 .redbold {
 	color: #FF0000;

@@ -968,6 +968,9 @@ $recurl13=U('Rwxy/echojson',"type=tablejson&conall=;数据表名等于".$sheetna
 $recurl14=U('Rwxy/echolist',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
 $recurl15=U('Rwxy/echoline1',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
 $recurl16=U('Rwxy/echoline1',"type=text&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl17=U('Vi/codeindex',"sheetname=".$sheetname,"",true);
+
+
 
 $queryurl=U('Vi/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 $phonemodify=U('Ud/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
@@ -980,6 +983,7 @@ $recurl23=U('RwxyCom/echojson',"type=tablejson&conall=;数据表名等于".$shee
 $recurl24=U('RwxyCom/echolist',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
 $recurl25=U('RwxyCom/echoline1',"conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
 $recurl26=U('RwxyCom/echoline1',"type=text&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl27=U('ViCom/codeindex',"sheetname=".$sheetname,"",true);
 
 $queryurl2=U('ViCom/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 $phonemodify2=U('UdCom/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
@@ -997,6 +1001,7 @@ $urls=
     ."<a title='只第一列输出' href=\"".$recurl14."\">"." 格式四"."</a>"
     ."<a title='只第一行输出' href=\"".$recurl15."\">"." 格式五"."</a>"
     ."<a title='只第一个值输出' href=\"".$recurl16."\">"." 格式六"."</a>"
+    ."<a title='导航' href=\"".$recurl17."\">"." 导航格式"."</a>"
     ."<hr>"."<a href=\"".$queryurl."\">"."您的免密码查询网址为（请保密）"."</a>"
     ."<hr>"."<a href=\"".$phonemodify."\">"."您的在线修改网址为（请保密）"."</a>"
     ."<hr><br>-------------以下网址必须先登陆才能访问，请注意保密。-----------------------------------<br>"
@@ -1007,6 +1012,7 @@ $urls=
     ."<a title='只第一列输出' href=\"".$recurl24."\">"." 格式四"."</a>"
     ."<a title='只第一行输出' href=\"".$recurl25."\">"." 格式五"."</a>"
     ."<a title='只第一个值输出' href=\"".$recurl26."\">"." 格式六"."</a>"
+    ."<a title='导航' href=\"".$recurl27."\">"." 导航格式"."</a>"
     
     ."<hr>"."<a href=\"".$queryurl2."\">"."您的免密码查询网址为（请保密）"."</a>"
     ."<hr>"."<a href=\"".$phonemodify2."\">"."您的在线修改网址为（请保密）"."</a>"    
@@ -1016,40 +1022,6 @@ $result.=$urls;
 $resultweb=h5page('上传结果',$result);
 echo $resultweb;
 
-}
-
-
-public function deldata2add($sheetname,$wrpw,$twoarrexcel) {
-
-$db=M(C('EXCELSECRETSHEET'));
-
-// 密码与先有的一样才行
-$existdatacon['sheetname']=$sheetname;
-$existdata=$db->where($existdatacon)->order('id')->find();
-// pr1($twoarrexcel[2]);
-// pr1("实际密码是".$existdata['2']['wrpw']."输入密码".$wrpw);
-if($existdata['wrpw']==$wrpw || empty($existdata)){
-// 把数据表中的数据删了
-        if(isset($existdata['sheetname']) ){ //第0行数据库字段名，第1行中文字段名
-            $firstupload="暂时这样填";
-            // 第一次上传就删除所有数据
-            if($firstupload){
-                $delcon['sheetname']=$sheetname;
-                $delcon['wrpw']=$wrpw;
-                $db->where($delcon)->delete();                
-            }
-        }else{ $result='sheetname is empty2. or uplosanum';}
-        $result=$this->dbadddata($twoarrexcel);
-    }else{ $result='error,password is wrong, or exist other same sheetname.';} 
-return $result;
-}
-
-
-//   新增数据表，不覆盖原有数据
-public function data2add($sheetname,$wrpw,$twoarrexcel) {
-$twoarrexcel=deltwoarryfirstline($twoarrexcel);
-$result=$this->dbadddata($twoarrexcel);
-return $result;
 }
 
 

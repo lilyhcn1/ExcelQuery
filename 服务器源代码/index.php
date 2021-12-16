@@ -27,6 +27,11 @@ if(!file_exists("./App/install/install.lock")){
     // 引入ThinkPHP入口文件
     require './ThinkPHP/ThinkPHP.php';
     
+    // // 这里是跨域设置，如果想让别人在其它网站引用，请使用
+    // header('Access-Control-Allow-Origin:*');  
+    // header('Access-Control-Allow-Methods:*');  
+    // header('Access-Control-Allow-Headers:x-requested-with,content-type');  
+    
     // 亲^_^ 后面不需要任何代码了 就是如此简单    
 }
 
