@@ -1024,6 +1024,40 @@ echo $resultweb;
 
 }
 
+public function deldata2add($sheetname,$wrpw,$twoarrexcel) {
+
+$db=M(C('EXCELSECRETSHEET'));
+
+// 密码与先有的一样才行
+$existdatacon['sheetname']=$sheetname;
+$existdata=$db->where($existdatacon)->order('id')->find();
+// pr1($twoarrexcel[2]);
+// pr1("实际密码是".$existdata['2']['wrpw']."输入密码".$wrpw);
+if($existdata['wrpw']==$wrpw || empty($existdata)){
+// 把数据表中的数据删了
+        if(isset($existdata['sheetname']) ){ //第0行数据库字段名，第1行中文字段名
+            $firstupload="暂时这样填";
+            // 第一次上传就删除所有数据
+            if($firstupload){
+                $delcon['sheetname']=$sheetname;
+                $delcon['wrpw']=$wrpw;
+                $db->where($delcon)->delete();                
+            }
+        }else{ $result='sheetname is empty2. or uplosanum';}
+        $result=$this->dbadddata($twoarrexcel);
+    }else{ $result='error,password is wrong, or exist other same sheetname.';} 
+return $result;
+}
+
+
+//   新增数据表，不覆盖原有数据
+public function data2add($sheetname,$wrpw,$twoarrexcel) {
+$twoarrexcel=deltwoarryfirstline($twoarrexcel);
+$result=$this->dbadddata($twoarrexcel);
+return $result;
+}
+
+
 
 public function dbadddata($datatwoarr) {
 $db=M(C('EXCELSECRETSHEET'));
