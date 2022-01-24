@@ -46,7 +46,7 @@ public function echoiddata(){
 
 $newarr=R('Api'.LILYCOM.'/data',array($id));
 // pr1($id);
-// pr1($newarr);
+// pr($newarr);
 echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"/\">查询首页</a></h3>";
 
 
@@ -59,17 +59,36 @@ return $echohtml;
     
 }
 
+public function echoiddata2col(){
+
+$newarr=R('Api'.LILYCOM.'/data',array($id));
+// pr1($id);
+// pr($newarr);
+echo "<h3><a href=\"".$_SERVER["HTTP_REFERER"]."\">返回</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."<a href=\"/\">查询首页</a></h3>";
+
+$content=echoarrcontent2col($newarr);
+// echo $content;
+// $echohtml=R('Task/echoarrresult',array($newarr,"信息详情页"));
+$echohtml=h5page("信息详情页",$content);
+echo $echohtml;
+
+// return $echohtml;
+    
+    
+}
+
+
+
 public function pindex(){
 
 $rr=R('Api'.LILYCOM.'/pindex',array('false'));
 $sheetarr=$rr['sheets']['sheetarr'];
 $this->assign("sheetarr",$sheetarr);
 $sheetname=I('get.sheetname');
+$this->assign("postpage",U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname"));
 
-    $rr1=R("Api".LILYCOM.'/tiplist',array('false'));
-    $tipliststr=$rr1['tipliststr'];
-    $this->assign("tiplistarr",explode(",",$tipliststr));
-$this->assign("postpage",U("Vi".LILYCOM."/uniquerydata"));
+
+
 $this->display("Vi/pindex");
 
 
@@ -87,14 +106,9 @@ $sheetarr=$pp['sheets']['sheetarr'];
 $getarr=I('get.');
 $name=I('get.name');
 $sheetname=I('get.sheetname');
-// if($sheetname==""){
-//     $url=U($Think.CONTROLLER_NAME."/pindex");
-//     header("Location: $url");
-// }else{
-
 
     $rr=R("Api".LILYCOM."/searchdata",array('false'));
-// pr($rr,'rr432423');
+// pr($res);
     $rrnum=count($rr['res']);
     if($rrnum==1 && $rr['res'][0]['sheetlistnum']==1){
         $id=$rr['res'][0]['data'][0]['id'];
@@ -118,10 +132,9 @@ if(!empty($getarr)){
 
 $this->assign("sheetarr",$sheetarr);
 $sheetname=I('get.sheetname');
-$postpage=empty($sheetname)?U("Vi".LILYCOM."/uniquerydata"):U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname");
-$this->assign("postpage",$postpage);
+$this->assign("postpage",U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname"));
 $this->display("Vi/uniquerydata");
-// }
+
 
 }
 
@@ -279,8 +292,13 @@ echo $temp;
 
 
 
+
 // 结尾处
 }
+
+
+
+
 
 
 

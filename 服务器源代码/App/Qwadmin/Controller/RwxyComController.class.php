@@ -156,11 +156,9 @@ if(!empty($fieldaddstr) && !empty($fieldstr)){
             $notfirstline['id']=array('NEQ',0);
         }
     }
-// pr($con2,'$con23232');
-// pr($con2,'$con23232');
+
     if(!empty($con2['id'])){
-        // unset($con2['id']);
-        $query=$db->where($con2)->field($fieldstr)->order($ordstr)->select(); 
+        $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
     }elseif(empty($likecon)){
         $query=$db->where($con2)->where($notfirstline)->field($fieldstr)->order($ordstr)->select(); 
     }else{
@@ -168,7 +166,7 @@ if(!empty($fieldaddstr) && !empty($fieldstr)){
     }
 
 
-// pr($query,'$query432432');
+
     // 插入字段行
     $fieldline['0']=$field;
 // pr1($field,'$field');
@@ -219,8 +217,54 @@ if($type=='table'){
             echo    $output="error, \nnothing \nis \nfound3. \n";
         }else{
             echo $output;           
+        }  
+}elseif($type=='openindex'){  //输出为打开文件夹
+
+    if(!empty($queryfirst)){
+        $sheetcon['sheetname']=$queryfirst['sheetname'];
+        $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
+        $firstline['0']=$firstlinearrtemp;
+    // $temp=twoarraymerge($fieldline,$emptyline); 
+
+    if(!empty($firstline)){
+        $temp=twoarraymerge($temp,$firstline);  
+    }
+    $query=twoarraymerge($temp,$query);         
+    }
+
+// pr($query);
+    // // 输出结果
+    $output=$this->simpletable($query,"true"); 
+        if(count($query) < 1){
+            echo    $output="error, \nnothing \nis \nfound3. \n";
+        }else{
+            echo $output;           
         }             
-}elseif($type=='json'){
+}elseif($type=='news'){      //新闻样式输出，写了一半
+    if(!empty($queryfirst)){
+        $sheetcon['sheetname']=$queryfirst['sheetname'];
+        $rpw=$queryfirst['rpw'];
+        $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
+        $firstline['0']=$firstlinearrtemp;
+    // $temp=twoarraymerge($fieldline,$emptyline); 
+
+    if(!empty($firstline)){
+        $temp=twoarraymerge($temp,$firstline);  
+    }
+    $query=twoarraymerge($temp,$query);         
+    }
+
+// pr($query);
+// pr($sheetname);
+// pr($rpw);
+    // // 输出结果
+    $output=$this->simpletable($query,"news",$sheetname,$rpw); 
+        if(count($query) < 1){
+            echo    $output="error, \nnothing \nis \nfound3. \n";
+        }else{
+            echo $output;           
+        }      
+}elseif($type=='datajson'){    //只输出键值对的json，没有标题行
     if(!empty($queryfirst)){
         foreach($query as $kq=>$kv){
           foreach($kv as $k=>$v){
@@ -229,10 +273,24 @@ if($type=='table'){
         }
     }
     // pr1($newquery);    
+    return    $newquery;
+}elseif($type=='json'){      //输出键值对的json
+    if(!empty($queryfirst)){
+        $sheetcon['sheetname']=$queryfirst['sheetname'];
+        $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
+        $firstline['0']=$firstlinearrtemp;
+    if(!empty($firstline)){
+        $temp=twoarraymerge($temp,$firstline);  
+    }
+    $query=twoarraymerge($temp,$query);         
+    }
+        foreach($query as $kq=>$kv){
+          foreach($kv as $k=>$v){
+              $newquery[$kq][$queryfirst[$k]]=$kv[$k];
+          }             
+        }
     
-
-    
-    
+    // pr($newquery);    
     return    $newquery;
 }elseif($type=='tablejson'){
     if(!empty($queryfirst)){
@@ -287,6 +345,7 @@ public function echojson(){
     $arrjson="";
     $data=I('get.');
     $type=I('get.type');
+    $sheetname=I('get.sheetname');
     if(empty($data)){
         $data=I('post.');
     }
@@ -313,11 +372,13 @@ if(empty($type)){
         }elseif(!empty($likecon['sheetname']['0'] == 'in')){
             $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
             $arrjson=returnmsgjson('0','正常返回json数据。',$r);
+            
         }elseif(empty($con2['sheetname']) || empty($con2['rpw'])){
              $arrjson=returnmsgjson('3','"error, \nsheetname \n  or\n rpw\nis \nempty.\n"; ');
         }else{
           $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
-          $arrjson=returnmsgjson('0','正常返回json数据。',$r);
+            $arr["sheetname"]=$con2['sheetname'];
+          $arrjson=returnmsgjson('0','正常返回json数据。',$r,$arr);
         }  
             
     }
@@ -611,54 +672,107 @@ return $output;
 
 
 // 二维数组输出简单的表格
-public function simpletable($data){
+public function simpletable($data,$openindex="false",$sheetname="",$rpw=""){
      $temp1='
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"> 
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <meta name="viewport" content="initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body><table class="table table-striped"> <tbody>';
+<body><table class="table table-striped" style=""> <tbody>';
      $firstline='';
 foreach ($data as $rows2) {
     foreach ($rows2 as $key2=>$value2) {
         $firstline=$firstline.'<th>'.$key2.'</b></th>';
     }
         if(!empty($firstline)){
-            $firstline='<tr>'.$firstline.'</tr>';
+            $firstline='<tr >'.$firstline.'</tr>';
             break;
         }
     
 } 
+// pr($firstline);
 
 $textsymbol=C('TEXTSYMBOL');
     // pr1($firstline);
-$temp2='';   
-foreach ($data as $rows) {
-    $temp22='';
-    $n=0;
-    foreach ($rows as $key=>$value) {
-        // $n++;
-        // pr1($n);
-        $tablestyle=($n % 2 == 0)?'class="success"':'class="warning"';
-        if($this->isnum($value) ){
-            $temp22=$temp22
-          .'<td>'.$textsymbol.$value.'</td>';       
 
-        }else{
-            $temp22=$temp22
-        //   .'<td '.$tablestyle.' >'.$value.'</td>';   
-          .'<td >'.$value.'</td>';   
+$temp2='';
+if($openindex=="true"){
+    foreach ($data as $rows) {
+        $temp22='';
+        $n=0;
+        foreach ($rows as $key=>$value) {
+            // $n++;
+            
+            $tablestyle=($n % 2 == 0)?'class="success"':'class="warning"';
+            if($this->isnum($value) ){
+                $temp22=$temp22
+              .'<td style=\'padding:1px 5px;white-space: nowrap; overflow: hidden; font-size:14px;\'>'.$textsymbol.$value.'</td>';       
+            }else{
+                $temp22=$temp22
+              .'<td style=\'padding:1px 5px;white-space: nowrap; overflow: hidden; font-size:14px;\'>'."<a href='cmd://".$value."'>".$value.'</a></td>';       
+            }
         }
-       
+        $temp2=$temp2.'<tr>'.returnmsg($temp22,'excel').'</tr>';
     }
-    $temp2=$temp2.'<tr>'.returnmsg($temp22,'excel').'</tr>';
-}      
+}if($openindex=="news"){
+       
+        $n=0;    
+        foreach ($data as $rows) {
+        $temp22='';
+        foreach ($rows as $key=>$value) {
+
+             
+            $tablestyle=($n % 2 == 0)?'class="success"':'class="warning"';
+            if($n==0){
+                    $temp22=$temp22
+                  .'<td style=\'padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;\'>'."<a href='/index.php/Qwadmin/Vi/uniquerydata/?sheetname=".$sheetname."' target='_blank'>".$value.'</a></td>'; 
+            }else{
+                if($this->isnum($value) ){
+                    $temp22=$temp22
+                  .'<td style=\'padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;\'>'.$textsymbol.$value.'</td>';       
+                }else{
+                    $temp22=$temp22
+                  .'<td style=\'padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;\'>'."<a href='/index.php/Qwadmin/Vi/uniquerydata/sheetname/".$sheetname."/rpw/".$rpw."/name/".$value."' target='_blank'>".cutSubstr($value,20).'</a></td>';    
+                //   pr($value);
+                }
+            }
+            // pr($n."<br>".$temp22);
+        }
+        $temp2=$temp2.'<tr>'.returnmsg($temp22,'excel').'</tr>';
+        $n++;
+    }
+}else{
+
+    foreach ($data as $rows) {
+        $temp22='';
+        $n=0;
+        foreach ($rows as $key=>$value) {
+            $n++;
+            // pr1($n);
+            $tablestyle=($n % 2 == 0)?'class="success"':'class="warning"';
+            if($this->isnum($value) ){
+                $temp22=$temp22
+              .'<td style=\'padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;\'>'.$textsymbol.$value.'</td>';       
+            }else{
+                $temp22=$temp22
+              .'<td style=\'padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;\'>'.$value.'</td>';   
+            }
+        }
+        $temp2=$temp2.'<tr>'.returnmsg($temp22,'excel').'</tr>';
+    }
+}
+
+
+
+
+
+
 // pr1($temp3,'temp3');
 // $temp3=returnmsg($temp3,'excel');
 // pr1($temp3,'temp3');
@@ -674,6 +788,31 @@ $temp=$temp1.$temp2.$temp3;
 
 
 return  $temp;    
+}
+
+
+// 二维数组输出简单的表格
+public function onlytable($data,$openindex="false",$sheetname=""){
+$n=0;
+$temp2="";
+    foreach ($data as  $rows) {
+    $temp22='';
+    if($n==0){
+        foreach ($rows as $key2=>$value2) {
+            $temp22.="<th><a href='/index.php/Qwadmin/Vi/uniquerydata/sheetname/".$sheetname."'>".$value2.'</th>';
+        }
+    $temp1="<thead ><tr>".$temp22."</tr></thead ";
+    }else{
+       foreach($rows as $key=>$value) {
+                    $temp22=$temp22
+                  ."<td ><a href='/index.php/Qwadmin/Vi/uniquerydata/sheetname/".$sheetname."/name/".$value."'>".$value.'</a></td>';  
+       }
+       $temp2.="<tr>".$temp22."</tr>";
+    }
+    
+    $n++;    
+    }    
+    return $temp1."<tbody>".$temp2."</tbody>";
 }
 
 
@@ -1024,6 +1163,7 @@ echo $resultweb;
 
 }
 
+
 public function deldata2add($sheetname,$wrpw,$twoarrexcel) {
 
 $db=M(C('EXCELSECRETSHEET'));
@@ -1056,7 +1196,6 @@ $twoarrexcel=deltwoarryfirstline($twoarrexcel);
 $result=$this->dbadddata($twoarrexcel);
 return $result;
 }
-
 
 
 public function dbadddata($datatwoarr) {

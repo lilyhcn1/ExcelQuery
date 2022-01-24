@@ -198,17 +198,11 @@ return $arrnew;
         }
         return $arr;
     }
+
 // 获取sheetname，多条件就取第一个值
 public function getsheetname($con2="",$likecon=""){
-$db=M(C('EXCELSECRETSHEET'));
 if(isset($con2['sheetname'])){
     return $con2['sheetname'];
-}elseif(isset($con2['id'])){
-    $con3['id']=$con2['id'];
-    $arr=$db->where($con3)->find();
-    if(!empty($arr)){
-        return $arr['sheetname'];
-    }
 }elseif(isset($likecon['sheetname'][1])){
     $sheetnamearr=explode(",",$likecon['sheetname'][1]);
     if(isset($sheetnamearr[0])){
@@ -217,6 +211,7 @@ if(isset($con2['sheetname'])){
 }
 return C('MLSHEETNAME');
 }
+
 // 查出数据表名为sheetname,的第一行，返回一维数组
 public function findfirstline($sheetname,$forall=false){
     $db=M(C('EXCELSECRETSHEET'));
@@ -681,7 +676,7 @@ if(!is_null($firstline[$key])){
     if($this->isimg($firstline,$key,$value)){//专门图片的处理
 
         $newarr[$firstline[$key]]="<a href=\"".$value."\" class=\"thumbnail\">
-                                        <img src=\"".$value."\">
+                                        <img src=\"/temp".$value."\">
                                     </a>";
     }elseif($this->isbigimg($value)){      //大图的处理
 
@@ -693,6 +688,8 @@ if(!is_null($firstline[$key])){
  
     }elseif($this->isphone($value) ){
         $newarr[$firstline[$key]]="<a href=\"tel:$value\">".'<span class="glyphicon glyphicon-earphone"></span>'.$value."</a>";  
+    }elseif($this->ispdf($value)){
+        $newarr[$firstline[$key]]="<embed src=\"".$value."\" width=\"100%\" height=\"900px\"/>";
     }elseif($this->isurl($value)){
         $newarr[$firstline[$key]]=autolink($value);
     }elseif(mb_strlen($value)<C('AILINKLEN')){
@@ -720,52 +717,6 @@ if(!is_null($firstline[$key])){
 return $newarr;
 }
 
-
-
-// field字段类型判断
-// pic,url,phone,text,
-function idfieldtype($id='',$thisuser="",$fieldstr=""){
-// // pr1($thisuser);
-if(empty($id)){
-    return '请输入id';
-}else{
-$con2['id']=$id;
-// // pr1($con2);
-
-
-$db=M(C('EXCELSECRETSHEET'));
-
-$fieldstr=empty($fieldstr)?C('FIELDSTR'):$fieldstr;
-$arr=$db->where($con2)->field($fieldstr)->find();    
-// $arr=$db->where($con2)->Field($fieldstr)->finfindfirstlined();  
-// // pr1($arr['sheetname']);
-    // 查出第一行
-    $firstline=R('Queryfun/gettitlearr',array($arr['sheetname'],$id));
-// pr($firstline,'fdsfdsfe343');
-// pr($arr);
-foreach ($arr as $key=> $value) {
-    $fieldtype[$key]="text";
-
-        if(!is_null($firstline[$key])){
-            if($this->isbigimg($value)){//专门图片的处理
-                $fieldtype[$key]="pic";
-            }elseif($this->isdateortime($firstline[$key])){
-                $fieldtype[$key]="dateortime";
-            }elseif($this->isphone($value) ){
-                $fieldtype[$key]="phone";
-            // }elseif($this->isurl($value)){
-            //     $fieldtype[$key]="url";
-            }else{
-                $fieldtype[$key]="text";
-            }
-        }
-    
-}
-return $fieldtype;
-}//存在id的结尾
-
-
-}//函数结尾
 
 
 
@@ -812,6 +763,16 @@ if(in_array($ext,explode(",",C('PHOTOEXTS')))){
 return false;
 
 }
+// 是否是pdf
+public function ispdf($value){
+$ext=substr($value, strrpos($value, '.')+1);
+if($ext=="pdf"){
+    return true;
+}
+return false;
+
+}
+
 
 // 是否是时间或日期
 function isdateortime($v){

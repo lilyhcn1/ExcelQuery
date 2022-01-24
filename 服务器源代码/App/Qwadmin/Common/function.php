@@ -36,12 +36,14 @@ function emptyexit($r){
 }
 
 //error code 
-function returnmsgjson($code='-1',$info='未知错误',$arr=''){
+function returnmsgjson($code='-1',$info='未知错误',$arr,$r = array("sheetname"=>"ddd")){
+
     $r['code']=$code;
     $r['info']=$info;
     if(!empty($arr)){
         $r['arr']=$arr;
     }
+
     return json_encode($r);
 }
 //显示http json或数组
@@ -65,40 +67,6 @@ function returnerror($flag,$text=""){
     if($flag==2){
         return $text;
     }
-}
-
-
-
-	
-/**
- * @param $str 规定被搜索的字符串
- * @param $find 规定要查找的值
- * @param $replace 规定替换的值
- * @return string 返回替换的结果
- */
-function utf8_str_replace($find,$replace,$str){
-    # 记录位置
-    $strpos = 0;
-    # 储存替换的字符串
-    $strstr = $str;
-    # $find在$str中查找到的次数
-    $count = mb_substr_count($str,$find,"utf-8");
-    # 遍历替换
-    for ($i=0;$i<$count;$i++){
-        # 获取当前查找到的字符位置
-        $strpos = mb_strpos($strstr,$find,$strpos,"utf-8");
-        # 获取查找的值的长度
-        $chr_len = mb_strlen($find,"utf-8");
-        # 截取字符前面部分
-        $first_str = mb_substr($strstr,0,$strpos,"utf-8");
-        # 截取字符后面部分
-        $last_str = mb_substr($strstr,$strpos+$chr_len);
-        # 拼接字符串
-        $strstr = $first_str.$replace.$last_str;
-        # 计算下次的位置
-        $strpos+=mb_strlen($replace,"utf-8");
-    }
-    return $strstr;
 }
 
 
@@ -732,7 +700,7 @@ if($flag=="val"){
 
 
 //一维向量转成字符串
-function arraytostr_newline ($array,$separator=":",$maxlen='10'){
+function arraytostr_newline($array,$separator=":",$maxlen='10'){
     $str='';
     foreach($array as $k=>$v){
         if(!empty(trim($v))){
@@ -851,7 +819,7 @@ foreach ($arr as $k1=>$v1) {
 <table class="table  table-bordered" style="table-layout:fixed;">
 	<tbody>';     
     foreach ($arr as $key => $value) {
-     $content.='		<tr><td  align="center" width="30%">'.$key.'</td><td style="word-wrap:break-word;" align="left" valign="middle" width="70%">'.$value.
+     $content.='		<tr><td  align="center" width="30%">'.$key.'</td><td style="word-wrap:break-word;" align="left" valign="middle" width="70%">'.returnmsg($value,"h5").
 		'</td></tr>';
     } 
    $content.='
@@ -864,7 +832,43 @@ return $content;
  
 }
 
+// 就是按两列一行的方式输出
+function echoarrcontent2col($arr){
+    $i=0;
 
+foreach ($arr as $k1=>$v1) {
+    if(empty($v1)){
+        unset($arr[$k1]);
+    }
+}
+ if(empty($content)){
+ $content='
+ 	
+<table class="table  table-bordered" style="table-layout:fixed;">
+	<tbody>';     
+    foreach ($arr as $key => $value) {
+        $i++;
+        // pr($i);
+        // pr($value);
+        if($i % 2==1){
+            $t="";
+            $t='<td  style="align:left; vertical-align:"middle";" width="30%">'.returnmsg($value,"h5").'</td>';
+        }else{
+            $t.='<td style="word-wrap:break-word;" align="left" valign="middle" width="70%">'.returnmsg($value,"h5").'</td>';
+            $t="<tr>".$t."</tr>\n";
+            $content.=$t;
+        }
+     
+    } 
+   $content.='
+
+	</tbody>
+</table>'; 
+ }
+
+return $content;
+ 
+}
 
 
 // 就是输出二级数组的表格形式	
@@ -1711,15 +1715,15 @@ $temp1='<div class="col-md-6 col-sm-6 col-xs-6" >
    <div class="table"  >
     <table class="table">
      <tbody>
-       <tr style="">';
+       <tr>';
     $i=0;
 foreach ($arr as $key=>$value) {  
     $i++;
     if($i%2==1){
           if($keyout=="true"){
-              $temp2.="<td style='padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;'>".$key."</td>";}
+              $temp2.="<td style='padding:3px 5px'>".$key."</td>";}
               $temp2.="
-              <td style='padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;'>$value</td></tr>";
+              <td style='padding:3px 5px'>$value</td></tr>";
     }
 }
 $temp3='</tbody>
@@ -1739,9 +1743,9 @@ foreach ($arr as $key=>$value) {
     $i++;
     if($i%2==0){
           if($keyout=="true"){
-              $temp2.="<td style='padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;'>".$key."</td>";}
+              $temp2.="<td style='padding:3px 5px'>".$key."</td>";}
               $temp2.="
-              <td style='padding:3px 5px;white-space: nowrap; overflow: hidden; font-size:14px;'>$value</td></tr>";
+              <td style='padding:3px 5px'>$value</td></tr>";
     }
 }
 $temp3='</tbody>
@@ -1774,8 +1778,8 @@ return "
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='stylesheet' href='http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css'>  
   <link href='https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
-  <script src='https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js'></script>
-  <script src='https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+  <script src='http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js'></script>
+  <script src='http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 
 
 </head>
@@ -2055,10 +2059,10 @@ $f="<html>
   <title>".$title."</title>
   <meta charset=\"utf-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-  <link rel=\"stylesheet\" href=\"https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css\">  
+  <link rel=\"stylesheet\" href=\"http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css\">  
   <link href=\"https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-  <script src=\"https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js\"></script>
-  <script src=\"https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js\"></script>
+  <script src=\"http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js\"></script>
+  <script src=\"http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js\"></script>
 <style type=\"text/css\">
 .redbold {
 	color: #FF0000;
@@ -2338,7 +2342,50 @@ function IpAuth($ip, $config){
 	    return $str;
 	}
 	
-	
+/**
+ * @param $str 规定被搜索的字符串
+ * @param $find 规定要查找的值
+ * @param $replace 规定替换的值
+ * @return string 返回替换的结果
+ */
+function utf8_str_replace($find,$replace,$str){
+    # 记录位置
+    $strpos = 0;
+    # 储存替换的字符串
+    $strstr = $str;
+    # $find在$str中查找到的次数
+    $count = mb_substr_count($str,$find,"utf-8");
+    # 遍历替换
+    for ($i=0;$i<$count;$i++){
+        # 获取当前查找到的字符位置
+        $strpos = mb_strpos($strstr,$find,$strpos,"utf-8");
+        # 获取查找的值的长度
+        $chr_len = mb_strlen($find,"utf-8");
+        # 截取字符前面部分
+        $first_str = mb_substr($strstr,0,$strpos,"utf-8");
+        # 截取字符后面部分
+        $last_str = mb_substr($strstr,$strpos+$chr_len);
+        # 拼接字符串
+        $strstr = $first_str.$replace.$last_str;
+        # 计算下次的位置
+        $strpos+=mb_strlen($replace,"utf-8");
+    }
+    return $strstr;
+}
+
+
+/**
+* php显示指定长度的字符串，超出长度以省略号(...)填补尾部显示，截短 截取
+* @ str 字符串
+* @ len 指定长度 
+**/
+function cutSubstr($str,$len=20){
+ if (mb_strlen($str)>$len) {
+    $str=mb_substr($str,0,$len) . '...';
+ }
+ return $str;
+}
+
 	function returnmsg($ReplyMsg,$type){
 	
 	    if($type=='qq'){
