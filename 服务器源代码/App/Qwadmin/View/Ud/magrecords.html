@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+		<title>{$Think.CONFIG.title}</title>
 
 		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
 		<meta name="description" content="{$Think.CONFIG.description}" />
@@ -61,7 +61,7 @@
     						    <div class="space-4"></div>
 								<div class="table-responsive">
     									<form id="form" method="post" action="{:U('del')}">
-    									<table class=" data table table-striped table-bordered">
+    									<table class=" data table table-striped table-bordered" style="width: 100%;">
     										<thead>
     										<tr>
         										<volist name="queryarr" id="val" offset="0" length='1'>

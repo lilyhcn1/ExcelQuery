@@ -52,7 +52,7 @@ return array(
     'PHOTOEXTS'  =>"jpeg,jpg,jpeg,png,pjpeg,gif,bmp",
     'ZDYUPLOAD'  =>"true",   //自定义上传时不改文件名，怕有危险，弄个开关
     'ZDYUPLOADSYMBOL'  =>"自定义",   //自定义时的标志符
-    'PAGESIZE'=>    '15',
+    'PAGESIZE'=>    '999',   //分页时大小
     'PICWIDTH'=>     '150',
     'TIPNUM' => '9999', //自动提示的数目，越大越卡
     'FORCEQUERYNUM' => '99999', //查询结果为空时，是否

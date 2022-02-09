@@ -13,8 +13,8 @@ define("LILYCOM",     "");  //统一写com用的
 // use Think\Controller;
 // class RwxyController extends BaseController{
 
-use Qwadmin\Controller\ComController;
-class RwxyComController extends ComController{    
+// use Qwadmin\Controller\ComController;
+// class RwxyController extends ComController{    
 
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");
