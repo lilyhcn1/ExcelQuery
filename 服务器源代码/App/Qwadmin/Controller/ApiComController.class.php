@@ -122,13 +122,12 @@ foreach($sheets_list as $k0=>$sheetname){
     if($echojson=='true'){
         $temp=$this->d1d2tojson($temp);
     }
-    // $temp=$this->d1d2tojson($temp);
+
     // pr($this->d1d2tojson($temp),'d1d2tojson');
     $temp2=$this->resaddurl($temp);
     $r['res'][$k0]['data']=$temp2;
         
 }
-// pr($r,'r34');
 return returnhttpjson($r,$echojson);
 }      
 
@@ -302,7 +301,6 @@ public function d1d2tojson($twoarr){
         }
         $sttwoarr[$key]=delemptyfield($sttwoarr[$key]);
     }
-    
     return $sttwoarr;
 }
 
@@ -319,4 +317,6 @@ public function resaddurl($sttwoarr){
 
 // 结尾处
 }
+
+
 

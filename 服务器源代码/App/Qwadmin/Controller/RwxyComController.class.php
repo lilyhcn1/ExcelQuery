@@ -8,13 +8,15 @@
 *
 **/
 namespace Qwadmin\Controller;
-define("LILYCOM",     "");  //统一写com用的
+//com带权限
+define("LILYCOM",     "Com");
+use Qwadmin\Controller\ComController;
+class RwxyComController extends ComController{    
+// // //无权限
+// define("LILYCOM",     "");
 // use Common\Controller\BaseController;
 // use Think\Controller;
-// class RwxyController extends BaseController{
-
-// use Qwadmin\Controller\ComController;
-// class RwxyController extends ComController{    
+// class RwxyController extends BaseController{    
 
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/uniquerydata");

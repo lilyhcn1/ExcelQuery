@@ -19,6 +19,10 @@ namespace Qwadmin\Controller;
 use Qwadmin\Controller\ComController;
 class ViComController extends ComController{    
 
+//namespace Qwadmin\Controller;
+//use Qwadmin\Controller\ComController;
+//class ViComController extends ComController{    
+
 public function index(){
     $url=U($Think.CONTROLLER_NAME."/pindex");
         // $url=U($Think.CONTROLLER_NAME."/uniquerydata");
@@ -295,6 +299,7 @@ echo $temp;
 
 // 结尾处
 }
+
 
 
 
