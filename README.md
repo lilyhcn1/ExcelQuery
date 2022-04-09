@@ -5,6 +5,8 @@
 案例网址：
 [通用查询的案例](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel/sheetname/%E9%80%9A%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B)下表大多有教程，欢迎加入QQ群：539844557。
 
+现在可以与gitee自动同步
+
 | 应用类型       | 重要性   | 应用名                                                       |
 | -------------- | -------- | ------------------------------------------------------------ |
 | 安装及安全优化 | 必学     | [前期安装](http://hk.r34.cc/index.php/Qwadmin/Vi/uniquerydata/rpw/excel?d3=前期安装) |
