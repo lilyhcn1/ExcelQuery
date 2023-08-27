@@ -1,0 +1,8 @@
+vi中新增一个
+vicom也要新增
+
+function也新增一个函数
+queryfun 新增函数
+
+
+----20220124

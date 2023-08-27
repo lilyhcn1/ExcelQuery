@@ -349,6 +349,7 @@ public function echojson(){
     if(empty($data)){
         $data=I('post.');
     }
+    $data=arrurldecode($data);
 if(empty($type)){
     $type="json";
 }
@@ -400,6 +401,22 @@ $out=echojsonalltypes($firstarr,$type);
 echo $out;
     
 }
+
+//只输出第一行
+// type 参数  只输出两列
+public function echocol2($type="twotable"){
+$data=I('get.');
+$url='http://'.$_SERVER['SERVER_NAME'].U("echojson","conall=".$data['conall']);
+// pr($url,"url");
+$data1 =curlurl($url);
+$dataarr1=json_decode($data1,"false");
+pr($dataarr1);
+// pr($firstarr,'$firstarr');
+$out=echojsonalltypes($dataarr1);
+echo $out;
+    
+}
+
 
 
 
@@ -720,7 +737,7 @@ if($openindex=="true"){
         }
         $temp2=$temp2.'<tr>'.returnmsg($temp22,'excel').'</tr>';
     }
-}if($openindex=="news"){
+}elseif($openindex=="news"){
        
         $n=0;    
         foreach ($data as $rows) {

@@ -2125,7 +2125,14 @@ $UserAgent = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; .NET CLR
     
 }
 
-
+// 修改了网上的模板，原来是url会变，我现在是post会变
+function  arrurldecode($arr){
+    foreach ($arr as $k=>$v) {
+        $arr[$k]=urldecode($v);
+        // code...
+    }
+    return $arr;
+}
 
 
 // 修改了网上的模板，原来是url会变，我现在是post会变
@@ -2513,6 +2520,9 @@ function compute_fieldstr($notfieldstr='',$fieldstr=''){
 // pr($fieldstr,'222');        
     return $fieldstr;
 }
+
+
+
 
 
 // 区域划分
