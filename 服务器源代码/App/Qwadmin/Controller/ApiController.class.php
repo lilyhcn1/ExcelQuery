@@ -58,6 +58,8 @@ return returnhttpjson($r,$echojson);
 public function searchdata($echojson="true",$type="search"){
 $con2=$this->consafe(I('get.'));
 // pr($con2,'con2');
+$con2=arrurldecode($con2);
+// pr($con2,'con222222');
 $todelall=explode(',',C('NOTFIELDSTR'));        
 $idsheet=explode(",","id,sheetname");
 $ttt=array_diff($todelall,$idsheet);
@@ -260,6 +262,8 @@ public function login(){
 //把get中的条件进行检查，并把name的查询转变为模糊查询。
 //添加rpw条件
 public function consafe($con,$type='likecon'){
+    // pr($con);
+    // $con=arrurldecode($arr);
     $con=delemptyfield($con);
 
 if(!empty($con['name'])){
@@ -278,6 +282,7 @@ if(!empty($con['name'])){
     }
 
     $con['rpw']=array("in",returncomma($rpw));    
+    // pr($con);
     return delemptyfield($con);
 
 }

@@ -41,7 +41,7 @@ class QueryfunController extends BaseController {
 // pr1($data,'data34234');        
         foreach ($data as $key => $value) {
             if (!empty($value)) {
-                // $con2[$key]=characettouft8(unicode_to_utf8($value));
+                //$con2[$key]=characettouft8(unicode_to_utf8($value));
                 $con2[$key] = $value;
                 //修正
             }

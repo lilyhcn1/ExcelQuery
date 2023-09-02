@@ -103,12 +103,14 @@ public function uniquerydata(){
 // 列表部分都一样
 $pp=R('Api'.LILYCOM.'/pindex','false');
 $sheetarr=$pp['sheets']['sheetarr'];
-$getarr=I('get.');
-$name=I('get.name');
-$sheetname=I('get.sheetname');
+$getarr=arrurldecode(I('get.'));
+// pr($getarr,"getarr");
+$name=arrurldecode(I('get.name'));
+// pr($name,"name");
+$sheetname=arrurldecode(I('get.sheetname'));
 
     $rr=R("Api".LILYCOM."/searchdata",array('false'));
-// pr($res);
+// pr($$rr);
     $rrnum=count($rr['res']);
     if($rrnum==1 && $rr['res'][0]['sheetlistnum']==1){
         $id=$rr['res'][0]['data'][0]['id'];

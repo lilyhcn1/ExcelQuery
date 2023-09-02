@@ -2127,11 +2127,25 @@ $UserAgent = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; .NET CLR
 
 // 修改了网上的模板，原来是url会变，我现在是post会变
 function  arrurldecode($arr){
-    foreach ($arr as $k=>$v) {
-        $arr[$k]=urldecode($v);
-        // code...
+    // pr($arr,"--------开始------------");
+    if(is_string($arr)){
+        $r= urldecode($arr);
+    }else{
+        foreach ($arr as $k=>$v) {
+            if(is_string($v)){
+                $arr[$k]=urldecode($v);
+            }else{
+                foreach ($v as $k2=>$v2) {
+                    $arr[$k][$k2]=urldecode($v2);
+                }
+            }
+            // code...
+        }
+        $r= $arr;        
     }
-    return $arr;
+    // pr($r,"--------结束------------");
+    return $r;
+
 }
 
 
