@@ -254,6 +254,30 @@ function T($template='',$layer=''){
     return $baseUrl.($theme?$theme.'/':'').$file.C('TMPL_TEMPLATE_SUFFIX');
 }
 
+
+// 修改了网上的模板，原来是url会变，我现在是post会变
+function  arrurldecodett($arr){
+    // pr($arr,"--------开始------------");
+    if(is_string($arr)){
+        $r= urldecode($arr);
+    }else{
+        foreach ($arr as $k=>$v) {
+            if(is_string($v)){
+                $arr[$k]=urldecode($v);
+            }else{
+                foreach ($v as $k2=>$v2) {
+                    $arr[$k][$k2]=urldecode($v2);
+                }
+            }
+            // code...
+        }
+        $r= $arr;        
+    }
+    // pr($r,"--------结束------------");
+    return $r;
+
+}
+
 /**
  * 获取输入参数 支持过滤和默认值
  * 使用方法:
@@ -268,6 +292,10 @@ function T($template='',$layer=''){
  * @param mixed $datas 要获取的额外数据源
  * @return mixed
  */
+ 
+ 
+ 
+ 
 function I($name,$default='',$filter=null,$datas=null) {
 	static $_PUT	=	null;
 	if(strpos($name,'/')){ // 指定修饰符
@@ -400,7 +428,7 @@ function I($name,$default='',$filter=null,$datas=null) {
         $data       =    isset($default)?$default:null;
     }
     is_array($data) && array_walk_recursive($data,'think_filter');
-    return $data;
+    return arrurldecodett($data);
 }
 
 function array_map_recursive($filter, $data) {
