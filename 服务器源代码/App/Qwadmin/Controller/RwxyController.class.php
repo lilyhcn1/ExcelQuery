@@ -292,6 +292,26 @@ if($type=='table'){
     
     // pr($newquery);    
     return    $newquery;
+}elseif($type=='lastlinejson'){      //输出键值对的json
+    if(!empty($queryfirst)){
+        $sheetcon['sheetname']=$queryfirst['sheetname'];
+        $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
+        $firstline['0']=$firstlinearrtemp;
+    if(!empty($firstline)){
+        $temp=twoarraymerge($temp,$firstline);  
+    }
+    $query22[0] = $query[count($query) - 1];
+    
+    // $query=twoarraymerge($temp,$query1);         
+    }
+        foreach($query22 as $kq=>$kv){
+          foreach($kv as $k=>$v){
+              $newquery[$kq][$queryfirst[$k]]=$kv[$k];
+          }             
+        }
+    
+    // pr($newquery);    
+    return    $newquery;
 }elseif($type=='tablejson'){
     if(!empty($queryfirst)){
         $sheetcon['sheetname']=$queryfirst['sheetname'];
@@ -319,8 +339,37 @@ if($type=='table'){
     }
     $query=twoarraymerge($temp,$query);         
     }
-    // pr1($query);
+    // pr($query);
     return    $query;
+}elseif($type=='titleval'){
+    if(!empty($queryfirst)){
+        $sheetcon['sheetname']=$queryfirst['sheetname'];
+        $firstlinearrtemp=$db->where($sheetcon)->field($fieldstr)->order('id')->find();
+        $firstline['0']=$firstlinearrtemp;
+        // pr1($firstlinearrtemp,'$firstlinearrtemp');
+    // $temp=twoarraymerge($fieldline,$emptyline); 
+
+    if(!empty($firstline)){
+        $temp=twoarraymerge($temp,$firstline);  
+    }
+    $query=twoarraymerge($temp,$query);         
+    }
+    // pr($query);
+    pr("-------------");
+    //  $query2=array_values($query);
+    $arr2=[];
+    foreach ($query as $k1=> $valarr){
+        $temp=[];
+        // pr($valarr);
+        foreach ($valarr as $k2=> $val){
+            $temp[]=$val;
+            
+        }
+        $arr2[$k1]=$temp;
+    }
+    //  $query2 = array_map('array_values', $query);
+     pr($arr2);
+    return    $arr2;
 }elseif($type=='arr'){
 // pr($query,'111');
     return    $query;
@@ -340,6 +389,7 @@ if($type=='table'){
 // tablejson 行+数据
 // arr 只是返回数据
 // tubiaoxiu,tablejson 是行标题+数据
+// datajson 只有json数据，没有其它
 // 查询数据结果的json数据，与echoteacherdb的结果是一致的，但显示方式不同
 public function echojson(){
     $arrjson="";
@@ -370,6 +420,17 @@ if(empty($type)){
             $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
             
             $arrjson=returnmsgjson('0','正常返回json数据。',$r);
+        }elseif($type == 'datajson'){
+            $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
+            echo json_encode($r);
+        }elseif($type == 'titleval'){
+            $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
+            echo json_encode($r);
+         
+        }elseif($type == 'tubiaoxiu'){
+            $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
+            echo json_encode($r);
+         
         }elseif(!empty($likecon['sheetname']['0'] == 'in')){
             $r=$this->echounisheetuni($dbsheetname,$con2,$likecon,$type);
             $arrjson=returnmsgjson('0','正常返回json数据。',$r);
@@ -929,9 +990,9 @@ public function phpuploadonefile($post="",$files="",$server="") {
 $post=empty($_POST)?$post:$_POST;
 $files=empty($_FILES)?$files:$_FILES;
 $server=empty($_SERVER)?$server:$_SERVER;
-// addlog(json_encode($post),'post34');
-// addlog(json_encode($files),'$_FILES4353456');
-// pr($post,'$post');
+//addlog(json_encode($post),'post34');
+//addlog(json_encode($files),'$_FILES4353456');
+//pr($post,'$post');
 $nowfield=$post['nowfield'];
 $ufilename=$post['ufilename'];
 
@@ -944,7 +1005,20 @@ if(!$aa){
     $result = $this->Auth2Use();
     $returnfileuploadarr=savefile($ufilename);
 // addlog(json_encode($returnfileuploadarr),'$returnfileuploadarr');    
-    $returnurl=$returnfileuploadarr['file'];
+
+    // 检查字典 $returnfileuploadarr 中是否存在 "file" 键且不为空
+    if (isset($returnfileuploadarr["file"]) && !empty($returnfileuploadarr["file"])) {
+        $returnurl = $returnfileuploadarr["file"];
+    } 
+    // 检查字典 $returnfileuploadarr 中是否存在 "files" 键且不为空
+    elseif (isset($returnfileuploadarr["files"]) && !empty($returnfileuploadarr["files"])) {
+        $returnurl = $returnfileuploadarr["files"];
+    } 
+    // 如果以上两种情况都不满足，则返回空字符串
+    else {
+        $returnurl = "";
+    }
+
     echo $returnurl;
     
    
@@ -1141,6 +1215,14 @@ $recurl25=U('RwxyCom/echoline1',"conall=;数据表名等于".$sheetname.";查看
 $recurl26=U('RwxyCom/echoline1',"type=text&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
 $recurl27=U('ViCom/codeindex',"sheetname=".$sheetname,"",true);
 
+
+$recurl18=U('Rwxy/echojson',"type=datajson&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl28=U('RwxyCom/echojson',"type=datajson&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+
+$recurl19=U('Rwxy/echojson',"type=datajson&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+$recurl29=U('RwxyCom/echojson',"type=datajson&conall=;数据表名等于".$sheetname.";查看密码等于".$rpw."","",true);
+
+
 $queryurl2=U('ViCom/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
 $phonemodify2=U('UdCom/magrecords',"wrpw=".$wrpw."&sheetname=".$sheetname,"",true);
 // $queryurl=U(getcomstr('Vi').'/uniquerydata',"rpw=".$rpw."&sheetname=".$sheetname,"",true);
@@ -1158,6 +1240,9 @@ $urls=
     ."<a title='只第一行输出' href=\"".$recurl15."\">"." 格式五"."</a>"
     ."<a title='只第一个值输出' href=\"".$recurl16."\">"." 格式六"."</a>"
     ."<a title='导航' href=\"".$recurl17."\">"." 导航格式"."</a>"
+    ."<a title='只输出键值对' href=\"".$recurl18."\">"." 只输出键值"."</a>"    
+    ."<a title='只输标题行、值' href=\"".$recurl19."\">"." 只输出标题行、值"."</a>"        
+    
     ."<hr>"."<a href=\"".$queryurl."\">"."您的免密码查询网址为（请保密）"."</a>"
     ."<hr>"."<a href=\"".$phonemodify."\">"."您的在线修改网址为（请保密）"."</a>"
     ."<hr><br>-------------以下网址必须先登陆才能访问，请注意保密。-----------------------------------<br>"
@@ -1169,7 +1254,9 @@ $urls=
     ."<a title='只第一行输出' href=\"".$recurl25."\">"." 格式五"."</a>"
     ."<a title='只第一个值输出' href=\"".$recurl26."\">"." 格式六"."</a>"
     ."<a title='导航' href=\"".$recurl27."\">"." 导航格式"."</a>"
-    
+    ."<a title='只输出键值对' href=\"".$recurl28."\">"." 只输出键值"."</a>"    
+    ."<a title='只输标题行、值' href=\"".$recurl29."\">"." 只输出标题行、值"."</a>"        
+        
     ."<hr>"."<a href=\"".$queryurl2."\">"."您的免密码查询网址为（请保密）"."</a>"
     ."<hr>"."<a href=\"".$phonemodify2."\">"."您的在线修改网址为（请保密）"."</a>"    
    
@@ -1215,6 +1302,11 @@ return $result;
 }
 
 
+
+
+
+
+
 public function dbadddata($datatwoarr) {
 $db=M(C('EXCELSECRETSHEET'));
 
@@ -1238,6 +1330,7 @@ $newcout=$newcout-1;
 $result='用户成功清空原有数据，并导入' . '<span style="color:red">' . $newcout . "</span>条数据了！"."，其中失败".$newfailcout."条";
 return $result;
 }
+
 
 public function namekeysgetfirst($namekeys) {
     $namekeyarr=explode(",",$namekeys);

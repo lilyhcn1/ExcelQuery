@@ -133,7 +133,7 @@ if(!empty($getarr)){
     
 
 $this->assign("sheetarr",$sheetarr);
-$sheetname=I('get.sheetname');
+$sheetname=arrurldecode(I('get.sheetname'));
 $this->assign("postpage",U("Vi".LILYCOM."/uniquerydata?sheetname=$sheetname"));
 $this->display("Vi/uniquerydata");
 

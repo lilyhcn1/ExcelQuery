@@ -24,6 +24,187 @@ public function index(){
         header("Location: $url");
 }
 
+//开始代码    
+public function test(){
+    $message="你是谁？";
+    $api_key = "sk-20b9ad19dc904559bad23193840d1d5a";
+    $base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1";    
+    pr("111111111111111111111111");
+    $r=qwen($message,$api_key,$base_url);
+    pr($r);
+}
+
+
+
+// openai的一些代码  
+public function openai($message=""){
+    $api_key = "sk-4CrEZisZfN9QpAHp36F739F8102046Ab86124fB074Ad33Ab";
+    $base_url = "https://api.gptapi.us/v1/";
+    // $api_key = "sk-20b9ad19dc904559bad23193840d1d5a";
+    // $base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1";    
+    
+    
+    $rpw="CGATY5L562,rwxy85137052,3ZH9GM3F2H,N26BK48ANY,G24G5I41JO";
+try{
+    /* 111111111获取当前rpw对应的sheetname */
+    
+    $url="/index.php/Qwadmin/Api/pindex/rpw/".$rpw;
+    $temparr2=getnowsiteurl2arr($url);
+
+    foreach ($temparr2["sheets"]["sheetarr"] as $key=>$arr) {
+        $sheetarr[$key]=$arr["sheetname"];
+    }
+    // pr($sheetarr);
+    $string = implode(";", $sheetarr);
+    // pr($message,"传入的message1");
+    $message=getParam("message",$message);
+    // pr($message,"传入的message2");
+    // $postmsg="王思源的运动卡片增加10张。";
+    $postmsg=$message;
+    
+    $message = "你从以下的文字中挑选中最有可能分类，不用给出解释。分类：".$string."。文字为： ".$postmsg;
+    //----------------------------------------------------------------    
+
+    /* 获取对话最可能的sheetname */   
+   
+    echo $message . "\n";
+    echo "----------------------------<br>";
+    // $sheetname = openaichat($message, $api_key, $base_url);
+    $sheetname="零花钱、运动卡片统计"; //临时改变
+    echo $sheetname; 
+    
+    
+    /* 获取sheetname 对应的 字段 */  
+    $url2="/index.php/Qwadmin/Api/gettitle?sheetname=".$sheetname;
+    $titlearr=getnowsiteurl2arr($url2);
+    // pr($titlearr);
+    $titlestr="";
+    foreach ($titlearr["titlearr"] as $key=> $value) {
+        if (substr($key, 0, 1) === 'd') {
+           $titlestr.=$value."：;";
+        }
+    }
+    // // pr($titlestr);
+    // $enddata=$this->getsheetenddata($sheetname);
+    // foreach ($enddata as $key=> $value) {
+    //     $enddatastr .=$key. " " .$value. " ," ;
+    // }
+
+
+    /* 用AI获取对应的字段并生成json */   
+    // $message= "信息1：".$enddatastr."。信息2：".$postmsg."请合并这两则信息，不需要给出解释，最后以可以解析的Json的形式返回。字符如果不确认，那就返回0或空字符串。键值如下，值均为数值。{".$titlestr."}";
+    $message= "信息1：".$postmsg."。请解析，但不需要给出任何解释，最后以的Json的形式返回。字符如果不确认，那就返回0或空字符串。键值如下，值均为数值，时间请返回8位的yyyymmdd。{".$titlestr."}";
+    // pr($message);
+    // return 111;
+    echo "----------------------------<br>";
+    // $sheetname="222";
+    $jsonstr = openaichat($message, $api_key, $base_url);
+    // $jsonstr ='json { "时间": 20240727, "原因": "零花钱统计", "王思源零花钱收入": 0, "王思源零花钱支出": 0, "王思源零花钱合计": 172, "王思源运动卡片收入": 10, "王思源运动卡片支出": 0, "王思源运动卡片合计": 4, "王思思零花钱收入": 0, "王思思零花钱支出": 0, "王思思零花钱合计": 183, "王思思运动卡片收入": 2, "王思思运动卡片支出": 0, "王思思运动卡片合计": 2 } ';
+    //$sheetname="零花钱、运动卡片统计"; //临时改变
+    pr($jsonstr,'$jsonstr');
+    return 111;
+   $jsonarr=json_decode(extractLastJson($jsonstr),true);
+   // 移除行内注释和单独一行的注释
+    
+   pr($jsonarr);
+//   pr($jsonarr);
+//   $updateurl=wholeurl("/index.php/Qwadmin/Queryfun/update/sheetname/零花钱、运动卡片统计");
+//   pr($updateurl);
+//   sendPostRequest($updateurl,$jsonarr);
+
+    $id=R("Queryfun/update",array(0,$sheetname,$jsonarr));
+    
+    pr($id,"id");
+    return "返回id：".$id;
+} catch (Exception $e) {
+// 处理异常
+echo "捕获到异常: " . $e->getMessage();
+}
+    
+
+}
+
+
+
+
+
+
+//通过多种途径查询出对应的标题数组
+// public function gettitlearr($sheetname,$id='',$fieldstr='',$delempty='true'){
+public function gettitle($echojson="true"){
+    
+    $sheetname=$sheetname?$sheetname:I("get.sheetname");
+    
+    $titlearr=R('Queryfun/gettitlearr',array($sheetname,'',""));
+
+    if($echojson=="arr"){
+        return $titlearr;
+    }elseif($echojson=="simplearr"){
+        pr($titlearr);
+        $bbb=json_decode($titlearr["custom1"],true);
+        $titlearr=R("Queryfun/gettitlearr",array($sheetname,"",$bbb["weborder"]));
+        pr($titlearr);
+        return $titlearr;
+    }elseif($echojson=="true"){
+
+        $r['code']='200';                     //200代表正常
+        $r['getarr']=I('get.');
+        $r['titlearr']=$titlearr;
+        $rrr=returnhttpjson($r,$echojson);
+        return $rr;  
+    }else{
+        return "echojson 的参数错误！~";  
+    }
+}
+
+
+
+
+/* 
+// 获取表格的custom的参数
+// $sheetname代表表格名称，字符串格式
+// $custom代表 要查询的内容，字符串格式，为空时返回所有的字典
+*/
+public function gettcustom($sheetname="零花钱、运动卡片统计",$custom=""){
+    
+    $sheetname=$sheetname?$sheetname:I("get.sheetname");
+    $titlearr=R('Queryfun/gettitlearr',array($sheetname,'',""));
+    $bbb=json_decode($titlearr["custom1"],true);
+    if($custom==""){
+        return $bbb;
+    }else{
+        return $bbb[$custom];
+    }
+    
+}
+
+
+/* 
+// 返回表格最后一条数据
+// $sheetname代表表格名称，字符串格式
+*/
+public function getsheetenddata($sheetname="零花钱、运动卡片统计"){
+    
+        $db=M(C('EXCELSECRETSHEET'));
+        $sheetname=$sheetname?$sheetname:I("get.sheetname");
+        $querycon['sheetname']=$sheetname;
+
+        // 把首行排除掉
+        $firsrtlinearr=$db->where($querycon)->order('id asc')->limit(1)->distinct()->find();  
+        $lastlinearr=$db->where($querycon)->order('id desc')->limit(1)->distinct()->find();  
+
+        $weborder=$this->gettcustom($sheetname,"weborder");
+        $weborderarr=explode(",",$weborder);
+        // pr($weborderarr);
+        foreach ($weborderarr as $key=> $value) {
+            $enddataarr[$firsrtlinearr[$value]]=$lastlinearr[$value];
+        }
+        
+        
+
+    return $enddataarr;
+}
+
 
 // 返回datalist
 public function tiplist($echojson="true"){
@@ -47,7 +228,6 @@ public function tiplist($echojson="true"){
 
 return returnhttpjson($r,$echojson);
 }
-
 
 
 /* 

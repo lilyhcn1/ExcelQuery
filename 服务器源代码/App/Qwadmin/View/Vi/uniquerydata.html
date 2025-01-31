@@ -53,7 +53,7 @@
           </div>
     </div>
     <div class="controls col-xs-5">
-        <input type="text" id="classa" name="name" class="form-control input-xlarge " style="height:30px"  >  
+        <input type="text" id="classa" name="name" class="form-control input-xlarge " placeholder="查询姓名字段" style="height:30px"  >  
 
     </div>
 	
@@ -72,10 +72,27 @@
 	</div>
 </form>
 
+
+
+<div class="container">
+    <div class="row">
+        <p id='info'> 
+            <h3>您能查询的数据表：</h3>
+                <volist name="sheetarr" id="vo">
+                    <a href="{$vo.url}"><span style="font-size:24;">{$vo.sheetname}</span></a><br> 
+                </volist>      
+        </p>
+    </div>
+</div>
+
+
+
+
+
 <div class="container">
     <div class="row">
 
-            <h3>您能查询的数据表：</h3>
+            <!--<h3>您能查询的数据表：</h3>-->
                 <volist name="res" id="list">
 
                    <h4 align="center"> {$list.sheetname}</h4><br> 

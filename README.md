@@ -32,7 +32,11 @@
 下图是最刚开始做的，也是一直在用的通讯录查询系统。   
 ![44](http://vps0.upsir.com/img/txl.png)
 
-
+# 问答
+### 默认的账号密码是什么？
+php网站的账号密码是自己建的，用户名一般为admin。
+mysql网站的账号密码为root, 密码为 root。
+kod的文件管理系统的密码为admin, 密码为 admin。
 
 # 问答
 ### 能否保存敏感数据？
@@ -41,9 +45,56 @@
 现在自己组建虚拟局域网来保证数据处于内部，保证数据安全，但几年的外网使用也没出安全问题。
 
 ### 外网能否访问？
-可以运行frp服务，可以网上找个免费的。加群可以了解这方面的信息。
+可以运行frp服务，可以网上找个免费的。加群可以了解这方面的信息。一般不建议发布在外网，安全性较差。
 
+### debian可以一键安装程序
+sudo apt update && sudo apt install -y unzip && wget http://pub.r34.cc/toolsoft/excelquery_docker.zip -O excelquery_docker.zip && unzip excelquery_docker.zip && cd excelquery_docker && docker-compose up -d
 
+### docker compose安装
+```
+version: '3'
+services:
+  web:
+    image: cjie.eu.org/lilyhcn1/php74apache_excelquery:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./webroot:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - app-network
 
+  db:
+    image: cjie.eu.org/mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: excelquery
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./mysqldata:/var/lib/mysql
+    command: >
+      --character-set-server=utf8
+      --collation-server=utf8_general_ci
+      --skip-character-set-client-handshake
+      --init-connect='SET NAMES utf8'
+      --innodb-buffer-pool-size=64M
+      --innodb-log-buffer-size=1M
+      --key-buffer-size=8M
+      --query-cache-size=0
+      --query-cache-type=0
+      --performance-schema=0
+      --max-connections=20
+      --thread-stack=128K
+      --tmp-table-size=8M
+      --max-heap-table-size=8M
+      --innodb-doublewrite=0
+    networks:
+      - app-network
 
+networks:
+  app-network:
+    driver: bridge
+```
 

@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>{$Think.CONFIG.title}</title>
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
 
 		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
 		<meta name="description" content="{$Think.CONFIG.description}" />
@@ -47,7 +47,7 @@
     										<input id="alldel" class="btn btn-info" type="button" value="删除">
                                             </div>    
                                             <div class="col-xs-4 col-xs-offset-1">
-    										<input type="text" name="keyword" class="form-control" style="width:100%" placeholder="请输入关键词" >
+    										<input type="text" name="keyword" class="form-control" style="width:100%" placeholder="精确查询姓名字段" >
     										</div>
     										<div class="col-xs-2">
     										<button type="submit" class="btn btn-purple btn-sm">
@@ -61,7 +61,7 @@
     						    <div class="space-4"></div>
 								<div class="table-responsive">
     									<form id="form" method="post" action="{:U('del')}">
-    									<table class=" data table table-striped table-bordered" style="width: 100%;">
+    									<table class=" data table table-striped table-bordered">
     										<thead>
     										<tr>
         										<volist name="queryarr" id="val" offset="0" length='1'>

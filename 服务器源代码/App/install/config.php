@@ -25,7 +25,7 @@ return array(
 		//数据库配置文件
 		'dbConfig'=>'../../App/Common/Conf/config.php',
 		//数据库名
-		'dbName' => '',
+		'dbName' => 'excelquery',
 		//数据库表前缀
 		'dbPrefix' => 'qw_',
 		//站点名称

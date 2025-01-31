@@ -46,6 +46,86 @@ function returnmsgjson($code='-1',$info='未知错误',$arr,$r = array("sheetnam
 
     return json_encode($r);
 }
+
+// openai的提问及回答
+function qwen($message, $api_key, $base_url) {
+    $messages = [
+        ["role" => "system", "content" => "文秘工作助手"],
+        ["role" => "user", "content" => $message]
+    ];
+
+    $data = [
+        'model' => 'qwen-plus',  //'qwen-plus',
+        'messages' => $messages
+    ];
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,  $base_url . 'chat/completions');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    // 如果是 HTTPS 请求且需要跳过 SSL 证书验证，可以使用以下两行（不推荐在生产环境中使用）
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Authorization: Bearer ' . $api_key,
+        'Content-Type: application/json'
+    ]);
+    // pr($ch);
+    $response = curl_exec($ch);
+
+    if (curl_errno($ch)) {
+        echo 'Error:' . curl_error($ch);
+    }
+
+    curl_close($ch);
+
+    $responseData = json_decode($response, true);
+    print($responseData);
+    return $responseData['choices'][0]['message']['content'];
+}
+
+
+// openai的提问及回答
+function openaichat($message, $api_key, $base_url) {
+    $messages = [
+        ["role" => "system", "content" => "文秘工作助手"],
+        ["role" => "user", "content" => $message]
+    ];
+
+    $data = [
+        'model' => 'gpt-4o',  //'qwen-plus',
+        'messages' => $messages
+    ];
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $base_url . 'chat/completions');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    // 如果是 HTTPS 请求且需要跳过 SSL 证书验证，可以使用以下两行（不推荐在生产环境中使用）
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Authorization: Bearer ' . $api_key,
+        'Content-Type: application/json'
+    ]);
+
+    $response = curl_exec($ch);
+    pr($response);
+
+    if (curl_errno($ch)) {
+        echo 'Error:' . curl_error($ch);
+    }
+
+    curl_close($ch);
+
+    $responseData = json_decode($response, true);
+    // print($responseData);
+    return $responseData['choices'][0]['message']['content'];
+}
+
+
 //显示http json或数组
 function returnhttpjson($r,$echojson="true"){
     // pr($echojson);
@@ -55,14 +135,34 @@ if($echojson=="true"){
     return $r;
 }
 }
-// //显示get,post传递
-// function getpostarr($arr,$type){
-//     if(!emtpy($arr)){
-//         $arr=$arr
-//     }else{
+
+
+/**
+ * 从字符串中提取出最后一个 JSON 数据
+ *
+ * @param string $input 输入的字符串
+ * @return string|null 最后一个 JSON 数据或 null 如果未找到
+ */
+function extractLastJson($input) {
+    // 正则表达式匹配 JSON 数据
+    $pattern = '/\{(?:[^{}]|(?R))*\}/';
+
+    // 使用 preg_match_all 找到所有 JSON 数据
+    preg_match_all($pattern, $input, $matches);
+
+    // 检查是否找到了匹配的 JSON 数据
+    if (!empty($matches[0])) {
+        // 获取最后一个 JSON 数据
         
-//     }
-// }
+        return preg_replace('#//.*#', '', end($matches[0]));
+    }
+
+    // 未找到 JSON 数据
+    return null;
+}
+
+
+
 function returnerror($flag,$text=""){
     if($flag==2){
         return $text;
@@ -267,6 +367,34 @@ if(empty($url)){
     
     
 }
+function getParam( $varName,$var=null) {
+    // pr($varName,'$varName');
+    // pr($var,'$var');
+    // pr("---------------");
+    // 检查传入的变量是否不为空
+    if (!empty($var)) {
+        
+        // pr($var,'$var');
+        return $var;
+    }
+
+    // 检查GET参数中是否存在并且不为空
+    if (isset($_GET[$varName]) && !empty($_GET[$varName])) {
+        // pr($_GET,'$_GET');
+        return $_GET[$varName];
+    }
+
+    // 检查POST参数中是否存在并且不为空
+    if (isset($_POST[$varName]) && !empty($_POST[$varName])) {
+        // pr($_POST,'$_POST');
+        return $_POST[$varName];
+    }
+
+    // 如果都没有值，返回空字符串
+    return '';
+
+ 
+}
 
 
 
@@ -308,6 +436,28 @@ if(isset($titleresult)){
 }    
  return   $r;
 }
+
+
+// 从URL对应的网址取回json内容，并解析出来
+function getnowsiteurl2arr($url){
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $host = $_SERVER['HTTP_HOST'];
+
+    $url=$protocol . $host.$url;
+    $json = file_get_contents($url);        
+    $temparr2=json_decode($json,true);
+    return $temparr2;
+}
+
+// 补全url
+function wholeurl($url){
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $host = $_SERVER['HTTP_HOST'];
+    $url=$protocol . $host.$url;
+    return $url;
+}
+
+
 
 function characettouft8($data){
 if( !empty($data) ){
@@ -596,6 +746,18 @@ function delemptyfieldgetnew($array){
         }
     }
     return $newarr;
+}
+
+function filterDictionaryByKeys($csvKeys, $dictionary) {
+    // 将逗号分隔的字符串转换为数组
+    $keysArray = explode(',', $csvKeys);
+
+    // 过滤字典
+    $filteredDictionary = array_filter($dictionary, function($key) use ($keysArray) {
+        return in_array($key, $keysArray);
+    }, ARRAY_FILTER_USE_KEY);
+
+    return $filteredDictionary;
 }
 
 /**
@@ -2008,7 +2170,7 @@ function network______________($url,$data=array()){
 }
 
 // 发送post数据
-function http_request($url,$data=array()){
+function http_request($url,$data=array(),$header=""){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -2016,12 +2178,74 @@ function http_request($url,$data=array()){
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
     // 我们在POST数据哦！
     curl_setopt($ch, CURLOPT_POST, 1);
+    if(!empty($header)){
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+    }
     // 把post的变量加上
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     $output = curl_exec($ch);
     curl_close($ch);
     return $output;
 }
+
+
+
+/**
+ * 发送 POST 请求
+ *
+ * @param string $url 请求的 URL
+ * @param array $data POST 数据
+ * @param array $headers 可选的 HTTP 头，作为一个数组
+ * @return string 响应内容
+ * @throws Exception 如果请求失败
+ */
+function sendPostRequestfg($url, $data, $headers = array()) {
+    // 将数据编码为 URL 编码的查询字符串格式
+    // $postData = http_build_query($data);
+    $postData = $data;
+    // 设置默认的 HTTP 头
+    $defaultHeaders = array(
+        'Content-type: application/x-www-form-urlencoded',
+    );
+
+    // 合并自定义头和默认头
+    $allHeaders = array_merge($defaultHeaders, $headers);
+
+    // 将头信息数组转换为字符串
+    $headersString = implode("\r\n", $allHeaders);
+    pr($headersString);
+    // 创建 HTTP 上下文选项
+    $options = array(
+        'http' => array(
+            'header'  => $headersString,
+            'method'  => 'POST',
+            'content' => $postData,
+        ),
+    );
+
+    // 创建上下文资源
+    $context = stream_context_create($options);
+    pr($url);
+    pr($context);
+    // 发送 POST 请求并获取响应
+    $response = file_get_contents($url, false, $context);
+    pr($response);
+    // // 检查是否发生错误
+    // if ($response === FALSE) {
+    //     throw new Exception('POST 请求失败');
+    // }
+
+    return $response;
+}
+
+
+
+
+
+
+
+
+
 /**
  * 生成二维码
  * @param  string  $url  url连接
@@ -2149,6 +2373,44 @@ function  arrurldecode($arr){
 }
 
 
+/**
+ * 发送带有数组数据的 POST 请求,可以用的
+ *
+ * @param string $url 目标 URL
+ * @param array $data 要发送的数组数据
+ * @return string|null 返回响应内容或 null 如果请求失败
+ */
+function sendPostRequest($url, $data) {
+    // 初始化 cURL 会话
+    $ch = curl_init();
+
+    // 将数组数据编码为 URL 编码的查询字符串
+    $postData = http_build_query($data);
+
+    // 设置 cURL 选项
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // 返回响应而不是直接输出
+    curl_setopt($ch, CURLOPT_POST, true); // 设置请求为 POST
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData); // 设置 POST 数据
+
+    // 执行 cURL 请求
+    $response = curl_exec($ch);
+
+    // 检查是否有错误
+    if (curl_errno($ch)) {
+        echo 'cURL 错误: ' . curl_error($ch);
+        curl_close($ch);
+        return null;
+    }
+
+    // 关闭 cURL 会话
+    curl_close($ch);
+
+    return $response;
+}
+
+
+
 // 修改了网上的模板，原来是url会变，我现在是post会变
 function  curlpost($url,$postarr, $callback = '')
 {
@@ -2247,6 +2509,7 @@ $Reg='/'.str_replace('/','\/',$left).'(.*?)'.str_replace('/','\/',$right).'/is';
 // texttable 按固定长度输出
 // 默认是只输出一个数据，适合已合成语句的情况。
 function echojsonalltypes($arr,$type="text"){
+
 switch ($type) {
     case 'twotable':
         return h5html("",h5twotable($arr),"empty");

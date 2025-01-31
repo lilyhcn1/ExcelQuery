@@ -1,3 +1,13 @@
+----20240807
+
+api,queryfun,rwxy,vi
+function
+/Public/qwadmin/ 新增一些文件
+
+订阅号新增东西
+先上传两个文件夹
+传到ms里，funcition
+
 vi中新增一个
 vicom也要新增
 

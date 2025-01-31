@@ -13,8 +13,8 @@
 
 					<tr>
 						<td class="tar">数据库服务器：</td>
-						<td><input type="text" name="dbhost" id="dbhost" value="127.0.0.1" class="input"></td>
-						<td><div id="J_install_tip_dbhost"><span class="gray">数据库服务器地址，一般为localhost</span></div></td>
+						<td><input type="text" name="dbhost" id="dbhost" value="db" class="input"></td>
+						<td><div id="J_install_tip_dbhost"><span class="gray">数据库服务器地址，普通安装为127.0.0.1，docker安装时填“db”</span></div></td>
 					</tr>
 					<tr>
 						<td class="tar">数据库端口：</td>
@@ -24,12 +24,12 @@
 					<tr>
 						<td class="tar">数据库用户名：</td>
 						<td><input type="text" name="dbuser" id="dbuser" value="root" class="input"></td>
-						<td><div id="J_install_tip_dbuser"></div></td>
+						<td><div id="J_install_tip_dbuser"><span class="gray">默认数据库用户名 root </span></div></td>
 					</tr>
 					<tr>
 						<td class="tar">数据库密码：</td>
-						<td><input type="password" name="dbpw" id="dbpw" value="" class="input" autoComplete="off"></td>
-						<td><div id="J_install_tip_dbpw"></div></td>
+						<td><input type="password" name="dbpw" id="dbpw" value="root" class="input" autoComplete="off"></td>
+						<td><div id="J_install_tip_dbpw"><span class="gray">默认数据库密码 root </span></div></td>
 					</tr>
 					<tr>
 						<td class="tar">测试数据库连接：</td>
@@ -103,11 +103,7 @@
 						<td><input type="password" name="manager_ckpwd" class="input" autoComplete="off"></td>
 						<td><div id="J_install_tip_manager_ckpwd"></div></td>
 					</tr>
-					<tr>
-						<td class="tar">Email：</td>
-						<td><input type="text" name="manager_email" class="input" value=""></td>
-						<td><div id="J_install_tip_manager_email"></div></td>
-					</tr>
+						<td><input type="hidden" name="manager_email" class="input" value="excel@ddf.com"></td>
 				</table>
 				
 				<table width="100%">
