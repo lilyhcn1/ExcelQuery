@@ -1938,11 +1938,10 @@ return "
   <title>".$title."</title>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link rel='stylesheet' href='http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css'>  
-  <link href='https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
-  <script src='http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js'></script>
-  <script src='http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js'></script>
-
+  <link href='//r34.cc/Public/qwadmin/css/bootstrap.css' rel='stylesheet' >  
+  <link href='//r34.cc/Public/qwadmin/css/font-awesome.css' rel='stylesheet'>
+  <script src='//r34.cc/Public/qwadmin/js/jquery.js'></script>
+  <script src='//r34.cc/Public/qwadmin/js/bootstrap.js'></script>
 
 </head>
 <body>"."<".$font.">".
@@ -2272,6 +2271,14 @@ return $textleft.'<br>'.$textright;
 }
 
 
+
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link href='//r34.cc/Public/qwadmin/css/bootstrap.css' rel='stylesheet' >  
+  <link href='//r34.cc/Public/qwadmin/css/font-awesome.css' rel='stylesheet'>
+  <script src='//r34.cc/Public/qwadmin/js/jquery.js'></script>
+  <script src='//r34.cc/Public/qwadmin/js/bootstrap.js'></script>
+
+
 /**
  * 生成二维码
  * @param  string  $url  url连接
@@ -2283,10 +2290,10 @@ $f="<html>
   <title>".$title."</title>
   <meta charset=\"utf-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-  <link rel=\"stylesheet\" href=\"http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css\">  
-  <link href=\"https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-  <script src=\"http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js\"></script>
-  <script src=\"http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js\"></script>
+  <link rel=\"stylesheet\" href=\"//r34.cc/Public/qwadmin/css/bootstrap.css\">  
+  <link href=\"//r34.cc/Public/qwadmin/css/font-awesome.css\" rel=\"stylesheet\">
+  <script src=\"//r34.cc/Public/qwadmin/js/jquery.js\"></script>
+  <script src=\"//r34.cc/Public/qwadmin/js/bootstrap.js\"></script>
 <style type=\"text/css\">
 .redbold {
 	color: #FF0000;
