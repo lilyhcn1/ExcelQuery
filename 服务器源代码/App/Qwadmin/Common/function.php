@@ -1938,10 +1938,11 @@ return "
   <title>".$title."</title>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link href='//r34.cc/Public/qwadmin/css/bootstrap.css' rel='stylesheet' >  
-  <link href='//r34.cc/Public/qwadmin/css/font-awesome.css' rel='stylesheet'>
-  <script src='//r34.cc/Public/qwadmin/js/jquery.js'></script>
-  <script src='//r34.cc/Public/qwadmin/js/bootstrap.js'></script>
+  <link rel='stylesheet' href='__LILYCDN__/Public/qwadmin/css/bootstrap.min.css'>  
+  <link href='__LILYCDN__/Public/qwadmin/css/font-awesome.min.css' rel='stylesheet'>
+  <script src='__LILYCDN__/Public/qwadmin/js/jquery.min.js'></script>
+  <script src='__LILYCDN__/Public/qwadmin/js/bootstrap.min.js'></script>
+
 
 </head>
 <body>"."<".$font.">".
@@ -2273,10 +2274,17 @@ return $textleft.'<br>'.$textright;
 
 
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link href='//r34.cc/Public/qwadmin/css/bootstrap.css' rel='stylesheet' >  
-  <link href='//r34.cc/Public/qwadmin/css/font-awesome.css' rel='stylesheet'>
-  <script src='//r34.cc/Public/qwadmin/js/jquery.js'></script>
-  <script src='//r34.cc/Public/qwadmin/js/bootstrap.js'></script>
+  <link rel='stylesheet' href='__LILYCDN__/Public/qwadmin/css/bootstrap.min.css'>  
+  <link href='__LILYCDN__/Public/qwadmin/css/font-awesome.min.css' rel='stylesheet'>
+  <script src='__LILYCDN__/Public/qwadmin/js/jquery.min.js'></script>
+  <script src='__LILYCDN__/Public/qwadmin/js/bootstrap.min.js'></script>
+
+
+
+  <link rel='stylesheet' href='__LILYCDN__/Public/qwadmin/css/bootstrap.min.css'>  
+  <link href='__LILYCDN__/Public/qwadmin/css/font-awesome.min.css' rel='stylesheet'>
+  <script src='__LILYCDN__/Public/qwadmin/js/jquery.min.js'></script>
+  <script src='__LILYCDN__/Public/qwadmin/js/bootstrap.min.js'></script>
 
 
 /**
@@ -2290,10 +2298,10 @@ $f="<html>
   <title>".$title."</title>
   <meta charset=\"utf-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-  <link rel=\"stylesheet\" href=\"//r34.cc/Public/qwadmin/css/bootstrap.css\">  
-  <link href=\"//r34.cc/Public/qwadmin/css/font-awesome.css\" rel=\"stylesheet\">
-  <script src=\"//r34.cc/Public/qwadmin/js/jquery.js\"></script>
-  <script src=\"//r34.cc/Public/qwadmin/js/bootstrap.js\"></script>
+  <link rel=\"stylesheet\" href=\"/Public/qwadmin/css/bootstrap.css\">  
+  <link href=\"/Public/qwadmin/css/font-awesome.css\" rel=\"stylesheet\">
+  <script src=\"/Public/qwadmin/js/jquery.js\"></script>
+  <script src=\"/Public/qwadmin/js/bootstrap.js\"></script>
 <style type=\"text/css\">
 .redbold {
 	color: #FF0000;
