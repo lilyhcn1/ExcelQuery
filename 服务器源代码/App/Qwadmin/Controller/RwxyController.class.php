@@ -758,9 +758,9 @@ public function simpletable($data,$openindex="false",$sheetname="",$rpw=""){
     <meta charset="utf-8"> 
        <meta name="viewport" content="initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/Public/qwadmin/css/bootstrap.min.css">  
+    <script src="/Public/qwadmin/js/jquery.min.js"></script>
+    <script src="/Public/qwadmin/js/bootstrap.min.js"></script>
 </head>
 <body><table class="table table-striped" style=""> <tbody>';
      $firstline='';
