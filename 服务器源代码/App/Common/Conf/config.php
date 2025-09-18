@@ -46,7 +46,7 @@ return array(
 'DAYUSMSAPPKEY'=>'',
 'DAYUSMSSECRET'	=>'',
 
-
+    'URL_MODEL' => 3, // 兼容模式, 主要用于nginx中可以正常 
     'MINI1'=>'',
     'MINI1SECRET'=>'',	
 );
